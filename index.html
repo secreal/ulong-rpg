@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IT Job Tree Adventure</title>
+  <style>
+    :root {
+      --bg: #151922;
+      --panel: #202838;
+      --panel-2: #293346;
+      --ink: #f5efd9;
+      --muted: #b6c0cf;
+      --line: #3d4a60;
+      --gold: #f2c35b;
+      --green: #6bd08f;
+      --red: #ee6f6f;
+      --blue: #69a8f5;
+      --cyan: #62d8d2;
+      --violet: #b889f4;
+      --shadow: rgba(0, 0, 0, .28);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(242, 195, 91, .16), transparent 28%),
+        linear-gradient(180deg, #111721 0%, #1b2230 52%, #111721 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 18px 18px;
+      mask-image: linear-gradient(to bottom, #000, transparent 80%);
+    }
+
+    header {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 42px 20px 22px;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .crest {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: #22170a;
+      background: var(--gold);
+      border: 3px solid #8c6530;
+      box-shadow: 0 4px 0 #6b4723;
+      transform: rotate(45deg);
+    }
+
+    .crest span {
+      transform: rotate(-45deg);
+      font-weight: 900;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 24px 0 12px;
+      font-size: clamp(38px, 7vw, 82px);
+      line-height: .92;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-block: 1px solid rgba(255,255,255,.08);
+      background: rgba(21, 25, 34, .88);
+      backdrop-filter: blur(14px);
+    }
+
+    .control-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      background: #1d2533;
+      padding: 0 14px;
+      font: 700 13px/1 "Trebuchet MS", Verdana, sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 3px 0 #101622;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+
+    button:hover,
+    button.active {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      background: #2a3447;
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(242, 195, 91, .55);
+      outline-offset: 3px;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 30px 20px 56px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 0 18px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .section-title p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--muted);
+      font: 14px/1.5 "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .tree-panel {
+      margin-bottom: 34px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent),
+        rgba(21, 25, 34, .74);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+    }
+
+    .tree {
+      min-width: 1040px;
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+      position: relative;
+    }
+
+    .tree::before {
+      content: "";
+      position: absolute;
+      left: 174px;
+      right: 42px;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(242, 195, 91, .42), transparent);
+    }
+
+    .tree-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .tier-label {
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      border: 1px solid rgba(242, 195, 91, .35);
+      border-radius: 8px;
+      background: rgba(242, 195, 91, .08);
+      font: 800 13px/1 "Trebuchet MS", Verdana, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .tree-branches {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(92px, 1fr));
+      gap: 10px;
+      position: relative;
+    }
+
+    .tree-row:not(:first-child) .tree-branches::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -10px;
+      height: 1px;
+      background: rgba(242, 195, 91, .18);
+    }
+
+    .tree-node {
+      min-height: 68px;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      border: 1px solid color-mix(in srgb, var(--role) 70%, var(--line));
+      border-radius: 8px;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--role) 18%, transparent), transparent),
+        var(--panel);
+      font: 800 12px/1.18 "Trebuchet MS", Verdana, sans-serif;
+      text-align: center;
+      box-shadow: 0 4px 0 #101622;
+      cursor: pointer;
+      white-space: normal;
+      overflow: visible;
+    }
+
+    .tree-node:hover,
+    .tree-node:focus {
+      outline: 2px solid color-mix(in srgb, var(--role) 70%, white);
+      outline-offset: 2px;
+    }
+
+    .tree-node.base {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 190px;
+    }
+
+    .tree-node.empty {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 372px;
+      overflow: visible;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 26%),
+        var(--panel);
+      box-shadow: 0 18px 30px var(--shadow), inset 0 0 0 1px rgba(255,255,255,.03);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: color-mix(in srgb, var(--role) 72%, white);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 6px;
+      background: var(--role);
+    }
+
+    .sprite-stage {
+      height: 168px;
+      display: grid;
+      place-items: end center;
+      padding-top: 18px;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at center 78%, rgba(0,0,0,.42) 0 26%, transparent 27%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.12));
+    }
+
+    .sprite {
+      width: 116px;
+      height: 138px;
+      position: relative;
+      filter: drop-shadow(0 7px 0 rgba(0,0,0,.22));
+      transform: translateZ(0);
+    }
+
+    .sprite * { position: absolute; }
+
+    .head {
+      left: 38px;
+      top: 16px;
+      width: 42px;
+      height: 38px;
+      border-radius: 45% 45% 40% 40%;
+      background: #f0c18e;
+      border: 3px solid #6a3d2b;
+      z-index: 4;
+    }
+
+    .hair {
+      left: 33px;
+      top: 7px;
+      width: 52px;
+      height: 28px;
+      border-radius: 50% 50% 30% 30%;
+      background: var(--hair);
+      border: 3px solid #33202a;
+      z-index: 5;
+    }
+
+    .hair::after {
+      content: "";
+      position: absolute;
+      right: 3px;
+      top: 14px;
+      width: 12px;
+      height: 24px;
+      background: var(--hair);
+      border: 3px solid #33202a;
+      border-left: 0;
+      border-radius: 0 0 12px 0;
+    }
+
+    .eye {
+      top: 35px;
+      width: 5px;
+      height: 5px;
+      background: #1d2430;
+      z-index: 7;
+    }
+
+    .eye.left { left: 51px; }
+    .eye.right { left: 65px; }
+
+    .body {
+      left: 32px;
+      top: 54px;
+      width: 54px;
+      height: 52px;
+      border-radius: 10px 10px 8px 8px;
+      background: var(--role);
+      border: 4px solid #1f2634;
+      z-index: 3;
+    }
+
+    .cape {
+      left: 24px;
+      top: 54px;
+      width: 70px;
+      height: 70px;
+      border-radius: 10px 10px 28px 28px;
+      background: color-mix(in srgb, var(--role) 55%, #151922);
+      z-index: 1;
+      transform: skewX(-5deg);
+    }
+
+    .arm {
+      top: 65px;
+      width: 18px;
+      height: 44px;
+      border-radius: 9px;
+      background: #f0c18e;
+      border: 3px solid #6a3d2b;
+      z-index: 2;
+    }
+
+    .arm.left { left: 19px; transform: rotate(18deg); }
+    .arm.right { right: 19px; transform: rotate(-18deg); }
+
+    .leg {
+      top: 101px;
+      width: 20px;
+      height: 28px;
+      border-radius: 0 0 8px 8px;
+      background: #344057;
+      border: 3px solid #1f2634;
+      z-index: 2;
+    }
+
+    .leg.left { left: 35px; }
+    .leg.right { right: 35px; }
+
+    .tool {
+      z-index: 8;
+      color: var(--role);
+    }
+
+    .tool::before,
+    .tool::after { content: ""; position: absolute; }
+
+    .sword {
+      right: 5px;
+      top: 34px;
+      width: 10px;
+      height: 80px;
+      background: #dce5ef;
+      border: 2px solid #6f7a8e;
+      transform: rotate(36deg);
+    }
+
+    .sword::before {
+      left: -12px;
+      top: 50px;
+      width: 34px;
+      height: 8px;
+      background: #9a6a35;
+    }
+
+    .wand {
+      right: 15px;
+      top: 18px;
+      width: 8px;
+      height: 88px;
+      background: #8c6334;
+      transform: rotate(-18deg);
+    }
+
+    .wand::before {
+      left: -8px;
+      top: -10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 18px currentColor;
+    }
+
+    .bow {
+      right: 8px;
+      top: 36px;
+      width: 34px;
+      height: 76px;
+      border: 5px solid #9b6a39;
+      border-left: 0;
+      border-radius: 0 42px 42px 0;
+    }
+
+    .bow::before {
+      left: 2px;
+      top: -4px;
+      width: 2px;
+      height: 76px;
+      background: #e7dcc0;
+    }
+
+    .shield {
+      left: 5px;
+      top: 58px;
+      width: 34px;
+      height: 42px;
+      border-radius: 8px 8px 16px 16px;
+      background: currentColor;
+      border: 4px solid #d8c27b;
+    }
+
+    .book {
+      right: 2px;
+      top: 62px;
+      width: 42px;
+      height: 32px;
+      border-radius: 4px;
+      background: #f1e2b3;
+      border: 4px solid currentColor;
+      transform: rotate(-11deg);
+    }
+
+    .hammer {
+      right: 7px;
+      top: 30px;
+      width: 10px;
+      height: 82px;
+      background: #8c6334;
+      transform: rotate(-28deg);
+    }
+
+    .hammer::before {
+      left: -18px;
+      top: -7px;
+      width: 46px;
+      height: 24px;
+      background: #c4ccd5;
+      border: 3px solid #69768a;
+    }
+
+    .laptop {
+      left: 4px;
+      top: 78px;
+      width: 46px;
+      height: 30px;
+      background: #9fb3ca;
+      border: 4px solid #364155;
+      transform: rotate(10deg);
+    }
+
+    .laptop::before {
+      left: -6px;
+      top: 27px;
+      width: 58px;
+      height: 8px;
+      background: #dce5ef;
+      border: 2px solid #364155;
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .class {
+      color: var(--role);
+      font: 800 12px/1 "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 7px 0 8px;
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .desc {
+      min-height: 64px;
+      margin: 0 0 13px;
+      color: var(--muted);
+      font: 14px/1.5 "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .meta {
+      display: grid;
+      gap: 8px;
+      font: 13px/1.35 "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .meta span {
+      display: block;
+      color: var(--muted);
+    }
+
+    .salary {
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill {
+      position: relative;
+      border: 1px solid color-mix(in srgb, var(--role) 58%, var(--line));
+      border-radius: 999px;
+      color: var(--ink);
+      background: rgba(255,255,255,.05);
+      padding: 5px 8px;
+      font-weight: 800;
+      cursor: help;
+    }
+
+    .skill::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 9px);
+      z-index: 10;
+      width: min(270px, 72vw);
+      padding: 10px 11px;
+      border: 1px solid color-mix(in srgb, var(--role) 70%, var(--line));
+      border-radius: 6px;
+      color: var(--ink);
+      background: #111721;
+      box-shadow: 0 14px 24px rgba(0,0,0,.34);
+      font: 12px/1.45 "Trebuchet MS", Verdana, sans-serif;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+      transition: opacity .14s ease, transform .14s ease;
+    }
+
+    .skill:hover::after,
+    .skill:focus::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hidden { display: none; }
+
+    footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+      color: var(--muted);
+      font: 13px/1.6 "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    @media (max-width: 620px) {
+      header { padding-top: 28px; }
+      .section-title { display: block; }
+      .section-title p { margin-top: 8px; }
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topline"><div class="crest"><span>IT</span></div> Job Tree Adventure</div>
+    <h1>Dunia IT sebagai kelas petualang</h1>
+    <p class="intro">Setiap role punya senjata, skill aktif, dan range salary sendiri. Mulai dari Novice sampai final class seperti CTO, peta ini bisa dipakai sebagai konsep awal untuk ensiklopedia job IT.</p>
+  </header>
+
+  <nav class="controls" aria-label="Filter job tree">
+    <div class="control-inner" id="filters"></div>
+  </nav>
+
+  <main>
+    <section aria-label="Peta job tree">
+      <div class="section-title">
+        <h2>Job Tree</h2>
+        <p>Klik node di pohon untuk memfilter kartu job. Alurnya dibuat seperti upgrade class: Novice memilih cabang pertama, lalu naik ke advanced class dan final class.</p>
+      </div>
+      <div class="tree-panel">
+        <div class="tree" id="tree"></div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>Job Cards</h2>
+      <p>Hover skill chip untuk melihat penjelasan tiap skill.</p>
+    </div>
+    <section class="grid" id="jobs" aria-label="Daftar job IT"></section>
+  </main>
+
+  <footer>
+    Karakter dibuat sebagai ilustrasi CSS/SVG original dengan nuansa MMORPG retro. Angka salary adalah kisaran kasar bulanan di Indonesia dan perlu disesuaikan lagi dengan kota, industri, seniority, dan model kerja.
+  </footer>
+
+  <script>
+    const jobs = [
+      ["Base", "IT Novice", "Fresh graduate yang masuk training ground dan belajar dasar dunia IT.", "Git, SQL basic, logic, troubleshooting", "Rp4-8 juta", "#f2c35b", "#5a3d2d", "book"],
+      ["Software", "Frontend Developer", "Archer UI yang menembakkan komponen, layout, dan interaksi ke browser.", "HTML, CSS, JavaScript, React/Vue", "Rp6-25 juta", "#69a8f5", "#355071", "bow"],
+      ["Software", "Backend Developer", "Mage server yang menjaga API, business logic, database, dan autentikasi.", "API, database, auth, queue, caching", "Rp7-30 juta", "#b889f4", "#3e3159", "wand"],
+      ["Software", "Fullstack Developer", "Hybrid class yang bisa berpindah dari client ke server dalam satu party.", "Frontend, backend, SQL, deployment", "Rp8-35 juta", "#62d8d2", "#2e4f54", "sword"],
+      ["Software", "Mobile Developer", "Petualang app yang membawa produk ke Android dan iOS.", "Kotlin, Swift, Flutter, React Native", "Rp7-30 juta", "#80c86a", "#314d36", "laptop"],
+      ["Software", "Tech Lead", "Party leader teknis yang menjaga arah implementasi dan kualitas code.", "Architecture, review, mentoring", "Rp20-60 juta+", "#ee9a52", "#5c3924", "sword"],
+
+      ["QA", "Manual QA", "Scout bug yang menyisir fitur, edge case, dan flow user.", "Smoke test, regression, test case", "Rp5-18 juta", "#ee6f6f", "#56303a", "shield"],
+      ["QA", "QA Automation", "Hunter trap yang membuat bug tertangkap lewat script otomatis.", "Playwright, Cypress, Selenium, API test", "Rp8-30 juta", "#f07aa5", "#563147", "bow"],
+      ["QA", "Performance Tester", "Damage tester yang menekan sistem sampai bottleneck terlihat.", "JMeter, k6, load test, stress test", "Rp10-35 juta", "#ffb35c", "#5a4029", "hammer"],
+
+      ["Data", "Data Analyst", "Sage pembaca angka yang mengubah data menjadi insight bisnis.", "SQL, Excel, dashboard, statistics", "Rp6-25 juta", "#6bd08f", "#2f573b", "book"],
+      ["Data", "BI Developer", "Support class yang membangun dashboard dan metric party.", "Power BI, Tableau, Looker, modeling", "Rp8-30 juta", "#55c7a0", "#2f5148", "book"],
+      ["Data", "Data Engineer", "Blacksmith pipeline yang menempa data mentah menjadi data siap pakai.", "ETL, Airflow, Spark, warehouse", "Rp10-45 juta", "#71a6ff", "#314461", "hammer"],
+      ["Data", "Data Scientist", "Professor eksperimen yang membuat model prediksi dan analisis.", "Python, ML, statistics, experiment", "Rp10-45 juta", "#cda0ff", "#45345c", "wand"],
+      ["Data", "AI Engineer", "Summoner model yang menghubungkan LLM, RAG, dan agent ke produk.", "LLM API, RAG, evaluation, agents", "Rp12-60 juta+", "#75e0ff", "#2e5360", "wand"],
+
+      ["Infra", "System Administrator", "Priest server yang menjaga mesin, user, backup, dan patch.", "Linux, Windows Server, monitoring", "Rp6-25 juta", "#9fc1d9", "#35495a", "shield"],
+      ["Infra", "Network Engineer", "Crusader jaringan yang menjaga routing, switching, dan firewall.", "TCP/IP, routing, switching, firewall", "Rp6-30 juta", "#83d3e8", "#2d4f59", "shield"],
+      ["Infra", "Cloud Engineer", "High priest cloud yang mengelola compute, storage, IAM, dan network.", "AWS/GCP/Azure, IAM, containers", "Rp10-45 juta", "#83b6ff", "#314967", "wand"],
+      ["Infra", "DevOps Engineer", "Alchemist otomasi yang menyiapkan CI/CD dan infrastructure as code.", "Docker, Kubernetes, Terraform, CI/CD", "Rp12-55 juta+", "#f0c15b", "#5d4521", "hammer"],
+      ["Infra", "SRE", "Paladin uptime yang bertugas menjaga reliability production.", "SLO, monitoring, incident response", "Rp15-65 juta+", "#6ee0b7", "#2e5549", "shield"],
+      ["Infra", "Database Administrator", "Keeper database yang menjaga backup, tuning, dan high availability.", "PostgreSQL, MySQL, tuning, HA", "Rp10-45 juta", "#d4b36a", "#514328", "book"],
+
+      ["Security", "SOC Analyst", "Guard kota yang membaca alert, log, dan tanda serangan.", "SIEM, log analysis, triage", "Rp7-25 juta", "#ee6f6f", "#53343a", "shield"],
+      ["Security", "Security Engineer", "Crusader security yang memasang pertahanan sistem.", "Hardening, IAM, endpoint, firewall", "Rp10-45 juta", "#ff826e", "#5b352e", "sword"],
+      ["Security", "Pentester", "Assassin legal yang mencari celah sebelum musuh menemukannya.", "OWASP, Burp, exploit basics", "Rp10-50 juta", "#b889f4", "#3b304e", "sword"],
+      ["Security", "AppSec Engineer", "Rune guard aplikasi yang review code dan threat model.", "Secure coding, SAST/DAST, review", "Rp15-60 juta", "#ff6b8e", "#56313d", "book"],
+      ["Security", "GRC Specialist", "Sage aturan yang mengurus risk, policy, audit, dan compliance.", "ISO 27001, risk, audit, policy", "Rp8-40 juta", "#d8c27b", "#4b432c", "book"],
+
+      ["Product", "Business Analyst", "NPC penerjemah quest dari bahasa bisnis ke requirement teknis.", "Requirement, flow, documentation", "Rp7-30 juta", "#f2c35b", "#554321", "book"],
+      ["Product", "Product Owner", "Quest owner yang menyusun backlog dan prioritas sprint.", "Backlog, user story, stakeholder", "Rp12-45 juta", "#ffb15d", "#5a3c24", "book"],
+      ["Product", "Product Manager", "Guild strategist yang memilih arah produk dan metric kemenangan.", "Discovery, roadmap, metrics", "Rp15-70 juta+", "#6bd08f", "#324f3b", "sword"],
+      ["Product", "Project Manager", "Party organizer yang menjaga timeline, resource, dan risiko.", "Planning, coordination, reporting", "Rp12-55 juta", "#69a8f5", "#314661", "shield"],
+
+      ["Design", "UI Designer", "Costume designer yang membuat tampilan terasa rapi dan berkarakter.", "Figma, layout, typography, color", "Rp6-25 juta", "#ff9ac4", "#573447", "wand"],
+      ["Design", "UX Designer", "Quest designer yang memastikan alur user masuk akal dan nyaman.", "Wireframe, flow, usability test", "Rp8-35 juta", "#cda0ff", "#463559", "book"],
+      ["Design", "Product Designer", "Class hybrid UI/UX yang mendesain pengalaman produk end-to-end.", "UX, UI, prototype, design system", "Rp10-45 juta", "#70d7c9", "#2d514f", "laptop"],
+
+      ["Support", "Helpdesk", "Acolyte awal yang membantu user lewat ticket dan troubleshooting.", "Ticketing, Windows, account support", "Rp4-10 juta", "#9fc1d9", "#394a58", "laptop"],
+      ["Support", "Technical Support", "Support produk yang membaca log, API, dan issue customer.", "Log reading, SQL basic, API basic", "Rp5-18 juta", "#83d3e8", "#2f4f5a", "laptop"],
+      ["Support", "Application Support", "Priest aplikasi yang menjaga produk tetap berjalan harian.", "SQL, incident, monitoring, SOP", "Rp6-25 juta", "#80c86a", "#314d36", "shield"],
+
+      ["Leadership", "Engineering Manager", "Guild captain yang menyeimbangkan delivery, orang, dan kualitas teknis.", "People management, delivery, hiring", "Rp30-90 juta+", "#ee9a52", "#573921", "sword"],
+      ["Leadership", "CTO", "Final class teknologi yang menentukan arah sistem dan organisasi engineering.", "Strategy, architecture, leadership", "Rp80-250 juta+", "#f2c35b", "#4e3b1b", "wand"],
+      ["Leadership", "CISO", "Final class security yang memimpin pertahanan perusahaan.", "Cyber risk, governance, incident", "Rp80-250 juta+", "#ee6f6f", "#4e2d34", "shield"]
+    ];
+
+    const skillDescriptions = {
+      "Git": "Version control untuk menyimpan riwayat perubahan code dan kerja bareng tim.",
+      "SQL basic": "Dasar mengambil, memfilter, dan mengubah data dari database relasional.",
+      "logic": "Kemampuan memecah masalah menjadi langkah kecil yang bisa dieksekusi program.",
+      "troubleshooting": "Mencari penyebab error dari gejala, log, konfigurasi, dan perubahan terakhir.",
+      "HTML": "Struktur halaman web: heading, form, tabel, navigasi, dan elemen semantik.",
+      "CSS": "Mengatur layout, warna, responsive design, animasi, dan tampilan komponen.",
+      "JavaScript": "Bahasa utama browser untuk interaksi, state, request API, dan logic UI.",
+      "React/Vue": "Framework frontend untuk membuat UI berbasis komponen dan state.",
+      "API": "Kontrak komunikasi antar sistem, biasanya lewat HTTP, REST, GraphQL, atau RPC.",
+      "database": "Tempat menyimpan data aplikasi dengan query, indeks, constraint, dan transaksi.",
+      "auth": "Login, permission, session/token, dan perlindungan akses fitur atau data.",
+      "queue": "Antrian pekerjaan background supaya proses berat tidak menahan request utama.",
+      "caching": "Menyimpan hasil sementara agar sistem lebih cepat dan beban server turun.",
+      "Frontend": "Area aplikasi yang dilihat dan dipakai langsung oleh user.",
+      "backend": "Area server yang menangani data, aturan bisnis, dan integrasi sistem.",
+      "deployment": "Proses merilis aplikasi ke environment yang bisa dipakai user.",
+      "Kotlin": "Bahasa modern untuk pengembangan Android native.",
+      "Swift": "Bahasa utama untuk pengembangan iOS native.",
+      "Flutter": "Framework multi-platform berbasis Dart untuk membuat app mobile.",
+      "React Native": "Framework mobile yang memakai JavaScript dan pola React.",
+      "Architecture": "Keputusan struktur sistem: modul, dependency, boundary, scaling, dan tradeoff.",
+      "review": "Memeriksa perubahan code agar lebih benar, aman, mudah dirawat, dan konsisten.",
+      "mentoring": "Membantu engineer lain naik level lewat arahan teknis dan feedback.",
+      "Smoke test": "Test cepat fitur inti setelah build/deploy untuk memastikan aplikasi masih hidup.",
+      "regression": "Test ulang fitur lama agar perubahan baru tidak merusak behavior yang sudah ada.",
+      "test case": "Skenario langkah, data, dan expected result untuk memverifikasi fitur.",
+      "Playwright": "Tool automation browser untuk mengetes UI web end-to-end.",
+      "Cypress": "Tool automation frontend untuk test interaksi web.",
+      "Selenium": "Tool lama dan luas dipakai untuk automation browser lintas bahasa.",
+      "API test": "Test endpoint tanpa UI untuk memastikan request dan response benar.",
+      "JMeter": "Tool load testing untuk mengukur performa sistem saat diberi banyak traffic.",
+      "k6": "Tool performance testing modern berbasis script JavaScript.",
+      "load test": "Mengukur kemampuan sistem pada beban normal sampai tinggi.",
+      "stress test": "Menekan sistem melebihi batas normal untuk tahu titik rusaknya.",
+      "Excel": "Analisis data cepat dengan tabel, formula, pivot, dan chart.",
+      "dashboard": "Tampilan metric yang membantu orang memantau kondisi bisnis atau sistem.",
+      "statistics": "Dasar membaca pola, distribusi, korelasi, dan validitas data.",
+      "Power BI": "Platform dashboard dan business intelligence dari Microsoft.",
+      "Tableau": "Platform visualisasi data untuk dashboard interaktif.",
+      "Looker": "Platform BI berbasis modeling layer untuk metrik konsisten.",
+      "modeling": "Menyusun struktur data agar mudah dianalisis dan tidak ambigu.",
+      "ETL": "Extract, transform, load: mengambil data, membersihkan, lalu memuat ke tujuan.",
+      "Airflow": "Orchestrator pipeline data berbasis DAG dan schedule.",
+      "Spark": "Engine pemrosesan data skala besar.",
+      "warehouse": "Database analitik pusat untuk reporting dan analisis.",
+      "Python": "Bahasa serbaguna untuk data, backend, automation, dan machine learning.",
+      "ML": "Machine learning: model yang belajar pola dari data untuk prediksi atau klasifikasi.",
+      "experiment": "Menguji hipotesis dengan desain percobaan, metric, dan evaluasi.",
+      "LLM API": "Menggunakan model bahasa besar lewat API untuk fitur AI.",
+      "RAG": "Retrieval augmented generation: memberi model konteks dari dokumen/data sendiri.",
+      "evaluation": "Mengukur kualitas output model atau sistem dengan test dan metric.",
+      "agents": "Sistem AI yang bisa memilih langkah, memakai tools, dan menjalankan loop kerja.",
+      "Linux": "Sistem operasi server yang umum dipakai untuk hosting dan infra.",
+      "Windows Server": "Sistem operasi server Microsoft untuk domain, file server, dan aplikasi enterprise.",
+      "monitoring": "Memantau metric, log, dan alert agar masalah cepat terlihat.",
+      "TCP/IP": "Dasar komunikasi jaringan internet dan intranet.",
+      "routing": "Mengatur jalur paket data antar jaringan.",
+      "switching": "Menghubungkan perangkat dalam jaringan lokal.",
+      "firewall": "Membatasi traffic jaringan berdasarkan aturan keamanan.",
+      "AWS/GCP/Azure": "Platform cloud untuk menjalankan server, storage, network, dan layanan managed.",
+      "IAM": "Identity and access management: siapa boleh melakukan apa.",
+      "containers": "Mengemas aplikasi dan dependency agar konsisten di berbagai environment.",
+      "Docker": "Tool container paling umum untuk membungkus aplikasi.",
+      "Kubernetes": "Orchestrator container untuk scaling, deployment, dan recovery.",
+      "Terraform": "Infrastructure as code untuk membuat dan mengubah infra lewat file deklaratif.",
+      "CI/CD": "Pipeline build, test, dan deploy otomatis.",
+      "SLO": "Service level objective: target reliability yang disepakati.",
+      "incident response": "Proses menangani gangguan production sampai pulih dan dievaluasi.",
+      "PostgreSQL": "Database relasional open-source yang kuat untuk aplikasi serius.",
+      "MySQL": "Database relasional populer untuk web dan aplikasi bisnis.",
+      "tuning": "Mengoptimalkan query, indeks, konfigurasi, dan resource database.",
+      "HA": "High availability: desain agar sistem tetap hidup saat komponen gagal.",
+      "SIEM": "Platform pengumpulan dan analisis log keamanan.",
+      "log analysis": "Membaca pola kejadian dari log untuk debugging atau deteksi serangan.",
+      "triage": "Memilah alert/bug berdasarkan dampak dan urgensi.",
+      "Hardening": "Mengurangi permukaan serangan lewat konfigurasi aman.",
+      "endpoint": "Perangkat user/server yang perlu dilindungi dari malware dan akses ilegal.",
+      "OWASP": "Referensi risiko keamanan aplikasi web paling umum.",
+      "Burp": "Tool proxy untuk menguji keamanan aplikasi web.",
+      "exploit basics": "Dasar memahami dan membuktikan celah keamanan secara terkontrol.",
+      "Secure coding": "Menulis code yang menghindari injection, auth bug, data leak, dan celah umum.",
+      "SAST/DAST": "Static dan dynamic security testing untuk menemukan risiko keamanan.",
+      "ISO 27001": "Standar sistem manajemen keamanan informasi.",
+      "risk": "Menilai kemungkinan dan dampak masalah sebelum menentukan mitigasi.",
+      "audit": "Pemeriksaan bukti bahwa kontrol dan proses berjalan sesuai standar.",
+      "policy": "Aturan tertulis yang mengarahkan praktik keamanan dan operasional.",
+      "Requirement": "Kebutuhan bisnis/user yang diterjemahkan menjadi spesifikasi kerja.",
+      "flow": "Alur proses atau layar dari awal sampai tujuan selesai.",
+      "documentation": "Catatan yang membuat requirement, keputusan, dan cara kerja bisa dipahami ulang.",
+      "Backlog": "Daftar pekerjaan produk yang diprioritaskan.",
+      "user story": "Format requirement dari sudut pandang user dan tujuan mereka.",
+      "stakeholder": "Orang yang punya kepentingan terhadap hasil produk atau proyek.",
+      "Discovery": "Riset awal untuk mencari masalah paling penting dan solusi yang layak.",
+      "roadmap": "Rencana arah produk dalam horizon waktu tertentu.",
+      "metrics": "Angka yang dipakai untuk menilai kesehatan produk atau sistem.",
+      "Planning": "Menyusun scope, urutan kerja, estimasi, dan risiko.",
+      "coordination": "Menyelaraskan orang, dependency, dan keputusan agar pekerjaan jalan.",
+      "reporting": "Menyampaikan status, risiko, dan hasil secara jelas.",
+      "Figma": "Tool desain UI untuk membuat layout, prototype, dan design system.",
+      "layout": "Penyusunan elemen visual agar mudah dibaca dan dipakai.",
+      "typography": "Pengaturan font, ukuran, hirarki, dan keterbacaan teks.",
+      "color": "Penggunaan warna untuk brand, hierarchy, status, dan kontras.",
+      "Wireframe": "Sketsa struktur layar sebelum detail visual dibuat.",
+      "usability test": "Mengamati user memakai produk untuk menemukan hambatan nyata.",
+      "UX": "Pengalaman user dari kebutuhan, alur, emosi, sampai hasil akhir.",
+      "UI": "Tampilan dan komponen interaktif yang disentuh user.",
+      "prototype": "Simulasi produk untuk menguji alur sebelum dibangun penuh.",
+      "design system": "Kumpulan komponen, token, dan aturan desain yang konsisten.",
+      "Ticketing": "Sistem pencatatan permintaan/masalah agar tertangani dan terlacak.",
+      "Windows": "Dasar administrasi dan troubleshooting komputer user.",
+      "account support": "Membantu akses akun, password, permission, dan onboarding user.",
+      "Log reading": "Membaca catatan aplikasi untuk mencari error dan penyebab masalah.",
+      "SQL basic": "Dasar mengambil dan memeriksa data untuk support atau debugging.",
+      "SOP": "Standard operating procedure untuk kerja operasional yang konsisten.",
+      "People management": "Mengelola pertumbuhan, feedback, performa, dan kesehatan tim.",
+      "delivery": "Memastikan pekerjaan selesai dengan kualitas dan waktu yang masuk akal.",
+      "hiring": "Merekrut orang yang sesuai kebutuhan tim dan level teknis.",
+      "Strategy": "Menentukan arah besar berdasarkan tujuan bisnis dan batasan nyata.",
+      "leadership": "Mengarahkan orang dan keputusan ketika masalah tidak sepenuhnya teknis.",
+      "Cyber risk": "Risiko kerugian akibat serangan, kebocoran, atau kelemahan sistem.",
+      "governance": "Struktur keputusan, aturan, dan akuntabilitas keamanan/IT.",
+      "incident": "Kejadian yang mengganggu keamanan, reliability, atau operasional."
+    };
+
+    const treeRows = [
+      ["Base Class", [["All", "IT Novice", "#f2c35b", "Base"]]],
+      ["First Branch", [
+        ["Software", "Software", "#69a8f5"], ["QA", "QA", "#ee6f6f"], ["Data", "Data", "#6bd08f"], ["Infra", "Infrastructure", "#83b6ff"],
+        ["Security", "Security", "#ff826e"], ["Product", "Product", "#ffb15d"], ["Design", "Design", "#ff9ac4"], ["Support", "Support", "#9fc1d9"]
+      ]],
+      ["Advanced Class", [
+        ["Software", "Frontend / Backend", "#69a8f5"], ["QA", "Manual / Automation", "#f07aa5"], ["Data", "Analyst / Engineer", "#55c7a0"], ["Infra", "Cloud / DevOps", "#f0c15b"],
+        ["Security", "SOC / Pentest", "#b889f4"], ["Product", "BA / PO / PM", "#f2c35b"], ["Design", "UI / UX", "#cda0ff"], ["Support", "Helpdesk / App Support", "#80c86a"]
+      ]],
+      ["Final Class", [
+        ["Leadership", "Tech Lead", "#ee9a52"], ["Leadership", "QA Lead", "#ee9a52"], ["Leadership", "Data / AI Lead", "#ee9a52"], ["Leadership", "SRE Lead", "#ee9a52"],
+        ["Leadership", "CISO", "#ee6f6f"], ["Leadership", "Head of Product", "#6bd08f"], ["Leadership", "Design Lead", "#ff9ac4"], ["Leadership", "CTO", "#f2c35b"]
+      ]]
+    ];
+
+    const filters = ["All", ...new Set(jobs.map(job => job[0]))];
+    const filterEl = document.querySelector("#filters");
+    const jobsEl = document.querySelector("#jobs");
+    const treeEl = document.querySelector("#tree");
+
+    function sprite(tool) {
+      return `
+        <div class="sprite" aria-hidden="true">
+          <i class="cape"></i><i class="hair"></i><i class="head"></i>
+          <i class="eye left"></i><i class="eye right"></i>
+          <i class="body"></i><i class="arm left"></i><i class="arm right"></i>
+          <i class="leg left"></i><i class="leg right"></i><i class="tool ${tool}"></i>
+        </div>`;
+    }
+
+    function render(group = "All") {
+      jobsEl.innerHTML = jobs
+        .filter(job => group === "All" || job[0] === group)
+        .map(([groupName, title, desc, skills, salary, role, hair, tool]) => `
+          <article class="card" style="--role: ${role}; --hair: ${hair}" data-group="${groupName}">
+            <div class="sprite-stage">${sprite(tool)}</div>
+            <div class="card-body">
+              <div class="class">${groupName} Class</div>
+              <h2>${title}</h2>
+              <p class="desc">${desc}</p>
+              <div class="meta">
+                <div><span>Skill</span><div class="skill-list">${renderSkills(skills)}</div></div>
+                <div><span>Salary Range</span><strong class="salary">${salary}</strong></div>
+              </div>
+            </div>
+          </article>
+        `).join("");
+    }
+
+    function renderSkills(skills) {
+      return skills.split(", ").map(skill => {
+        const tip = skillDescriptions[skill] || "Skill praktis yang dipakai role ini dalam pekerjaan harian.";
+        return `<span class="skill" tabindex="0" data-tip="${tip}">${skill}</span>`;
+      }).join("");
+    }
+
+    function applyFilter(group) {
+      document.querySelectorAll("#filters button").forEach(item => {
+        item.classList.toggle("active", item.dataset.filter === group);
+      });
+      render(group);
+      document.querySelector("#jobs").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function renderTree() {
+      treeEl.innerHTML = treeRows.map(([tier, nodes], rowIndex) => `
+        <div class="tree-row">
+          <div class="tier-label">${tier}</div>
+          <div class="tree-branches">
+            ${nodes.map(([filter, label, color], nodeIndex) => `
+              <button type="button" class="tree-node ${rowIndex === 0 ? "base" : ""}" style="--role: ${color}" data-filter="${filter}">
+                ${label}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    filterEl.innerHTML = filters.map((filter, index) =>
+      `<button type="button" class="${index === 0 ? "active" : ""}" data-filter="${filter}">${filter}</button>`
+    ).join("");
+
+    filterEl.addEventListener("click", event => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      applyFilter(button.dataset.filter);
+    });
+
+    treeEl.addEventListener("click", event => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      applyFilter(button.dataset.filter);
+    });
+
+    renderTree();
+    render();
+  </script>
+</body>
+</html>
