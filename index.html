@@ -679,27 +679,24 @@
       background: color-mix(in srgb, var(--role) 15%, transparent);
     }
 
-    .skill::after {
-      content: attr(data-tip);
-      position: absolute;
-      left: 0;
-      bottom: calc(100% + 9px);
-      z-index: 200;
-      width: min(270px, 76vw);
+    #skill-tooltip {
+      position: fixed;
+      z-index: 9999;
+      width: min(270px, 88vw);
       padding: 9px 12px;
-      border: 1px solid color-mix(in srgb, var(--role) 45%, var(--line));
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 8px;
       color: var(--ink-dim);
       background: #0d1117;
-      box-shadow: 0 14px 28px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04);
+      box-shadow: 0 14px 28px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.04);
       font: 400 11.5px/1.5 'Inter', sans-serif;
-      opacity: 0;
       pointer-events: none;
-      transform: translateY(5px);
-      transition: opacity .16s ease, transform .16s ease;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .15s ease, transform .15s ease;
     }
 
-    .skill:hover::after, .skill:focus::after { opacity: 1; transform: translateY(0); }
+    #skill-tooltip.visible { opacity: 1; transform: translateY(0); }
 
     /* ══════════════════════════════════════════
        FOOTER
@@ -1163,6 +1160,64 @@
     renderSidebar();
     renderPyramid();
     renderCards();
+
+    // ── TOOLTIP (fixed-position, never clipped) ──
+    const tip = document.createElement("div");
+    tip.id = "skill-tooltip";
+    document.body.appendChild(tip);
+
+    const GAP = 10;
+
+    function showTip(el) {
+      const text = el.dataset.tip;
+      if (!text) return;
+      tip.textContent = text;
+      tip.classList.add("visible");
+      positionTip(el);
+    }
+
+    function positionTip(el) {
+      const r = el.getBoundingClientRect();
+      const tw = tip.offsetWidth;
+      const th = tip.offsetHeight;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      // prefer above, fall back to below if not enough space
+      let top = r.top - th - GAP;
+      if (top < 8) top = r.bottom + GAP;
+
+      // clamp horizontally within viewport
+      let left = r.left;
+      if (left + tw > vw - 8) left = vw - tw - 8;
+      if (left < 8) left = 8;
+
+      tip.style.top  = top  + "px";
+      tip.style.left = left + "px";
+    }
+
+    function hideTip() {
+      tip.classList.remove("visible");
+    }
+
+    document.addEventListener("mouseover", e => {
+      const skill = e.target.closest(".skill");
+      if (skill) showTip(skill);
+    });
+
+    document.addEventListener("mouseout", e => {
+      if (e.target.closest(".skill")) hideTip();
+    });
+
+    // touch support
+    document.addEventListener("touchstart", e => {
+      const skill = e.target.closest(".skill");
+      if (skill) { e.preventDefault(); showTip(skill); }
+    }, { passive: false });
+
+    document.addEventListener("touchend", () => {
+      setTimeout(hideTip, 1800);
+    });
   </script>
 </body>
 </html>
