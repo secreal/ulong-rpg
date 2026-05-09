@@ -32,7 +32,6 @@
       overflow-x: hidden;
     }
 
-    /* ── ambient bg ── */
     body::before {
       content: "";
       position: fixed;
@@ -58,9 +57,7 @@
       mask-image: linear-gradient(to bottom, rgba(0,0,0,.8) 0%, transparent 50%);
     }
 
-    /* ══════════════════════════════════════════
-       HEADER
-    ══════════════════════════════════════════ */
+    /* ══ HEADER ══ */
     header {
       position: relative;
       z-index: 2;
@@ -80,377 +77,214 @@
       flex-wrap: wrap;
     }
 
-    .header-left {}
-
-    .topline {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
+    .topline { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
 
     .crest {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
+      width: 38px; height: 38px;
+      display: grid; place-items: center;
       background: linear-gradient(135deg, var(--gold) 0%, #c8922a 100%);
       border: 2px solid rgba(240,187,78,.45);
       box-shadow: 0 0 20px rgba(240,187,78,.3), inset 0 1px 0 rgba(255,255,255,.2);
-      transform: rotate(45deg);
-      flex-shrink: 0;
+      transform: rotate(45deg); flex-shrink: 0;
     }
 
     .crest span {
       transform: rotate(-45deg);
-      font-family: 'Cinzel', Georgia, serif;
-      font-weight: 900;
-      font-size: 12px;
-      color: #1a0e00;
+      font-family: 'Cinzel', serif; font-weight: 900; font-size: 12px; color: #1a0e00;
     }
 
-    .topline-text {
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      opacity: .8;
-    }
+    .topline-text { color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; opacity: .8; }
 
     h1 {
-      font-family: 'Cinzel', Georgia, serif;
+      font-family: 'Cinzel', serif;
       font-size: clamp(28px, 4.5vw, 62px);
-      font-weight: 900;
-      line-height: .94;
+      font-weight: 900; line-height: .94;
       background: linear-gradient(135deg, #ffe9a0 0%, var(--gold) 40%, #d4903a 75%, #f0bb4e 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    .intro {
-      max-width: 480px;
+    .intro { max-width: 480px; color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-top: 10px; }
+
+    /* sync button in header */
+    .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    .btn-sync {
+      display: flex; align-items: center; gap: 7px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
       color: var(--muted);
-      font-size: 13.5px;
-      line-height: 1.65;
-      margin-top: 10px;
+      font: 600 12px 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all .18s ease;
+      white-space: nowrap;
     }
 
-    /* ══════════════════════════════════════════
-       LAYOUT: sidebar + content
-    ══════════════════════════════════════════ */
+    .btn-sync:hover { border-color: var(--line-bright); color: var(--ink); background: var(--panel-2); }
+    .btn-sync.connected { border-color: rgba(93,201,126,.4); color: #5dc97e; background: rgba(93,201,126,.07); }
+
+    .btn-sync svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .btn-reset-all {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 12px;
+      border: 1px solid rgba(232,95,95,.25);
+      border-radius: 8px;
+      background: transparent;
+      color: rgba(232,95,95,.6);
+      font: 600 11px 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all .18s ease;
+    }
+
+    .btn-reset-all:hover { border-color: rgba(232,95,95,.5); color: #e85f5f; background: rgba(232,95,95,.07); }
+
+    /* ══ LAYOUT ══ */
     .page-body {
-      position: relative;
-      z-index: 1;
-      max-width: 1400px;
-      margin: 0 auto;
+      position: relative; z-index: 1;
+      max-width: 1400px; margin: 0 auto;
       display: grid;
       grid-template-columns: var(--sidebar-w) 1fr;
       min-height: calc(100vh - 200px);
     }
 
-    /* ══════════════════════════════════════════
-       SIDEBAR — vertical job tree
-    ══════════════════════════════════════════ */
+    /* ══ SIDEBAR ══ */
     .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
+      position: sticky; top: 0; height: 100vh;
       overflow-y: auto;
       border-right: 1px solid var(--line);
       background: rgba(22,29,43,.95);
       backdrop-filter: blur(12px);
       padding: 24px 0 40px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--line-bright) transparent;
-      flex-shrink: 0;
+      scrollbar-width: thin; scrollbar-color: var(--line-bright) transparent;
     }
 
     .sidebar::-webkit-scrollbar { width: 4px; }
-    .sidebar::-webkit-scrollbar-track { background: transparent; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 2px; }
 
     .sidebar-title {
       padding: 0 16px 16px;
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: .7;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 8px;
+      font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); opacity: .7;
+      border-bottom: 1px solid var(--line); margin-bottom: 8px;
     }
 
-    /* each tier group in sidebar */
-    .stier {
-      padding: 12px 0 4px;
-    }
+    .stier { padding: 12px 0 4px; }
 
-    .stier-label {
-      padding: 0 16px 8px;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: .7;
-    }
-
-    /* connector line beside nodes */
-    .stier-nodes {
-      position: relative;
-      padding-left: 16px;
-    }
-
+    .stier-nodes { position: relative; padding-left: 16px; }
     .stier-nodes::before {
-      content: "";
-      position: absolute;
-      left: 24px;
-      top: 6px;
-      bottom: 6px;
+      content: ""; position: absolute; left: 24px; top: 6px; bottom: 6px;
       width: 1px;
       background: linear-gradient(to bottom, transparent, var(--line) 20%, var(--line) 80%, transparent);
     }
 
     .snode {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 14px 7px 20px;
-      margin-right: 10px;
-      border-radius: 0 8px 8px 0;
-      border: 1px solid transparent;
-      cursor: pointer;
-      background: transparent;
-      color: var(--muted);
-      font: 600 12px/1.2 'Inter', sans-serif;
-      text-align: left;
-      width: calc(100% - 10px);
-      transition: all .18s ease;
+      position: relative; display: flex; align-items: center; gap: 10px;
+      padding: 7px 14px 7px 20px; margin-right: 10px;
+      border-radius: 0 8px 8px 0; border: 1px solid transparent;
+      cursor: pointer; background: transparent;
+      color: var(--muted); font: 600 12px/1.2 'Inter', sans-serif; text-align: left;
+      width: calc(100% - 10px); transition: all .18s ease;
     }
 
     .snode::before {
-      content: "";
-      position: absolute;
-      left: -8px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 1px;
-      background: var(--line);
-      transition: background .18s ease;
+      content: ""; position: absolute; left: -8px; top: 50%;
+      transform: translateY(-50%); width: 16px; height: 1px;
+      background: var(--line); transition: background .18s ease;
     }
 
     .snode-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 2px;
-      background: var(--node-color, var(--muted));
-      transform: rotate(45deg);
-      flex-shrink: 0;
-      opacity: .5;
-      box-shadow: 0 0 6px var(--node-color, transparent);
-      transition: opacity .18s ease, box-shadow .18s ease;
+      width: 8px; height: 8px; border-radius: 2px;
+      background: var(--node-color, var(--muted)); transform: rotate(45deg);
+      flex-shrink: 0; opacity: .5;
+      box-shadow: 0 0 6px var(--node-color, transparent); transition: opacity .18s ease;
     }
 
-    .snode-text {
-      flex: 1;
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .snode-text { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .snode:hover,
-    .snode.active {
+    .snode:hover, .snode.active {
       color: var(--ink);
       background: color-mix(in srgb, var(--node-color, var(--gold)) 10%, var(--panel-2));
       border-color: color-mix(in srgb, var(--node-color, var(--gold)) 35%, transparent);
     }
 
-    .snode:hover .snode-dot,
-    .snode.active .snode-dot {
-      opacity: 1;
-      box-shadow: 0 0 10px var(--node-color, var(--gold));
-    }
-
-    .snode:hover::before,
-    .snode.active::before {
-      background: var(--node-color, var(--gold));
-    }
-
-    .snode.active {
-      color: var(--ink);
-    }
-
-    /* base node (All / Novice) */
-    .snode.snode-base {
-      margin-right: 10px;
-      border-radius: 8px;
-      margin-left: 0;
-      font-weight: 700;
-      font-size: 12.5px;
-    }
-
+    .snode:hover .snode-dot, .snode.active .snode-dot { opacity: 1; box-shadow: 0 0 10px var(--node-color, var(--gold)); }
+    .snode:hover::before, .snode.active::before { background: var(--node-color, var(--gold)); }
+    .snode.snode-base { border-radius: 8px; margin-left: 0; font-weight: 700; font-size: 12.5px; }
     .snode.snode-base::before { display: none; }
 
-    /* ══════════════════════════════════════════
-       MAIN CONTENT
-    ══════════════════════════════════════════ */
-    .content {
-      padding: 32px 28px 64px;
-      overflow: hidden;
+    /* sidebar progress mini-bar */
+    .snode-progress {
+      width: 28px; height: 4px; border-radius: 2px;
+      background: var(--line); overflow: hidden; flex-shrink: 0;
     }
 
-    /* ══════════════════════════════════════════
-       PYRAMID
-    ══════════════════════════════════════════ */
-    .pyramid-section {
-      margin-bottom: 40px;
+    .snode-progress-fill {
+      height: 100%; border-radius: 2px;
+      background: var(--node-color, var(--gold));
+      transition: width .3s ease;
     }
 
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
+    /* ══ CONTENT ══ */
+    .content { padding: 32px 28px 64px; overflow: hidden; }
 
-    .section-header h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: .3px;
-    }
+    /* ══ PYRAMID ══ */
+    .pyramid-section { margin-bottom: 40px; }
 
-    .section-header p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-      text-align: right;
-      max-width: 380px;
-    }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+    .section-header h2 { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: .3px; }
+    .section-header p { color: var(--muted); font-size: 13px; line-height: 1.5; text-align: right; max-width: 380px; }
 
     .pyramid-wrap {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--panel);
-      padding: 28px 24px 20px;
+      border: 1px solid var(--line); border-radius: 14px;
+      background: var(--panel); padding: 28px 24px 20px;
       box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(255,255,255,.025);
     }
 
-    .pyramid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
+    .pyramid { display: flex; flex-direction: column-reverse; align-items: center; gap: 0; }
 
-    /* each tier row in the pyramid */
-    .ptier {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
+    .ptier { width: 100%; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .ptier[data-tier="0"] { order: 0; } .ptier[data-tier="1"] { order: 1; }
+    .ptier[data-tier="2"] { order: 2; } .ptier[data-tier="3"] { order: 3; }
+    .ptier[data-tier="4"] { order: 4; }
 
-    /* downward connector between pyramid rows */
     .ptier + .ptier::before {
-      content: "";
-      width: 1px;
-      height: 14px;
+      content: ""; width: 1px; height: 14px; order: -1;
       background: linear-gradient(to bottom, rgba(240,187,78,.4), rgba(240,187,78,.1));
-      margin-bottom: 0;
     }
 
     .ptier-inner {
-      width: 100%;
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      overflow: hidden;
-      background: var(--panel-2);
+      width: 100%; display: flex; align-items: stretch; gap: 0;
+      border: 1px solid var(--line); border-radius: 10px;
+      overflow: hidden; background: var(--panel-2);
     }
 
-    /* pyramid width: Final smallest at top, Base widest at bottom */
     .ptier[data-tier="4"] .ptier-inner { max-width: 38%; }
     .ptier[data-tier="3"] .ptier-inner { max-width: 58%; }
     .ptier[data-tier="2"] .ptier-inner { max-width: 78%; }
     .ptier[data-tier="1"] .ptier-inner { max-width: 94%; }
     .ptier[data-tier="0"] .ptier-inner { max-width: 55%; }
 
-    /* reverse order so Final is at top, Base at bottom */
-    .pyramid { flex-direction: column-reverse; }
-    .pyramid .ptier[data-tier="0"] { order: 0; }
-    .pyramid .ptier[data-tier="1"] { order: 1; }
-    .pyramid .ptier[data-tier="2"] { order: 2; }
-    .pyramid .ptier[data-tier="3"] { order: 3; }
-    .pyramid .ptier[data-tier="4"] { order: 4; }
-
-    /* connector goes above (visually) = below in DOM since reversed */
-    .ptier + .ptier::before {
-      order: -1;
-    }
-
     .ptier-label-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-right: 1px solid var(--line);
-      background: rgba(0,0,0,.15);
-      min-width: 72px;
-      gap: 4px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 10px 14px; border-right: 1px solid var(--line);
+      background: rgba(0,0,0,.15); min-width: 72px; gap: 4px;
     }
 
-    .ptier-name {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--gold);
-      white-space: nowrap;
-    }
+    .ptier-name { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+    .ptier-sublabel { font-size: 9.5px; color: var(--muted); white-space: nowrap; }
 
-    .ptier-sublabel {
-      font-size: 9.5px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .ptier-jobs-col {
-      flex: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-    }
+    .ptier-jobs-col { flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 10px 14px; }
 
     .ptier-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600;
       border: 1px solid color-mix(in srgb, var(--chip-color, var(--gold)) 40%, transparent);
       background: color-mix(in srgb, var(--chip-color, var(--gold)) 10%, transparent);
       color: color-mix(in srgb, var(--chip-color, var(--gold)) 70%, white);
-      cursor: pointer;
-      transition: all .15s ease;
-      white-space: nowrap;
+      cursor: pointer; transition: all .15s ease; white-space: nowrap;
     }
 
     .ptier-chip:hover {
@@ -459,55 +293,24 @@
       box-shadow: 0 0 12px color-mix(in srgb, var(--chip-color, var(--gold)) 25%, transparent);
     }
 
-    /* salary range pill in pyramid */
     .ptier-salary {
-      display: flex;
-      align-items: center;
-      padding: 10px 16px;
-      border-left: 1px solid var(--line);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gold);
-      white-space: nowrap;
-      background: rgba(240,187,78,.04);
+      display: flex; align-items: center; padding: 10px 16px;
+      border-left: 1px solid var(--line); font-size: 11px; font-weight: 700;
+      color: var(--gold); white-space: nowrap; background: rgba(240,187,78,.04);
     }
 
-    /* pyramid legend */
     .pyramid-legend {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 11px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 14px; color: var(--muted); font-size: 11px;
     }
 
-    .legend-arrow {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--gold);
-      opacity: .6;
-      font-weight: 700;
-      font-size: 12px;
-    }
+    .legend-arrow { color: var(--gold); opacity: .6; font-weight: 700; font-size: 12px; }
 
-    /* ══════════════════════════════════════════
-       JOB CARDS SECTION
-    ══════════════════════════════════════════ */
-    .cards-section {}
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 18px;
-    }
+    /* ══ CARDS ══ */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(248px, 1fr)); gap: 18px; }
 
     .card {
-      position: relative;
-      border: 1px solid var(--line);
-      border-radius: 12px;
+      position: relative; border: 1px solid var(--line); border-radius: 12px;
       background: var(--panel);
       box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(255,255,255,.02);
       transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
@@ -517,34 +320,35 @@
     .card:hover {
       transform: translateY(-5px);
       border-color: color-mix(in srgb, var(--role) 55%, transparent);
-      box-shadow:
-        0 28px 50px rgba(0,0,0,.55),
-        0 0 28px color-mix(in srgb, var(--role) 16%, transparent),
-        inset 0 0 0 1px rgba(255,255,255,.03);
+      box-shadow: 0 28px 50px rgba(0,0,0,.55), 0 0 28px color-mix(in srgb, var(--role) 16%, transparent), inset 0 0 0 1px rgba(255,255,255,.03);
     }
 
     .card-accent { height: 4px; background: linear-gradient(90deg, var(--role), color-mix(in srgb, var(--role) 55%, white)); }
 
+    /* card progress bar */
+    .card-progress-bar {
+      height: 3px;
+      background: var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-progress-fill {
+      position: absolute; left: 0; top: 0; height: 100%;
+      background: linear-gradient(90deg, var(--role), color-mix(in srgb, var(--role) 60%, white));
+      transition: width .4s ease;
+    }
+
     .sprite-stage {
-      height: 172px;
-      display: grid;
-      place-items: end center;
-      padding-top: 18px;
+      height: 172px; display: grid; place-items: end center; padding-top: 18px;
       background:
         radial-gradient(ellipse 70% 28% at 50% 90%, rgba(0,0,0,.45) 0%, transparent 100%),
         radial-gradient(ellipse 110% 75% at 50% 100%, color-mix(in srgb, var(--role) 7%, transparent) 0%, transparent 70%),
         linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.18));
     }
 
-    .sprite {
-      width: 116px;
-      height: 138px;
-      position: relative;
-      filter: drop-shadow(0 5px 0 rgba(0,0,0,.28));
-    }
-
+    .sprite { width: 116px; height: 138px; position: relative; filter: drop-shadow(0 5px 0 rgba(0,0,0,.28)); }
     .sprite * { position: absolute; }
-
     .head { left:38px; top:16px; width:42px; height:38px; border-radius:45% 45% 40% 40%; background:#f0c18e; border:3px solid #6a3d2b; z-index:4; }
     .hair { left:33px; top:7px; width:52px; height:28px; border-radius:50% 50% 30% 30%; background:var(--hair); border:3px solid #33202a; z-index:5; }
     .hair::after { content:""; position:absolute; right:3px; top:14px; width:12px; height:24px; background:var(--hair); border:3px solid #33202a; border-left:0; border-radius:0 0 12px 0; }
@@ -573,46 +377,22 @@
 
     .card-body { padding: 16px 18px 18px; }
 
-    .card-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
+    .card-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 
     .class-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      color: var(--role);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 5px;
+      color: var(--role); font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
     }
 
     .class-badge::before {
-      content: "";
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      background: var(--role);
-      border-radius: 1px;
-      transform: rotate(45deg);
-      box-shadow: 0 0 7px var(--role);
+      content: ""; display: inline-block; width: 5px; height: 5px;
+      background: var(--role); border-radius: 1px; transform: rotate(45deg); box-shadow: 0 0 7px var(--role);
     }
 
     .tier-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      border: 1px solid;
+      display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px;
+      border-radius: 999px; font-size: 9.5px; font-weight: 700; letter-spacing: .6px;
+      text-transform: uppercase; border: 1px solid;
     }
 
     .tier-pill[data-tier="0"] { color: #c8a040; border-color: rgba(240,187,78,.25); background: rgba(240,187,78,.07); }
@@ -621,37 +401,13 @@
     .tier-pill[data-tier="3"] { color: #88b8d8; border-color: rgba(120,180,230,.25); background: rgba(120,180,230,.07); }
     .tier-pill[data-tier="4"] { color: var(--gold); border-color: rgba(240,187,78,.35); background: rgba(240,187,78,.09); box-shadow: 0 0 8px rgba(240,187,78,.12); }
 
-    .tier-pips {
-      display: flex;
-      gap: 2.5px;
-    }
-
-    .tier-pips span {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: currentColor;
-      opacity: .28;
-    }
-
+    .tier-pips { display: flex; gap: 2.5px; }
+    .tier-pips span { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .28; }
     .tier-pips span.on { opacity: 1; }
 
-    .card-title {
-      font-family: 'Cinzel', serif;
-      font-size: 17px;
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--ink);
-      margin-bottom: 9px;
-    }
+    .card-title { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 9px; }
 
-    .desc {
-      min-height: 52px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      margin-bottom: 14px;
-    }
+    .desc { min-height: 52px; color: var(--muted); font-size: 13px; line-height: 1.6; margin-bottom: 14px; }
 
     .meta { display: grid; gap: 10px; }
     .meta-label { display: block; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
@@ -660,91 +416,384 @@
 
     .skill-list { display: flex; flex-wrap: wrap; gap: 5px; }
 
+    /* skill chip — checkable */
     .skill {
       position: relative;
       border: 1px solid color-mix(in srgb, var(--role) 38%, var(--line));
       border-radius: 999px;
-      color: var(--ink-dim);
-      background: color-mix(in srgb, var(--role) 7%, transparent);
-      padding: 3px 9px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: help;
+      color: var(--ink-dim); background: color-mix(in srgb, var(--role) 7%, transparent);
+      padding: 3px 9px; font-size: 11px; font-weight: 600;
+      cursor: pointer; user-select: none;
       transition: all .14s ease;
+      display: inline-flex; align-items: center; gap: 5px;
     }
 
-    .skill:hover {
-      color: var(--ink);
+    .skill:hover { color: var(--ink); border-color: var(--role); background: color-mix(in srgb, var(--role) 15%, transparent); }
+
+    .skill.checked {
+      background: color-mix(in srgb, var(--role) 22%, transparent);
       border-color: var(--role);
-      background: color-mix(in srgb, var(--role) 15%, transparent);
+      color: var(--ink);
+      box-shadow: 0 0 8px color-mix(in srgb, var(--role) 20%, transparent);
     }
 
+    .skill-check-icon {
+      width: 10px; height: 10px; flex-shrink: 0;
+      opacity: 0; transition: opacity .14s ease;
+    }
+
+    .skill.checked .skill-check-icon { opacity: 1; }
+
+    /* card footer: progress + buttons */
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .card-xp {
+      font-size: 10.5px; font-weight: 700; color: var(--muted);
+      display: flex; align-items: center; gap: 5px;
+    }
+
+    .card-xp-bar {
+      width: 60px; height: 5px; border-radius: 3px;
+      background: var(--line); overflow: hidden;
+    }
+
+    .card-xp-fill {
+      height: 100%; border-radius: 3px;
+      background: linear-gradient(90deg, var(--role), color-mix(in srgb, var(--role) 65%, white));
+      transition: width .35s ease;
+    }
+
+    .btn-job-change {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 11px; border-radius: 6px;
+      border: 1px solid color-mix(in srgb, var(--role) 50%, transparent);
+      background: color-mix(in srgb, var(--role) 12%, transparent);
+      color: color-mix(in srgb, var(--role) 80%, white);
+      font: 700 10.5px 'Inter', sans-serif;
+      cursor: pointer; white-space: nowrap;
+      letter-spacing: .4px;
+      transition: all .16s ease;
+    }
+
+    .btn-job-change:hover {
+      background: color-mix(in srgb, var(--role) 22%, transparent);
+      border-color: var(--role);
+      box-shadow: 0 0 14px color-mix(in srgb, var(--role) 25%, transparent);
+    }
+
+    /* ══ MODAL (quest window) ══ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .22s ease;
+    }
+
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      width: min(640px, 100%); max-height: 88vh;
+      overflow-y: auto;
+      border: 1px solid var(--line-bright);
+      border-radius: 14px;
+      background: #111827;
+      box-shadow: 0 40px 80px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.04), inset 0 1px 0 rgba(255,255,255,.06);
+      transform: translateY(16px) scale(.97);
+      transition: transform .22s ease;
+      scrollbar-width: thin; scrollbar-color: var(--line-bright) transparent;
+    }
+
+    .modal-overlay.open .modal { transform: none; }
+
+    /* quest window chrome */
+    .modal-chrome {
+      position: sticky; top: 0; z-index: 10;
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #111827, rgba(17,24,39,.96));
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-eyebrow {
+      font-size: 9.5px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold); opacity: .7;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+    }
+
+    .modal-eyebrow::before {
+      content: ""; display: inline-block; width: 16px; height: 1px;
+      background: var(--gold); opacity: .5;
+    }
+
+    .modal-title {
+      font-family: 'Cinzel', serif; font-size: 22px; font-weight: 900;
+      color: var(--ink); line-height: 1.1;
+    }
+
+    .modal-title-color { color: var(--modal-role, var(--gold)); }
+
+    .modal-close {
+      position: absolute; top: 18px; right: 18px;
+      width: 32px; height: 32px;
+      border: 1px solid var(--line); border-radius: 8px;
+      background: transparent; color: var(--muted);
+      font-size: 16px; cursor: pointer; line-height: 1;
+      display: grid; place-items: center;
+      transition: all .15s ease;
+    }
+
+    .modal-close:hover { border-color: var(--line-bright); color: var(--ink); background: var(--panel-2); }
+
+    .modal-body { padding: 22px; }
+
+    /* modal progress summary */
+    .modal-progress-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; gap: 12px;
+    }
+
+    .modal-progress-track {
+      flex: 1; height: 8px; border-radius: 4px;
+      background: var(--line); overflow: hidden;
+    }
+
+    .modal-progress-fill {
+      height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--modal-role, var(--gold)), color-mix(in srgb, var(--modal-role, var(--gold)) 60%, white));
+      transition: width .4s ease;
+    }
+
+    .modal-progress-text { font-size: 12px; font-weight: 700; color: var(--modal-role, var(--gold)); white-space: nowrap; }
+
+    .modal-btn-reset {
+      font: 600 10.5px 'Inter', sans-serif;
+      color: rgba(232,95,95,.55); background: transparent;
+      border: 1px solid rgba(232,95,95,.2); border-radius: 6px;
+      padding: 4px 9px; cursor: pointer; transition: all .15s ease;
+      white-space: nowrap;
+    }
+
+    .modal-btn-reset:hover { color: #e85f5f; border-color: rgba(232,95,95,.5); background: rgba(232,95,95,.07); }
+
+    /* quest phase sections */
+    .quest-phase {
+      margin-bottom: 24px;
+    }
+
+    .quest-phase-title {
+      display: flex; align-items: center; gap: 10px;
+      font: 700 11px 'Inter', sans-serif;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--modal-role, var(--gold));
+      margin-bottom: 12px;
+    }
+
+    .quest-phase-title::after {
+      content: ""; flex: 1; height: 1px;
+      background: linear-gradient(90deg, color-mix(in srgb, var(--modal-role, var(--gold)) 40%, transparent), transparent);
+    }
+
+    .quest-phase-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 50%, transparent);
+      background: color-mix(in srgb, var(--modal-role, var(--gold)) 12%, transparent);
+      display: grid; place-items: center;
+      font-size: 9px; font-weight: 900; color: var(--modal-role, var(--gold));
+      flex-shrink: 0;
+    }
+
+    /* checklist items */
+    .quest-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 12px; border-radius: 8px; margin-bottom: 6px;
+      border: 1px solid transparent;
+      cursor: pointer; background: rgba(255,255,255,.02);
+      transition: all .16s ease;
+    }
+
+    .quest-item:hover { background: rgba(255,255,255,.04); border-color: var(--line); }
+
+    .quest-item.done {
+      background: color-mix(in srgb, var(--modal-role, var(--gold)) 6%, transparent);
+      border-color: color-mix(in srgb, var(--modal-role, var(--gold)) 20%, transparent);
+    }
+
+    .quest-checkbox {
+      width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0;
+      border: 2px solid var(--line-bright);
+      background: transparent;
+      display: grid; place-items: center;
+      transition: all .15s ease;
+      margin-top: 1px;
+    }
+
+    .quest-item.done .quest-checkbox {
+      background: var(--modal-role, var(--gold));
+      border-color: var(--modal-role, var(--gold));
+      box-shadow: 0 0 10px color-mix(in srgb, var(--modal-role, var(--gold)) 35%, transparent);
+    }
+
+    .quest-checkbox-tick {
+      color: #111827; font-size: 10px; font-weight: 900;
+      opacity: 0; transition: opacity .12s ease;
+    }
+
+    .quest-item.done .quest-checkbox-tick { opacity: 1; }
+
+    .quest-item-content { flex: 1; }
+
+    .quest-item-label {
+      font-size: 13px; font-weight: 600; color: var(--ink);
+      line-height: 1.3; margin-bottom: 3px;
+      transition: color .15s ease;
+    }
+
+    .quest-item.done .quest-item-label {
+      color: var(--muted);
+      text-decoration: line-through;
+      text-decoration-color: rgba(var(--muted), .4);
+    }
+
+    .quest-item-sub { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+
+    .quest-item-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10.5px; font-weight: 600;
+      color: var(--modal-role, var(--gold)); opacity: .75;
+      text-decoration: none; margin-top: 5px;
+      transition: opacity .14s ease;
+    }
+
+    .quest-item-link:hover { opacity: 1; }
+
+    /* completed badge */
+    .quest-complete-banner {
+      display: none; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px; border-radius: 10px; margin-top: 8px;
+      background: color-mix(in srgb, var(--modal-role, var(--gold)) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 35%, transparent);
+      color: var(--modal-role, var(--gold));
+      font: 700 13px 'Cinzel', serif;
+      letter-spacing: .5px;
+    }
+
+    .quest-complete-banner.show { display: flex; }
+
+    /* ══ SYNC MODAL ══ */
+    .sync-modal-overlay {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity .2s ease;
+    }
+
+    .sync-modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .sync-modal {
+      width: min(460px, 100%);
+      border: 1px solid var(--line-bright); border-radius: 14px;
+      background: #111827;
+      box-shadow: 0 40px 80px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05);
+      padding: 28px; position: relative;
+      transform: translateY(12px); transition: transform .2s ease;
+    }
+
+    .sync-modal-overlay.open .sync-modal { transform: none; }
+
+    .sync-modal-title {
+      font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700;
+      color: var(--ink); margin-bottom: 6px;
+    }
+
+    .sync-modal-sub { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin-bottom: 22px; }
+
+    .sync-actions { display: grid; gap: 10px; }
+
+    .sync-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border-radius: 10px;
+      border: 1px solid var(--line); background: var(--panel-2);
+      color: var(--ink); font: 600 13px 'Inter', sans-serif;
+      cursor: pointer; text-align: left; transition: all .16s ease;
+    }
+
+    .sync-btn:hover { border-color: var(--line-bright); background: rgba(255,255,255,.04); }
+    .sync-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+    .sync-btn-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+
+    .sync-btn-icon.google { background: rgba(255,255,255,.08); }
+    .sync-btn-icon.local  { background: rgba(240,187,78,.1); }
+    .sync-btn-icon.danger { background: rgba(232,95,95,.1); }
+
+    .sync-btn-text { flex: 1; }
+    .sync-btn-title { font-weight: 700; font-size: 13px; }
+    .sync-btn-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .sync-close { position: absolute; top: 16px; right: 16px; }
+
+    .sync-divider {
+      height: 1px; background: var(--line); margin: 6px 0;
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+
+    .sync-divider span {
+      background: #111827; padding: 0 8px;
+      font-size: 10px; color: var(--muted); letter-spacing: 1px;
+    }
+
+    .sync-notice { font-size: 11px; color: var(--muted); margin-top: 14px; line-height: 1.55; }
+    .sync-notice a { color: var(--gold); opacity: .8; }
+
+    /* ══ TOOLTIP ══ */
     #skill-tooltip {
-      position: fixed;
-      z-index: 9999;
-      width: min(270px, 88vw);
-      padding: 9px 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 8px;
-      color: var(--ink-dim);
-      background: #0d1117;
+      position: fixed; z-index: 9999;
+      width: min(270px, 88vw); padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.12); border-radius: 8px;
+      color: var(--ink-dim); background: #0d1117;
       box-shadow: 0 14px 28px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.04);
       font: 400 11.5px/1.5 'Inter', sans-serif;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(4px);
+      pointer-events: none; opacity: 0; transform: translateY(4px);
       transition: opacity .15s ease, transform .15s ease;
     }
 
     #skill-tooltip.visible { opacity: 1; transform: translateY(0); }
 
-    /* ══════════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════════ */
-    footer {
-      position: relative;
-      z-index: 1;
-      padding: 0 32px 40px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+    /* ══ FOOTER ══ */
+    footer { position: relative; z-index: 1; padding: 0 32px 40px; max-width: 1400px; margin: 0 auto; }
 
     .footer-inner {
-      border-top: 1px solid var(--line);
-      padding-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      border-top: 1px solid var(--line); padding-top: 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
 
     .footer-text { color: var(--muted); font-size: 12px; line-height: 1.6; max-width: 560px; }
-
     .footer-gems { display: flex; gap: 7px; opacity: .35; }
     .footer-gems span { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
 
-    /* ══════════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════════ */
+    /* ══ RESPONSIVE ══ */
     @media (max-width: 860px) {
       .page-body { grid-template-columns: 1fr; }
       .sidebar {
-        position: static;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--line);
-        padding: 16px 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0;
+        position: static; height: auto; border-right: none;
+        border-bottom: 1px solid var(--line); padding: 16px 0;
+        display: flex; flex-wrap: wrap; gap: 0;
       }
       .sidebar-title { width: 100%; border-bottom: none; padding-bottom: 8px; }
       .stier { padding: 4px 8px; }
       .stier-nodes::before { display: none; }
-      .stier-label { display: none; }
       .snode { border-radius: 8px; margin: 2px; width: auto; }
       .snode::before { display: none; }
+      .snode-progress { display: none; }
       .ptier[data-tier="4"] .ptier-inner,
       .ptier[data-tier="3"] .ptier-inner,
       .ptier[data-tier="2"] .ptier-inner,
@@ -773,21 +822,25 @@
         <h1>Dunia IT sebagai<br>Kelas Petualang</h1>
         <p class="intro">Setiap role punya senjata, skill aktif, dan range salary. Mulai dari <strong style="color:var(--ink-dim)">Novice</strong> sampai <strong style="color:var(--gold)">Final Class</strong> seperti CTO.</p>
       </div>
+      <div class="header-actions">
+        <button class="btn-sync" id="btn-open-sync" title="Sinkronisasi progress">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+            <path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+          </svg>
+          <span id="sync-label">Sync Progress</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <div class="page-body">
-
-    <!-- ── SIDEBAR job tree ── -->
     <aside class="sidebar" aria-label="Job tree navigation">
       <div class="sidebar-title">Job Tree</div>
       <div id="sidebar-tree"></div>
     </aside>
 
-    <!-- ── CONTENT ── -->
     <div class="content">
-
-      <!-- Pyramid -->
       <section class="pyramid-section" aria-label="Tier pyramid">
         <div class="section-header">
           <h2>Piramida Tier</h2>
@@ -803,15 +856,13 @@
         </div>
       </section>
 
-      <!-- Cards -->
       <section class="cards-section" aria-label="Daftar job IT">
         <div class="section-header" style="margin-bottom: 18px;">
           <h2>Job Cards</h2>
-          <p>Hover skill chip untuk penjelasan tiap skill.</p>
+          <p>Centang skill yang sudah kamu kuasai. Klik <strong style="color:var(--gold)">Job Change</strong> untuk lihat roadmap.</p>
         </div>
         <div class="grid" id="jobs"></div>
       </section>
-
     </div>
   </div>
 
@@ -822,53 +873,159 @@
     </div>
   </footer>
 
+  <!-- ── QUEST MODAL ── -->
+  <div class="modal-overlay" id="quest-overlay" role="dialog" aria-modal="true" aria-labelledby="quest-title">
+    <div class="modal" id="quest-modal">
+      <div class="modal-chrome">
+        <div class="modal-eyebrow">Job Change Quest</div>
+        <div class="modal-title">Jalan menuju <span class="modal-title-color" id="quest-job-name"></span></div>
+        <button class="modal-close" id="quest-close" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-progress-header">
+          <div class="modal-progress-track"><div class="modal-progress-fill" id="quest-progress-fill"></div></div>
+          <span class="modal-progress-text" id="quest-progress-text"></span>
+          <button class="modal-btn-reset" id="quest-reset">Reset</button>
+        </div>
+        <div id="quest-content"></div>
+        <div class="quest-complete-banner" id="quest-complete-banner">
+          ⚔ Quest Complete! Siap untuk Job Change!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SYNC MODAL ── -->
+  <div class="sync-modal-overlay" id="sync-overlay" role="dialog" aria-modal="true">
+    <div class="sync-modal">
+      <button class="modal-close sync-close" id="sync-close" aria-label="Tutup">&times;</button>
+      <div class="sync-modal-title">Sync Progress</div>
+      <div class="sync-modal-sub">Progress tersimpan otomatis di browser kamu. Gunakan Export/Import untuk backup atau pindah perangkat — mirip cara kerja <a href="https://paimon.moe/settings" target="_blank" rel="noopener">paimon.moe</a>.</div>
+      <div class="sync-actions">
+        <button class="sync-btn" id="btn-export">
+          <div class="sync-btn-icon local">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0bb4e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <div class="sync-btn-text">
+            <div class="sync-btn-title">Export ke File</div>
+            <div class="sync-btn-desc">Download file JSON berisi semua progress kamu</div>
+          </div>
+        </button>
+
+        <button class="sync-btn" id="btn-import">
+          <div class="sync-btn-icon local">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0bb4e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </div>
+          <div class="sync-btn-text">
+            <div class="sync-btn-title">Import dari File</div>
+            <div class="sync-btn-desc">Load progress dari file JSON yang sudah di-export</div>
+          </div>
+        </button>
+
+        <div class="sync-divider"><span>ATAU</span></div>
+
+        <button class="sync-btn" id="btn-gdrive-export">
+          <div class="sync-btn-icon google">
+            <svg width="18" height="18" viewBox="0 0 87.3 78" fill="none">
+              <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3L27.5 53H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+              <path d="M43.65 25L29.9 1.2C28.55 2 27.4 3.1 26.6 4.5L1.2 48.5A9 9 0 0 0 0 53h27.5z" fill="#00ac47"/>
+              <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.8 11.6z" fill="#ea4335"/>
+              <path d="M43.65 25L57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+              <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.4 4.5-1.2z" fill="#2684fc"/>
+              <path d="M73.4 26.5l-12.6-21.8c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+            </svg>
+          </div>
+          <div class="sync-btn-text">
+            <div class="sync-btn-title">Simpan ke Google Drive</div>
+            <div class="sync-btn-desc">Upload file JSON ke Google Drive kamu</div>
+          </div>
+        </button>
+
+        <button class="sync-btn" id="btn-gdrive-import">
+          <div class="sync-btn-icon google">
+            <svg width="18" height="18" viewBox="0 0 87.3 78" fill="none">
+              <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3L27.5 53H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+              <path d="M43.65 25L29.9 1.2C28.55 2 27.4 3.1 26.6 4.5L1.2 48.5A9 9 0 0 0 0 53h27.5z" fill="#00ac47"/>
+              <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.8 11.6z" fill="#ea4335"/>
+              <path d="M43.65 25L57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+              <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.4 4.5-1.2z" fill="#2684fc"/>
+              <path d="M73.4 26.5l-12.6-21.8c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+            </svg>
+          </div>
+          <div class="sync-btn-text">
+            <div class="sync-btn-title">Load dari Google Drive</div>
+            <div class="sync-btn-desc">Ambil file JSON yang sudah tersimpan di Drive</div>
+          </div>
+        </button>
+
+        <div class="sync-divider"><span>DANGER ZONE</span></div>
+
+        <button class="sync-btn" id="btn-reset-all-sync" style="border-color: rgba(232,95,95,.2);">
+          <div class="sync-btn-icon danger">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e85f5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+              <path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+            </svg>
+          </div>
+          <div class="sync-btn-text">
+            <div class="sync-btn-title" style="color:#e85f5f">Reset Semua Progress</div>
+            <div class="sync-btn-desc">Hapus semua centang skill dan quest progress</div>
+          </div>
+        </button>
+      </div>
+      <p class="sync-notice">Google Drive menggunakan Google Picker API — file disimpan di folder "IT Job Tree" di Drive kamu. Tidak ada data yang dikirim ke server lain.</p>
+    </div>
+  </div>
+
+  <input type="file" id="import-file-input" accept=".json" style="display:none">
+
   <script>
+    // ══════════════════════════════════════════
+    // DATA
+    // ══════════════════════════════════════════
     // [group, title, desc, skills, salary, role, hair, tool, tier]
     const jobs = [
       ["Base",      "IT Novice",           "Fresh graduate yang masuk training ground dan belajar dasar dunia IT.",            "Git, SQL basic, logic, troubleshooting",       "Rp4–8 juta",     "#f2c35b","#5a3d2d","book",   0],
-
       ["Software",  "Frontend Developer",  "Archer UI yang menembakkan komponen, layout, dan interaksi ke browser.",          "HTML, CSS, JavaScript, React/Vue",             "Rp6–25 juta",    "#69a8f5","#355071","bow",    1],
       ["Software",  "Backend Developer",   "Mage server yang menjaga API, business logic, database, dan autentikasi.",        "API, database, auth, queue, caching",          "Rp7–30 juta",    "#b889f4","#3e3159","wand",   1],
       ["Software",  "Mobile Developer",    "Petualang app yang membawa produk ke Android dan iOS.",                           "Kotlin, Swift, Flutter, React Native",         "Rp7–30 juta",    "#80c86a","#314d36","laptop", 1],
       ["Software",  "Fullstack Developer", "Hybrid class yang bisa berpindah dari client ke server dalam satu party.",        "Frontend, backend, SQL, deployment",           "Rp8–35 juta",    "#62d8d2","#2e4f54","sword",  2],
       ["Software",  "Tech Lead",           "Party leader teknis yang menjaga arah implementasi dan kualitas code.",           "Architecture, review, mentoring",              "Rp20–60 juta+",  "#ee9a52","#5c3924","sword",  3],
-
       ["QA",        "Manual QA",           "Scout bug yang menyisir fitur, edge case, dan flow user.",                        "Smoke test, regression, test case",            "Rp5–18 juta",    "#ee6f6f","#56303a","shield", 1],
       ["QA",        "QA Automation",       "Hunter trap yang membuat bug tertangkap lewat script otomatis.",                  "Playwright, Cypress, Selenium, API test",      "Rp8–30 juta",    "#f07aa5","#563147","bow",    2],
       ["QA",        "Performance Tester",  "Damage tester yang menekan sistem sampai bottleneck terlihat.",                   "JMeter, k6, load test, stress test",           "Rp10–35 juta",   "#ffb35c","#5a4029","hammer", 2],
-
       ["Data",      "Data Analyst",        "Sage pembaca angka yang mengubah data menjadi insight bisnis.",                   "SQL, Excel, dashboard, statistics",            "Rp6–25 juta",    "#6bd08f","#2f573b","book",   1],
       ["Data",      "BI Developer",        "Support class yang membangun dashboard dan metric party.",                        "Power BI, Tableau, Looker, modeling",          "Rp8–30 juta",    "#55c7a0","#2f5148","book",   2],
       ["Data",      "Data Engineer",       "Blacksmith pipeline yang menempa data mentah menjadi data siap pakai.",           "ETL, Airflow, Spark, warehouse",               "Rp10–45 juta",   "#71a6ff","#314461","hammer", 2],
       ["Data",      "Data Scientist",      "Professor eksperimen yang membuat model prediksi dan analisis.",                  "Python, ML, statistics, experiment",           "Rp10–45 juta",   "#cda0ff","#45345c","wand",   2],
       ["Data",      "AI Engineer",         "Summoner model yang menghubungkan LLM, RAG, dan agent ke produk.",                "LLM API, RAG, evaluation, agents",             "Rp12–60 juta+",  "#75e0ff","#2e5360","wand",   3],
-
       ["Infra",     "System Administrator","Priest server yang menjaga mesin, user, backup, dan patch.",                      "Linux, Windows Server, monitoring",            "Rp6–25 juta",    "#9fc1d9","#35495a","shield", 1],
       ["Infra",     "Network Engineer",    "Crusader jaringan yang menjaga routing, switching, dan firewall.",                "TCP/IP, routing, switching, firewall",         "Rp6–30 juta",    "#83d3e8","#2d4f59","shield", 1],
       ["Infra",     "Cloud Engineer",      "High priest cloud yang mengelola compute, storage, IAM, dan network.",            "AWS/GCP/Azure, IAM, containers",               "Rp10–45 juta",   "#83b6ff","#314967","wand",   2],
       ["Infra",     "DevOps Engineer",     "Alchemist otomasi yang menyiapkan CI/CD dan infrastructure as code.",             "Docker, Kubernetes, Terraform, CI/CD",         "Rp12–55 juta+",  "#f0c15b","#5d4521","hammer", 2],
       ["Infra",     "Database Admin",      "Keeper database yang menjaga backup, tuning, dan high availability.",             "PostgreSQL, MySQL, tuning, HA",                "Rp10–45 juta",   "#d4b36a","#514328","book",   2],
       ["Infra",     "SRE",                 "Paladin uptime yang bertugas menjaga reliability production.",                    "SLO, monitoring, incident response",           "Rp15–65 juta+",  "#6ee0b7","#2e5549","shield", 3],
-
       ["Security",  "SOC Analyst",         "Guard kota yang membaca alert, log, dan tanda serangan.",                         "SIEM, log analysis, triage",                   "Rp7–25 juta",    "#ee6f6f","#53343a","shield", 1],
       ["Security",  "Security Engineer",   "Crusader security yang memasang pertahanan sistem.",                              "Hardening, IAM, endpoint, firewall",           "Rp10–45 juta",   "#ff826e","#5b352e","sword",  2],
       ["Security",  "Pentester",           "Assassin legal yang mencari celah sebelum musuh menemukannya.",                   "OWASP, Burp, exploit basics",                  "Rp10–50 juta",   "#b889f4","#3b304e","sword",  2],
       ["Security",  "GRC Specialist",      "Sage aturan yang mengurus risk, policy, audit, dan compliance.",                  "ISO 27001, risk, audit, policy",               "Rp8–40 juta",    "#d8c27b","#4b432c","book",   2],
       ["Security",  "AppSec Engineer",     "Rune guard aplikasi yang review code dan threat model.",                          "Secure coding, SAST/DAST, review",             "Rp15–60 juta",   "#ff6b8e","#56313d","book",   3],
-
       ["Product",   "Business Analyst",    "NPC penerjemah quest dari bahasa bisnis ke requirement teknis.",                  "Requirement, flow, documentation",             "Rp7–30 juta",    "#f2c35b","#554321","book",   1],
       ["Product",   "Product Owner",       "Quest owner yang menyusun backlog dan prioritas sprint.",                         "Backlog, user story, stakeholder",             "Rp12–45 juta",   "#ffb15d","#5a3c24","book",   2],
       ["Product",   "Project Manager",     "Party organizer yang menjaga timeline, resource, dan risiko.",                    "Planning, coordination, reporting",            "Rp12–55 juta",   "#69a8f5","#314661","shield", 2],
       ["Product",   "Product Manager",     "Guild strategist yang memilih arah produk dan metric kemenangan.",                "Discovery, roadmap, metrics",                  "Rp15–70 juta+",  "#6bd08f","#324f3b","sword",  3],
-
       ["Design",    "UI Designer",         "Costume designer yang membuat tampilan terasa rapi dan berkarakter.",             "Figma, layout, typography, color",             "Rp6–25 juta",    "#ff9ac4","#573447","wand",   1],
       ["Design",    "UX Designer",         "Quest designer yang memastikan alur user masuk akal dan nyaman.",                 "Wireframe, flow, usability test",              "Rp8–35 juta",    "#cda0ff","#463559","book",   2],
       ["Design",    "Product Designer",    "Class hybrid UI/UX yang mendesain pengalaman produk end-to-end.",                 "UX, UI, prototype, design system",             "Rp10–45 juta",   "#70d7c9","#2d514f","laptop", 3],
-
       ["Support",   "Helpdesk",            "Acolyte awal yang membantu user lewat ticket dan troubleshooting.",               "Ticketing, Windows, account support",          "Rp4–10 juta",    "#9fc1d9","#394a58","laptop", 1],
       ["Support",   "Technical Support",   "Support produk yang membaca log, API, dan issue customer.",                       "Log reading, SQL basic, API basic",            "Rp5–18 juta",    "#83d3e8","#2f4f5a","laptop", 2],
       ["Support",   "Application Support", "Priest aplikasi yang menjaga produk tetap berjalan harian.",                      "SQL, incident, monitoring, SOP",               "Rp6–25 juta",    "#80c86a","#314d36","shield", 2],
-
       ["Leadership","Engineering Manager", "Guild captain yang menyeimbangkan delivery, orang, dan kualitas teknis.",         "People management, delivery, hiring",          "Rp30–90 juta+",  "#ee9a52","#573921","sword",  3],
       ["Leadership","CTO",                 "Final class teknologi yang menentukan arah sistem dan organisasi engineering.",    "Strategy, architecture, leadership",           "Rp80–250 juta+", "#f2c35b","#4e3b1b","wand",   4],
       ["Leadership","CISO",                "Final class security yang memimpin pertahanan perusahaan.",                        "Cyber risk, governance, incident",             "Rp80–250 juta+", "#ee6f6f","#4e2d34","shield", 4],
@@ -1000,50 +1157,191 @@
       "API basic":"Dasar memahami request/response HTTP untuk membaca dan debugging API.",
     };
 
-    // ── tier config ──
+    // ── Job Change quest data ──
+    const jobQuests = {
+      "Frontend Developer": {
+        phases: [
+          {
+            title: "Fondasi Web",
+            items: [
+              { id:"fe-1", label:"Kuasai HTML semantik", sub:"Pelajari heading, form, table, landmark element. Referensi: MDN HTML.", ref:"https://developer.mozilla.org/en-US/docs/Learn/HTML" },
+              { id:"fe-2", label:"Kuasai CSS dasar & layout", sub:"Flexbox, Grid, responsive design, variabel CSS.", ref:"https://developer.mozilla.org/en-US/docs/Learn/CSS" },
+              { id:"fe-3", label:"Kuasai JavaScript ES6+", sub:"Arrow function, destructuring, async/await, fetch API.", ref:"https://javascript.info" },
+            ]
+          },
+          {
+            title: "Framework & Tools",
+            items: [
+              { id:"fe-4", label:"Pelajari React atau Vue", sub:"Komponen, state, props, hooks. Mulai dari official tutorial.", ref:"https://react.dev/learn" },
+              { id:"fe-5", label:"Gunakan Git setiap hari", sub:"Commit, branch, pull request. Buat akun GitHub.", ref:"https://learngitbranching.js.org" },
+              { id:"fe-6", label:"Setup project dengan Vite atau CRA", sub:"Bundler, npm/yarn, struktur project.", ref:"https://vitejs.dev/guide/" },
+            ]
+          },
+          {
+            title: "Portofolio",
+            items: [
+              { id:"fe-7", label:"Buat 2-3 project di GitHub", sub:"Landing page, todo app, atau clone UI populer. Harus bisa di-live.", ref:"https://github.com" },
+              { id:"fe-8", label:"Deploy ke Vercel atau Netlify", sub:"Live URL wajib ada di setiap project portofolio.", ref:"https://vercel.com" },
+              { id:"fe-9", label:"Buat profile README di GitHub", sub:"Tampilkan project terbaik, stack, dan contact.", ref:"https://github.com" },
+            ]
+          },
+          {
+            title: "Apply Remote Job",
+            items: [
+              { id:"fe-10", label:"Daftar ke LinkedIn & aktifkan Open to Work", sub:"Filter: Remote, Frontend, Junior/Entry Level.", ref:"https://linkedin.com/jobs" },
+              { id:"fe-11", label:"Apply ke Glints, Kalibrr, JobStreet filter remote", sub:"Kirim 5-10 lamaran per minggu, jangan nunggu reply dulu.", ref:"https://glints.com" },
+              { id:"fe-12", label:"Coba platform freelance: Upwork atau Toptal", sub:"Mulai dari proyek kecil untuk bangun rating.", ref:"https://upwork.com" },
+            ]
+          },
+        ]
+      },
+      "Manual QA": {
+        phases: [
+          {
+            title: "Dasar Testing",
+            items: [
+              { id:"qa-1", label:"Pahami SDLC & posisi QA di dalamnya", sub:"Agile, Scrum, siklus bug dari report sampai closed.", ref:"https://www.guru99.com/software-testing.html" },
+              { id:"qa-2", label:"Belajar menulis test case yang baik", sub:"Format: precondition, steps, expected result. Praktik dari app yang kamu pakai sehari-hari.", ref:"https://www.guru99.com/test-case.html" },
+              { id:"qa-3", label:"Pahami jenis testing: functional, regression, UAT", sub:"Kenali kapan masing-masing dipakai dan siapa yang menjalankan.", ref:"https://www.softwaretestinghelp.com" },
+            ]
+          },
+          {
+            title: "Tools & Praktik",
+            items: [
+              { id:"qa-4", label:"Kuasai tools bug tracking: Jira atau Trello", sub:"Cara membuat bug report yang jelas: severity, priority, steps to reproduce.", ref:"https://www.atlassian.com/software/jira" },
+              { id:"qa-5", label:"Belajar dasar SQL untuk query data", sub:"SELECT, WHERE, JOIN — berguna untuk verifikasi data di DB.", ref:"https://sqlbolt.com" },
+              { id:"qa-6", label:"Pahami API testing dasar dengan Postman", sub:"Kirim GET/POST, lihat response, validasi status code.", ref:"https://learning.postman.com" },
+            ]
+          },
+          {
+            title: "Portofolio",
+            items: [
+              { id:"qa-7", label:"Buat dokumentasi test case untuk 1 app nyata", sub:"Pilih app publik (e-commerce, dsb), tulis 20+ test case, upload ke Google Doc atau GitHub.", ref:"https://github.com" },
+              { id:"qa-8", label:"Buat bug report portofolio", sub:"Report minimal 5 bug dari app publik, lengkap dengan screenshot dan langkah reproduksi.", ref:"https://www.guru99.com/how-to-write-a-bug-report.html" },
+            ]
+          },
+          {
+            title: "Apply Remote Job",
+            items: [
+              { id:"qa-9", label:"Daftar ke LinkedIn & aktifkan Open to Work", sub:"Filter: Remote, QA Tester, Manual QA, Junior.", ref:"https://linkedin.com/jobs" },
+              { id:"qa-10", label:"Apply ke Glints, Kalibrr, Remote.co", sub:"Banyak startup SaaS butuh QA remote, lirik juga job board internasional.", ref:"https://remote.co/remote-jobs/qa-engineer/" },
+              { id:"qa-11", label:"Siapkan CV yang highlight test case & bug report", sub:"Tunjukkan portofolio dokumen, bukan hanya list tool yang dipakai.", ref:"https://www.linkedin.com" },
+            ]
+          },
+        ]
+      }
+    };
+
+    // ══════════════════════════════════════════
+    // STORAGE
+    // ══════════════════════════════════════════
+    const STORAGE_KEY = "itjt_progress_v1";
+
+    function loadProgress() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveProgress(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    // skill key: "JobTitle::SkillName"
+    function skillKey(title, skill) { return `${title}::${skill}`; }
+
+    // quest item key: item id
+    function questKey(itemId) { return `quest::${itemId}`; }
+
+    let progress = loadProgress();
+
+    function toggleSkill(title, skill) {
+      const k = skillKey(title, skill);
+      progress[k] = !progress[k];
+      saveProgress(progress);
+    }
+
+    function toggleQuest(itemId) {
+      const k = questKey(itemId);
+      progress[k] = !progress[k];
+      saveProgress(progress);
+    }
+
+    function getSkillProgress(title, skills) {
+      const arr = skills.split(", ");
+      const done = arr.filter(s => progress[skillKey(title, s)]).length;
+      return { done, total: arr.length, pct: arr.length ? Math.round(done / arr.length * 100) : 0 };
+    }
+
+    function getQuestProgress(jobTitle) {
+      const quest = jobQuests[jobTitle];
+      if (!quest) return null;
+      const items = quest.phases.flatMap(p => p.items);
+      const done = items.filter(i => progress[questKey(i.id)]).length;
+      return { done, total: items.length, pct: items.length ? Math.round(done / items.length * 100) : 0 };
+    }
+
+    // ══════════════════════════════════════════
+    // SIDEBAR
+    // ══════════════════════════════════════════
     const TIERS = [
-      { tier: 4, name: "Final Class",  sub: "C-Level",          salaryRange: "Rp80–250 juta+" },
-      { tier: 3, name: "Job 3",        sub: "Senior / Lead",    salaryRange: "Rp15–90 juta+" },
-      { tier: 2, name: "Job 2",        sub: "Mid / Advanced",   salaryRange: "Rp8–55 juta"   },
-      { tier: 1, name: "Job 1",        sub: "Entry / Junior",   salaryRange: "Rp4–30 juta"   },
-      { tier: 0, name: "Base",         sub: "Novice",           salaryRange: "Rp4–8 juta"    },
+      { tier: 4, name: "Final Class",  sub: "C-Level",        salaryRange: "Rp80–250 juta+" },
+      { tier: 3, name: "Job 3",        sub: "Senior / Lead",  salaryRange: "Rp15–90 juta+"  },
+      { tier: 2, name: "Job 2",        sub: "Mid / Advanced", salaryRange: "Rp8–55 juta"    },
+      { tier: 1, name: "Job 1",        sub: "Entry / Junior", salaryRange: "Rp4–30 juta"    },
+      { tier: 0, name: "Base",         sub: "Novice",         salaryRange: "Rp4–8 juta"     },
     ];
 
-    // ── sidebar tree data (category groups) ──
     const sidebarTree = [
-      { label: "Semua Job", filter: "All", color: "#f0bb4e", base: true },
-      { label: "Software",    filter: "Software",    color: "#69a8f5" },
-      { label: "QA",          filter: "QA",          color: "#ee6f6f" },
-      { label: "Data",        filter: "Data",        color: "#6bd08f" },
-      { label: "Infra",       filter: "Infra",       color: "#83b6ff" },
-      { label: "Security",    filter: "Security",    color: "#ff826e" },
-      { label: "Product",     filter: "Product",     color: "#ffb15d" },
-      { label: "Design",      filter: "Design",      color: "#ff9ac4" },
-      { label: "Support",     filter: "Support",     color: "#9fc1d9" },
-      { label: "Leadership",  filter: "Leadership",  color: "#f2c35b" },
+      { label: "Semua Job",   filter: "All",        color: "#f0bb4e", base: true },
+      { label: "Software",    filter: "Software",   color: "#69a8f5" },
+      { label: "QA",          filter: "QA",         color: "#ee6f6f" },
+      { label: "Data",        filter: "Data",       color: "#6bd08f" },
+      { label: "Infra",       filter: "Infra",      color: "#83b6ff" },
+      { label: "Security",    filter: "Security",   color: "#ff826e" },
+      { label: "Product",     filter: "Product",    color: "#ffb15d" },
+      { label: "Design",      filter: "Design",     color: "#ff9ac4" },
+      { label: "Support",     filter: "Support",    color: "#9fc1d9" },
+      { label: "Leadership",  filter: "Leadership", color: "#f2c35b" },
     ];
 
     let activeFilter = "All";
 
-    // ── SIDEBAR render ──
-    function renderSidebar() {
-      const el = document.getElementById("sidebar-tree");
-      el.innerHTML = sidebarTree.map(({ label, filter, color, base }) => `
-        <div class="stier">
-          <div class="stier-nodes">
-            <button type="button"
-              class="snode ${base ? "snode-base" : ""} ${activeFilter === filter ? "active" : ""}"
-              style="--node-color: ${color}"
-              data-filter="${filter}">
-              <span class="snode-dot"></span>
-              <span class="snode-text">${label}</span>
-            </button>
-          </div>
-        </div>
-      `).join("");
+    function getCategoryProgress(filter) {
+      const catJobs = filter === "All" ? jobs : jobs.filter(j => j[0] === filter);
+      let done = 0, total = 0;
+      catJobs.forEach(([,title,,skills]) => {
+        const arr = skills.split(", ");
+        total += arr.length;
+        done += arr.filter(s => progress[skillKey(title, s)]).length;
+      });
+      return total ? Math.round(done / total * 100) : 0;
     }
 
-    // ── PYRAMID render ──
+    function renderSidebar() {
+      const el = document.getElementById("sidebar-tree");
+      el.innerHTML = sidebarTree.map(({ label, filter, color, base }) => {
+        const pct = getCategoryProgress(filter);
+        return `
+          <div class="stier">
+            <div class="stier-nodes">
+              <button type="button"
+                class="snode ${base ? "snode-base" : ""} ${activeFilter === filter ? "active" : ""}"
+                style="--node-color: ${color}"
+                data-filter="${filter}">
+                <span class="snode-dot"></span>
+                <span class="snode-text">${label}</span>
+                <div class="snode-progress" title="${pct}% skill selesai">
+                  <div class="snode-progress-fill" style="width:${pct}%"></div>
+                </div>
+              </button>
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    // ══════════════════════════════════════════
+    // PYRAMID
+    // ══════════════════════════════════════════
     function renderPyramid(group = "All") {
       const el = document.getElementById("pyramid");
       const filtered = group === "All" ? jobs : jobs.filter(j => j[0] === group);
@@ -1051,11 +1349,9 @@
       el.innerHTML = TIERS.map(({ tier, name, sub, salaryRange }) => {
         const tierJobs = filtered.filter(j => j[8] === tier);
         if (!tierJobs.length) return "";
-
         const chips = tierJobs.map(j =>
-          `<span class="ptier-chip" style="--chip-color: ${j[5]}" data-filter="${j[0]}" data-title="${j[1]}">${j[1]}</span>`
+          `<span class="ptier-chip" style="--chip-color:${j[5]}" data-filter="${j[0]}">${j[1]}</span>`
         ).join("");
-
         return `
           <div class="ptier" data-tier="${tier}">
             <div class="ptier-inner">
@@ -1070,7 +1366,9 @@
       }).join("");
     }
 
-    // ── SPRITE ──
+    // ══════════════════════════════════════════
+    // CARDS
+    // ══════════════════════════════════════════
     function sprite(tool) {
       return `<div class="sprite" aria-hidden="true">
         <i class="cape"></i><i class="hair"></i><i class="head"></i>
@@ -1080,61 +1378,80 @@
       </div>`;
     }
 
-    // ── TIER PILL ──
     const TIER_LABELS = ["Base", "Job 1", "Job 2", "Job 3", "Final"];
 
     function tierPill(tier) {
-      const pips = Array.from({ length: 4 }, (_, i) =>
-        `<span class="${i < tier ? "on" : ""}"></span>`
-      ).join("");
-      return `<span class="tier-pill" data-tier="${tier}">
-        <span class="tier-pips">${pips}</span>
-        ${TIER_LABELS[tier]}
-      </span>`;
+      const pips = Array.from({length:4},(_,i) => `<span class="${i<tier?"on":""}"></span>`).join("");
+      return `<span class="tier-pill" data-tier="${tier}"><span class="tier-pips">${pips}</span>${TIER_LABELS[tier]}</span>`;
     }
 
-    // ── CARDS render ──
-    function renderCards(group = "All") {
-      const jobsEl = document.getElementById("jobs");
-      const filtered = group === "All"
-        ? jobs
-        : jobs.filter(j => j[0] === group);
-
-      jobsEl.innerHTML = filtered.map(([grp, title, desc, skills, salary, role, hair, tool, tier]) => `
-        <article class="card" style="--role:${role};--hair:${hair}">
-          <div class="card-accent"></div>
-          <div class="sprite-stage">${sprite(tool)}</div>
-          <div class="card-body">
-            <div class="card-top-row">
-              <span class="class-badge">${grp} Class</span>
-              ${tierPill(tier)}
-            </div>
-            <h2 class="card-title">${title}</h2>
-            <p class="desc">${desc}</p>
-            <div class="meta">
-              <div>
-                <span class="meta-label">Skills</span>
-                <div class="skill-list">${renderSkills(skills)}</div>
-              </div>
-              <div class="meta-sep"></div>
-              <div>
-                <span class="meta-label">Salary Range</span>
-                <strong class="salary">${salary}</strong>
-              </div>
-            </div>
-          </div>
-        </article>
-      `).join("");
-    }
-
-    function renderSkills(skills) {
+    function renderSkills(title, skills) {
       return skills.split(", ").map(s => {
-        const tip = skillDescriptions[s] || "Skill praktis yang dipakai role ini dalam pekerjaan harian.";
-        return `<span class="skill" tabindex="0" data-tip="${tip}">${s}</span>`;
+        const tip = skillDescriptions[s] || "Skill praktis yang dipakai role ini.";
+        const checked = progress[skillKey(title, s)] ? "checked" : "";
+        return `<span class="skill ${checked}" tabindex="0" data-tip="${tip}" data-title="${title}" data-skill="${s}">
+          <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
+            <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ${s}
+        </span>`;
       }).join("");
     }
 
-    // ── FILTER ──
+    function renderCards(group = "All") {
+      const jobsEl = document.getElementById("jobs");
+      const filtered = group === "All" ? jobs : jobs.filter(j => j[0] === group);
+
+      jobsEl.innerHTML = filtered.map(([grp, title, desc, skills, salary, role, hair, tool, tier]) => {
+        const { done, total, pct } = getSkillProgress(title, skills);
+        const hasQuest = !!jobQuests[title];
+        const qp = hasQuest ? getQuestProgress(title) : null;
+
+        return `
+          <article class="card" style="--role:${role};--hair:${hair}">
+            <div class="card-accent"></div>
+            <div class="card-progress-bar"><div class="card-progress-fill" style="width:${pct}%"></div></div>
+            <div class="sprite-stage">${sprite(tool)}</div>
+            <div class="card-body">
+              <div class="card-top-row">
+                <span class="class-badge">${grp} Class</span>
+                ${tierPill(tier)}
+              </div>
+              <h2 class="card-title">${title}</h2>
+              <p class="desc">${desc}</p>
+              <div class="meta">
+                <div>
+                  <span class="meta-label">Skills</span>
+                  <div class="skill-list">${renderSkills(title, skills)}</div>
+                </div>
+                <div class="meta-sep"></div>
+                <div>
+                  <span class="meta-label">Salary Range</span>
+                  <strong class="salary">${salary}</strong>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="card-xp">
+                  <div class="card-xp-bar"><div class="card-xp-fill" style="width:${pct}%"></div></div>
+                  ${done}/${total} skill
+                </div>
+                ${hasQuest ? `<button class="btn-job-change" data-job="${title}" data-role="${role}">
+                  ⚔ Job Change${qp && qp.done > 0 ? ` · ${qp.pct}%` : ""}
+                </button>` : ""}
+              </div>
+            </div>
+          </article>`;
+      }).join("");
+    }
+
+    function refreshCards() {
+      renderCards(activeFilter);
+      renderSidebar();
+    }
+
+    // ══════════════════════════════════════════
+    // FILTER
+    // ══════════════════════════════════════════
     function applyFilter(group) {
       activeFilter = group;
       renderSidebar();
@@ -1143,7 +1460,213 @@
       document.getElementById("jobs").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    // ── EVENT LISTENERS ──
+    // ══════════════════════════════════════════
+    // QUEST MODAL
+    // ══════════════════════════════════════════
+    let currentQuestJob = null;
+
+    function openQuest(jobTitle, roleColor) {
+      currentQuestJob = jobTitle;
+      const quest = jobQuests[jobTitle];
+      if (!quest) return;
+
+      document.getElementById("quest-job-name").textContent = jobTitle;
+      document.querySelector(".modal").style.setProperty("--modal-role", roleColor);
+
+      renderQuestContent();
+
+      const overlay = document.getElementById("quest-overlay");
+      overlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function renderQuestContent() {
+      const quest = jobQuests[currentQuestJob];
+      const qp = getQuestProgress(currentQuestJob);
+
+      document.getElementById("quest-progress-fill").style.width = qp.pct + "%";
+      document.getElementById("quest-progress-text").textContent = `${qp.done}/${qp.total} selesai`;
+
+      const banner = document.getElementById("quest-complete-banner");
+      banner.classList.toggle("show", qp.done === qp.total && qp.total > 0);
+
+      document.getElementById("quest-content").innerHTML = quest.phases.map((phase, pi) => `
+        <div class="quest-phase">
+          <div class="quest-phase-title">
+            <span class="quest-phase-num">${pi + 1}</span>
+            ${phase.title}
+          </div>
+          ${phase.items.map(item => {
+            const done = !!progress[questKey(item.id)];
+            return `
+              <div class="quest-item ${done ? "done" : ""}" data-quest-id="${item.id}">
+                <div class="quest-checkbox">
+                  <span class="quest-checkbox-tick">✓</span>
+                </div>
+                <div class="quest-item-content">
+                  <div class="quest-item-label">${item.label}</div>
+                  <div class="quest-item-sub">${item.sub}</div>
+                  ${item.ref ? `<a class="quest-item-link" href="${item.ref}" target="_blank" rel="noopener">
+                    Referensi ↗
+                  </a>` : ""}
+                </div>
+              </div>`;
+          }).join("")}
+        </div>
+      `).join("");
+    }
+
+    function closeQuest() {
+      document.getElementById("quest-overlay").classList.remove("open");
+      document.body.style.overflow = "";
+      currentQuestJob = null;
+      refreshCards();
+    }
+
+    document.getElementById("quest-overlay").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeQuest();
+    });
+
+    document.getElementById("quest-close").addEventListener("click", closeQuest);
+
+    document.getElementById("quest-content").addEventListener("click", e => {
+      const item = e.target.closest(".quest-item");
+      if (!item) return;
+      // don't toggle if clicking the external link
+      if (e.target.closest(".quest-item-link")) return;
+      toggleQuest(item.dataset.questId);
+      renderQuestContent();
+    });
+
+    document.getElementById("quest-reset").addEventListener("click", () => {
+      if (!currentQuestJob) return;
+      const quest = jobQuests[currentQuestJob];
+      quest.phases.flatMap(p => p.items).forEach(i => { delete progress[questKey(i.id)]; });
+      saveProgress(progress);
+      renderQuestContent();
+    });
+
+    // ══════════════════════════════════════════
+    // SYNC MODAL
+    // ══════════════════════════════════════════
+    function openSync() { document.getElementById("sync-overlay").classList.add("open"); }
+    function closeSync() { document.getElementById("sync-overlay").classList.remove("open"); }
+
+    document.getElementById("btn-open-sync").addEventListener("click", openSync);
+    document.getElementById("sync-close").addEventListener("click", closeSync);
+    document.getElementById("sync-overlay").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeSync();
+    });
+
+    // Export
+    document.getElementById("btn-export").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(progress, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "itjt-progress.json"; a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Import
+    document.getElementById("btn-import").addEventListener("click", () => {
+      document.getElementById("import-file-input").click();
+    });
+
+    document.getElementById("import-file-input").addEventListener("change", e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          const data = JSON.parse(ev.target.result);
+          if (typeof data === "object" && data !== null) {
+            progress = data;
+            saveProgress(progress);
+            refreshCards();
+            renderPyramid(activeFilter);
+            closeSync();
+            alert("Progress berhasil diimport!");
+          } else {
+            alert("File tidak valid.");
+          }
+        } catch { alert("Gagal membaca file."); }
+      };
+      reader.readAsText(file);
+      e.target.value = "";
+    });
+
+    // Google Drive — export
+    document.getElementById("btn-gdrive-export").addEventListener("click", async () => {
+      try {
+        const tokenResp = await new Promise((resolve, reject) => {
+          if (!window.google?.accounts?.oauth2) { reject(new Error("Google API belum dimuat.")); return; }
+          const client = google.accounts.oauth2.initTokenClient({
+            client_id: "YOUR_GOOGLE_CLIENT_ID",
+            scope: "https://www.googleapis.com/auth/drive.file",
+            callback: resolve,
+          });
+          client.requestAccessToken();
+        });
+        const token = tokenResp.access_token;
+        const content = JSON.stringify(progress, null, 2);
+        const metadata = { name: "itjt-progress.json", mimeType: "application/json" };
+        const form = new FormData();
+        form.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+        form.append("file", new Blob([content], { type: "application/json" }));
+        await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: form,
+        });
+        alert("Progress tersimpan ke Google Drive!");
+      } catch (err) {
+        alert("Google Drive belum dikonfigurasi. Gunakan Export ke File untuk sementara.\n\n(Untuk aktifkan Drive sync, tambahkan Google Client ID ke kode sumber.)");
+      }
+    });
+
+    // Google Drive — import (same note)
+    document.getElementById("btn-gdrive-import").addEventListener("click", () => {
+      alert("Google Drive sync memerlukan konfigurasi Google Client ID.\nGunakan Import dari File untuk sementara.");
+    });
+
+    // Reset all
+    document.getElementById("btn-reset-all-sync").addEventListener("click", () => {
+      if (!confirm("Reset semua progress? Ini tidak bisa di-undo.")) return;
+      progress = {};
+      saveProgress(progress);
+      refreshCards();
+      renderPyramid(activeFilter);
+      closeSync();
+    });
+
+    // ══════════════════════════════════════════
+    // EVENT DELEGATION (cards & sidebar)
+    // ══════════════════════════════════════════
+    document.getElementById("jobs").addEventListener("click", e => {
+      // skill chip toggle
+      const skill = e.target.closest(".skill");
+      if (skill) {
+        toggleSkill(skill.dataset.title, skill.dataset.skill);
+        skill.classList.toggle("checked", !!progress[skillKey(skill.dataset.title, skill.dataset.skill)]);
+        // update xp bar in same card
+        const card = skill.closest(".card");
+        const allSkills = card.querySelectorAll(".skill");
+        const done = [...allSkills].filter(s => s.classList.contains("checked")).length;
+        const pct = Math.round(done / allSkills.length * 100);
+        card.querySelector(".card-xp-fill").style.width = pct + "%";
+        card.querySelector(".card-progress-fill").style.width = pct + "%";
+        card.querySelector(".card-xp").childNodes[1].textContent = ` ${done}/${allSkills.length} skill`;
+        renderSidebar();
+        return;
+      }
+
+      // job change button
+      const btn = e.target.closest(".btn-job-change");
+      if (btn) {
+        openQuest(btn.dataset.job, btn.dataset.role);
+      }
+    });
+
     document.getElementById("sidebar-tree").addEventListener("click", e => {
       const btn = e.target.closest(".snode");
       if (!btn) return;
@@ -1156,16 +1679,20 @@
       applyFilter(chip.dataset.filter);
     });
 
-    // ── INIT ──
-    renderSidebar();
-    renderPyramid();
-    renderCards();
+    // keyboard a11y for skill chips
+    document.getElementById("jobs").addEventListener("keydown", e => {
+      if (e.key === " " || e.key === "Enter") {
+        const skill = e.target.closest(".skill");
+        if (skill) { e.preventDefault(); skill.click(); }
+      }
+    });
 
-    // ── TOOLTIP (fixed-position, never clipped) ──
+    // ══════════════════════════════════════════
+    // TOOLTIP
+    // ══════════════════════════════════════════
     const tip = document.createElement("div");
     tip.id = "skill-tooltip";
     document.body.appendChild(tip);
-
     const GAP = 10;
 
     function showTip(el) {
@@ -1178,46 +1705,33 @@
 
     function positionTip(el) {
       const r = el.getBoundingClientRect();
-      const tw = tip.offsetWidth;
-      const th = tip.offsetHeight;
+      const tw = tip.offsetWidth, th = tip.offsetHeight;
       const vw = window.innerWidth;
-      const vh = window.innerHeight;
-
-      // prefer above, fall back to below if not enough space
       let top = r.top - th - GAP;
       if (top < 8) top = r.bottom + GAP;
-
-      // clamp horizontally within viewport
       let left = r.left;
       if (left + tw > vw - 8) left = vw - tw - 8;
       if (left < 8) left = 8;
-
-      tip.style.top  = top  + "px";
+      tip.style.top = top + "px";
       tip.style.left = left + "px";
     }
 
-    function hideTip() {
-      tip.classList.remove("visible");
-    }
+    function hideTip() { tip.classList.remove("visible"); }
 
-    document.addEventListener("mouseover", e => {
-      const skill = e.target.closest(".skill");
-      if (skill) showTip(skill);
-    });
-
-    document.addEventListener("mouseout", e => {
-      if (e.target.closest(".skill")) hideTip();
-    });
-
-    // touch support
+    document.addEventListener("mouseover", e => { const s = e.target.closest(".skill"); if (s) showTip(s); });
+    document.addEventListener("mouseout",  e => { if (e.target.closest(".skill")) hideTip(); });
     document.addEventListener("touchstart", e => {
-      const skill = e.target.closest(".skill");
-      if (skill) { e.preventDefault(); showTip(skill); }
+      const s = e.target.closest(".skill");
+      if (s) { e.preventDefault(); showTip(s); }
     }, { passive: false });
+    document.addEventListener("touchend", () => setTimeout(hideTip, 1800));
 
-    document.addEventListener("touchend", () => {
-      setTimeout(hideTip, 1800);
-    });
+    // ══════════════════════════════════════════
+    // INIT
+    // ══════════════════════════════════════════
+    renderSidebar();
+    renderPyramid();
+    renderCards();
   </script>
 </body>
 </html>
