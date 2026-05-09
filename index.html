@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ulong RPG</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffe9a0'/%3E%3Cstop offset='50%25' stop-color='%23f0bb4e'/%3E%3Cstop offset='100%25' stop-color='%23c8922a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='8' y='8' width='16' height='16' rx='2' fill='url(%23g)' transform='rotate(45 16 16)'/%3E%3Ctext x='16' y='20.5' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='12' fill='%231a0e00'%3EU%3C/text%3E%3C/svg%3E">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -49,12 +50,13 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: .12;
+      opacity: .22;
       background-image:
-        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 24px 24px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.8) 0%, transparent 50%);
+        linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(45deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 24px 24px, 24px 24px, 48px 48px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.75) 0%, rgba(0,0,0,.18) 100%);
     }
 
     /* ══ HEADER ══ */
@@ -125,6 +127,33 @@
     .btn-sync.connected { border-color: rgba(93,201,126,.4); color: #5dc97e; background: rgba(93,201,126,.07); }
 
     .btn-sync svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .btn-myprogress {
+      display: flex; align-items: center; gap: 7px;
+      padding: 8px 14px;
+      border: 1px solid rgba(134,201,93,.3);
+      border-radius: 8px;
+      background: var(--panel);
+      color: rgba(134,201,93,.7);
+      font: 600 12px 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all .18s ease;
+      white-space: nowrap;
+    }
+    .btn-myprogress:hover { border-color: rgba(134,201,93,.55); color: #86c95d; background: rgba(134,201,93,.07); }
+    .btn-myprogress.active {
+      border-color: rgba(134,201,93,.6);
+      color: #86c95d;
+      background: rgba(134,201,93,.12);
+    }
+
+    .myprogress-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--muted);
+    }
+    .myprogress-empty strong { display: block; color: var(--ink-dim); font-size: 16px; margin-bottom: 8px; }
 
     .btn-reset-all {
       display: flex; align-items: center; gap: 6px;
@@ -374,6 +403,172 @@
     .hammer::before { left:-18px; top:-7px; width:46px; height:24px; background:#c4ccd5; border:3px solid #69768a; }
     .laptop { left:4px; top:78px; width:46px; height:30px; background:#9fb3ca; border:4px solid #364155; transform:rotate(10deg); }
     .laptop::before { left:-6px; top:27px; width:58px; height:8px; background:#dce5ef; border:2px solid #364155; }
+
+    /* ══ WEAPON SPRITES PER JOB ══ */
+    /* brush — Frontend Developer (paintbrush) */
+    .brush { right:8px; top:30px; width:7px; height:78px; background:#c8943a; border-radius:3px; transform:rotate(-22deg); }
+    .brush::before { left:-6px; top:-10px; width:19px; height:22px; background:currentColor; border-radius:3px 3px 0 0; }
+    .brush::after { left:-1px; top:10px; width:9px; height:6px; background:#c8943a; border-radius:0 0 3px 3px; }
+
+    /* stylus — Mobile Developer */
+    .stylus { right:10px; top:28px; width:6px; height:72px; background:#7a9ab0; border-radius:3px; transform:rotate(-16deg); }
+    .stylus::before { left:-5px; top:-14px; width:16px; height:18px; background:#c4ccd5; clip-path:polygon(50% 0%,100% 35%,100% 100%,0% 100%,0% 35%); }
+    .stylus::after { left:0px; top:65px; width:6px; height:12px; background:#5a7a9a; border-radius:0 0 4px 4px; }
+
+    /* code-brush — Fullstack Developer (brush + key combined) */
+    .code-brush { right:6px; top:28px; width:8px; height:76px; background:#8c6334; border-radius:3px; transform:rotate(-20deg); }
+    .code-brush::before { left:-7px; top:-12px; width:22px; height:20px; background:currentColor; border-radius:3px 3px 0 0; }
+    .code-brush::after { left:-12px; top:52px; width:10px; height:10px; border-radius:50%; border:3px solid currentColor; }
+
+    /* blueprint — Tech Lead (scroll/blueprint) */
+    .blueprint { right:5px; top:40px; width:38px; height:30px; background:#c8d8e8; border:3px solid #6a7e94; border-radius:4px; transform:rotate(-12deg); }
+    .blueprint::before { left:5px; top:4px; width:24px; height:3px; background:#6a7e94; box-shadow:0 7px 0 #6a7e94, 0 14px 0 #6a7e94; }
+    .blueprint::after { left:-6px; top:-5px; width:8px; height:38px; background:#b0a080; border-radius:4px; }
+
+    /* magnifier — Manual QA */
+    .magnifier { right:4px; top:42px; width:30px; height:30px; border-radius:50%; border:5px solid #c4ccd5; }
+    .magnifier::before { right:-4px; bottom:-4px; width:5px; height:22px; background:#9a6a35; transform:rotate(45deg); border-radius:3px; }
+
+    /* trap — QA Automation (bug trap) */
+    .trap { right:8px; top:44px; width:32px; height:28px; border:4px solid currentColor; border-radius:4px; }
+    .trap::before { left:2px; top:-14px; width:24px; height:14px; border:4px solid currentColor; border-bottom:0; border-radius:4px 4px 0 0; }
+    .trap::after { left:10px; top:-20px; width:8px; height:8px; border-radius:50%; border:3px solid currentColor; }
+
+    /* gauge — Performance Tester */
+    .gauge { right:6px; top:46px; width:36px; height:22px; border:4px solid currentColor; border-bottom:0; border-radius:22px 22px 0 0; }
+    .gauge::before { left:14px; top:14px; width:3px; height:18px; background:currentColor; transform-origin:bottom center; transform:rotate(-35deg); border-radius:2px; }
+    .gauge::after { left:4px; top:0px; width:4px; height:4px; border-radius:50%; background:currentColor; box-shadow:20px 0 0 currentColor; }
+
+    /* abacus — Data Analyst */
+    .abacus { right:4px; top:42px; width:36px; height:36px; border:4px solid #9a6a35; border-radius:4px; transform:rotate(-8deg); }
+    .abacus::before { left:4px; top:5px; width:24px; height:3px; background:#9a6a35; box-shadow:0 10px 0 #9a6a35, 0 20px 0 #9a6a35; }
+    .abacus::after { left:0px; top:6px; width:5px; height:5px; border-radius:50%; background:currentColor; box-shadow:0 10px 0 currentColor, 8px 4px 0 currentColor; }
+
+    /* bar-chart — BI Developer */
+    .bar-chart { right:4px; top:44px; width:36px; height:36px; transform:rotate(-8deg); }
+    .bar-chart::before { left:2px; bottom:0; width:8px; height:28px; background:currentColor; box-shadow:13px 10px 0 currentColor, 26px 18px 0 currentColor; }
+    .bar-chart::after { left:0px; bottom:-4px; width:36px; height:3px; background:currentColor; border-radius:2px; }
+
+    /* pipe — Data Engineer */
+    .pipe { right:6px; top:36px; width:40px; height:16px; background:#7a9ab0; border:3px solid #4a6a8a; border-radius:8px; transform:rotate(-18deg); }
+    .pipe::before { left:-6px; top:-12px; width:16px; height:16px; border:3px solid #4a6a8a; border-right:0; border-radius:8px 0 0 8px; }
+    .pipe::after { right:-8px; top:-4px; width:12px; height:12px; border:3px solid #4a6a8a; border-radius:50%; }
+
+    /* flask — Data Scientist */
+    .flask { right:8px; top:36px; width:12px; height:38px; background:#c4ccd5; border:3px solid #69768a; border-radius:0 0 4px 4px; transform:rotate(-12deg); }
+    .flask::before { left:-12px; top:18px; width:36px; height:28px; border-radius:4px 4px 10px 10px; border:3px solid #69768a; background:currentColor; opacity:.6; }
+    .flask::after { left:-3px; top:-12px; width:18px; height:14px; background:#c4ccd5; border:3px solid #69768a; border-bottom:0; border-radius:4px 4px 0 0; }
+
+    /* circuit-wand — AI Engineer */
+    .circuit-wand { right:12px; top:18px; width:8px; height:88px; background:#7a9ab0; transform:rotate(-14deg); border-radius:3px; }
+    .circuit-wand::before { left:-12px; top:-12px; width:32px; height:32px; border-radius:4px; background:currentColor; box-shadow:0 0 20px currentColor, 0 0 40px currentColor; opacity:.7; }
+    .circuit-wand::after { left:2px; top:20px; width:14px; height:3px; background:currentColor; box-shadow:0 12px 0 currentColor, -8px 24px 0 currentColor; }
+
+    /* wrench — System Administrator */
+    .wrench { right:6px; top:30px; width:10px; height:76px; background:#9a9a9a; border-radius:5px; transform:rotate(-28deg); }
+    .wrench::before { left:-12px; top:-6px; width:34px; height:18px; background:#9a9a9a; border-radius:9px; }
+    .wrench::after { left:-8px; top:62px; width:26px; height:18px; background:#9a9a9a; border-radius:9px; }
+
+    /* chain — Network Engineer */
+    .chain { right:8px; top:36px; width:12px; height:12px; border-radius:50%; border:4px solid #7a9ab0; }
+    .chain::before { right:4px; top:8px; width:12px; height:12px; border-radius:50%; border:4px solid currentColor; box-shadow:0 20px 0 currentColor, 16px 10px 0 currentColor, 16px 30px 0 currentColor; }
+    .chain::after { right:-4px; top:50px; width:24px; height:3px; background:currentColor; border-radius:2px; transform:rotate(20deg); }
+
+    /* cloud-staff — Cloud Engineer */
+    .cloud-staff { right:12px; top:22px; width:8px; height:82px; background:#8c6334; transform:rotate(-12deg); border-radius:3px; }
+    .cloud-staff::before { left:-18px; top:-14px; width:44px; height:28px; border-radius:50% 50% 20px 20px; background:currentColor; box-shadow:0 0 16px currentColor; }
+    .cloud-staff::after { left:-6px; top:8px; width:20px; height:12px; background:currentColor; border-radius:50%; opacity:.5; }
+
+    /* gear — DevOps Engineer */
+    .gear { right:8px; top:42px; width:34px; height:34px; border-radius:50%; border:5px solid currentColor; }
+    .gear::before { left:2px; top:-8px; width:5px; height:48px; background:currentColor; }
+    .gear::after { left:-8px; top:2px; width:48px; height:5px; background:currentColor; }
+
+    /* cylinder — Database Admin */
+    .cylinder { right:4px; top:42px; width:36px; height:10px; border-radius:50%; background:currentColor; border:3px solid #9a6a35; }
+    .cylinder::before { left:-3px; top:6px; width:36px; height:24px; background:currentColor; border:3px solid #9a6a35; border-top:0; border-radius:0 0 50% 50%; }
+    .cylinder::after { left:-3px; top:18px; width:36px; height:3px; background:#9a6a35; opacity:.5; box-shadow:0 8px 0 #9a6a35; }
+
+    /* shield-hourglass — SRE */
+    .shield-hourglass { left:5px; top:52px; width:34px; height:42px; border-radius:8px 8px 16px 16px; border:4px solid currentColor; }
+    .shield-hourglass::before { left:7px; top:4px; width:12px; height:10px; background:currentColor; clip-path:polygon(0 0,100% 0,50% 100%); }
+    .shield-hourglass::after { left:7px; top:20px; width:12px; height:10px; background:currentColor; clip-path:polygon(50% 0,100% 100%,0 100%); }
+
+    /* radar — SOC Analyst (eye / radar) */
+    .radar { right:6px; top:48px; width:32px; height:20px; border-radius:50% 50% 0 0; border:4px solid currentColor; border-bottom:0; }
+    .radar::before { left:8px; top:4px; width:12px; height:12px; border-radius:50%; background:currentColor; }
+    .radar::after { left:0px; top:18px; width:32px; height:3px; background:currentColor; border-radius:2px; }
+
+    /* fortress — Security Engineer */
+    .fortress { right:4px; top:46px; width:36px; height:30px; background:currentColor; border-radius:2px; }
+    .fortress::before { left:-3px; top:-12px; width:10px; height:14px; background:currentColor; box-shadow:14px 0 0 currentColor, 28px 0 0 currentColor; border-radius:2px 2px 0 0; }
+    .fortress::after { left:6px; top:6px; width:22px; height:16px; background:#0d1117; border-radius:2px; }
+
+    /* lockpick — Pentester */
+    .lockpick { right:8px; top:34px; width:6px; height:74px; background:#9a9a9a; border-radius:3px; transform:rotate(-22deg); }
+    .lockpick::before { left:-8px; top:-8px; width:22px; height:16px; border:4px solid #9a9a9a; border-radius:50% 50% 0 0; border-bottom:0; }
+    .lockpick::after { left:6px; top:54px; width:10px; height:10px; border-radius:50%; border:3px solid currentColor; }
+
+    /* law-book — GRC Specialist */
+    .law-book { right:2px; top:58px; width:44px; height:36px; border-radius:4px; background:#f1e2b3; border:4px solid currentColor; transform:rotate(-9deg); }
+    .law-book::before { left:6px; top:4px; width:28px; height:3px; background:currentColor; opacity:.4; box-shadow:0 8px 0 currentColor, 0 16px 0 currentColor; }
+    .law-book::after { left:4px; top:0px; width:4px; height:36px; background:currentColor; opacity:.3; }
+
+    /* rune — AppSec Engineer */
+    .rune { right:4px; top:48px; width:34px; height:40px; border:4px solid currentColor; border-radius:4px; transform:rotate(-8deg); }
+    .rune::before { left:8px; top:4px; width:14px; height:14px; border-radius:50%; border:3px solid currentColor; }
+    .rune::after { left:4px; top:22px; width:24px; height:3px; background:currentColor; box-shadow:0 8px 0 currentColor; }
+
+    /* quill — Business Analyst */
+    .quill { right:8px; top:26px; width:6px; height:80px; background:#f1e2b3; border-radius:0 0 3px 3px; transform:rotate(-16deg); }
+    .quill::before { left:-10px; top:-18px; width:26px; height:30px; background:currentColor; clip-path:polygon(50% 0%,100% 30%,50% 100%,0% 30%); opacity:.6; }
+    .quill::after { left:-2px; top:52px; width:10px; height:14px; background:#f1e2b3; clip-path:polygon(50% 100%,100% 0%,0% 0%); }
+
+    /* checklist — Product Owner */
+    .checklist { right:3px; top:46px; width:40px; height:38px; border-radius:4px; background:#c8d8e8; border:3px solid currentColor; transform:rotate(-8deg); }
+    .checklist::before { left:6px; top:4px; width:16px; height:3px; background:currentColor; box-shadow:0 10px 0 currentColor, 0 20px 0 currentColor; }
+    .checklist::after { left:6px; top:2px; width:6px; height:6px; border-radius:1px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:rotate(45deg) translateY(-3px); }
+
+    /* compass — Project Manager */
+    .compass { right:6px; top:44px; width:34px; height:34px; border-radius:50%; border:4px solid currentColor; }
+    .compass::before { left:12px; top:-4px; width:6px; height:20px; background:currentColor; border-radius:3px; transform:rotate(25deg); }
+    .compass::after { left:8px; top:14px; width:14px; height:14px; border-radius:50%; background:currentColor; opacity:.25; }
+
+    /* palette — UI Designer */
+    .palette { right:4px; top:46px; width:36px; height:32px; border-radius:50% 50% 40% 40%; border:4px solid currentColor; transform:rotate(-10deg); }
+    .palette::before { left:4px; top:4px; width:6px; height:6px; border-radius:50%; background:currentColor; box-shadow:14px 0 0 currentColor, 7px 12px 0 currentColor; }
+    .palette::after { left:-8px; top:-10px; width:8px; height:20px; background:#9a6a35; border-radius:4px; transform:rotate(-25deg); }
+
+    /* wireframe — UX Designer */
+    .wireframe { right:3px; top:44px; width:38px; height:30px; border:3px solid currentColor; border-radius:4px; transform:rotate(-8deg); }
+    .wireframe::before { left:5px; top:4px; width:12px; height:14px; border:2px solid currentColor; border-radius:2px; opacity:.6; }
+    .wireframe::after { left:22px; top:4px; width:10px; height:6px; background:currentColor; border-radius:2px; opacity:.4; box-shadow:0 10px 0 currentColor; }
+
+    /* banner — Engineering Manager */
+    .banner { right:8px; top:24px; width:8px; height:86px; background:#8c6334; border-radius:3px; transform:rotate(-10deg); }
+    .banner::before { left:0px; top:-2px; width:36px; height:26px; background:currentColor; border-radius:0 4px 4px 0; }
+    .banner::after { left:2px; top:20px; width:30px; height:3px; background:rgba(0,0,0,.25); }
+
+    /* crown-staff — CTO */
+    .crown-staff { right:12px; top:20px; width:8px; height:86px; background:#8c6334; transform:rotate(-12deg); border-radius:3px; }
+    .crown-staff::before { left:-14px; top:-18px; width:36px; height:24px; background:currentColor; clip-path:polygon(0 100%,10% 40%,25% 65%,50% 0%,75% 65%,90% 40%,100% 100%); box-shadow:0 0 18px currentColor; }
+    .crown-staff::after { left:-10px; top:4px; width:28px; height:5px; background:currentColor; border-radius:2px; }
+
+    /* crown-shield — CISO */
+    .crown-shield { left:5px; top:48px; width:36px; height:44px; border-radius:8px 8px 18px 18px; border:4px solid currentColor; }
+    .crown-shield::before { left:4px; top:-14px; width:24px; height:16px; background:currentColor; clip-path:polygon(0 100%,8% 35%,22% 60%,50% 0%,78% 60%,92% 35%,100% 100%); }
+    .crown-shield::after { left:8px; top:10px; width:16px; height:18px; border:3px solid currentColor; border-radius:50% 50% 8px 8px; opacity:.5; }
+
+    /* ══ CARD CORNER DECORATIONS ══ */
+    .card-corner {
+      position: absolute; width: 14px; height: 14px; z-index: 10; pointer-events: none;
+      border-color: var(--role); border-style: solid; opacity: .55; transition: opacity .2s ease;
+    }
+    .card:hover .card-corner { opacity: .9; }
+    .card-corner.tl { top: 5px; left: 5px; border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
+    .card-corner.tr { top: 5px; right: 5px; border-width: 2px 2px 0 0; border-radius: 0 2px 0 0; }
+    .card-corner.bl { bottom: 5px; left: 5px; border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
+    .card-corner.br { bottom: 5px; right: 5px; border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
 
     .card-body { padding: 16px 18px 18px; }
 
@@ -1045,6 +1240,7 @@
             <button class="btn-auto-copy" id="btn-auto-copy">Copy to Claude</button>
           </div>
         </div>
+        <button class="btn-myprogress" id="btn-myprogress" title="Tampilkan hanya job yang sudah di-progress">⚑ My Progress</button>
         <button class="btn-export-showcase-header" id="btn-open-export" title="Export showcase ke GitHub">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
@@ -1260,44 +1456,44 @@
     // ══════════════════════════════════════════
     // [group, title, desc, skills, salary, role, hair, tool, tier]
     const jobs = [
-      ["Base",      "IT Novice",           "Fresh graduate yang masuk training ground dan belajar dasar dunia IT.",            "Git, SQL basic, logic, troubleshooting",       "Rp4–8 juta",     "#f2c35b","#5a3d2d","book",   0],
-      ["Software",  "Frontend Developer",  "Archer UI yang menembakkan komponen, layout, dan interaksi ke browser.",          "HTML, CSS, JavaScript, React/Vue",             "Rp6–25 juta",    "#69a8f5","#355071","bow",    1],
-      ["Software",  "Backend Developer",   "Mage server yang menjaga API, business logic, database, dan autentikasi.",        "API, database, auth, queue, caching",          "Rp7–30 juta",    "#b889f4","#3e3159","wand",   1],
-      ["Software",  "Mobile Developer",    "Petualang app yang membawa produk ke Android dan iOS.",                           "Kotlin, Swift, Flutter, React Native",         "Rp7–30 juta",    "#80c86a","#314d36","laptop", 1],
-      ["Software",  "Fullstack Developer", "Hybrid class yang bisa berpindah dari client ke server dalam satu party.",        "Frontend, backend, SQL, deployment",           "Rp8–35 juta",    "#62d8d2","#2e4f54","sword",  2],
-      ["Software",  "Tech Lead",           "Party leader teknis yang menjaga arah implementasi dan kualitas code.",           "Architecture, review, mentoring",              "Rp20–60 juta+",  "#ee9a52","#5c3924","sword",  3],
-      ["QA",        "Manual QA",           "Scout bug yang menyisir fitur, edge case, dan flow user.",                        "Smoke test, regression, test case",            "Rp5–18 juta",    "#ee6f6f","#56303a","shield", 1],
-      ["QA",        "QA Automation",       "Hunter trap yang membuat bug tertangkap lewat script otomatis.",                  "Playwright, Cypress, Selenium, API test",      "Rp8–30 juta",    "#f07aa5","#563147","bow",    2],
-      ["QA",        "Performance Tester",  "Damage tester yang menekan sistem sampai bottleneck terlihat.",                   "JMeter, k6, load test, stress test",           "Rp10–35 juta",   "#ffb35c","#5a4029","hammer", 2],
-      ["Data",      "Data Analyst",        "Sage pembaca angka yang mengubah data menjadi insight bisnis.",                   "SQL, Excel, dashboard, statistics",            "Rp6–25 juta",    "#6bd08f","#2f573b","book",   1],
-      ["Data",      "BI Developer",        "Support class yang membangun dashboard dan metric party.",                        "Power BI, Tableau, Looker, modeling",          "Rp8–30 juta",    "#55c7a0","#2f5148","book",   2],
-      ["Data",      "Data Engineer",       "Blacksmith pipeline yang menempa data mentah menjadi data siap pakai.",           "ETL, Airflow, Spark, warehouse",               "Rp10–45 juta",   "#71a6ff","#314461","hammer", 2],
-      ["Data",      "Data Scientist",      "Professor eksperimen yang membuat model prediksi dan analisis.",                  "Python, ML, statistics, experiment",           "Rp10–45 juta",   "#cda0ff","#45345c","wand",   2],
-      ["Data",      "AI Engineer",         "Summoner model yang menghubungkan LLM, RAG, dan agent ke produk.",                "LLM API, RAG, evaluation, agents",             "Rp12–60 juta+",  "#75e0ff","#2e5360","wand",   3],
-      ["Infra",     "System Administrator","Priest server yang menjaga mesin, user, backup, dan patch.",                      "Linux, Windows Server, monitoring",            "Rp6–25 juta",    "#9fc1d9","#35495a","shield", 1],
-      ["Infra",     "Network Engineer",    "Crusader jaringan yang menjaga routing, switching, dan firewall.",                "TCP/IP, routing, switching, firewall",         "Rp6–30 juta",    "#83d3e8","#2d4f59","shield", 1],
-      ["Infra",     "Cloud Engineer",      "High priest cloud yang mengelola compute, storage, IAM, dan network.",            "AWS/GCP/Azure, IAM, containers",               "Rp10–45 juta",   "#83b6ff","#314967","wand",   2],
-      ["Infra",     "DevOps Engineer",     "Alchemist otomasi yang menyiapkan CI/CD dan infrastructure as code.",             "Docker, Kubernetes, Terraform, CI/CD",         "Rp12–55 juta+",  "#f0c15b","#5d4521","hammer", 2],
-      ["Infra",     "Database Admin",      "Keeper database yang menjaga backup, tuning, dan high availability.",             "PostgreSQL, MySQL, tuning, HA",                "Rp10–45 juta",   "#d4b36a","#514328","book",   2],
-      ["Infra",     "SRE",                 "Paladin uptime yang bertugas menjaga reliability production.",                    "SLO, monitoring, incident response",           "Rp15–65 juta+",  "#6ee0b7","#2e5549","shield", 3],
-      ["Security",  "SOC Analyst",         "Guard kota yang membaca alert, log, dan tanda serangan.",                         "SIEM, log analysis, triage",                   "Rp7–25 juta",    "#ee6f6f","#53343a","shield", 1],
-      ["Security",  "Security Engineer",   "Crusader security yang memasang pertahanan sistem.",                              "Hardening, IAM, endpoint, firewall",           "Rp10–45 juta",   "#ff826e","#5b352e","sword",  2],
-      ["Security",  "Pentester",           "Assassin legal yang mencari celah sebelum musuh menemukannya.",                   "OWASP, Burp, exploit basics",                  "Rp10–50 juta",   "#b889f4","#3b304e","sword",  2],
-      ["Security",  "GRC Specialist",      "Sage aturan yang mengurus risk, policy, audit, dan compliance.",                  "ISO 27001, risk, audit, policy",               "Rp8–40 juta",    "#d8c27b","#4b432c","book",   2],
-      ["Security",  "AppSec Engineer",     "Rune guard aplikasi yang review code dan threat model.",                          "Secure coding, SAST/DAST, review",             "Rp15–60 juta",   "#ff6b8e","#56313d","book",   3],
-      ["Product",   "Business Analyst",    "NPC penerjemah quest dari bahasa bisnis ke requirement teknis.",                  "Requirement, flow, documentation",             "Rp7–30 juta",    "#f2c35b","#554321","book",   1],
-      ["Product",   "Product Owner",       "Quest owner yang menyusun backlog dan prioritas sprint.",                         "Backlog, user story, stakeholder",             "Rp12–45 juta",   "#ffb15d","#5a3c24","book",   2],
-      ["Product",   "Project Manager",     "Party organizer yang menjaga timeline, resource, dan risiko.",                    "Planning, coordination, reporting",            "Rp12–55 juta",   "#69a8f5","#314661","shield", 2],
-      ["Product",   "Product Manager",     "Guild strategist yang memilih arah produk dan metric kemenangan.",                "Discovery, roadmap, metrics",                  "Rp15–70 juta+",  "#6bd08f","#324f3b","sword",  3],
-      ["Design",    "UI Designer",         "Costume designer yang membuat tampilan terasa rapi dan berkarakter.",             "Figma, layout, typography, color",             "Rp6–25 juta",    "#ff9ac4","#573447","wand",   1],
-      ["Design",    "UX Designer",         "Quest designer yang memastikan alur user masuk akal dan nyaman.",                 "Wireframe, flow, usability test",              "Rp8–35 juta",    "#cda0ff","#463559","book",   2],
-      ["Design",    "Product Designer",    "Class hybrid UI/UX yang mendesain pengalaman produk end-to-end.",                 "UX, UI, prototype, design system",             "Rp10–45 juta",   "#70d7c9","#2d514f","laptop", 3],
-      ["Support",   "Helpdesk",            "Acolyte awal yang membantu user lewat ticket dan troubleshooting.",               "Ticketing, Windows, account support",          "Rp4–10 juta",    "#9fc1d9","#394a58","laptop", 1],
-      ["Support",   "Technical Support",   "Support produk yang membaca log, API, dan issue customer.",                       "Log reading, SQL basic, API basic",            "Rp5–18 juta",    "#83d3e8","#2f4f5a","laptop", 2],
-      ["Support",   "Application Support", "Priest aplikasi yang menjaga produk tetap berjalan harian.",                      "SQL, incident, monitoring, SOP",               "Rp6–25 juta",    "#80c86a","#314d36","shield", 2],
-      ["Leadership","Engineering Manager", "Guild captain yang menyeimbangkan delivery, orang, dan kualitas teknis.",         "People management, delivery, hiring",          "Rp30–90 juta+",  "#ee9a52","#573921","sword",  3],
-      ["Leadership","CTO",                 "Final class teknologi yang menentukan arah sistem dan organisasi engineering.",    "Strategy, architecture, leadership",           "Rp80–250 juta+", "#f2c35b","#4e3b1b","wand",   4],
-      ["Leadership","CISO",                "Final class security yang memimpin pertahanan perusahaan.",                        "Cyber risk, governance, incident",             "Rp80–250 juta+", "#ee6f6f","#4e2d34","shield", 4],
+      ["Base",      "IT Novice",           "Fresh graduate yang masuk training ground dan belajar dasar dunia IT.",            "Git, SQL basic, logic, troubleshooting",       "Rp4–8 juta",     "#f2c35b","#5a3d2d","book",          0],
+      ["Software",  "Frontend Developer",  "Archer UI yang menembakkan komponen, layout, dan interaksi ke browser.",          "HTML, CSS, JavaScript, React/Vue",             "Rp6–25 juta",    "#69a8f5","#355071","brush",         1],
+      ["Software",  "Backend Developer",   "Mage server yang menjaga API, business logic, database, dan autentikasi.",        "API, database, auth, queue, caching",          "Rp7–30 juta",    "#b889f4","#3e3159","wand",          1],
+      ["Software",  "Mobile Developer",    "Petualang app yang membawa produk ke Android dan iOS.",                           "Kotlin, Swift, Flutter, React Native",         "Rp7–30 juta",    "#80c86a","#314d36","stylus",        1],
+      ["Software",  "Fullstack Developer", "Hybrid class yang bisa berpindah dari client ke server dalam satu party.",        "Frontend, backend, SQL, deployment",           "Rp8–35 juta",    "#62d8d2","#2e4f54","code-brush",    2],
+      ["Software",  "Tech Lead",           "Party leader teknis yang menjaga arah implementasi dan kualitas code.",           "Architecture, review, mentoring",              "Rp20–60 juta+",  "#ee9a52","#5c3924","blueprint",     3],
+      ["QA",        "Manual QA",           "Scout bug yang menyisir fitur, edge case, dan flow user.",                        "Smoke test, regression, test case",            "Rp5–18 juta",    "#ee6f6f","#56303a","magnifier",     1],
+      ["QA",        "QA Automation",       "Hunter trap yang membuat bug tertangkap lewat script otomatis.",                  "Playwright, Cypress, Selenium, API test",      "Rp8–30 juta",    "#f07aa5","#563147","trap",          2],
+      ["QA",        "Performance Tester",  "Damage tester yang menekan sistem sampai bottleneck terlihat.",                   "JMeter, k6, load test, stress test",           "Rp10–35 juta",   "#ffb35c","#5a4029","gauge",         2],
+      ["Data",      "Data Analyst",        "Sage pembaca angka yang mengubah data menjadi insight bisnis.",                   "SQL, Excel, dashboard, statistics",            "Rp6–25 juta",    "#6bd08f","#2f573b","abacus",        1],
+      ["Data",      "BI Developer",        "Support class yang membangun dashboard dan metric party.",                        "Power BI, Tableau, Looker, modeling",          "Rp8–30 juta",    "#55c7a0","#2f5148","bar-chart",     2],
+      ["Data",      "Data Engineer",       "Blacksmith pipeline yang menempa data mentah menjadi data siap pakai.",           "ETL, Airflow, Spark, warehouse",               "Rp10–45 juta",   "#71a6ff","#314461","pipe",          2],
+      ["Data",      "Data Scientist",      "Professor eksperimen yang membuat model prediksi dan analisis.",                  "Python, ML, statistics, experiment",           "Rp10–45 juta",   "#cda0ff","#45345c","flask",         2],
+      ["Data",      "AI Engineer",         "Summoner model yang menghubungkan LLM, RAG, dan agent ke produk.",                "LLM API, RAG, evaluation, agents",             "Rp12–60 juta+",  "#75e0ff","#2e5360","circuit-wand",  3],
+      ["Infra",     "System Administrator","Priest server yang menjaga mesin, user, backup, dan patch.",                      "Linux, Windows Server, monitoring",            "Rp6–25 juta",    "#9fc1d9","#35495a","wrench",        1],
+      ["Infra",     "Network Engineer",    "Crusader jaringan yang menjaga routing, switching, dan firewall.",                "TCP/IP, routing, switching, firewall",         "Rp6–30 juta",    "#83d3e8","#2d4f59","chain",         1],
+      ["Infra",     "Cloud Engineer",      "High priest cloud yang mengelola compute, storage, IAM, dan network.",            "AWS/GCP/Azure, IAM, containers",               "Rp10–45 juta",   "#83b6ff","#314967","cloud-staff",   2],
+      ["Infra",     "DevOps Engineer",     "Alchemist otomasi yang menyiapkan CI/CD dan infrastructure as code.",             "Docker, Kubernetes, Terraform, CI/CD",         "Rp12–55 juta+",  "#f0c15b","#5d4521","gear",          2],
+      ["Infra",     "Database Admin",      "Keeper database yang menjaga backup, tuning, dan high availability.",             "PostgreSQL, MySQL, tuning, HA",                "Rp10–45 juta",   "#d4b36a","#514328","cylinder",      2],
+      ["Infra",     "SRE",                 "Paladin uptime yang bertugas menjaga reliability production.",                    "SLO, monitoring, incident response",           "Rp15–65 juta+",  "#6ee0b7","#2e5549","shield-hourglass",3],
+      ["Security",  "SOC Analyst",         "Guard kota yang membaca alert, log, dan tanda serangan.",                         "SIEM, log analysis, triage",                   "Rp7–25 juta",    "#ee6f6f","#53343a","radar",         1],
+      ["Security",  "Security Engineer",   "Crusader security yang memasang pertahanan sistem.",                              "Hardening, IAM, endpoint, firewall",           "Rp10–45 juta",   "#ff826e","#5b352e","fortress",      2],
+      ["Security",  "Pentester",           "Assassin legal yang mencari celah sebelum musuh menemukannya.",                   "OWASP, Burp, exploit basics",                  "Rp10–50 juta",   "#b889f4","#3b304e","lockpick",      2],
+      ["Security",  "GRC Specialist",      "Sage aturan yang mengurus risk, policy, audit, dan compliance.",                  "ISO 27001, risk, audit, policy",               "Rp8–40 juta",    "#d8c27b","#4b432c","law-book",      2],
+      ["Security",  "AppSec Engineer",     "Rune guard aplikasi yang review code dan threat model.",                          "Secure coding, SAST/DAST, review",             "Rp15–60 juta",   "#ff6b8e","#56313d","rune",          3],
+      ["Product",   "Business Analyst",    "NPC penerjemah quest dari bahasa bisnis ke requirement teknis.",                  "Requirement, flow, documentation",             "Rp7–30 juta",    "#f2c35b","#554321","quill",         1],
+      ["Product",   "Product Owner",       "Quest owner yang menyusun backlog dan prioritas sprint.",                         "Backlog, user story, stakeholder",             "Rp12–45 juta",   "#ffb15d","#5a3c24","checklist",     2],
+      ["Product",   "Project Manager",     "Party organizer yang menjaga timeline, resource, dan risiko.",                    "Planning, coordination, reporting",            "Rp12–55 juta",   "#69a8f5","#314661","compass",       2],
+      ["Product",   "Product Manager",     "Guild strategist yang memilih arah produk dan metric kemenangan.",                "Discovery, roadmap, metrics",                  "Rp15–70 juta+",  "#6bd08f","#324f3b","sword",         3],
+      ["Design",    "UI Designer",         "Costume designer yang membuat tampilan terasa rapi dan berkarakter.",             "Figma, layout, typography, color",             "Rp6–25 juta",    "#ff9ac4","#573447","palette",       1],
+      ["Design",    "UX Designer",         "Quest designer yang memastikan alur user masuk akal dan nyaman.",                 "Wireframe, flow, usability test",              "Rp8–35 juta",    "#cda0ff","#463559","wireframe",     2],
+      ["Design",    "Product Designer",    "Class hybrid UI/UX yang mendesain pengalaman produk end-to-end.",                 "UX, UI, prototype, design system",             "Rp10–45 juta",   "#70d7c9","#2d514f","laptop",        3],
+      ["Support",   "Helpdesk",            "Acolyte awal yang membantu user lewat ticket dan troubleshooting.",               "Ticketing, Windows, account support",          "Rp4–10 juta",    "#9fc1d9","#394a58","laptop",        1],
+      ["Support",   "Technical Support",   "Support produk yang membaca log, API, dan issue customer.",                       "Log reading, SQL basic, API basic",            "Rp5–18 juta",    "#83d3e8","#2f4f5a","wrench",        2],
+      ["Support",   "Application Support", "Priest aplikasi yang menjaga produk tetap berjalan harian.",                      "SQL, incident, monitoring, SOP",               "Rp6–25 juta",    "#80c86a","#314d36","shield",        2],
+      ["Leadership","Engineering Manager", "Guild captain yang menyeimbangkan delivery, orang, dan kualitas teknis.",         "People management, delivery, hiring",          "Rp30–90 juta+",  "#ee9a52","#573921","banner",        3],
+      ["Leadership","CTO",                 "Final class teknologi yang menentukan arah sistem dan organisasi engineering.",    "Strategy, architecture, leadership",           "Rp80–250 juta+", "#f2c35b","#4e3b1b","crown-staff",   4],
+      ["Leadership","CISO",                "Final class security yang memimpin pertahanan perusahaan.",                        "Cyber risk, governance, incident",             "Rp80–250 juta+", "#ee6f6f","#4e2d34","crown-shield",  4],
     ];
 
     const skillDescriptions = {
@@ -1632,6 +1828,7 @@
     ];
 
     let activeFilter = "All";
+    let activeMyProgress = false;
 
     function getCategoryProgress(filter) {
       const catJobs = filter === "All" ? jobs : jobs.filter(j => j[0] === filter);
@@ -1750,7 +1947,19 @@
 
     function renderCards(group = "All") {
       const jobsEl = document.getElementById("jobs");
-      const filtered = group === "All" ? jobs : jobs.filter(j => j[0] === group);
+      let filtered = group === "All" ? jobs : jobs.filter(j => j[0] === group);
+
+      if (activeMyProgress) {
+        filtered = filtered.filter(([, title,, skills]) => {
+          const hasSkill = skills.split(", ").some(s => skillLevel(title, s) >= 1);
+          const qp = getQuestProgress(title);
+          return hasSkill || (qp !== null && qp.done > 0);
+        });
+        if (filtered.length === 0) {
+          jobsEl.innerHTML = `<div class="myprogress-empty"><strong>Belum ada progress.</strong>Mulai level-up skill pertamamu untuk melihatnya di sini!</div>`;
+          return;
+        }
+      }
 
       jobsEl.innerHTML = filtered.map(([grp, title, desc, skills, salary, role, hair, tool, tier]) => {
         const { done, total, pct } = getSkillProgress(title, skills);
@@ -1759,6 +1968,7 @@
 
         return `
           <article class="card" style="--role:${role};--hair:${hair}">
+            <i class="card-corner tl"></i><i class="card-corner tr"></i><i class="card-corner bl"></i><i class="card-corner br"></i>
             <div class="card-accent"></div>
             <div class="card-progress-bar"><div class="card-progress-fill" style="width:${pct}%"></div></div>
             <div class="sprite-stage">${sprite(tool)}</div>
@@ -1799,6 +2009,19 @@
       renderCards(activeFilter);
       renderSidebar();
     }
+
+    // ══════════════════════════════════════════
+    // MY PROGRESS FILTER
+    // ══════════════════════════════════════════
+    (function initMyProgress() {
+      const btn = document.getElementById("btn-myprogress");
+      btn.addEventListener("click", () => {
+        activeMyProgress = !activeMyProgress;
+        btn.classList.toggle("active", activeMyProgress);
+        renderCards(activeFilter);
+        renderSidebar();
+      });
+    })();
 
     // ══════════════════════════════════════════
     // FILTER
@@ -2261,6 +2484,98 @@ a{color:inherit}
 .hammer::before{left:-18px;top:-7px;width:46px;height:24px;background:#c4ccd5;border:3px solid #69768a}
 .laptop{left:4px;top:78px;width:46px;height:30px;background:#9fb3ca;border:4px solid #364155;transform:rotate(10deg)}
 .laptop::before{left:-6px;top:27px;width:58px;height:8px;background:#dce5ef;border:2px solid #364155}
+.brush{right:8px;top:30px;width:7px;height:78px;background:#c8943a;border-radius:3px;transform:rotate(-22deg)}
+.brush::before{left:-6px;top:-10px;width:19px;height:22px;background:currentColor;border-radius:3px 3px 0 0}
+.brush::after{left:-1px;top:10px;width:9px;height:6px;background:#c8943a;border-radius:0 0 3px 3px}
+.stylus{right:10px;top:28px;width:6px;height:72px;background:#7a9ab0;border-radius:3px;transform:rotate(-16deg)}
+.stylus::before{left:-5px;top:-14px;width:16px;height:18px;background:#c4ccd5;clip-path:polygon(50% 0%,100% 35%,100% 100%,0% 100%,0% 35%)}
+.stylus::after{left:0px;top:65px;width:6px;height:12px;background:#5a7a9a;border-radius:0 0 4px 4px}
+.code-brush{right:6px;top:28px;width:8px;height:76px;background:#8c6334;border-radius:3px;transform:rotate(-20deg)}
+.code-brush::before{left:-7px;top:-12px;width:22px;height:20px;background:currentColor;border-radius:3px 3px 0 0}
+.code-brush::after{left:-12px;top:52px;width:10px;height:10px;border-radius:50%;border:3px solid currentColor}
+.blueprint{right:5px;top:40px;width:38px;height:30px;background:#c8d8e8;border:3px solid #6a7e94;border-radius:4px;transform:rotate(-12deg)}
+.blueprint::before{left:5px;top:4px;width:24px;height:3px;background:#6a7e94;box-shadow:0 7px 0 #6a7e94,0 14px 0 #6a7e94}
+.blueprint::after{left:-6px;top:-5px;width:8px;height:38px;background:#b0a080;border-radius:4px}
+.magnifier{right:4px;top:42px;width:30px;height:30px;border-radius:50%;border:5px solid #c4ccd5}
+.magnifier::before{right:-4px;bottom:-4px;width:5px;height:22px;background:#9a6a35;transform:rotate(45deg);border-radius:3px}
+.trap{right:8px;top:44px;width:32px;height:28px;border:4px solid currentColor;border-radius:4px}
+.trap::before{left:2px;top:-14px;width:24px;height:14px;border:4px solid currentColor;border-bottom:0;border-radius:4px 4px 0 0}
+.trap::after{left:10px;top:-20px;width:8px;height:8px;border-radius:50%;border:3px solid currentColor}
+.gauge{right:6px;top:46px;width:36px;height:22px;border:4px solid currentColor;border-bottom:0;border-radius:22px 22px 0 0}
+.gauge::before{left:14px;top:14px;width:3px;height:18px;background:currentColor;transform-origin:bottom center;transform:rotate(-35deg);border-radius:2px}
+.gauge::after{left:4px;top:0px;width:4px;height:4px;border-radius:50%;background:currentColor;box-shadow:20px 0 0 currentColor}
+.abacus{right:4px;top:42px;width:36px;height:36px;border:4px solid #9a6a35;border-radius:4px;transform:rotate(-8deg)}
+.abacus::before{left:4px;top:5px;width:24px;height:3px;background:#9a6a35;box-shadow:0 10px 0 #9a6a35,0 20px 0 #9a6a35}
+.abacus::after{left:0px;top:6px;width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:0 10px 0 currentColor,8px 4px 0 currentColor}
+.bar-chart{right:4px;top:44px;width:36px;height:36px;transform:rotate(-8deg)}
+.bar-chart::before{left:2px;bottom:0;width:8px;height:28px;background:currentColor;box-shadow:13px 10px 0 currentColor,26px 18px 0 currentColor}
+.bar-chart::after{left:0px;bottom:-4px;width:36px;height:3px;background:currentColor;border-radius:2px}
+.pipe{right:6px;top:36px;width:40px;height:16px;background:#7a9ab0;border:3px solid #4a6a8a;border-radius:8px;transform:rotate(-18deg)}
+.pipe::before{left:-6px;top:-12px;width:16px;height:16px;border:3px solid #4a6a8a;border-right:0;border-radius:8px 0 0 8px}
+.pipe::after{right:-8px;top:-4px;width:12px;height:12px;border:3px solid #4a6a8a;border-radius:50%}
+.flask{right:8px;top:36px;width:12px;height:38px;background:#c4ccd5;border:3px solid #69768a;border-radius:0 0 4px 4px;transform:rotate(-12deg)}
+.flask::before{left:-12px;top:18px;width:36px;height:28px;border-radius:4px 4px 10px 10px;border:3px solid #69768a;background:currentColor;opacity:.6}
+.flask::after{left:-3px;top:-12px;width:18px;height:14px;background:#c4ccd5;border:3px solid #69768a;border-bottom:0;border-radius:4px 4px 0 0}
+.circuit-wand{right:12px;top:18px;width:8px;height:88px;background:#7a9ab0;transform:rotate(-14deg);border-radius:3px}
+.circuit-wand::before{left:-12px;top:-12px;width:32px;height:32px;border-radius:4px;background:currentColor;box-shadow:0 0 20px currentColor,0 0 40px currentColor;opacity:.7}
+.circuit-wand::after{left:2px;top:20px;width:14px;height:3px;background:currentColor;box-shadow:0 12px 0 currentColor,-8px 24px 0 currentColor}
+.wrench{right:6px;top:30px;width:10px;height:76px;background:#9a9a9a;border-radius:5px;transform:rotate(-28deg)}
+.wrench::before{left:-12px;top:-6px;width:34px;height:18px;background:#9a9a9a;border-radius:9px}
+.wrench::after{left:-8px;top:62px;width:26px;height:18px;background:#9a9a9a;border-radius:9px}
+.chain{right:8px;top:36px;width:12px;height:12px;border-radius:50%;border:4px solid #7a9ab0}
+.chain::before{right:4px;top:8px;width:12px;height:12px;border-radius:50%;border:4px solid currentColor;box-shadow:0 20px 0 currentColor,16px 10px 0 currentColor,16px 30px 0 currentColor}
+.chain::after{right:-4px;top:50px;width:24px;height:3px;background:currentColor;border-radius:2px;transform:rotate(20deg)}
+.cloud-staff{right:12px;top:22px;width:8px;height:82px;background:#8c6334;transform:rotate(-12deg);border-radius:3px}
+.cloud-staff::before{left:-18px;top:-14px;width:44px;height:28px;border-radius:50% 50% 20px 20px;background:currentColor;box-shadow:0 0 16px currentColor}
+.cloud-staff::after{left:-6px;top:8px;width:20px;height:12px;background:currentColor;border-radius:50%;opacity:.5}
+.gear{right:8px;top:42px;width:34px;height:34px;border-radius:50%;border:5px solid currentColor}
+.gear::before{left:2px;top:-8px;width:5px;height:48px;background:currentColor}
+.gear::after{left:-8px;top:2px;width:48px;height:5px;background:currentColor}
+.cylinder{right:4px;top:42px;width:36px;height:10px;border-radius:50%;background:currentColor;border:3px solid #9a6a35}
+.cylinder::before{left:-3px;top:6px;width:36px;height:24px;background:currentColor;border:3px solid #9a6a35;border-top:0;border-radius:0 0 50% 50%}
+.cylinder::after{left:-3px;top:18px;width:36px;height:3px;background:#9a6a35;opacity:.5;box-shadow:0 8px 0 #9a6a35}
+.shield-hourglass{left:5px;top:52px;width:34px;height:42px;border-radius:8px 8px 16px 16px;border:4px solid currentColor}
+.shield-hourglass::before{left:7px;top:4px;width:12px;height:10px;background:currentColor;clip-path:polygon(0 0,100% 0,50% 100%)}
+.shield-hourglass::after{left:7px;top:20px;width:12px;height:10px;background:currentColor;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.radar{right:6px;top:48px;width:32px;height:20px;border-radius:50% 50% 0 0;border:4px solid currentColor;border-bottom:0}
+.radar::before{left:8px;top:4px;width:12px;height:12px;border-radius:50%;background:currentColor}
+.radar::after{left:0px;top:18px;width:32px;height:3px;background:currentColor;border-radius:2px}
+.fortress{right:4px;top:46px;width:36px;height:30px;background:currentColor;border-radius:2px}
+.fortress::before{left:-3px;top:-12px;width:10px;height:14px;background:currentColor;box-shadow:14px 0 0 currentColor,28px 0 0 currentColor;border-radius:2px 2px 0 0}
+.fortress::after{left:6px;top:6px;width:22px;height:16px;background:#0d1117;border-radius:2px}
+.lockpick{right:8px;top:34px;width:6px;height:74px;background:#9a9a9a;border-radius:3px;transform:rotate(-22deg)}
+.lockpick::before{left:-8px;top:-8px;width:22px;height:16px;border:4px solid #9a9a9a;border-radius:50% 50% 0 0;border-bottom:0}
+.lockpick::after{left:6px;top:54px;width:10px;height:10px;border-radius:50%;border:3px solid currentColor}
+.law-book{right:2px;top:58px;width:44px;height:36px;border-radius:4px;background:#f1e2b3;border:4px solid currentColor;transform:rotate(-9deg)}
+.law-book::before{left:6px;top:4px;width:28px;height:3px;background:currentColor;opacity:.4;box-shadow:0 8px 0 currentColor,0 16px 0 currentColor}
+.law-book::after{left:4px;top:0px;width:4px;height:36px;background:currentColor;opacity:.3}
+.rune{right:4px;top:48px;width:34px;height:40px;border:4px solid currentColor;border-radius:4px;transform:rotate(-8deg)}
+.rune::before{left:8px;top:4px;width:14px;height:14px;border-radius:50%;border:3px solid currentColor}
+.rune::after{left:4px;top:22px;width:24px;height:3px;background:currentColor;box-shadow:0 8px 0 currentColor}
+.quill{right:8px;top:26px;width:6px;height:80px;background:#f1e2b3;border-radius:0 0 3px 3px;transform:rotate(-16deg)}
+.quill::before{left:-10px;top:-18px;width:26px;height:30px;background:currentColor;clip-path:polygon(50% 0%,100% 30%,50% 100%,0% 30%);opacity:.6}
+.quill::after{left:-2px;top:52px;width:10px;height:14px;background:#f1e2b3;clip-path:polygon(50% 100%,100% 0%,0% 0%)}
+.checklist{right:3px;top:46px;width:40px;height:38px;border-radius:4px;background:#c8d8e8;border:3px solid currentColor;transform:rotate(-8deg)}
+.checklist::before{left:6px;top:4px;width:16px;height:3px;background:currentColor;box-shadow:0 10px 0 currentColor,0 20px 0 currentColor}
+.checklist::after{left:6px;top:2px;width:6px;height:6px;border-radius:1px;border-right:3px solid currentColor;border-bottom:3px solid currentColor;transform:rotate(45deg) translateY(-3px)}
+.compass{right:6px;top:44px;width:34px;height:34px;border-radius:50%;border:4px solid currentColor}
+.compass::before{left:12px;top:-4px;width:6px;height:20px;background:currentColor;border-radius:3px;transform:rotate(25deg)}
+.compass::after{left:8px;top:14px;width:14px;height:14px;border-radius:50%;background:currentColor;opacity:.25}
+.palette{right:4px;top:46px;width:36px;height:32px;border-radius:50% 50% 40% 40%;border:4px solid currentColor;transform:rotate(-10deg)}
+.palette::before{left:4px;top:4px;width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:14px 0 0 currentColor,7px 12px 0 currentColor}
+.palette::after{left:-8px;top:-10px;width:8px;height:20px;background:#9a6a35;border-radius:4px;transform:rotate(-25deg)}
+.wireframe{right:3px;top:44px;width:38px;height:30px;border:3px solid currentColor;border-radius:4px;transform:rotate(-8deg)}
+.wireframe::before{left:5px;top:4px;width:12px;height:14px;border:2px solid currentColor;border-radius:2px;opacity:.6}
+.wireframe::after{left:22px;top:4px;width:10px;height:6px;background:currentColor;border-radius:2px;opacity:.4;box-shadow:0 10px 0 currentColor}
+.banner{right:8px;top:24px;width:8px;height:86px;background:#8c6334;border-radius:3px;transform:rotate(-10deg)}
+.banner::before{left:0px;top:-2px;width:36px;height:26px;background:currentColor;border-radius:0 4px 4px 0}
+.banner::after{left:2px;top:20px;width:30px;height:3px;background:rgba(0,0,0,.25)}
+.crown-staff{right:12px;top:20px;width:8px;height:86px;background:#8c6334;transform:rotate(-12deg);border-radius:3px}
+.crown-staff::before{left:-14px;top:-18px;width:36px;height:24px;background:currentColor;clip-path:polygon(0 100%,10% 40%,25% 65%,50% 0%,75% 65%,90% 40%,100% 100%);box-shadow:0 0 18px currentColor}
+.crown-staff::after{left:-10px;top:4px;width:28px;height:5px;background:currentColor;border-radius:2px}
+.crown-shield{left:5px;top:48px;width:36px;height:44px;border-radius:8px 8px 18px 18px;border:4px solid currentColor}
+.crown-shield::before{left:4px;top:-14px;width:24px;height:16px;background:currentColor;clip-path:polygon(0 100%,8% 35%,22% 60%,50% 0%,78% 60%,92% 35%,100% 100%)}
+.crown-shield::after{left:8px;top:10px;width:16px;height:18px;border:3px solid currentColor;border-radius:50% 50% 8px 8px;opacity:.5}
 /* card body */
 .card-body{padding:14px 16px 16px}
 .card-top-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
