@@ -893,6 +893,73 @@
     }
     .btn-export-showcase-header:hover { background: color-mix(in srgb, var(--gold) 18%, transparent); }
 
+    /* ══ AUTO POPOVER ══ */
+    .auto-wrapper { position: relative; }
+
+    .btn-auto {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 13px; border-radius: 8px;
+      border: 1px solid rgba(93,210,210,.35);
+      background: rgba(93,210,210,.08);
+      color: #5dc9c9; font: 700 11px 'Inter', sans-serif;
+      cursor: pointer; white-space: nowrap;
+      transition: all .16s ease; letter-spacing: .5px;
+    }
+
+    .btn-auto:hover { background: rgba(93,210,210,.16); border-color: rgba(93,210,210,.6); }
+    .btn-auto.active { background: rgba(93,210,210,.18); border-color: rgba(93,210,210,.7); }
+
+    .btn-auto-icon { font-size: 13px; line-height: 1; }
+
+    .auto-popover {
+      display: none;
+      position: absolute; top: calc(100% + 8px); right: 0; z-index: 200;
+      width: min(300px, 90vw);
+      border: 1px solid var(--line-bright); border-radius: 12px;
+      background: #111827;
+      box-shadow: 0 16px 40px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.04);
+      padding: 14px;
+    }
+
+    .auto-popover.open { display: block; }
+
+    .auto-popover-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .auto-cli-options {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .auto-cli-btn {
+      padding: 5px 11px; border-radius: 999px;
+      border: 1px solid var(--line); background: transparent;
+      color: var(--muted); font: 600 11px 'Inter', sans-serif;
+      cursor: pointer; transition: all .15s ease;
+    }
+
+    .auto-cli-btn:hover { border-color: var(--line-bright); color: var(--ink); }
+
+    .auto-cli-btn.selected {
+      border-color: rgba(93,210,210,.7);
+      background: rgba(93,210,210,.14);
+      color: #5dc9c9;
+    }
+
+    .btn-auto-copy {
+      width: 100%; padding: 9px; border-radius: 8px;
+      border: 1px solid rgba(93,210,210,.45);
+      background: rgba(93,210,210,.12);
+      color: #5dc9c9; font: 700 12px 'Inter', sans-serif;
+      cursor: pointer; transition: all .16s ease; letter-spacing: .3px;
+    }
+
+    .btn-auto-copy:hover { background: rgba(93,210,210,.22); border-color: rgba(93,210,210,.7); }
+    .btn-auto-copy.copied { border-color: rgba(93,201,126,.6); background: rgba(93,201,126,.14); color: #5dc97e; }
+
     /* ══ TOOLTIP ══ */
     #skill-tooltip {
       position: fixed; z-index: 9999;
@@ -962,6 +1029,22 @@
         <p class="intro">Setiap role punya senjata, skill aktif, dan range salary. Mulai dari <strong style="color:var(--ink-dim)">Novice</strong> sampai <strong style="color:var(--gold)">Final Class</strong> seperti CTO.</p>
       </div>
       <div class="header-actions">
+        <div class="auto-wrapper" id="auto-wrapper">
+          <button class="btn-auto" id="btn-auto" title="AI Quest Guide — copy prompt ke AI CLI kamu">
+            <span class="btn-auto-icon">⚡</span> AUTO
+          </button>
+          <div class="auto-popover" id="auto-popover">
+            <div class="auto-popover-label">Pilih AI CLI kamu</div>
+            <div class="auto-cli-options" id="auto-cli-options">
+              <button class="auto-cli-btn" data-cli="Claude">Claude</button>
+              <button class="auto-cli-btn" data-cli="Codex">Codex</button>
+              <button class="auto-cli-btn" data-cli="Gemini">Gemini</button>
+              <button class="auto-cli-btn" data-cli="Copilot">Copilot</button>
+              <button class="auto-cli-btn" data-cli="Other">Other</button>
+            </div>
+            <button class="btn-auto-copy" id="btn-auto-copy">Copy to Claude</button>
+          </div>
+        </div>
         <button class="btn-export-showcase-header" id="btn-open-export" title="Export showcase ke GitHub">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
@@ -1440,6 +1523,7 @@
     const STORAGE_KEY = "itjt_progress_v1";
     const LINKS_KEY   = "itjt_links_v1";
     const PROFILE_KEY = "itjt_profile_v1";
+    const AUTO_KEY    = "itjt_auto_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -1466,6 +1550,15 @@
 
     function saveProfile(data) {
       localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+    }
+
+    function loadAuto() {
+      try { return JSON.parse(localStorage.getItem(AUTO_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveAuto(data) {
+      localStorage.setItem(AUTO_KEY, JSON.stringify(data));
     }
 
     let links = loadLinks();
@@ -2254,6 +2347,126 @@ ${cardHTML}
       if (s) { e.preventDefault(); showTip(s); }
     }, { passive: false });
     document.addEventListener("touchend", () => setTimeout(hideTip, 1800));
+
+    // ══════════════════════════════════════════
+    // AUTO AI GUIDE
+    // ══════════════════════════════════════════
+    (function initAuto() {
+      const wrapper  = document.getElementById("auto-wrapper");
+      const btnAuto  = document.getElementById("btn-auto");
+      const popover  = document.getElementById("auto-popover");
+      const cliOpts  = document.getElementById("auto-cli-options");
+      const copyBtn  = document.getElementById("btn-auto-copy");
+
+      let autoData = loadAuto();
+      let selectedCli = autoData.cli || "Claude";
+
+      function updateCliUI() {
+        cliOpts.querySelectorAll(".auto-cli-btn").forEach(b => {
+          b.classList.toggle("selected", b.dataset.cli === selectedCli);
+        });
+        copyBtn.textContent = `Copy to ${selectedCli}`;
+      }
+
+      function openPopover() {
+        popover.classList.add("open");
+        btnAuto.classList.add("active");
+      }
+
+      function closePopover() {
+        popover.classList.remove("open");
+        btnAuto.classList.remove("active");
+      }
+
+      btnAuto.addEventListener("click", e => {
+        e.stopPropagation();
+        popover.classList.contains("open") ? closePopover() : openPopover();
+      });
+
+      cliOpts.addEventListener("click", e => {
+        const btn = e.target.closest(".auto-cli-btn");
+        if (!btn) return;
+        selectedCli = btn.dataset.cli;
+        saveAuto({ cli: selectedCli });
+        updateCliUI();
+      });
+
+      document.addEventListener("click", e => {
+        if (!wrapper.contains(e.target)) closePopover();
+      });
+
+      updateCliUI();
+
+      // ── Prompt generator (U2) ──
+      let copyTimer = null;
+
+      function buildAutoPrompt() {
+        const snap = loadProgress();
+        const snapshot = {};
+        const quests = {};
+
+        Object.entries(snap).forEach(([k, v]) => {
+          if (k.startsWith("quest::")) {
+            if (v) quests[k.replace("quest::", "")] = true;
+          } else if (k.includes("::")) {
+            const sep = k.indexOf("::");
+            const jobTitle = k.slice(0, sep);
+            const skill    = k.slice(sep + 2);
+            const level    = v === true ? 1 : Number(v) || 0;
+            if (level > 0) {
+              if (!snapshot[jobTitle]) snapshot[jobTitle] = {};
+              snapshot[jobTitle][skill] = level;
+            }
+          }
+        });
+
+        const progressBlock = JSON.stringify(
+          Object.keys(quests).length > 0 ? { ...snapshot, quests } : snapshot,
+          null, 2
+        );
+
+        return `You are my quest guide for ulong RPG (https://secreal.github.io/ulong-rpg/).
+
+My current progress:
+${progressBlock}
+
+Please open the ulong RPG website, check the available quests for my jobs, find quests I haven't completed yet, and guide me step by step through the next relevant quest. Focus on practical, actionable steps I can start today.`;
+      }
+
+      copyBtn.addEventListener("click", () => {
+        const prompt = buildAutoPrompt();
+        const doFeedback = () => {
+          if (copyTimer) clearTimeout(copyTimer);
+          copyBtn.textContent = "Copied! ✓";
+          copyBtn.classList.add("copied");
+          copyTimer = setTimeout(() => {
+            copyBtn.textContent = `Copy to ${selectedCli}`;
+            copyBtn.classList.remove("copied");
+            copyTimer = null;
+          }, 2000);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(prompt).then(doFeedback).catch(() => {
+            legacyCopy(prompt);
+            doFeedback();
+          });
+        } else {
+          legacyCopy(prompt);
+          doFeedback();
+        }
+      });
+
+      function legacyCopy(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); } catch {}
+        document.body.removeChild(ta);
+      }
+    })();
 
     // ══════════════════════════════════════════
     // INIT
