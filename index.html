@@ -416,7 +416,7 @@
 
     .skill-list { display: flex; flex-wrap: wrap; gap: 5px; }
 
-    /* skill chip — checkable */
+    /* skill chip — level-up system (Lv 0→1→2→3) */
     .skill {
       position: relative;
       border: 1px solid color-mix(in srgb, var(--role) 38%, var(--line));
@@ -430,19 +430,50 @@
 
     .skill:hover { color: var(--ink); border-color: var(--role); background: color-mix(in srgb, var(--role) 15%, transparent); }
 
-    .skill.checked {
+    /* Lv 1 — learned */
+    .skill.lv1 {
+      background: color-mix(in srgb, var(--role) 13%, transparent);
+      border-color: color-mix(in srgb, var(--role) 60%, transparent);
+      color: var(--ink);
+    }
+
+    /* Lv 2 — practiced */
+    .skill.lv2 {
       background: color-mix(in srgb, var(--role) 22%, transparent);
       border-color: var(--role);
       color: var(--ink);
-      box-shadow: 0 0 8px color-mix(in srgb, var(--role) 20%, transparent);
+      box-shadow: 0 0 6px color-mix(in srgb, var(--role) 18%, transparent);
     }
+
+    /* Lv 3 — mastered */
+    .skill.lv3 {
+      background: color-mix(in srgb, var(--role) 32%, transparent);
+      border-color: var(--role);
+      color: var(--ink);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--role) 30%, transparent), inset 0 0 0 1px color-mix(in srgb, var(--role) 40%, transparent);
+    }
+
+    /* backward compat alias */
+    .skill.checked { background: color-mix(in srgb, var(--role) 22%, transparent); border-color: var(--role); color: var(--ink); }
+
+    .skill-lv-badge {
+      font-size: 9px; font-weight: 900; letter-spacing: .4px;
+      opacity: 0; transition: opacity .13s ease;
+      color: currentColor;
+    }
+
+    .skill.lv1 .skill-lv-badge,
+    .skill.lv2 .skill-lv-badge,
+    .skill.lv3 .skill-lv-badge { opacity: 1; }
 
     .skill-check-icon {
       width: 10px; height: 10px; flex-shrink: 0;
       opacity: 0; transition: opacity .14s ease;
     }
 
-    .skill.checked .skill-check-icon { opacity: 1; }
+    .skill.lv1 .skill-check-icon,
+    .skill.lv2 .skill-check-icon,
+    .skill.lv3 .skill-check-icon { opacity: 1; }
 
     /* card footer: progress + buttons */
     .card-footer {
@@ -877,8 +908,8 @@
   <div class="modal-overlay" id="quest-overlay" role="dialog" aria-modal="true" aria-labelledby="quest-title">
     <div class="modal" id="quest-modal">
       <div class="modal-chrome">
-        <div class="modal-eyebrow">Job Change Quest</div>
-        <div class="modal-title">Jalan menuju <span class="modal-title-color" id="quest-job-name"></span></div>
+        <div class="modal-eyebrow">⚔ Job Change Quest</div>
+        <div class="modal-title">Path to <span class="modal-title-color" id="quest-job-name"></span></div>
         <button class="modal-close" id="quest-close" aria-label="Tutup">&times;</button>
       </div>
       <div class="modal-body">
@@ -889,7 +920,7 @@
         </div>
         <div id="quest-content"></div>
         <div class="quest-complete-banner" id="quest-complete-banner">
-          ⚔ Quest Complete! Siap untuk Job Change!
+          ⚔ Quest Complete! Ready for Job Change!
         </div>
       </div>
     </div>
@@ -1162,7 +1193,7 @@
       "Frontend Developer": {
         phases: [
           {
-            title: "Fondasi Web",
+            title: "Web Foundations",
             items: [
               { id:"fe-1", label:"Kuasai HTML semantik", sub:"Pelajari heading, form, table, landmark element. Referensi: MDN HTML.", ref:"https://developer.mozilla.org/en-US/docs/Learn/HTML" },
               { id:"fe-2", label:"Kuasai CSS dasar & layout", sub:"Flexbox, Grid, responsive design, variabel CSS.", ref:"https://developer.mozilla.org/en-US/docs/Learn/CSS" },
@@ -1170,27 +1201,35 @@
             ]
           },
           {
-            title: "Framework & Tools",
+            title: "Equipment",
             items: [
-              { id:"fe-4", label:"Pelajari React atau Vue", sub:"Komponen, state, props, hooks. Mulai dari official tutorial.", ref:"https://react.dev/learn" },
-              { id:"fe-5", label:"Gunakan Git setiap hari", sub:"Commit, branch, pull request. Buat akun GitHub.", ref:"https://learngitbranching.js.org" },
-              { id:"fe-6", label:"Setup project dengan Vite atau CRA", sub:"Bundler, npm/yarn, struktur project.", ref:"https://vitejs.dev/guide/" },
+              { id:"fe-4", label:"Equip: React atau Vue", sub:"Komponen, state, props, hooks. Mulai dari official tutorial.", ref:"https://react.dev/learn" },
+              { id:"fe-5", label:"Equip: Git + GitHub", sub:"Commit, branch, pull request. Buat akun GitHub dan mulai aktif.", ref:"https://learngitbranching.js.org" },
+              { id:"fe-6", label:"Equip: Vite sebagai bundler", sub:"Setup project modern dengan Vite, npm/yarn, dan struktur folder yang rapi.", ref:"https://vitejs.dev/guide/" },
             ]
           },
           {
-            title: "Portofolio",
+            title: "Achievement",
             items: [
-              { id:"fe-7", label:"Buat 2-3 project di GitHub", sub:"Landing page, todo app, atau clone UI populer. Harus bisa di-live.", ref:"https://github.com" },
-              { id:"fe-8", label:"Deploy ke Vercel atau Netlify", sub:"Live URL wajib ada di setiap project portofolio.", ref:"https://vercel.com" },
-              { id:"fe-9", label:"Buat profile README di GitHub", sub:"Tampilkan project terbaik, stack, dan contact.", ref:"https://github.com" },
+              { id:"fe-7", label:"Build: 2-3 project di GitHub", sub:"Landing page, todo app, atau clone UI populer. Harus live dan bisa dibuka.", ref:"https://github.com" },
+              { id:"fe-8", label:"Deploy ke Vercel atau Netlify", sub:"Live URL wajib ada di setiap project — bukti kamu bisa ship.", ref:"https://vercel.com" },
+              { id:"fe-9", label:"Craft: Profile README di GitHub", sub:"Tampilkan project terbaik, tech stack, dan cara kontak kamu.", ref:"https://github.com" },
             ]
           },
           {
-            title: "Apply Remote Job",
+            title: "Find Your Guild",
             items: [
-              { id:"fe-10", label:"Daftar ke LinkedIn & aktifkan Open to Work", sub:"Filter: Remote, Frontend, Junior/Entry Level.", ref:"https://linkedin.com/jobs" },
-              { id:"fe-11", label:"Apply ke Glints, Kalibrr, JobStreet filter remote", sub:"Kirim 5-10 lamaran per minggu, jangan nunggu reply dulu.", ref:"https://glints.com" },
-              { id:"fe-12", label:"Coba platform freelance: Upwork atau Toptal", sub:"Mulai dari proyek kecil untuk bangun rating.", ref:"https://upwork.com" },
+              { id:"fe-10", label:"Glints: Apply Frontend Developer Remote", sub:"Cari lewat query: \"Frontend Developer\" + filter Remote + Entry Level. Kirim 5–10 lamaran per minggu.", ref:"https://glints.com/id/opportunities/jobs/explore/?keyword=Frontend+Developer&locationName=Indonesia&workArrangement=REMOTE" },
+              { id:"fe-11", label:"Indeed: Temukan lowongan Frontend Remote", sub:"Query: \"Frontend Developer remote\" atau \"React Developer remote Indonesia\". Aktifkan notifikasi email.", ref:"https://id.indeed.com/jobs?q=frontend+developer+remote&l=Indonesia" },
+              { id:"fe-12", label:"LinkedIn: Aktifkan Open to Work + Apply", sub:"Set profil ke Open to Work, filter Jobs: Remote, Frontend, Entry Level. Kirim Easy Apply ke 10+ listing.", ref:"https://www.linkedin.com/jobs/search/?keywords=Frontend%20Developer&f_WT=2&f_E=2" },
+            ]
+          },
+          {
+            title: "Vendor Quest",
+            items: [
+              { id:"fe-13", label:"Upwork: Buka akun & lamar proyek kecil", sub:"Mulai dari fixed-price project kecil ($50–200) untuk bangun rating. Query: \"React developer\", \"landing page\".", ref:"https://www.upwork.com/freelance-jobs/react/" },
+              { id:"fe-14", label:"Fiverr: Buat Gig Frontend / Landing Page", sub:"Buat gig spesifik: \"I will build a responsive React landing page\". Pricing mulai $25–50 untuk portofolio.", ref:"https://www.fiverr.com/categories/programming-tech/website-development" },
+              { id:"fe-15", label:"Toptal: Daftar jika sudah punya 2+ tahun pengalaman", sub:"Seleksi ketat tapi rate tinggi ($60–150/jam). Cocok setelah punya portofolio solid.", ref:"https://www.toptal.com/developers/join" },
             ]
           },
         ]
@@ -1198,7 +1237,7 @@
       "Manual QA": {
         phases: [
           {
-            title: "Dasar Testing",
+            title: "Job Change Quest!",
             items: [
               { id:"qa-1", label:"Pahami SDLC & posisi QA di dalamnya", sub:"Agile, Scrum, siklus bug dari report sampai closed.", ref:"https://www.guru99.com/software-testing.html" },
               { id:"qa-2", label:"Belajar menulis test case yang baik", sub:"Format: precondition, steps, expected result. Praktik dari app yang kamu pakai sehari-hari.", ref:"https://www.guru99.com/test-case.html" },
@@ -1206,26 +1245,34 @@
             ]
           },
           {
-            title: "Tools & Praktik",
+            title: "Equipment",
             items: [
-              { id:"qa-4", label:"Kuasai tools bug tracking: Jira atau Trello", sub:"Cara membuat bug report yang jelas: severity, priority, steps to reproduce.", ref:"https://www.atlassian.com/software/jira" },
-              { id:"qa-5", label:"Belajar dasar SQL untuk query data", sub:"SELECT, WHERE, JOIN — berguna untuk verifikasi data di DB.", ref:"https://sqlbolt.com" },
-              { id:"qa-6", label:"Pahami API testing dasar dengan Postman", sub:"Kirim GET/POST, lihat response, validasi status code.", ref:"https://learning.postman.com" },
+              { id:"qa-4", label:"Equip: Jira untuk bug tracking", sub:"Cara membuat bug report yang jelas: severity, priority, steps to reproduce.", ref:"https://www.atlassian.com/software/jira" },
+              { id:"qa-5", label:"Equip: SQL dasar untuk verifikasi data", sub:"SELECT, WHERE, JOIN — berguna untuk cek data langsung di DB.", ref:"https://sqlbolt.com" },
+              { id:"qa-6", label:"Equip: Postman untuk API testing", sub:"Kirim GET/POST, lihat response, validasi status code dan payload.", ref:"https://learning.postman.com" },
             ]
           },
           {
-            title: "Portofolio",
+            title: "Achievement",
             items: [
-              { id:"qa-7", label:"Buat dokumentasi test case untuk 1 app nyata", sub:"Pilih app publik (e-commerce, dsb), tulis 20+ test case, upload ke Google Doc atau GitHub.", ref:"https://github.com" },
-              { id:"qa-8", label:"Buat bug report portofolio", sub:"Report minimal 5 bug dari app publik, lengkap dengan screenshot dan langkah reproduksi.", ref:"https://www.guru99.com/how-to-write-a-bug-report.html" },
+              { id:"qa-7", label:"Craft: Dokumentasi test case untuk 1 app nyata", sub:"Pilih app publik (e-commerce, dsb), tulis 20+ test case, upload ke Google Doc atau GitHub.", ref:"https://github.com" },
+              { id:"qa-8", label:"Craft: Bug report portofolio", sub:"Report minimal 5 bug dari app publik, lengkap dengan screenshot dan langkah reproduksi.", ref:"https://www.guru99.com/how-to-write-a-bug-report.html" },
             ]
           },
           {
-            title: "Apply Remote Job",
+            title: "Find Your Guild",
             items: [
-              { id:"qa-9", label:"Daftar ke LinkedIn & aktifkan Open to Work", sub:"Filter: Remote, QA Tester, Manual QA, Junior.", ref:"https://linkedin.com/jobs" },
-              { id:"qa-10", label:"Apply ke Glints, Kalibrr, Remote.co", sub:"Banyak startup SaaS butuh QA remote, lirik juga job board internasional.", ref:"https://remote.co/remote-jobs/qa-engineer/" },
-              { id:"qa-11", label:"Siapkan CV yang highlight test case & bug report", sub:"Tunjukkan portofolio dokumen, bukan hanya list tool yang dipakai.", ref:"https://www.linkedin.com" },
+              { id:"qa-9", label:"Glints: Apply QA Tester Remote", sub:"Query: \"QA Tester\" atau \"Manual QA\" + filter Remote. Banyak startup SaaS butuh QA entry level.", ref:"https://glints.com/id/opportunities/jobs/explore/?keyword=Manual+QA&locationName=Indonesia&workArrangement=REMOTE" },
+              { id:"qa-10", label:"Indeed: Cari QA Remote Indonesia & internasional", sub:"Query: \"manual QA remote\" atau \"QA engineer remote Indonesia\". Aktifkan alert untuk keyword ini.", ref:"https://id.indeed.com/jobs?q=manual+qa+remote&l=Indonesia" },
+              { id:"qa-11", label:"LinkedIn: Open to Work + Apply QA listings", sub:"Set Open to Work, filter Jobs: Remote, QA Tester / Quality Assurance, Entry Level. Easy Apply 10+ perusahaan.", ref:"https://www.linkedin.com/jobs/search/?keywords=Manual%20QA&f_WT=2&f_E=2" },
+            ]
+          },
+          {
+            title: "Vendor Quest",
+            items: [
+              { id:"qa-12", label:"Upwork: Lamar proyek QA / testing freelance", sub:"Cari: \"manual testing\", \"test case writing\", \"bug reporting\". Mulai fixed-price kecil untuk bangun reputasi.", ref:"https://www.upwork.com/freelance-jobs/qa/" },
+              { id:"qa-13", label:"Fiverr: Buat Gig QA Testing / Bug Report", sub:"Contoh gig: \"I will manually test your web app and deliver a bug report\". Pricing $20–50 untuk proyek kecil.", ref:"https://www.fiverr.com/categories/programming-tech/website-development" },
+              { id:"qa-14", label:"Testlio / uTest: Platform khusus QA freelance", sub:"Platform crowdsourced testing — cocok untuk QA yang ingin pengalaman real tanpa harus apply ke perusahaan.", ref:"https://utest.com" },
             ]
           },
         ]
@@ -1256,8 +1303,18 @@
 
     function toggleSkill(title, skill) {
       const k = skillKey(title, skill);
-      progress[k] = !progress[k];
+      const cur = progress[k] || 0;
+      // cycle: 0 → 1 → 2 → 3 → 0
+      if (cur >= 3) { delete progress[k]; }
+      else { progress[k] = cur + 1; }
       saveProgress(progress);
+    }
+
+    function skillLevel(title, skill) {
+      const v = progress[skillKey(title, skill)];
+      if (!v) return 0;
+      if (v === true) return 1; // backward compat
+      return Number(v) || 0;
     }
 
     function toggleQuest(itemId) {
@@ -1268,7 +1325,7 @@
 
     function getSkillProgress(title, skills) {
       const arr = skills.split(", ");
-      const done = arr.filter(s => progress[skillKey(title, s)]).length;
+      const done = arr.filter(s => skillLevel(title, s) >= 1).length;
       return { done, total: arr.length, pct: arr.length ? Math.round(done / arr.length * 100) : 0 };
     }
 
@@ -1312,7 +1369,7 @@
       catJobs.forEach(([,title,,skills]) => {
         const arr = skills.split(", ");
         total += arr.length;
-        done += arr.filter(s => progress[skillKey(title, s)]).length;
+        done += arr.filter(s => skillLevel(title, s) >= 1).length;
       });
       return total ? Math.round(done / total * 100) : 0;
     }
@@ -1385,15 +1442,18 @@
       return `<span class="tier-pill" data-tier="${tier}"><span class="tier-pips">${pips}</span>${TIER_LABELS[tier]}</span>`;
     }
 
+    const LV_LABELS = ["", "Lv 1", "Lv 2", "Lv 3"];
+
     function renderSkills(title, skills) {
       return skills.split(", ").map(s => {
         const tip = skillDescriptions[s] || "Skill praktis yang dipakai role ini.";
-        const checked = progress[skillKey(title, s)] ? "checked" : "";
-        return `<span class="skill ${checked}" tabindex="0" data-tip="${tip}" data-title="${title}" data-skill="${s}">
+        const lv = skillLevel(title, s);
+        const lvClass = lv > 0 ? `lv${lv}` : "";
+        return `<span class="skill ${lvClass}" tabindex="0" data-tip="${tip}" data-title="${title}" data-skill="${s}">
           <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
             <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          ${s}
+          ${s}<span class="skill-lv-badge">${lv > 0 ? LV_LABELS[lv] : ""}</span>
         </span>`;
       }).join("");
     }
@@ -1433,7 +1493,7 @@
               <div class="card-footer">
                 <div class="card-xp">
                   <div class="card-xp-bar"><div class="card-xp-fill" style="width:${pct}%"></div></div>
-                  ${done}/${total} skill
+                  <span class="card-xp-text">${done}/${total} skill learned</span>
                 </div>
                 ${hasQuest ? `<button class="btn-job-change" data-job="${title}" data-role="${role}">
                   ⚔ Job Change${qp && qp.done > 0 ? ` · ${qp.pct}%` : ""}
@@ -1485,7 +1545,7 @@
       const qp = getQuestProgress(currentQuestJob);
 
       document.getElementById("quest-progress-fill").style.width = qp.pct + "%";
-      document.getElementById("quest-progress-text").textContent = `${qp.done}/${qp.total} selesai`;
+      document.getElementById("quest-progress-text").textContent = `${qp.done}/${qp.total} completed`;
 
       const banner = document.getElementById("quest-complete-banner");
       banner.classList.toggle("show", qp.done === qp.total && qp.total > 0);
@@ -1507,7 +1567,7 @@
                   <div class="quest-item-label">${item.label}</div>
                   <div class="quest-item-sub">${item.sub}</div>
                   ${item.ref ? `<a class="quest-item-link" href="${item.ref}" target="_blank" rel="noopener">
-                    Referensi ↗
+                    Open Portal ↗
                   </a>` : ""}
                 </div>
               </div>`;
@@ -1643,19 +1703,23 @@
     // EVENT DELEGATION (cards & sidebar)
     // ══════════════════════════════════════════
     document.getElementById("jobs").addEventListener("click", e => {
-      // skill chip toggle
+      // skill chip level-up toggle
       const skill = e.target.closest(".skill");
       if (skill) {
         toggleSkill(skill.dataset.title, skill.dataset.skill);
-        skill.classList.toggle("checked", !!progress[skillKey(skill.dataset.title, skill.dataset.skill)]);
+        const lv = skillLevel(skill.dataset.title, skill.dataset.skill);
+        skill.classList.remove("lv1","lv2","lv3","checked");
+        if (lv > 0) skill.classList.add(`lv${lv}`);
+        const badge = skill.querySelector(".skill-lv-badge");
+        if (badge) badge.textContent = lv > 0 ? LV_LABELS[lv] : "";
         // update xp bar in same card
         const card = skill.closest(".card");
         const allSkills = card.querySelectorAll(".skill");
-        const done = [...allSkills].filter(s => s.classList.contains("checked")).length;
+        const done = [...allSkills].filter(s => s.classList.contains("lv1")||s.classList.contains("lv2")||s.classList.contains("lv3")).length;
         const pct = Math.round(done / allSkills.length * 100);
         card.querySelector(".card-xp-fill").style.width = pct + "%";
         card.querySelector(".card-progress-fill").style.width = pct + "%";
-        card.querySelector(".card-xp").childNodes[1].textContent = ` ${done}/${allSkills.length} skill`;
+        card.querySelector(".card-xp-text").textContent = `${done}/${allSkills.length} skill learned`;
         renderSidebar();
         return;
       }
@@ -1698,7 +1762,9 @@
     function showTip(el) {
       const text = el.dataset.tip;
       if (!text) return;
-      tip.textContent = text;
+      const lv = skillLevel(el.dataset.title, el.dataset.skill);
+      const lvHint = lv === 0 ? " [Click to level up →]" : lv < 3 ? ` [Lv ${lv} — click to upgrade]` : " [Lv 3 MASTERED — click to reset]";
+      tip.textContent = text + lvHint;
       tip.classList.add("visible");
       positionTip(el);
     }
