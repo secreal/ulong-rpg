@@ -785,6 +785,114 @@
     .sync-notice { font-size: 11px; color: var(--muted); margin-top: 14px; line-height: 1.55; }
     .sync-notice a { color: var(--gold); opacity: .8; }
 
+    /* ══ ACHIEVEMENT LINKS ══ */
+    .achievement-links { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+    .achievement-links-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .achievement-link-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
+    .achievement-link-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px;
+    }
+    .achievement-link-item a {
+      flex: 1; color: color-mix(in srgb, var(--role) 90%, white);
+      text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .achievement-link-item a:hover { text-decoration: underline; }
+    .achievement-link-label { color: var(--muted); font-size: 10.5px; flex-shrink: 0; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .btn-del-link {
+      background: none; border: none; cursor: pointer; color: var(--muted);
+      padding: 2px 4px; border-radius: 4px; font-size: 12px; line-height: 1;
+      flex-shrink: 0; transition: color .14s ease;
+    }
+    .btn-del-link:hover { color: #e85f5f; }
+    .achievement-link-add { display: flex; gap: 5px; flex-wrap: wrap; }
+    .achievement-link-input {
+      flex: 1; min-width: 120px; padding: 5px 8px; border-radius: 6px;
+      border: 1px solid var(--line); background: var(--panel-2);
+      color: var(--ink); font: 400 11px 'Inter', sans-serif;
+      outline: none; transition: border-color .14s ease;
+    }
+    .achievement-link-input:focus { border-color: var(--line-bright); }
+    .achievement-link-input::placeholder { color: var(--muted); }
+    .btn-add-link {
+      padding: 5px 10px; border-radius: 6px;
+      border: 1px solid color-mix(in srgb, var(--role) 40%, transparent);
+      background: color-mix(in srgb, var(--role) 10%, transparent);
+      color: color-mix(in srgb, var(--role) 80%, white);
+      font: 700 10.5px 'Inter', sans-serif; cursor: pointer;
+      white-space: nowrap; transition: all .14s ease;
+    }
+    .btn-add-link:hover { border-color: color-mix(in srgb, var(--role) 70%, transparent); }
+
+    /* ══ EXPORT MODAL ══ */
+    .export-modal-overlay {
+      position: fixed; inset: 0; z-index: 700;
+      background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity .2s ease;
+    }
+    .export-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .export-modal {
+      width: min(500px, 100%); max-height: 90vh; overflow-y: auto;
+      border: 1px solid var(--line-bright); border-radius: 14px;
+      background: #111827;
+      box-shadow: 0 40px 80px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05);
+      padding: 28px; position: relative;
+      transform: translateY(12px); transition: transform .2s ease;
+    }
+    .export-modal-overlay.open .export-modal { transform: none; }
+    .export-modal-title {
+      font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .export-modal-sub { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin-bottom: 20px; }
+
+    .profile-form { display: grid; gap: 10px; margin-bottom: 20px; }
+    .profile-field { display: flex; flex-direction: column; gap: 4px; }
+    .profile-field label { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+    .profile-field input {
+      padding: 8px 12px; border-radius: 8px;
+      border: 1px solid var(--line); background: var(--panel-2);
+      color: var(--ink); font: 400 13px 'Inter', sans-serif;
+      outline: none; transition: border-color .14s ease;
+    }
+    .profile-field input:focus { border-color: var(--line-bright); }
+    .profile-field input::placeholder { color: var(--muted); }
+
+    .export-divider { height: 1px; background: var(--line); margin: 16px 0; }
+
+    .btn-export-showcase {
+      width: 100%; padding: 12px; border-radius: 10px;
+      border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+      background: color-mix(in srgb, var(--gold) 12%, transparent);
+      color: var(--gold); font: 700 13px 'Cinzel', serif;
+      cursor: pointer; letter-spacing: .5px;
+      transition: all .16s ease; margin-bottom: 10px;
+    }
+    .btn-export-showcase:hover { background: color-mix(in srgb, var(--gold) 20%, transparent); border-color: color-mix(in srgb, var(--gold) 70%, transparent); }
+
+    .export-guide { display: none; }
+    .export-guide.show { display: block; }
+    .export-guide-title { font-size: 11px; font-weight: 700; color: var(--gold); margin-bottom: 8px; letter-spacing: .5px; text-transform: uppercase; }
+    .export-guide ol { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; }
+    .export-guide li { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+    .export-guide li a { color: var(--gold); opacity: .8; text-decoration: none; }
+    .export-guide li a:hover { opacity: 1; }
+
+    .btn-export-showcase-header {
+      display: flex; align-items: center; gap: 7px;
+      padding: 7px 13px; border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+      background: color-mix(in srgb, var(--gold) 10%, transparent);
+      color: var(--gold); font: 700 11px 'Inter', sans-serif;
+      cursor: pointer; white-space: nowrap;
+      transition: all .16s ease;
+    }
+    .btn-export-showcase-header:hover { background: color-mix(in srgb, var(--gold) 18%, transparent); }
+
     /* ══ TOOLTIP ══ */
     #skill-tooltip {
       position: fixed; z-index: 9999;
@@ -854,6 +962,12 @@
         <p class="intro">Setiap role punya senjata, skill aktif, dan range salary. Mulai dari <strong style="color:var(--ink-dim)">Novice</strong> sampai <strong style="color:var(--gold)">Final Class</strong> seperti CTO.</p>
       </div>
       <div class="header-actions">
+        <button class="btn-export-showcase-header" id="btn-open-export" title="Export showcase ke GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          Export /ulong
+        </button>
         <button class="btn-sync" id="btn-open-sync" title="Sinkronisasi progress">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
@@ -1012,6 +1126,46 @@
         </button>
       </div>
       <p class="sync-notice">Google Drive menggunakan Google Picker API — file disimpan di folder "ulong RPG" di Drive kamu. Tidak ada data yang dikirim ke server lain.</p>
+    </div>
+  </div>
+
+  <!-- ── EXPORT MODAL ── -->
+  <div class="export-modal-overlay" id="export-overlay" role="dialog" aria-modal="true">
+    <div class="export-modal">
+      <button class="modal-close sync-close" id="export-close" aria-label="Tutup">&times;</button>
+      <div class="export-modal-title">⚔ Export /ulong</div>
+      <div class="export-modal-sub">Generate halaman showcase pribadimu. Isi profil dulu, lalu download dan upload ke repo GitHub <code style="font-size:11px;color:var(--gold)">ulong</code> milikmu.</div>
+
+      <div class="profile-form">
+        <div class="profile-field">
+          <label>Nama Lengkap</label>
+          <input type="text" id="profile-name" placeholder="Nama Hero kamu..." autocomplete="name">
+        </div>
+        <div class="profile-field">
+          <label>Nick / Display Name</label>
+          <input type="text" id="profile-nick" placeholder="@nickname...">
+        </div>
+        <div class="profile-field">
+          <label>GitHub Username</label>
+          <input type="text" id="profile-github" placeholder="secreal" autocomplete="username">
+        </div>
+      </div>
+
+      <div class="export-divider"></div>
+
+      <button class="btn-export-showcase" id="btn-do-export">
+        ⬇ Download index.html
+      </button>
+
+      <div class="export-guide" id="export-guide">
+        <div class="export-guide-title">📖 Langkah selanjutnya</div>
+        <ol>
+          <li>Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)</li>
+          <li>Upload file <code style="color:var(--gold)">index.html</code> yang baru di-download ke repo tersebut</li>
+          <li>Aktifkan <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a> di Settings → Pages → Deploy from Branch</li>
+          <li>Showcase kamu akan live di <span id="export-guide-url" style="color:var(--gold)">github.com/&lt;username&gt;/ulong</span></li>
+        </ol>
+      </div>
     </div>
   </div>
 
@@ -1284,6 +1438,8 @@
     // STORAGE
     // ══════════════════════════════════════════
     const STORAGE_KEY = "itjt_progress_v1";
+    const LINKS_KEY   = "itjt_links_v1";
+    const PROFILE_KEY = "itjt_profile_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -1293,6 +1449,26 @@
     function saveProgress(data) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
+
+    function loadLinks() {
+      try { return JSON.parse(localStorage.getItem(LINKS_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveLinks(data) {
+      localStorage.setItem(LINKS_KEY, JSON.stringify(data));
+    }
+
+    function loadProfile() {
+      try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveProfile(data) {
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+    }
+
+    let links = loadLinks();
 
     // skill key: "JobTitle::SkillName"
     function skillKey(title, skill) { return `${title}::${skill}`; }
@@ -1459,6 +1635,26 @@
       }).join("");
     }
 
+    function renderAchievementLinks(title) {
+      const jobLinks = links[title] || [];
+      const items = jobLinks.map((l, i) => `
+        <div class="achievement-link-item">
+          ${l.label ? `<span class="achievement-link-label" title="${l.label}">${l.label}</span>` : ""}
+          <a href="${l.url}" target="_blank" rel="noopener" title="${l.url}">${l.url}</a>
+          <button class="btn-del-link" data-job="${title}" data-idx="${i}" aria-label="Hapus link">✕</button>
+        </div>`).join("");
+      return `
+        <div class="achievement-links">
+          <div class="achievement-links-label">Achievement Links</div>
+          <div class="achievement-link-list">${items}</div>
+          <div class="achievement-link-add">
+            <input class="achievement-link-input" type="url" placeholder="https://github.com/..." data-job="${title}" data-field="url">
+            <input class="achievement-link-input" type="text" placeholder="Label (opsional)" data-job="${title}" data-field="label" style="max-width:110px">
+            <button class="btn-add-link" data-job="${title}">+ Add</button>
+          </div>
+        </div>`;
+    }
+
     function renderCards(group = "All") {
       const jobsEl = document.getElementById("jobs");
       const filtered = group === "All" ? jobs : jobs.filter(j => j[0] === group);
@@ -1500,6 +1696,7 @@
                   ⚔ Job Change${qp && qp.done > 0 ? ` · ${qp.pct}%` : ""}
                 </button>` : ""}
               </div>
+              ${renderAchievementLinks(title)}
             </div>
           </article>`;
       }).join("");
@@ -1751,6 +1948,271 @@
         if (skill) { e.preventDefault(); skill.click(); }
       }
     });
+
+    // ══════════════════════════════════════════
+    // ACHIEVEMENT LINKS
+    // ══════════════════════════════════════════
+    document.getElementById("jobs").addEventListener("click", e => {
+      // Add link
+      const addBtn = e.target.closest(".btn-add-link");
+      if (addBtn) {
+        const job = addBtn.dataset.job;
+        const area = addBtn.closest(".achievement-link-add");
+        const urlInput = area.querySelector('[data-field="url"]');
+        const labelInput = area.querySelector('[data-field="label"]');
+        const url = urlInput.value.trim();
+        if (!url || !/^https?:\/\//i.test(url)) { urlInput.focus(); return; }
+        if (!links[job]) links[job] = [];
+        links[job].push({ url, label: labelInput.value.trim() });
+        saveLinks(links);
+        urlInput.value = ""; labelInput.value = "";
+        // re-render just this card's achievement section
+        const card = addBtn.closest(".card");
+        card.querySelector(".achievement-links").outerHTML = renderAchievementLinks(job);
+        return;
+      }
+
+      // Delete link
+      const delBtn = e.target.closest(".btn-del-link");
+      if (delBtn) {
+        const job = delBtn.dataset.job;
+        const idx = Number(delBtn.dataset.idx);
+        if (!links[job]) return;
+        links[job].splice(idx, 1);
+        if (!links[job].length) delete links[job];
+        saveLinks(links);
+        const card = delBtn.closest(".card");
+        card.querySelector(".achievement-links").outerHTML = renderAchievementLinks(job);
+        return;
+      }
+    });
+
+    // ══════════════════════════════════════════
+    // EXPORT MODAL
+    // ══════════════════════════════════════════
+    function openExport() {
+      const prof = loadProfile();
+      document.getElementById("profile-name").value   = prof.name   || "";
+      document.getElementById("profile-nick").value   = prof.nick   || "";
+      document.getElementById("profile-github").value = prof.github || "";
+      document.getElementById("export-guide").classList.remove("show");
+      document.getElementById("export-overlay").classList.add("open");
+    }
+    function closeExport() { document.getElementById("export-overlay").classList.remove("open"); }
+
+    document.getElementById("btn-open-export").addEventListener("click", openExport);
+    document.getElementById("export-close").addEventListener("click", closeExport);
+    document.getElementById("export-overlay").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeExport();
+    });
+
+    // Auto-save profile on input
+    ["profile-name","profile-nick","profile-github"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        saveProfile({
+          name:   document.getElementById("profile-name").value.trim(),
+          nick:   document.getElementById("profile-nick").value.trim(),
+          github: document.getElementById("profile-github").value.trim(),
+        });
+      });
+    });
+
+    // Generate & download
+    document.getElementById("btn-do-export").addEventListener("click", () => {
+      const prof = loadProfile();
+      const snap = loadProgress();
+      const snapLinks = loadLinks();
+
+      const filtered = jobs.filter(([, title,, skills]) =>
+        skills.split(", ").some(s => {
+          const v = snap[skillKey(title, s)];
+          if (!v) return false;
+          if (v === true) return true;
+          return Number(v) > 0;
+        })
+      );
+
+      if (!filtered.length) {
+        alert("Belum ada progress yang bisa di-export. Level up beberapa skill dulu!");
+        return;
+      }
+
+      const html = generateShowcaseHTML(prof, filtered, snap, snapLinks);
+      const blob = new Blob([html], { type: "text/html" });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement("a");
+      a.href = url; a.download = "index.html"; a.click();
+      URL.revokeObjectURL(url);
+
+      // Guide
+      const guide = document.getElementById("export-guide");
+      const guideUrl = document.getElementById("export-guide-url");
+      if (prof.github) {
+        guideUrl.textContent = `github.com/${prof.github}/ulong`;
+        window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+      } else {
+        guideUrl.textContent = "github.com/<username>/ulong";
+      }
+      guide.classList.add("show");
+    });
+
+    // ══════════════════════════════════════════
+    // HTML GENERATOR
+    // ══════════════════════════════════════════
+    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks) {
+      const name   = prof.name   || "Unknown Hero";
+      const nick   = prof.nick   || "";
+      const github = prof.github || "";
+
+      const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
+
+      const cardHTML = filteredJobs.map(([grp, title, desc, skills, salary, role, hair, tool, tier]) => {
+        const skillsHTML = skills.split(", ").map(s => {
+          const v = snap[skillKey(title, s)];
+          let lv = 0;
+          if (v === true) lv = 1;
+          else if (Number(v) > 0) lv = Number(v);
+          const lvClass = lv > 0 ? `lv${lv}` : "";
+          const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
+          return `<span class="skill ${lvClass}">${s}${badge}</span>`;
+        }).join("");
+
+        const jobLinks = (snapLinks[title] || []).map(l =>
+          `<div class="porto-link"><a href="${l.url}" target="_blank" rel="noopener">${l.label || l.url}</a></div>`
+        ).join("");
+        const linksSection = jobLinks ? `<div class="porto-section"><div class="porto-label">Links</div>${jobLinks}</div>` : "";
+
+        const tierColors = ["#6b7280","#69a8f5","#b889f4","#f0bb4e","#ef9b3e"];
+        const tc = tierColors[tier] || "#6b7280";
+
+        return `
+  <article class="card" style="--role:${role};--hair:${hair}">
+    <div class="card-accent"></div>
+    <div class="sprite-stage">
+      <div class="sprite">
+        <div class="hair"></div><div class="head"></div>
+        <div class="eye left"></div><div class="eye right"></div>
+        <div class="body"></div><div class="cape"></div>
+        <div class="arm left"></div><div class="arm right"></div>
+        <div class="leg left"></div><div class="leg right"></div>
+        <div class="tool ${tool}"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-top-row">
+        <span class="class-badge">${grp} Class</span>
+        <span class="tier-pill" style="border-color:${tc}20;color:${tc}">T${tier}</span>
+      </div>
+      <h2 class="card-title">${title}</h2>
+      <p class="desc">${desc}</p>
+      <div class="skill-list">${skillsHTML}</div>
+      ${linksSection}
+      <div class="salary-row"><span class="salary-label">Salary</span><strong class="salary">${salary}</strong></div>
+    </div>
+  </article>`;
+      }).join("\n");
+
+      return `<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${name} — ulong RPG Showcase</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#e8edf5;--ink-dim:#8b97ab;--muted:#6b7685;
+  --panel:#0d1117;--panel-2:#161b22;--line:rgba(255,255,255,.08);
+  --line-bright:rgba(255,255,255,.15);--gold:#f0bb4e;
+}
+body{background:var(--panel);color:var(--ink);font:400 14px/1.5 system-ui,sans-serif;min-height:100vh}
+a{color:inherit}
+/* header */
+.showcase-header{padding:32px 24px 24px;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--line);margin-bottom:32px}
+.showcase-name{font-size:28px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px}
+.showcase-nick{color:var(--gold);font-size:13px;font-weight:700;margin-bottom:8px}
+.showcase-meta{font-size:12px;color:var(--muted)}
+.showcase-meta a{color:var(--gold);opacity:.8;text-decoration:none}
+.showcase-meta a:hover{opacity:1}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:0 24px 48px;max-width:1200px;margin:0 auto}
+/* card */
+.card{border-radius:14px;border:1px solid var(--line);background:var(--panel-2);overflow:hidden;position:relative;transition:border-color .2s}
+.card:hover{border-color:var(--line-bright)}
+.card-accent{height:3px;background:linear-gradient(90deg,var(--role),color-mix(in srgb,var(--role) 40%,transparent))}
+/* sprite */
+.sprite-stage{height:110px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--role) 6%,transparent);position:relative;overflow:hidden}
+.sprite{position:relative;width:120px;height:120px}
+.head{position:absolute;left:38px;top:16px;width:42px;height:38px;border-radius:45% 45% 40% 40%;background:#f0c18e;border:3px solid #6a3d2b;z-index:4}
+.hair{position:absolute;left:33px;top:7px;width:52px;height:28px;border-radius:50% 50% 30% 30%;background:var(--hair);border:3px solid #33202a;z-index:5}
+.hair::after{content:"";position:absolute;right:3px;top:14px;width:12px;height:24px;background:var(--hair);border:3px solid #33202a;border-left:0;border-radius:0 0 12px 0}
+.eye{position:absolute;top:35px;width:5px;height:5px;background:#1d2430;border-radius:50%;z-index:7}
+.eye.left{left:51px}.eye.right{left:65px}
+.body{position:absolute;left:32px;top:54px;width:54px;height:52px;border-radius:10px 10px 8px 8px;background:var(--role);border:4px solid #1f2634;z-index:3}
+.cape{position:absolute;left:24px;top:54px;width:70px;height:70px;border-radius:10px 10px 28px 28px;background:color-mix(in srgb,var(--role) 42%,#0d1117);z-index:1;transform:skewX(-5deg)}
+.arm{position:absolute;top:65px;width:18px;height:44px;border-radius:9px;background:#f0c18e;border:3px solid #6a3d2b;z-index:2}
+.arm.left{left:19px;transform:rotate(18deg)}.arm.right{right:19px;transform:rotate(-18deg)}
+.leg{position:absolute;top:101px;width:20px;height:28px;border-radius:0 0 8px 8px;background:#2e3d57;border:3px solid #1f2634;z-index:2}
+.leg.left{left:35px}.leg.right{right:35px}
+.tool{position:absolute;z-index:8;color:var(--role)}
+.tool::before,.tool::after{content:"";position:absolute}
+.sword{right:5px;top:34px;width:10px;height:80px;background:#dce5ef;border:2px solid #6f7a8e;transform:rotate(36deg)}
+.sword::before{left:-12px;top:50px;width:34px;height:8px;background:#9a6a35}
+.wand{right:15px;top:18px;width:8px;height:88px;background:#8c6334;transform:rotate(-18deg)}
+.wand::before{left:-8px;top:-10px;width:24px;height:24px;border-radius:50%;background:currentColor;box-shadow:0 0 18px currentColor,0 0 36px currentColor}
+.bow{right:8px;top:36px;width:34px;height:76px;border:5px solid #9b6a39;border-left:0;border-radius:0 42px 42px 0}
+.bow::before{left:2px;top:-4px;width:2px;height:76px;background:#e7dcc0}
+.shield{left:5px;top:58px;width:34px;height:42px;border-radius:8px 8px 16px 16px;background:currentColor;border:4px solid #d8c27b}
+.book{right:2px;top:62px;width:42px;height:32px;border-radius:4px;background:#f1e2b3;border:4px solid currentColor;transform:rotate(-11deg)}
+.hammer{right:7px;top:30px;width:10px;height:82px;background:#8c6334;transform:rotate(-28deg)}
+.hammer::before{left:-18px;top:-7px;width:46px;height:24px;background:#c4ccd5;border:3px solid #69768a}
+.laptop{left:4px;top:78px;width:46px;height:30px;background:#9fb3ca;border:4px solid #364155;transform:rotate(10deg)}
+.laptop::before{left:-6px;top:27px;width:58px;height:8px;background:#dce5ef;border:2px solid #364155}
+/* card body */
+.card-body{padding:14px 16px 16px}
+.card-top-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.class-badge{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding:2px 6px;border-radius:4px;border:1px solid var(--line)}
+.tier-pill{font-size:9.5px;font-weight:900;padding:2px 7px;border-radius:4px;border:1px solid;letter-spacing:.5px}
+.card-title{font-size:16px;font-weight:900;margin-bottom:4px;letter-spacing:-.3px}
+.desc{font-size:11.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.skill-list{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.skill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px 3px 7px;border-radius:5px;font-size:11px;font-weight:600;border:1px solid var(--line);color:var(--ink-dim);background:transparent;transition:all .15s}
+.skill.lv1{background:color-mix(in srgb,var(--role) 13%,transparent);border-color:color-mix(in srgb,var(--role) 60%,transparent);color:var(--ink)}
+.skill.lv2{background:color-mix(in srgb,var(--role) 22%,transparent);border-color:var(--role);color:var(--ink);box-shadow:0 0 6px color-mix(in srgb,var(--role) 30%,transparent)}
+.skill.lv3{background:color-mix(in srgb,var(--role) 32%,transparent);border-color:var(--role);color:var(--ink);box-shadow:0 0 12px color-mix(in srgb,var(--role) 40%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--role) 20%,transparent)}
+.skill-lv-badge{font-size:8px;font-weight:900;letter-spacing:.4px;opacity:.8}
+.salary-row{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.salary-label{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.salary{font-size:13px;font-weight:900;color:var(--gold)}
+/* porto */
+.porto-section{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.porto-label{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.porto-link a{font-size:11px;color:color-mix(in srgb,var(--role) 90%,white);text-decoration:none;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px}
+.porto-link a:hover{text-decoration:underline}
+/* footer */
+.showcase-footer{text-align:center;padding:24px;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
+.showcase-footer a{color:var(--gold);opacity:.7;text-decoration:none}
+.showcase-footer a:hover{opacity:1}
+</style>
+</head>
+<body>
+<div class="showcase-header">
+  <div class="showcase-name">${name}</div>
+  ${nick ? `<div class="showcase-nick">${nick}</div>` : ""}
+  <div class="showcase-meta">
+    ${github ? `<a href="https://github.com/${github}" target="_blank" rel="noopener">github.com/${github}</a> · ` : ""}
+    Generated by <a href="https://secreal.github.io/ulong-rpg/" target="_blank" rel="noopener">ulong RPG</a>
+  </div>
+</div>
+<div class="grid">
+${cardHTML}
+</div>
+<div class="showcase-footer">
+  © secreal 2026 · <a href="https://secreal.github.io/ulong-rpg/" target="_blank" rel="noopener">ulong RPG</a>
+</div>
+</body>
+</html>`;
+    }
 
     // ══════════════════════════════════════════
     // TOOLTIP
