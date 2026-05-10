@@ -287,6 +287,17 @@
 
     /* ══ PYRAMID ══ */
     .pyramid-section { margin-bottom: 40px; }
+    .pyramid-section.collapsed .pyramid-wrap { display: none; }
+    .btn-pyramid-toggle {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 10px; border: 1px solid rgba(255,255,255,.1);
+      border-radius: 7px; background: transparent;
+      color: var(--muted); font: 600 11px 'Inter', sans-serif;
+      cursor: pointer; transition: all .18s ease; white-space: nowrap;
+    }
+    .btn-pyramid-toggle:hover { border-color: rgba(255,255,255,.22); color: var(--ink); }
+    .pyramid-toggle-icon { display: inline-block; transition: transform .2s ease; }
+    .pyramid-section.collapsed .pyramid-toggle-icon { transform: rotate(-90deg); }
 
     .section-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
     .section-header h2 { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: .3px; }
@@ -1309,10 +1320,15 @@
     </aside>
 
     <div class="content">
-      <section class="pyramid-section" aria-label="Tier pyramid">
+      <section class="pyramid-section" id="pyramid-section" aria-label="Tier pyramid">
         <div class="section-header">
           <h2>Piramida Tier</h2>
-          <p>Semakin ke atas semakin sedikit posisinya, semakin besar tanggung jawabnya.</p>
+          <div style="display:flex;align-items:center;gap:12px">
+            <p>Semakin ke atas semakin sedikit posisinya, semakin besar tanggung jawabnya.</p>
+            <button class="btn-pyramid-toggle" id="btn-pyramid-toggle" title="Sembunyikan / tampilkan piramida">
+              <span class="pyramid-toggle-icon">&#9660;</span><span id="pyramid-toggle-label"> Sembunyikan</span>
+            </button>
+          </div>
         </div>
         <div class="pyramid-wrap">
           <div class="pyramid" id="pyramid"></div>
@@ -2433,6 +2449,21 @@
     })();
 
     // ══════════════════════════════════════════
+    // PYRAMID MINIMIZE
+    // ══════════════════════════════════════════
+    (function initPyramidToggle() {
+      const btn = document.getElementById("btn-pyramid-toggle");
+      const section = document.getElementById("pyramid-section");
+      const label = document.getElementById("pyramid-toggle-label");
+      let collapsed = false;
+      btn.addEventListener("click", () => {
+        collapsed = !collapsed;
+        section.classList.toggle("collapsed", collapsed);
+        label.textContent = " " + (collapsed ? "Tampilkan" : "Sembunyikan");
+      });
+    })();
+
+    // ══════════════════════════════════════════
     // FILTER
     // ══════════════════════════════════════════
     function applyFilter(group) {
@@ -2647,6 +2678,7 @@
         card.querySelector(".card-xp-fill").style.width = pct + "%";
         card.querySelector(".card-progress-fill").style.width = pct + "%";
         card.querySelector(".card-xp-text").textContent = `${done}/${allSkills.length} skill learned`;
+        if (activeMyProgress) { renderCards(activeFilter); }
         renderSidebar();
         return;
       }
