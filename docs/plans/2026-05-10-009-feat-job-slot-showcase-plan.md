@@ -1,7 +1,7 @@
 ---
 title: "feat: Job Slot System — Custom Showcase Identity"
 type: feat
-status: active
+status: superseded
 date: 2026-05-10
 origin: docs/brainstorms/job-slot-showcase-requirements.md
 ---
