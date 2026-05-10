@@ -785,6 +785,82 @@
       box-shadow: 0 0 14px color-mix(in srgb, var(--role) 25%, transparent);
     }
 
+    .btn-do-jobchange {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 11px; border-radius: 6px;
+      border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+      background: color-mix(in srgb, var(--gold) 12%, transparent);
+      color: var(--gold);
+      font: 700 10.5px 'Inter', sans-serif;
+      cursor: pointer; white-space: nowrap;
+      letter-spacing: .4px;
+      transition: all .16s ease;
+    }
+    .btn-do-jobchange:hover {
+      background: color-mix(in srgb, var(--gold) 22%, transparent);
+      border-color: var(--gold);
+      box-shadow: 0 0 14px color-mix(in srgb, var(--gold) 25%, transparent);
+    }
+
+    /* ══ JOB CHANGE MODAL ══ */
+    .jobchange-overlay {
+      position: fixed; inset: 0; z-index: 750;
+      background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity .2s ease;
+    }
+    .jobchange-overlay.open { opacity: 1; pointer-events: all; }
+    .jobchange-modal {
+      width: min(520px, 100%); max-height: 88vh; overflow-y: auto;
+      border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent); border-radius: 14px;
+      background: #111827;
+      box-shadow: 0 40px 80px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05);
+      padding: 28px; position: relative;
+      transform: translateY(12px); transition: transform .2s ease;
+    }
+    .jobchange-overlay.open .jobchange-modal { transform: none; }
+    .jobchange-modal-title {
+      font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700;
+      color: var(--gold); margin-bottom: 6px;
+    }
+    .jobchange-modal-target {
+      font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 4px;
+    }
+    .jobchange-modal-sub { color: var(--muted); font-size: 12px; line-height: 1.5; margin-bottom: 20px; }
+    .jobchange-close { position: absolute; top: 16px; right: 16px; }
+    .jobchange-include-label {
+      font-size: 10.5px; font-weight: 700; color: var(--muted);
+      letter-spacing: .5px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .jobchange-include-list { display: flex; flex-direction: column; gap: 4px; max-height: 200px; overflow-y: auto; margin-bottom: 20px; }
+    .jobchange-include-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 10px; border-radius: 7px;
+      cursor: pointer; transition: background .12s;
+      border: 1px solid transparent;
+    }
+    .jobchange-include-item:hover { background: rgba(255,255,255,.04); border-color: var(--line); }
+    .jobchange-include-item input[type="checkbox"] { accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
+    .jobchange-include-item label { font-size: 12.5px; color: var(--ink); cursor: pointer; flex: 1; }
+    .jobchange-include-item .jc-tier { font-size: 10px; color: var(--muted); }
+    .jobchange-empty-notice { font-size: 12px; color: var(--muted); font-style: italic; padding: 4px 0; }
+    .jobchange-modal-footer { display: flex; justify-content: flex-end; gap: 8px; }
+    .btn-jc-confirm {
+      padding: 10px 22px; border-radius: 9px;
+      border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+      background: color-mix(in srgb, var(--gold) 14%, transparent);
+      color: var(--gold); font: 700 13px 'Cinzel', serif;
+      cursor: pointer; letter-spacing: .5px; transition: all .15s ease;
+    }
+    .btn-jc-confirm:hover { background: color-mix(in srgb, var(--gold) 22%, transparent); }
+    .btn-jc-cancel {
+      padding: 10px 18px; border-radius: 9px;
+      border: 1px solid var(--line); background: transparent;
+      color: var(--muted); font: 600 13px 'Inter', sans-serif;
+      cursor: pointer; transition: all .15s ease;
+    }
+    .btn-jc-cancel:hover { border-color: var(--line-bright); color: var(--ink); }
+
     /* ══ MODAL (quest window) ══ */
     .modal-overlay {
       position: fixed; inset: 0; z-index: 500;
@@ -1218,97 +1294,6 @@
     }
     .btn-export-showcase-header:hover { background: color-mix(in srgb, var(--gold) 18%, transparent); }
 
-    /* ══ SLOT EDITOR MODAL ══ */
-    .slot-modal-overlay {
-      position: fixed; inset: 0; z-index: 750;
-      background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center; padding: 20px;
-      opacity: 0; pointer-events: none; transition: opacity .2s ease;
-    }
-    .slot-modal-overlay.open { opacity: 1; pointer-events: all; }
-    .slot-modal {
-      width: min(560px, 100%); max-height: 88vh; overflow-y: auto;
-      border: 1px solid var(--line-bright); border-radius: 14px;
-      background: #111827;
-      box-shadow: 0 40px 80px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05);
-      padding: 28px; position: relative;
-      transform: translateY(12px); transition: transform .2s ease;
-    }
-    .slot-modal-overlay.open .slot-modal { transform: none; }
-    .slot-modal-title {
-      font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700;
-      color: var(--ink); margin-bottom: 6px;
-    }
-    .slot-modal-sub { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin-bottom: 22px; }
-    .slot-close { position: absolute; top: 16px; right: 16px; }
-    .slot-sections { display: flex; flex-direction: column; gap: 16px; }
-    .slot-section {
-      border: 1px solid var(--line); border-radius: 10px;
-      padding: 14px 16px; background: rgba(255,255,255,.02);
-    }
-    .slot-section-header {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
-    }
-    .slot-section-num {
-      width: 20px; height: 20px; border-radius: 50%;
-      border: 1.5px solid var(--gold); color: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font: 700 10px 'Inter', sans-serif; flex-shrink: 0;
-    }
-    .slot-section-label { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
-    .slot-anchor-select {
-      width: 100%; padding: 8px 10px; border-radius: 8px;
-      border: 1px solid var(--line); background: var(--panel-2);
-      color: var(--ink); font: 400 13px 'Inter', sans-serif;
-      outline: none; cursor: pointer; transition: border-color .14s;
-      appearance: none; -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 10px center;
-      padding-right: 28px;
-    }
-    .slot-anchor-select:focus { border-color: var(--line-bright); }
-    .slot-anchor-select option { background: #1a2235; }
-    .slot-subs { margin-top: 10px; display: none; }
-    .slot-subs.show { display: block; }
-    .slot-subs-label { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px; }
-    .slot-subs-list { display: flex; flex-direction: column; gap: 4px; max-height: 160px; overflow-y: auto; }
-    .slot-sub-item {
-      display: flex; align-items: center; gap: 8px;
-      padding: 5px 8px; border-radius: 6px;
-      cursor: pointer; transition: background .12s;
-    }
-    .slot-sub-item:hover { background: rgba(255,255,255,.04); }
-    .slot-sub-item input[type="checkbox"] { accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
-    .slot-sub-item label { font-size: 12px; color: var(--ink); cursor: pointer; flex: 1; }
-    .slot-sub-item .slot-sub-tier { font-size: 10px; color: var(--muted); }
-    .slot-empty-notice { font-size: 12px; color: var(--muted); font-style: italic; padding: 4px 0; }
-    .slot-modal-footer { margin-top: 20px; display: flex; justify-content: flex-end; gap: 8px; }
-    .btn-slot-save {
-      padding: 10px 22px; border-radius: 9px;
-      border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
-      background: color-mix(in srgb, var(--gold) 14%, transparent);
-      color: var(--gold); font: 700 13px 'Cinzel', serif;
-      cursor: pointer; letter-spacing: .5px; transition: all .15s ease;
-    }
-    .btn-slot-save:hover { background: color-mix(in srgb, var(--gold) 22%, transparent); }
-    .btn-slot-cancel {
-      padding: 10px 18px; border-radius: 9px;
-      border: 1px solid var(--line); background: transparent;
-      color: var(--muted); font: 600 13px 'Inter', sans-serif;
-      cursor: pointer; transition: all .15s ease;
-    }
-    .btn-slot-cancel:hover { border-color: var(--line-bright); color: var(--ink); }
-    .slot-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
-    .btn-slot-open {
-      padding: 9px 16px; border-radius: 9px;
-      border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
-      background: color-mix(in srgb, var(--gold) 8%, transparent);
-      color: var(--gold); font: 600 12px 'Inter', sans-serif;
-      cursor: pointer; transition: all .15s ease; white-space: nowrap;
-    }
-    .btn-slot-open:hover { background: color-mix(in srgb, var(--gold) 16%, transparent); }
-    .slot-status-label { font-size: 11.5px; color: var(--muted); }
-
     /* ══ AUTO POPOVER ══ */
     .auto-wrapper { position: relative; }
 
@@ -1704,13 +1689,6 @@
 
       <div class="export-divider"></div>
 
-      <div class="slot-row">
-        <button class="btn-slot-open" id="btn-open-slot">🎯 Atur Slot Showcase</button>
-        <span class="slot-status-label" id="slot-status-label">Belum ada slot</span>
-      </div>
-
-      <div class="export-divider"></div>
-
       <button class="btn-export-showcase" id="btn-do-export">
         📋 Copy &amp; Open GitHub
       </button>
@@ -1726,20 +1704,22 @@
     </div>
   </div>
 
-  <!-- ── SLOT EDITOR MODAL ── -->
-  <div class="slot-modal-overlay" id="slot-overlay" role="dialog" aria-modal="true">
-    <div class="slot-modal">
-      <button class="modal-close slot-close" id="slot-close" aria-label="Tutup">&times;</button>
-      <div class="slot-modal-title">🎯 Atur Slot Showcase</div>
-      <div class="slot-modal-sub">Pilih hingga 3 job sebagai identitas utamamu. Tiap slot bisa menyertakan job lain sebagai sub-skill yang akan tampil di dalamnya saat showcase dibuka.</div>
+  <!-- ── JOB CHANGE MODAL ── -->
+  <div class="jobchange-overlay" id="jobchange-overlay" role="dialog" aria-modal="true">
+    <div class="jobchange-modal">
+      <button class="modal-close jobchange-close" id="jobchange-close" aria-label="Tutup">&times;</button>
+      <div class="jobchange-modal-title">⚔ Job Change</div>
+      <div class="jobchange-modal-target" id="jobchange-target-label"></div>
+      <div class="jobchange-modal-sub">Pilih job mana yang ingin kamu bawa sebagai sub-skill dalam identitasmu yang baru. Opsional — kamu bisa konfirmasi tanpa memilih apapun.</div>
 
-      <div class="slot-sections" id="slot-sections">
-        <!-- slot sections injected by JS -->
+      <div class="jobchange-include-label">Include sebagai sub-skill</div>
+      <div class="jobchange-include-list" id="jobchange-include-list">
+        <!-- injected by JS -->
       </div>
 
-      <div class="slot-modal-footer">
-        <button class="btn-slot-cancel" id="slot-cancel">Batal</button>
-        <button class="btn-slot-save" id="slot-save">Simpan Slot</button>
+      <div class="jobchange-modal-footer">
+        <button class="btn-jc-cancel" id="jobchange-cancel">Batal</button>
+        <button class="btn-jc-confirm" id="jobchange-confirm">Konfirmasi Job Change</button>
       </div>
     </div>
   </div>
@@ -2333,6 +2313,38 @@
     };
 
     // ══════════════════════════════════════════
+    // JOB PROGRESSION TREE
+    // ══════════════════════════════════════════
+    const jobProgressionTree = {
+      "Fullstack Developer":    { unlockedBy: ["Frontend Developer", "Backend Developer", "Mobile Developer"] },
+      "Tech Lead":              { unlockedBy: ["Fullstack Developer"] },
+      "QA Automation":          { unlockedBy: ["Manual QA"] },
+      "Performance Tester":     { unlockedBy: ["Manual QA"] },
+      "BI Developer":           { unlockedBy: ["Data Analyst"] },
+      "Data Engineer":          { unlockedBy: ["Data Analyst"] },
+      "Data Scientist":         { unlockedBy: ["Data Analyst"] },
+      "AI Engineer":            { unlockedBy: ["BI Developer", "Data Engineer", "Data Scientist"] },
+      "Cloud Engineer":         { unlockedBy: ["System Administrator", "Network Engineer"] },
+      "DevOps Engineer":        { unlockedBy: ["System Administrator", "Network Engineer"] },
+      "Database Admin":         { unlockedBy: ["System Administrator", "Network Engineer"] },
+      "SRE":                    { unlockedBy: ["Cloud Engineer", "DevOps Engineer", "Database Admin"] },
+      "Security Engineer":      { unlockedBy: ["SOC Analyst"] },
+      "Pentester":              { unlockedBy: ["SOC Analyst"] },
+      "GRC Specialist":         { unlockedBy: ["SOC Analyst"] },
+      "AppSec Engineer":        { unlockedBy: ["Security Engineer", "Pentester", "GRC Specialist"] },
+      "Product Owner":          { unlockedBy: ["Business Analyst"] },
+      "Project Manager":        { unlockedBy: ["Business Analyst"] },
+      "Product Manager":        { unlockedBy: ["Product Owner", "Project Manager"] },
+      "UX Designer":            { unlockedBy: ["UI Designer"] },
+      "Product Designer":       { unlockedBy: ["UX Designer"] },
+      "Technical Support":      { unlockedBy: ["Helpdesk"] },
+      "Application Support":    { unlockedBy: ["Helpdesk"] },
+      "Engineering Manager":    { unlockedBy: ["__any_t2_t3__"] },
+      "CTO":                    { unlockedBy: ["__any_t2_t3__"] },
+      "CISO":                   { unlockedBy: ["__any_t2_t3__"] },
+    };
+
+    // ══════════════════════════════════════════
     // STORAGE
     // ══════════════════════════════════════════
     const STORAGE_KEY = "itjt_progress_v1";
@@ -2340,7 +2352,7 @@
     const PROFILE_KEY = "itjt_profile_v1";
     const AUTO_KEY    = "itjt_auto_v1";
     const LANG_KEY    = "itjt_lang_v1";
-    const SLOTS_KEY   = "itjt_slots_v1";
+    const JOB_CHANGE_KEY = "itjt_jobchange_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -2379,17 +2391,17 @@
       localStorage.setItem(AUTO_KEY, JSON.stringify(data));
     }
 
-    function loadSlots() {
-      try { return JSON.parse(localStorage.getItem(SLOTS_KEY)) || [null, null, null]; }
-      catch { return [null, null, null]; }
+    function loadJobChange() {
+      try { return JSON.parse(localStorage.getItem(JOB_CHANGE_KEY)) || null; }
+      catch { return null; }
     }
 
-    function saveSlots(data) {
-      localStorage.setItem(SLOTS_KEY, JSON.stringify(data));
+    function saveJobChange(data) {
+      localStorage.setItem(JOB_CHANGE_KEY, JSON.stringify(data));
     }
 
     let links = loadLinks();
-    let slots = loadSlots();
+    let jobChangeState = loadJobChange();
 
     // skill key: "JobTitle::SkillName"
     function skillKey(title, skill) { return `${title}::${skill}`; }
@@ -2413,6 +2425,24 @@
       if (!v) return 0;
       if (v === true) return 1; // backward compat
       return Number(v) || 0;
+    }
+
+    function activeSkillCount(jobTitle, skillsStr) {
+      return skillsStr.split(", ").filter(s => skillLevel(jobTitle, s) >= 1).length;
+    }
+
+    function isJobUnlocked(jobTitle, tier) {
+      if (tier <= 1) return true;
+      const node = jobProgressionTree[jobTitle];
+      if (!node) return true;
+      if (node.unlockedBy.includes("__any_t2_t3__")) {
+        return jobs.some(j => j[8] >= 2 && activeSkillCount(j[1], j[3]) >= 2);
+      }
+      return node.unlockedBy.some(prereqTitle => {
+        const prereqJob = jobs.find(j => j[1] === prereqTitle);
+        if (!prereqJob) return false;
+        return activeSkillCount(prereqTitle, prereqJob[3]) >= 2;
+      });
     }
 
     function toggleQuest(itemId) {
@@ -2585,6 +2615,9 @@
       const jobsEl = document.getElementById("jobs");
       let filtered = group === "All" ? jobs : jobs.filter(j => j[0] === group);
 
+      // Tier-gate: hide T2/T3 jobs until prerequisites are met
+      filtered = filtered.filter(j => isJobUnlocked(j[1], j[8]));
+
       if (activeMyProgress) {
         filtered = filtered.filter(([, title,, skills]) => {
           const hasSkill = skills.split(", ").some(s => skillLevel(title, s) >= 1);
@@ -2639,7 +2672,10 @@
                   <span class="card-xp-text">${done}/${total} skill learned</span>
                 </div>
                 ${hasQuest ? `<button class="btn-job-change" data-job="${title}" data-role="${role}">
-                  ⚔ Job Change${qp && qp.done > 0 ? ` · ${qp.pct}%` : ""}
+                  📋 Qualification${qp && qp.done > 0 ? ` · ${qp.pct}%` : ""}
+                </button>` : ""}
+                ${tier >= 2 ? `<button class="btn-do-jobchange" data-job="${title}" data-role="${role}">
+                  ⚔ Job Change
                 </button>` : ""}
               </div>
               ${renderAchievementLinks(title)}
@@ -2826,119 +2862,63 @@
       if (e.target === e.currentTarget) closeSync();
     });
 
-    // ══════════════════════════════════════════
-    // SLOT EDITOR MODAL
-    // ══════════════════════════════════════════
-
     function jobHasProgress(title, skillsStr) {
       return skillsStr.split(", ").some(s => skillLevel(title, s) >= 1);
     }
 
-    function buildSlotSection(slotIdx, currentSlot, qualifiedJobs) {
-      const anchor = currentSlot ? currentSlot.primary : "";
-      const subs   = currentSlot ? currentSlot.subs : [];
+    // ══════════════════════════════════════════
+    // JOB CHANGE MODAL
+    // ══════════════════════════════════════════
+    let _jobchangeTarget = null;
 
-      const selectOpts = qualifiedJobs.map(([group, title,,,,,,, tier]) =>
-        `<option value="${title}" ${title === anchor ? "selected" : ""}>[T${tier}] ${title} (${group})</option>`
-      ).join("");
+    function openJobChangeModal(jobTitle, roleColor) {
+      _jobchangeTarget = jobTitle;
+      document.getElementById("jobchange-target-label").textContent = `Naik ke: ${jobTitle}`;
 
-      const subsHtml = qualifiedJobs
-        .filter(([,title]) => title !== anchor)
-        .map(([group, title,,,,,,, tier]) =>
-          `<div class="slot-sub-item">
-            <input type="checkbox" id="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}" value="${title}" ${subs.includes(title) ? "checked" : ""}>
-            <label for="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}">${title} <span class="slot-sub-tier">[T${tier}] ${group}</span></label>
-          </div>`
-        ).join("");
+      const eligibleJobs = jobs.filter(([,title,,skillsStr]) =>
+        title !== jobTitle && jobHasProgress(title, skillsStr)
+      );
 
-      return `<div class="slot-section" data-slot="${slotIdx}">
-        <div class="slot-section-header">
-          <div class="slot-section-num">${slotIdx + 1}</div>
-          <div class="slot-section-label">Slot ${slotIdx + 1}</div>
-        </div>
-        <select class="slot-anchor-select" data-slot="${slotIdx}">
-          <option value="">— Tidak dipakai —</option>
-          ${selectOpts}
-        </select>
-        <div class="slot-subs ${anchor ? "show" : ""}" data-slot="${slotIdx}">
-          <div class="slot-subs-label">Sub-skill di dalamnya</div>
-          <div class="slot-subs-list">${subsHtml || '<div class="slot-empty-notice">Belum ada job lain dengan progress.</div>'}</div>
-        </div>
-      </div>`;
+      const currentSubs = (jobChangeState && jobChangeState.primary === jobTitle)
+        ? (jobChangeState.subs || [])
+        : [];
+
+      const list = document.getElementById("jobchange-include-list");
+      if (eligibleJobs.length === 0) {
+        list.innerHTML = `<div class="jobchange-empty-notice">Belum ada job T1 dengan skill aktif yang bisa di-include.</div>`;
+      } else {
+        list.innerHTML = eligibleJobs.map(([grp, title,,,,,,, tier]) => {
+          const safeId = `jc-sub-${title.replace(/\s+/g, "-")}`;
+          const checked = currentSubs.includes(title) ? "checked" : "";
+          return `<div class="jobchange-include-item">
+            <input type="checkbox" id="${safeId}" value="${title}" ${checked}>
+            <label for="${safeId}">${title} <span class="jc-tier">[T${tier}] ${grp}</span></label>
+          </div>`;
+        }).join("");
+      }
+
+      document.getElementById("jobchange-overlay").classList.add("open");
     }
 
-    function openSlotEditor() {
-      const qualifiedJobs = jobs.filter(([,title,,skillsStr]) => jobHasProgress(title, skillsStr));
-      const currentSlots  = loadSlots();
-      const container     = document.getElementById("slot-sections");
-
-      container.innerHTML = [0, 1, 2].map(i =>
-        buildSlotSection(i, currentSlots[i], qualifiedJobs)
-      ).join("");
-
-      // show/hide subs when anchor changes, also update sub options to exclude chosen anchor
-      container.querySelectorAll(".slot-anchor-select").forEach(sel => {
-        sel.addEventListener("change", () => {
-          const slotIdx   = +sel.dataset.slot;
-          const chosen    = sel.value;
-          const subsDiv   = container.querySelector(`.slot-subs[data-slot="${slotIdx}"]`);
-          const subsList  = subsDiv.querySelector(".slot-subs-list");
-
-          subsDiv.classList.toggle("show", !!chosen);
-
-          // rebuild sub checkboxes excluding the newly chosen anchor
-          const prevChecked = [...subsList.querySelectorAll("input:checked")].map(i => i.value);
-          const filteredSubs = qualifiedJobs.filter(([,title]) => title !== chosen);
-          subsList.innerHTML = filteredSubs.length
-            ? filteredSubs.map(([group, title,,,,,,, tier]) =>
-                `<div class="slot-sub-item">
-                  <input type="checkbox" id="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}" value="${title}" ${prevChecked.includes(title) ? "checked" : ""}>
-                  <label for="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}">${title} <span class="slot-sub-tier">[T${tier}] ${group}</span></label>
-                </div>`
-              ).join("")
-            : '<div class="slot-empty-notice">Belum ada job lain dengan progress.</div>';
-        });
-      });
-
-      document.getElementById("slot-overlay").classList.add("open");
+    function closeJobChangeModal() {
+      document.getElementById("jobchange-overlay").classList.remove("open");
+      _jobchangeTarget = null;
     }
 
-    function closeSlotEditor() {
-      document.getElementById("slot-overlay").classList.remove("open");
+    function confirmJobChange() {
+      if (!_jobchangeTarget) return;
+      const checked = [...document.querySelectorAll("#jobchange-include-list input:checked")].map(cb => cb.value);
+      jobChangeState = { primary: _jobchangeTarget, subs: checked };
+      saveJobChange(jobChangeState);
+      closeJobChangeModal();
+      refreshCards();
     }
 
-    function saveSlotEditor() {
-      const container  = document.getElementById("slot-sections");
-      const newSlots   = [0, 1, 2].map(i => {
-        const sel    = container.querySelector(`.slot-anchor-select[data-slot="${i}"]`);
-        const anchor = sel ? sel.value : "";
-        if (!anchor) return null;
-        const subs = [...container.querySelectorAll(`.slot-subs[data-slot="${i}"] input:checked`)]
-          .map(cb => cb.value);
-        return { primary: anchor, subs };
-      });
-      saveSlots(newSlots);
-      slots = newSlots;
-      closeSlotEditor();
-      updateSlotStatusLabel();
-    }
-
-    function updateSlotStatusLabel() {
-      const el = document.getElementById("slot-status-label");
-      if (!el) return;
-      const count = slots.filter(Boolean).length;
-      el.textContent = count > 0 ? `${count} slot dikonfigurasi` : "Belum ada slot";
-    }
-
-    document.getElementById("slot-close").addEventListener("click", closeSlotEditor);
-    document.getElementById("slot-cancel").addEventListener("click", closeSlotEditor);
-    document.getElementById("slot-save").addEventListener("click", saveSlotEditor);
-    document.getElementById("slot-overlay").addEventListener("click", e => {
-      if (e.target === e.currentTarget) closeSlotEditor();
-    });
-    document.getElementById("sync-close").addEventListener("click", closeSync);
-    document.getElementById("sync-overlay").addEventListener("click", e => {
-      if (e.target === e.currentTarget) closeSync();
+    document.getElementById("jobchange-close").addEventListener("click", closeJobChangeModal);
+    document.getElementById("jobchange-cancel").addEventListener("click", closeJobChangeModal);
+    document.getElementById("jobchange-confirm").addEventListener("click", confirmJobChange);
+    document.getElementById("jobchange-overlay").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeJobChangeModal();
     });
 
     // Export
@@ -3221,10 +3201,17 @@
         return;
       }
 
-      // job change button
-      const btn = e.target.closest(".btn-job-change");
-      if (btn) {
-        openQuest(btn.dataset.job, btn.dataset.role);
+      // qualification button (opens quest modal)
+      const qualBtn = e.target.closest(".btn-job-change");
+      if (qualBtn) {
+        openQuest(qualBtn.dataset.job, qualBtn.dataset.role);
+        return;
+      }
+
+      // job change button (opens job change modal)
+      const jcBtn = e.target.closest(".btn-do-jobchange");
+      if (jcBtn) {
+        openJobChangeModal(jcBtn.dataset.job, jcBtn.dataset.role);
       }
     });
 
@@ -3310,9 +3297,6 @@
     document.getElementById("export-overlay").addEventListener("click", e => {
       if (e.target === e.currentTarget) closeExport();
     });
-    document.getElementById("btn-open-slot").addEventListener("click", openSlotEditor);
-    updateSlotStatusLabel();
-
     // Auto-save profile on input
     ["profile-name","profile-nick","profile-github"].forEach(id => {
       document.getElementById(id).addEventListener("input", () => {
@@ -3330,7 +3314,7 @@
       const prof = loadProfile();
       const snap = loadProgress();
       const snapLinks = loadLinks();
-      const snapSlots = loadSlots();
+      const snapJobChange = loadJobChange();
       const filtered = jobs.filter(([, title,, skills]) =>
         skills.split(", ").some(s => {
           const v = snap[skillKey(title, s)];
@@ -3339,7 +3323,7 @@
           return Number(v) > 0;
         })
       );
-      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapSlots) : null };
+      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange) : null };
     }
 
     function triggerDownload(html) {
@@ -3461,7 +3445,7 @@
     // ══════════════════════════════════════════
     // HTML GENERATOR
     // ══════════════════════════════════════════
-    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapSlots) {
+    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapJobChange) {
       const name   = prof.name   || "Unknown Hero";
       const nick   = prof.nick   || "";
       const github = prof.github || "";
@@ -3469,11 +3453,11 @@
       const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
       const tierColors = ["#6b7280","#69a8f5","#b889f4","#f0bb4e","#ef9b3e"];
 
-      const validSlots = Array.isArray(snapSlots)
-        ? snapSlots.filter(s => s && s.primary && filteredJobs.some(([,t]) => t === s.primary))
-        : [];
+      const validJobChange = snapJobChange && snapJobChange.primary && filteredJobs.some(([,t]) => t === snapJobChange.primary)
+        ? snapJobChange
+        : null;
 
-      const anchorTitles = new Set(validSlots.map(s => s.primary));
+      const anchorTitles = validJobChange ? new Set([validJobChange.primary]) : new Set();
 
       const standaloneTitles = new Set(
         filteredJobs.map(([,t]) => t).filter(t => !anchorTitles.has(t))
@@ -3532,22 +3516,23 @@
     </div>`;
       }
 
-      // Build anchor cards with sub-skill panels
-      const anchorHTML = validSlots.map((slot, si) => {
-        const jobData = filteredJobs.find(([,t]) => t === slot.primary);
-        if (!jobData) return "";
-        const [grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass] = jobData;
+      // Build anchor card with sub-skill panel (single Job Change state)
+      let anchorHTML = "";
+      if (validJobChange) {
+        const jobData = filteredJobs.find(([,t]) => t === validJobChange.primary);
+        if (jobData) {
+          const [grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass] = jobData;
 
-        const subJobsData = (slot.subs || [])
-          .map(subTitle => filteredJobs.find(([,t]) => t === subTitle))
-          .filter(Boolean);
+          const subJobsData = (validJobChange.subs || [])
+            .map(subTitle => filteredJobs.find(([,t]) => t === subTitle))
+            .filter(Boolean);
 
-        const subsHTML = subJobsData.map(([sg, st, sd, ss, ssal, srole, shair, stool, stier, scs, sacc]) => {
-          const stc = tierColors[stier] || "#6b7280";
-          const sdEN = jobDescs_en[st] || sd;
-          const ssalEN = salaries_en[st] || ssal;
-          const saccEl = sacc ? `<div class="acc ${sacc}"></div>` : "";
-          return `<div class="sub-card" style="--role:${srole};--hair:${shair};${scs}">
+          const subsHTML = subJobsData.map(([sg, st, sd, ss, ssal, srole, shair, stool, stier, scs, sacc]) => {
+            const stc = tierColors[stier] || "#6b7280";
+            const sdEN = jobDescs_en[st] || sd;
+            const ssalEN = salaries_en[st] || ssal;
+            const saccEl = sacc ? `<div class="acc ${sacc}"></div>` : "";
+            return `<div class="sub-card" style="--role:${srole};--hair:${shair};${scs}">
           <div class="sub-card-sprite">
             <div class="sprite">
               <div class="hair"></div><div class="head"></div>
@@ -3574,18 +3559,17 @@
             </div>
           </div>
         </div>`;
-        }).join("\n");
+          }).join("\n");
 
-        const panelId = `anchor-panel-${si}`;
-        const hasSubs = subJobsData.length > 0;
+          const hasSubs = subJobsData.length > 0;
 
-        return `
-  <article class="card anchor-card${hasSubs ? " has-subs" : ""}" style="--role:${role};--hair:${hair};${charStyle}" data-panel="${panelId}">
-    <div class="anchor-badge">⚓ Identity Slot ${si + 1}</div>
+          anchorHTML = `
+  <article class="card anchor-card${hasSubs ? " has-subs" : ""}" style="--role:${role};--hair:${hair};${charStyle}" data-panel="anchor-panel-0">
+    <div class="anchor-badge">⚓ Active Identity</div>
     ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
     ${hasSubs ? `<div class="anchor-expand-hint">▼ ${subJobsData.length} sub-skill${subJobsData.length > 1 ? "s" : ""} — click to expand</div>` : ""}
   </article>
-  <div class="anchor-panel" id="${panelId}" hidden>
+  <div class="anchor-panel" id="anchor-panel-0" hidden>
     <div class="anchor-panel-header">
       <span class="anchor-panel-title">Skills inside <strong>${title}</strong></span>
       <button class="anchor-panel-close" aria-label="Close">✕</button>
@@ -3594,7 +3578,8 @@
       ${subsHTML || '<p style="color:var(--muted);font-size:12px;padding:8px 0">No sub-skills configured.</p>'}
     </div>
   </div>`;
-      }).join("\n");
+        }
+      }
 
       // Build standalone cards
       const standaloneHTML = filteredJobs
@@ -3604,7 +3589,7 @@
     ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
   </article>`).join("\n");
 
-      const hasAnchors = validSlots.length > 0;
+      const hasAnchors = validJobChange !== null;
 
       return `<!DOCTYPE html>
 <html lang="en">
@@ -3893,7 +3878,7 @@ a{color:inherit}
   </div>
 </div>
 <div class="grid">
-${hasAnchors ? '<div class="anchor-section-label">⚓ Identity Slots</div>' : ""}
+${hasAnchors ? '<div class="anchor-section-label">⚓ Active Identity</div>' : ""}
 ${anchorHTML}
 ${hasAnchors && standaloneHTML ? '<div class="standalone-section-label">Other Skills</div>' : ""}
 ${standaloneHTML}
