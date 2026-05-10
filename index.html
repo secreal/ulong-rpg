@@ -445,11 +445,12 @@
     .sprite * { position: absolute; }
     .head { left:38px; top:16px; width:var(--head-w,42px); height:var(--head-h,38px); border-radius:var(--head-rx,45% 45% 40% 40%); background:#f0c18e; border:3px solid #6a3d2b; z-index:4; }
     .hair { left:33px; top:7px; width:var(--hair-w,52px); height:var(--hair-h,28px); border-radius:var(--hair-rx,50% 50% 30% 30%); background:var(--hair); border:3px solid #33202a; z-index:5; }
+    .hair::before { content:""; position:absolute; bottom:-7px; left:50%; transform:translateX(-50%); width:62%; height:9px; background:var(--hair); border:2px solid #33202a; border-top:0; border-radius:0 0 8px 8px; }
     .eye { top:33px; width:var(--eye-size,7px); height:var(--eye-size,7px); background:#1d2430; border-radius:50%; z-index:7; }
     .eye::after { content:""; position:absolute; top:1px; left:1px; width:2px; height:2px; background:rgba(255,255,255,.7); border-radius:50%; }
     .eye.left { left:var(--eye-l,49px); } .eye.right { left:var(--eye-r,62px); }
-    .body { left:32px; top:54px; width:var(--body-w,54px); height:var(--body-h,52px); border-radius:var(--body-rx,10px 10px 8px 8px); background:var(--role); border:4px solid #1f2634; z-index:3; }
-    .cape { left:24px; top:54px; width:70px; height:70px; border-radius:10px 10px 28px 28px; background:color-mix(in srgb, var(--role) 42%, #0d1117); z-index:1; transform:skewX(-5deg); }
+    .body { left:32px; top:54px; width:var(--body-w,54px); height:var(--body-h,52px); border-radius:var(--body-rx,28% 28% 35% 35% / 18% 18% 24% 24%); background:var(--role); border:4px solid #1f2634; z-index:3; }
+    .cape { left:24px; top:54px; width:70px; height:70px; border-radius:40% 40% 50% 50% / 20% 20% 40% 40%; background:color-mix(in srgb, var(--role) 42%, #0d1117); z-index:1; transform:skewX(-5deg); }
     .arm { top:65px; width:18px; height:44px; border-radius:9px; background:#f0c18e; border:3px solid #6a3d2b; z-index:2; }
     .arm.left { left:19px; transform:rotate(var(--arm-l-rot,18deg)); } .arm.right { right:19px; transform:rotate(var(--arm-r-rot,-18deg)); }
     .leg { top:101px; width:20px; height:28px; border-radius:0 0 8px 8px; background:#2e3d57; border:3px solid #1f2634; z-index:2; }
@@ -1217,6 +1218,97 @@
     }
     .btn-export-showcase-header:hover { background: color-mix(in srgb, var(--gold) 18%, transparent); }
 
+    /* ══ SLOT EDITOR MODAL ══ */
+    .slot-modal-overlay {
+      position: fixed; inset: 0; z-index: 750;
+      background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity .2s ease;
+    }
+    .slot-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .slot-modal {
+      width: min(560px, 100%); max-height: 88vh; overflow-y: auto;
+      border: 1px solid var(--line-bright); border-radius: 14px;
+      background: #111827;
+      box-shadow: 0 40px 80px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05);
+      padding: 28px; position: relative;
+      transform: translateY(12px); transition: transform .2s ease;
+    }
+    .slot-modal-overlay.open .slot-modal { transform: none; }
+    .slot-modal-title {
+      font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .slot-modal-sub { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin-bottom: 22px; }
+    .slot-close { position: absolute; top: 16px; right: 16px; }
+    .slot-sections { display: flex; flex-direction: column; gap: 16px; }
+    .slot-section {
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: 14px 16px; background: rgba(255,255,255,.02);
+    }
+    .slot-section-header {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+    }
+    .slot-section-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid var(--gold); color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font: 700 10px 'Inter', sans-serif; flex-shrink: 0;
+    }
+    .slot-section-label { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+    .slot-anchor-select {
+      width: 100%; padding: 8px 10px; border-radius: 8px;
+      border: 1px solid var(--line); background: var(--panel-2);
+      color: var(--ink); font: 400 13px 'Inter', sans-serif;
+      outline: none; cursor: pointer; transition: border-color .14s;
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      padding-right: 28px;
+    }
+    .slot-anchor-select:focus { border-color: var(--line-bright); }
+    .slot-anchor-select option { background: #1a2235; }
+    .slot-subs { margin-top: 10px; display: none; }
+    .slot-subs.show { display: block; }
+    .slot-subs-label { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px; }
+    .slot-subs-list { display: flex; flex-direction: column; gap: 4px; max-height: 160px; overflow-y: auto; }
+    .slot-sub-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 5px 8px; border-radius: 6px;
+      cursor: pointer; transition: background .12s;
+    }
+    .slot-sub-item:hover { background: rgba(255,255,255,.04); }
+    .slot-sub-item input[type="checkbox"] { accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
+    .slot-sub-item label { font-size: 12px; color: var(--ink); cursor: pointer; flex: 1; }
+    .slot-sub-item .slot-sub-tier { font-size: 10px; color: var(--muted); }
+    .slot-empty-notice { font-size: 12px; color: var(--muted); font-style: italic; padding: 4px 0; }
+    .slot-modal-footer { margin-top: 20px; display: flex; justify-content: flex-end; gap: 8px; }
+    .btn-slot-save {
+      padding: 10px 22px; border-radius: 9px;
+      border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+      background: color-mix(in srgb, var(--gold) 14%, transparent);
+      color: var(--gold); font: 700 13px 'Cinzel', serif;
+      cursor: pointer; letter-spacing: .5px; transition: all .15s ease;
+    }
+    .btn-slot-save:hover { background: color-mix(in srgb, var(--gold) 22%, transparent); }
+    .btn-slot-cancel {
+      padding: 10px 18px; border-radius: 9px;
+      border: 1px solid var(--line); background: transparent;
+      color: var(--muted); font: 600 13px 'Inter', sans-serif;
+      cursor: pointer; transition: all .15s ease;
+    }
+    .btn-slot-cancel:hover { border-color: var(--line-bright); color: var(--ink); }
+    .slot-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+    .btn-slot-open {
+      padding: 9px 16px; border-radius: 9px;
+      border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+      background: color-mix(in srgb, var(--gold) 8%, transparent);
+      color: var(--gold); font: 600 12px 'Inter', sans-serif;
+      cursor: pointer; transition: all .15s ease; white-space: nowrap;
+    }
+    .btn-slot-open:hover { background: color-mix(in srgb, var(--gold) 16%, transparent); }
+    .slot-status-label { font-size: 11.5px; color: var(--muted); }
+
     /* ══ AUTO POPOVER ══ */
     .auto-wrapper { position: relative; }
 
@@ -1612,6 +1704,13 @@
 
       <div class="export-divider"></div>
 
+      <div class="slot-row">
+        <button class="btn-slot-open" id="btn-open-slot">🎯 Atur Slot Showcase</button>
+        <span class="slot-status-label" id="slot-status-label">Belum ada slot</span>
+      </div>
+
+      <div class="export-divider"></div>
+
       <button class="btn-export-showcase" id="btn-do-export">
         📋 Copy &amp; Open GitHub
       </button>
@@ -1623,6 +1722,24 @@
       </div>
       <div style="margin-top:8px;font-size:11px;color:var(--muted);display:none" id="export-fallback-wrap">
         Tidak bisa paste? <a id="export-fallback-dl" href="#" style="color:var(--gold);opacity:.8">Download file saja</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLOT EDITOR MODAL ── -->
+  <div class="slot-modal-overlay" id="slot-overlay" role="dialog" aria-modal="true">
+    <div class="slot-modal">
+      <button class="modal-close slot-close" id="slot-close" aria-label="Tutup">&times;</button>
+      <div class="slot-modal-title">🎯 Atur Slot Showcase</div>
+      <div class="slot-modal-sub">Pilih hingga 3 job sebagai identitas utamamu. Tiap slot bisa menyertakan job lain sebagai sub-skill yang akan tampil di dalamnya saat showcase dibuka.</div>
+
+      <div class="slot-sections" id="slot-sections">
+        <!-- slot sections injected by JS -->
+      </div>
+
+      <div class="slot-modal-footer">
+        <button class="btn-slot-cancel" id="slot-cancel">Batal</button>
+        <button class="btn-slot-save" id="slot-save">Simpan Slot</button>
       </div>
     </div>
   </div>
@@ -2223,6 +2340,7 @@
     const PROFILE_KEY = "itjt_profile_v1";
     const AUTO_KEY    = "itjt_auto_v1";
     const LANG_KEY    = "itjt_lang_v1";
+    const SLOTS_KEY   = "itjt_slots_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -2261,7 +2379,17 @@
       localStorage.setItem(AUTO_KEY, JSON.stringify(data));
     }
 
+    function loadSlots() {
+      try { return JSON.parse(localStorage.getItem(SLOTS_KEY)) || [null, null, null]; }
+      catch { return [null, null, null]; }
+    }
+
+    function saveSlots(data) {
+      localStorage.setItem(SLOTS_KEY, JSON.stringify(data));
+    }
+
     let links = loadLinks();
+    let slots = loadSlots();
 
     // skill key: "JobTitle::SkillName"
     function skillKey(title, skill) { return `${title}::${skill}`; }
@@ -2698,6 +2826,121 @@
       if (e.target === e.currentTarget) closeSync();
     });
 
+    // ══════════════════════════════════════════
+    // SLOT EDITOR MODAL
+    // ══════════════════════════════════════════
+
+    function jobHasProgress(title, skillsStr) {
+      return skillsStr.split(", ").some(s => skillLevel(title, s) >= 1);
+    }
+
+    function buildSlotSection(slotIdx, currentSlot, qualifiedJobs) {
+      const anchor = currentSlot ? currentSlot.primary : "";
+      const subs   = currentSlot ? currentSlot.subs : [];
+
+      const selectOpts = qualifiedJobs.map(([group, title,,,,,,, tier]) =>
+        `<option value="${title}" ${title === anchor ? "selected" : ""}>[T${tier}] ${title} (${group})</option>`
+      ).join("");
+
+      const subsHtml = qualifiedJobs
+        .filter(([,title]) => title !== anchor)
+        .map(([group, title,,,,,,, tier]) =>
+          `<div class="slot-sub-item">
+            <input type="checkbox" id="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}" value="${title}" ${subs.includes(title) ? "checked" : ""}>
+            <label for="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}">${title} <span class="slot-sub-tier">[T${tier}] ${group}</span></label>
+          </div>`
+        ).join("");
+
+      return `<div class="slot-section" data-slot="${slotIdx}">
+        <div class="slot-section-header">
+          <div class="slot-section-num">${slotIdx + 1}</div>
+          <div class="slot-section-label">Slot ${slotIdx + 1}</div>
+        </div>
+        <select class="slot-anchor-select" data-slot="${slotIdx}">
+          <option value="">— Tidak dipakai —</option>
+          ${selectOpts}
+        </select>
+        <div class="slot-subs ${anchor ? "show" : ""}" data-slot="${slotIdx}">
+          <div class="slot-subs-label">Sub-skill di dalamnya</div>
+          <div class="slot-subs-list">${subsHtml || '<div class="slot-empty-notice">Belum ada job lain dengan progress.</div>'}</div>
+        </div>
+      </div>`;
+    }
+
+    function openSlotEditor() {
+      const qualifiedJobs = jobs.filter(([,title,,skillsStr]) => jobHasProgress(title, skillsStr));
+      const currentSlots  = loadSlots();
+      const container     = document.getElementById("slot-sections");
+
+      container.innerHTML = [0, 1, 2].map(i =>
+        buildSlotSection(i, currentSlots[i], qualifiedJobs)
+      ).join("");
+
+      // show/hide subs when anchor changes, also update sub options to exclude chosen anchor
+      container.querySelectorAll(".slot-anchor-select").forEach(sel => {
+        sel.addEventListener("change", () => {
+          const slotIdx   = +sel.dataset.slot;
+          const chosen    = sel.value;
+          const subsDiv   = container.querySelector(`.slot-subs[data-slot="${slotIdx}"]`);
+          const subsList  = subsDiv.querySelector(".slot-subs-list");
+
+          subsDiv.classList.toggle("show", !!chosen);
+
+          // rebuild sub checkboxes excluding the newly chosen anchor
+          const prevChecked = [...subsList.querySelectorAll("input:checked")].map(i => i.value);
+          const filteredSubs = qualifiedJobs.filter(([,title]) => title !== chosen);
+          subsList.innerHTML = filteredSubs.length
+            ? filteredSubs.map(([group, title,,,,,,, tier]) =>
+                `<div class="slot-sub-item">
+                  <input type="checkbox" id="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}" value="${title}" ${prevChecked.includes(title) ? "checked" : ""}>
+                  <label for="slot-${slotIdx}-sub-${title.replace(/\s/g,"-")}">${title} <span class="slot-sub-tier">[T${tier}] ${group}</span></label>
+                </div>`
+              ).join("")
+            : '<div class="slot-empty-notice">Belum ada job lain dengan progress.</div>';
+        });
+      });
+
+      document.getElementById("slot-overlay").classList.add("open");
+    }
+
+    function closeSlotEditor() {
+      document.getElementById("slot-overlay").classList.remove("open");
+    }
+
+    function saveSlotEditor() {
+      const container  = document.getElementById("slot-sections");
+      const newSlots   = [0, 1, 2].map(i => {
+        const sel    = container.querySelector(`.slot-anchor-select[data-slot="${i}"]`);
+        const anchor = sel ? sel.value : "";
+        if (!anchor) return null;
+        const subs = [...container.querySelectorAll(`.slot-subs[data-slot="${i}"] input:checked`)]
+          .map(cb => cb.value);
+        return { primary: anchor, subs };
+      });
+      saveSlots(newSlots);
+      slots = newSlots;
+      closeSlotEditor();
+      updateSlotStatusLabel();
+    }
+
+    function updateSlotStatusLabel() {
+      const el = document.getElementById("slot-status-label");
+      if (!el) return;
+      const count = slots.filter(Boolean).length;
+      el.textContent = count > 0 ? `${count} slot dikonfigurasi` : "Belum ada slot";
+    }
+
+    document.getElementById("slot-close").addEventListener("click", closeSlotEditor);
+    document.getElementById("slot-cancel").addEventListener("click", closeSlotEditor);
+    document.getElementById("slot-save").addEventListener("click", saveSlotEditor);
+    document.getElementById("slot-overlay").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeSlotEditor();
+    });
+    document.getElementById("sync-close").addEventListener("click", closeSync);
+    document.getElementById("sync-overlay").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeSync();
+    });
+
     // Export
     document.getElementById("btn-export").addEventListener("click", () => {
       const blob = new Blob([JSON.stringify(progress, null, 2)], { type: "application/json" });
@@ -3067,6 +3310,8 @@
     document.getElementById("export-overlay").addEventListener("click", e => {
       if (e.target === e.currentTarget) closeExport();
     });
+    document.getElementById("btn-open-slot").addEventListener("click", openSlotEditor);
+    updateSlotStatusLabel();
 
     // Auto-save profile on input
     ["profile-name","profile-nick","profile-github"].forEach(id => {
@@ -3085,6 +3330,7 @@
       const prof = loadProfile();
       const snap = loadProgress();
       const snapLinks = loadLinks();
+      const snapSlots = loadSlots();
       const filtered = jobs.filter(([, title,, skills]) =>
         skills.split(", ").some(s => {
           const v = snap[skillKey(title, s)];
@@ -3093,7 +3339,7 @@
           return Number(v) > 0;
         })
       );
-      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks) : null };
+      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapSlots) : null };
     }
 
     function triggerDownload(html) {
@@ -3215,15 +3461,26 @@
     // ══════════════════════════════════════════
     // HTML GENERATOR
     // ══════════════════════════════════════════
-    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks) {
+    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapSlots) {
       const name   = prof.name   || "Unknown Hero";
       const nick   = prof.nick   || "";
       const github = prof.github || "";
 
       const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
+      const tierColors = ["#6b7280","#69a8f5","#b889f4","#f0bb4e","#ef9b3e"];
 
-      const cardHTML = filteredJobs.map(([grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass]) => {
-        const skillsHTML = skills.split(", ").map(s => {
+      const validSlots = Array.isArray(snapSlots)
+        ? snapSlots.filter(s => s && s.primary && filteredJobs.some(([,t]) => t === s.primary))
+        : [];
+
+      const anchorTitles = new Set(validSlots.map(s => s.primary));
+
+      const standaloneTitles = new Set(
+        filteredJobs.map(([,t]) => t).filter(t => !anchorTitles.has(t))
+      );
+
+      function buildSkillBadges(title, skills) {
+        return skills.split(", ").map(s => {
           const v = snap[skillKey(title, s)];
           let lv = 0;
           if (v === true) lv = 1;
@@ -3232,21 +3489,21 @@
           const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
           return `<span class="skill ${lvClass}">${s}${badge}</span>`;
         }).join("");
+      }
 
+      function buildLinksSection(title) {
         const jobLinks = (snapLinks[title] || []).map(l =>
           `<div class="porto-link"><a href="${l.url}" target="_blank" rel="noopener">${l.label || l.url}</a></div>`
         ).join("");
-        const linksSection = jobLinks ? `<div class="porto-section"><div class="porto-label">Links</div>${jobLinks}</div>` : "";
+        return jobLinks ? `<div class="porto-section"><div class="porto-label">Links</div>${jobLinks}</div>` : "";
+      }
 
-        const tierColors = ["#6b7280","#69a8f5","#b889f4","#f0bb4e","#ef9b3e"];
+      function buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass) {
         const tc = tierColors[tier] || "#6b7280";
-
         const descEN   = jobDescs_en[title] || desc;
         const salaryEN = salaries_en[title] || salary;
-
         const accEl = accClass ? `<div class="acc ${accClass}"></div>` : "";
         return `
-  <article class="card" style="--role:${role};--hair:${hair};${charStyle}">
     <div class="card-accent"></div>
     <div class="sprite-stage">
       <div class="sprite">
@@ -3265,16 +3522,89 @@
       </div>
       <h2 class="card-title">${title}</h2>
       <p class="desc" data-id="${desc}" data-en="${descEN}">${descEN}</p>
-      <div class="skill-list">${skillsHTML}</div>
-      ${linksSection}
+      <div class="skill-list">${buildSkillBadges(title, skills)}</div>
+      ${buildLinksSection(title)}
       <div class="salary-row">
         <span class="salary-label">Salary</span>
         <strong class="salary" data-id="${salary}" data-en="${salaryEN}">${salaryEN}</strong>
         <small class="salary-note" data-hide-on-id>Note: Indonesian rates differ significantly.</small>
       </div>
+    </div>`;
+      }
+
+      // Build anchor cards with sub-skill panels
+      const anchorHTML = validSlots.map((slot, si) => {
+        const jobData = filteredJobs.find(([,t]) => t === slot.primary);
+        if (!jobData) return "";
+        const [grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass] = jobData;
+
+        const subJobsData = (slot.subs || [])
+          .map(subTitle => filteredJobs.find(([,t]) => t === subTitle))
+          .filter(Boolean);
+
+        const subsHTML = subJobsData.map(([sg, st, sd, ss, ssal, srole, shair, stool, stier, scs, sacc]) => {
+          const stc = tierColors[stier] || "#6b7280";
+          const sdEN = jobDescs_en[st] || sd;
+          const ssalEN = salaries_en[st] || ssal;
+          const saccEl = sacc ? `<div class="acc ${sacc}"></div>` : "";
+          return `<div class="sub-card" style="--role:${srole};--hair:${shair};${scs}">
+          <div class="sub-card-sprite">
+            <div class="sprite">
+              <div class="hair"></div><div class="head"></div>
+              <div class="eye left"></div><div class="eye right"></div>
+              <div class="body"></div><div class="cape"></div>
+              <div class="arm left"></div><div class="arm right"></div>
+              <div class="leg left"></div><div class="leg right"></div>
+              <div class="tool ${stool}"></div>${saccEl}
+            </div>
+          </div>
+          <div class="sub-card-body">
+            <div class="sub-card-top">
+              <span class="class-badge">${sg} Class</span>
+              <span class="tier-pill" style="border-color:${stc}20;color:${stc}">T${stier}</span>
+            </div>
+            <div class="sub-card-title">${st}</div>
+            <p class="desc" data-id="${sd}" data-en="${sdEN}">${sdEN}</p>
+            <div class="skill-list">${buildSkillBadges(st, ss)}</div>
+            ${buildLinksSection(st)}
+            <div class="salary-row">
+              <span class="salary-label">Salary</span>
+              <strong class="salary" data-id="${ssal}" data-en="${ssalEN}">${ssalEN}</strong>
+              <small class="salary-note" data-hide-on-id>Note: Indonesian rates differ significantly.</small>
+            </div>
+          </div>
+        </div>`;
+        }).join("\n");
+
+        const panelId = `anchor-panel-${si}`;
+        const hasSubs = subJobsData.length > 0;
+
+        return `
+  <article class="card anchor-card${hasSubs ? " has-subs" : ""}" style="--role:${role};--hair:${hair};${charStyle}" data-panel="${panelId}">
+    <div class="anchor-badge">⚓ Identity Slot ${si + 1}</div>
+    ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
+    ${hasSubs ? `<div class="anchor-expand-hint">▼ ${subJobsData.length} sub-skill${subJobsData.length > 1 ? "s" : ""} — click to expand</div>` : ""}
+  </article>
+  <div class="anchor-panel" id="${panelId}" hidden>
+    <div class="anchor-panel-header">
+      <span class="anchor-panel-title">Skills inside <strong>${title}</strong></span>
+      <button class="anchor-panel-close" aria-label="Close">✕</button>
     </div>
-  </article>`;
+    <div class="anchor-panel-subs">
+      ${subsHTML || '<p style="color:var(--muted);font-size:12px;padding:8px 0">No sub-skills configured.</p>'}
+    </div>
+  </div>`;
       }).join("\n");
+
+      // Build standalone cards
+      const standaloneHTML = filteredJobs
+        .filter(([,title]) => standaloneTitles.has(title))
+        .map(([grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass]) => `
+  <article class="card" style="--role:${role};--hair:${hair};${charStyle}">
+    ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
+  </article>`).join("\n");
+
+      const hasAnchors = validSlots.length > 0;
 
       return `<!DOCTYPE html>
 <html lang="en">
@@ -3312,11 +3642,12 @@ a{color:inherit}
 .sprite{position:relative;width:120px;height:120px}
 .head{position:absolute;left:38px;top:16px;width:var(--head-w,42px);height:var(--head-h,38px);border-radius:var(--head-rx,45% 45% 40% 40%);background:#f0c18e;border:3px solid #6a3d2b;z-index:4}
 .hair{position:absolute;left:33px;top:7px;width:var(--hair-w,52px);height:var(--hair-h,28px);border-radius:var(--hair-rx,50% 50% 30% 30%);background:var(--hair);border:3px solid #33202a;z-index:5}
+.hair::before{content:"";position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:62%;height:9px;background:var(--hair);border:2px solid #33202a;border-top:0;border-radius:0 0 8px 8px}
 .eye{position:absolute;top:33px;width:var(--eye-size,7px);height:var(--eye-size,7px);background:#1d2430;border-radius:50%;z-index:7}
 .eye::after{content:"";position:absolute;top:1px;left:1px;width:2px;height:2px;background:rgba(255,255,255,.7);border-radius:50%}
 .eye.left{left:var(--eye-l,49px)}.eye.right{left:var(--eye-r,62px)}
-.body{position:absolute;left:32px;top:54px;width:var(--body-w,54px);height:var(--body-h,52px);border-radius:var(--body-rx,10px 10px 8px 8px);background:var(--role);border:4px solid #1f2634;z-index:3}
-.cape{position:absolute;left:24px;top:54px;width:70px;height:70px;border-radius:10px 10px 28px 28px;background:color-mix(in srgb,var(--role) 42%,#0d1117);z-index:1;transform:skewX(-5deg)}
+.body{position:absolute;left:32px;top:54px;width:var(--body-w,54px);height:var(--body-h,52px);border-radius:var(--body-rx,28% 28% 35% 35% / 18% 18% 24% 24%);background:var(--role);border:4px solid #1f2634;z-index:3}
+.cape{position:absolute;left:24px;top:54px;width:70px;height:70px;border-radius:40% 40% 50% 50% / 20% 20% 40% 40%;background:color-mix(in srgb,var(--role) 42%,#0d1117);z-index:1;transform:skewX(-5deg)}
 .arm{position:absolute;top:65px;width:18px;height:44px;border-radius:9px;background:#f0c18e;border:3px solid #6a3d2b;z-index:2}
 .arm.left{left:19px;transform:rotate(var(--arm-l-rot,18deg))}.arm.right{right:19px;transform:rotate(var(--arm-r-rot,-18deg))}
 .leg{position:absolute;top:101px;width:20px;height:28px;border-radius:0 0 8px 8px;background:#2e3d57;border:3px solid #1f2634;z-index:2}
@@ -3466,6 +3797,27 @@ a{color:inherit}
 .showcase-footer{text-align:center;padding:24px;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
 .showcase-footer a{color:var(--gold);opacity:.7;text-decoration:none}
 .showcase-footer a:hover{opacity:1}
+/* anchor cards */
+.anchor-section-label{grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gold);opacity:.7;padding:0 2px 4px;border-bottom:1px solid color-mix(in srgb,var(--gold) 20%,transparent);margin-bottom:4px}
+.anchor-card{cursor:pointer;border-color:color-mix(in srgb,var(--gold) 30%,transparent);position:relative}
+.anchor-card:hover{border-color:color-mix(in srgb,var(--gold) 60%,transparent)}
+.anchor-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,transparent);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);border-radius:4px;padding:2px 6px;z-index:2}
+.anchor-expand-hint{font-size:10.5px;color:var(--gold);opacity:.7;text-align:center;padding:8px 16px 12px;border-top:1px solid color-mix(in srgb,var(--gold) 15%,transparent);margin-top:4px;letter-spacing:.3px}
+.anchor-card.open .anchor-expand-hint{opacity:.5}
+.anchor-panel{grid-column:1/-1;background:var(--panel-2);border:1px solid color-mix(in srgb,var(--gold) 25%,transparent);border-radius:12px;padding:20px;margin-bottom:8px}
+.anchor-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.anchor-panel-title{font-size:13px;font-weight:600;color:var(--ink-dim)}
+.anchor-panel-title strong{color:var(--gold)}
+.anchor-panel-close{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .15s}
+.anchor-panel-close:hover{color:var(--ink)}
+.anchor-panel-subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.sub-card{display:flex;gap:12px;background:color-mix(in srgb,var(--panel) 60%,transparent);border:1px solid var(--line);border-radius:10px;padding:12px;align-items:flex-start}
+.sub-card-sprite{flex-shrink:0;width:72px;height:72px;border-radius:8px;background:color-mix(in srgb,var(--role) 8%,transparent);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.sub-card-sprite .sprite{transform:scale(.6);transform-origin:center center;position:absolute}
+.sub-card-body{flex:1;min-width:0}
+.sub-card-top{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.sub-card-title{font-size:13px;font-weight:900;margin-bottom:4px;letter-spacing:-.2px}
+.standalone-section-label{grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);opacity:.7;padding:0 2px 4px;border-bottom:1px solid var(--line);margin-bottom:4px}
 /* it emoji background */
 .it-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .it-bg span{position:absolute;display:block;font-size:22px;opacity:.13;user-select:none;line-height:1}
@@ -3541,7 +3893,10 @@ a{color:inherit}
   </div>
 </div>
 <div class="grid">
-${cardHTML}
+${hasAnchors ? '<div class="anchor-section-label">⚓ Identity Slots</div>' : ""}
+${anchorHTML}
+${hasAnchors && standaloneHTML ? '<div class="standalone-section-label">Other Skills</div>' : ""}
+${standaloneHTML}
 </div>
 <div class="showcase-footer">
   © secreal 2026 · <a href="https://secreal.github.io/ulong-rpg/" target="_blank" rel="noopener">ulong RPG</a>
@@ -3565,6 +3920,28 @@ ${cardHTML}
     if(b&&b.dataset.lang!==cur)apply(b.dataset.lang);
   });
   apply("en");
+  // Anchor panel toggle
+  document.querySelectorAll(".anchor-card.has-subs").forEach(function(card){
+    card.addEventListener("click",function(e){
+      if(e.target.closest(".anchor-panel-close"))return;
+      var panelId=card.dataset.panel;
+      var panel=document.getElementById(panelId);
+      if(!panel)return;
+      var isOpen=!panel.hidden;
+      if(isOpen){panel.hidden=true;card.classList.remove("open");}
+      else{panel.hidden=false;card.classList.add("open");panel.scrollIntoView({behavior:"smooth",block:"nearest"});}
+    });
+  });
+  document.querySelectorAll(".anchor-panel-close").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var panel=btn.closest(".anchor-panel");
+      if(!panel)return;
+      panel.hidden=true;
+      var panelId=panel.id;
+      var card=document.querySelector('[data-panel="'+panelId+'"]');
+      if(card)card.classList.remove("open");
+    });
+  });
 })();
 <\/script>
 </body>
