@@ -1109,13 +1109,56 @@
     .btn-export-showcase:disabled { opacity: .5; cursor: not-allowed; }
     .btn-export-showcase.copied { border-color: rgba(93,201,126,.6); background: rgba(93,201,126,.12); color: #5dc97e; }
 
-    .export-guide { display: none; }
-    .export-guide.show { display: block; }
-    .export-guide-title { font-size: 11px; font-weight: 700; color: var(--gold); margin-bottom: 8px; letter-spacing: .5px; text-transform: uppercase; }
-    .export-guide ol { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; }
-    .export-guide li { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
-    .export-guide li a { color: var(--gold); opacity: .8; text-decoration: none; }
-    .export-guide li a:hover { opacity: 1; }
+    .export-guide { display: none; margin-top: 16px; }
+    .export-guide.show { display: flex; flex-direction: column; gap: 6px; }
+
+    .export-step {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; border-radius: 9px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+      transition: all .2s ease;
+    }
+    .export-step.active {
+      border-color: rgba(240,187,78,.3);
+      background: rgba(240,187,78,.05);
+    }
+    .export-step.done {
+      border-color: rgba(93,201,126,.2);
+      background: rgba(93,201,126,.04);
+      opacity: .7;
+    }
+    .export-step-num {
+      flex-shrink: 0; width: 20px; height: 20px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font: 700 10px 'Inter', sans-serif;
+      border: 1.5px solid rgba(255,255,255,.15); color: var(--muted);
+      margin-top: 1px;
+    }
+    .export-step.active .export-step-num { border-color: var(--gold); color: var(--gold); }
+    .export-step.done .export-step-num { border-color: #5dc97e; color: #5dc97e; }
+    .export-step-body { flex: 1; min-width: 0; }
+    .export-step-label {
+      font-size: 12px; font-weight: 600; color: var(--muted); line-height: 1.4;
+    }
+    .export-step.active .export-step-label { color: var(--ink); }
+    .export-step.done .export-step-label { color: #5dc97e; }
+    .export-step-sub {
+      font-size: 11px; color: var(--muted); opacity: .7; margin-top: 2px; line-height: 1.4;
+    }
+    .export-step-btn {
+      margin-top: 8px; display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border-radius: 7px;
+      border: 1px solid rgba(240,187,78,.4); background: rgba(240,187,78,.08);
+      color: var(--gold); font: 600 11px 'Inter', sans-serif;
+      cursor: pointer; text-decoration: none; transition: all .15s ease;
+      white-space: nowrap;
+    }
+    .export-step-btn:hover { border-color: var(--gold); background: rgba(240,187,78,.15); }
+    .export-step-btn.green {
+      border-color: rgba(93,201,126,.4); background: rgba(93,201,126,.08); color: #5dc97e;
+    }
+    .export-step-btn.green:hover { border-color: #5dc97e; background: rgba(93,201,126,.15); }
 
     .export-repo-notice {
       margin-top: 12px; padding: 10px 14px; border-radius: 8px;
@@ -1499,14 +1542,10 @@
       <div class="export-repo-notice" id="export-repo-notice"></div>
 
       <div class="export-guide" id="export-guide">
-        <div class="export-guide-title">📖 Langkah selanjutnya</div>
-        <ol>
-          <li id="export-guide-step1">Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)</li>
-          <li>Di repo <strong style="color:var(--ink)">ulong</strong>, klik <strong style="color:var(--ink)">Add file → Create new file</strong>, ketik <code style="color:var(--gold)">index.html</code>, lalu <strong style="color:var(--ink)">paste</strong> (Ctrl+V / ⌘V)</li>
-          <li>Klik <strong style="color:var(--ink)">Commit changes</strong>, lalu aktifkan <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a> di <strong>Settings → Pages → Source: Deploy from a branch → main → / (root)</strong></li>
-          <li>Showcase kamu akan live di <span id="export-guide-url" style="color:var(--gold)">github.com/&lt;username&gt;/ulong</span> (URL: <code style="color:var(--muted)">&lt;username&gt;.github.io/ulong</code>)</li>
-        </ol>
-        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Tidak bisa paste? <a id="export-fallback-dl" href="#" style="color:var(--gold);opacity:.8">Download file saja</a></div>
+        <!-- steps injected by JS -->
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:var(--muted);display:none" id="export-fallback-wrap">
+        Tidak bisa paste? <a id="export-fallback-dl" href="#" style="color:var(--gold);opacity:.8">Download file saja</a>
       </div>
     </div>
   </div>
@@ -2756,11 +2795,13 @@
       document.getElementById("profile-name").value   = prof.name   || "";
       document.getElementById("profile-nick").value   = prof.nick   || "";
       document.getElementById("profile-github").value = prof.github || "";
-      document.getElementById("export-guide").classList.remove("show");
+      const guide = document.getElementById("export-guide");
+      guide.classList.remove("show");
+      guide.innerHTML = "";
       const notice = document.getElementById("export-repo-notice");
       notice.className = "export-repo-notice";
       notice.textContent = "";
-      document.getElementById("export-guide-step1").innerHTML = `Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)`;
+      document.getElementById("export-fallback-wrap").style.display = "none";
       document.getElementById("export-overlay").classList.add("open");
     }
     function closeExport() { document.getElementById("export-overlay").classList.remove("open"); }
@@ -2813,6 +2854,22 @@
       if (html) triggerDownload(html);
     });
 
+    function makeStep(num, label, sub, btnText, btnHref, btnClass, isDone, isActive) {
+      const state = isDone ? "done" : isActive ? "active" : "";
+      const icon  = isDone ? "✓" : num;
+      const btnHtml = btnText && btnHref
+        ? `<a class="export-step-btn${btnClass ? " " + btnClass : ""}" href="${btnHref}" target="_blank" rel="noopener">${btnText} ↗</a>`
+        : "";
+      return `<div class="export-step${state ? " " + state : ""}">
+        <div class="export-step-num">${icon}</div>
+        <div class="export-step-body">
+          <div class="export-step-label">${label}</div>
+          ${sub ? `<div class="export-step-sub">${sub}</div>` : ""}
+          ${btnHtml}
+        </div>
+      </div>`;
+    }
+
     document.getElementById("btn-do-export").addEventListener("click", async () => {
       const { prof, html } = buildExportHTML();
 
@@ -2823,71 +2880,81 @@
 
       const btn    = document.getElementById("btn-do-export");
       const guide  = document.getElementById("export-guide");
-      const guideUrl = document.getElementById("export-guide-url");
       const notice = document.getElementById("export-repo-notice");
-      const step1  = document.getElementById("export-guide-step1");
+      const fallbackWrap = document.getElementById("export-fallback-wrap");
       notice.className = "export-repo-notice";
       notice.textContent = "";
 
-      // Try clipboard copy; fallback to download if not available
+      // Copy to clipboard
       let copied = false;
       if (navigator.clipboard?.writeText) {
-        try {
-          await navigator.clipboard.writeText(html);
-          copied = true;
-        } catch { /* permission denied or unavailable */ }
+        try { await navigator.clipboard.writeText(html); copied = true; }
+        catch { /* denied */ }
       }
+      if (!copied) triggerDownload(html);
 
-      if (!copied) {
-        // Clipboard unavailable — fall back to download silently
-        triggerDownload(html);
-      }
-
-      // Show feedback on button
       if (copied) {
-        btn.textContent = "✓ Copied! Opening GitHub…";
+        btn.textContent = "✓ Copied!";
         btn.classList.add("copied");
-        setTimeout(() => {
-          btn.textContent = "📋 Copy & Open GitHub";
-          btn.classList.remove("copied");
-        }, 3000);
+        setTimeout(() => { btn.textContent = "📋 Copy & Open GitHub"; btn.classList.remove("copied"); }, 3000);
       }
 
-      // Check repo & open correct GitHub URL
-      if (prof.github) {
-        guideUrl.textContent = `github.com/${prof.github}/ulong`;
-        try {
-          const res = await fetch(`https://api.github.com/repos/${prof.github}/ulong`, { method: "GET" });
-          if (res.ok) {
-            const repoData = await res.json();
-            const isEmpty = repoData.size === 0;
-            const branch = repoData.default_branch || "main";
-            notice.className = "export-repo-notice found show";
-            notice.innerHTML = `✓ Repo <strong>${prof.github}/ulong</strong> ditemukan — paste di halaman yang terbuka, lalu commit.`;
-            step1.innerHTML = `Repo <strong style="color:var(--ink)">${prof.github}/ulong</strong> sudah ada ✓`;
-            // Empty repo: open create-file page on main (repo was likely just created)
-            // Non-empty repo: open create-file page on the default branch
-            const targetUrl = isEmpty
-              ? `https://github.com/${prof.github}/ulong/new/main`
-              : `https://github.com/${prof.github}/ulong/new/${branch}`;
-            window.open(targetUrl, "_blank", "noopener");
-          } else if (res.status === 404) {
-            notice.className = "export-repo-notice not-found show";
-            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada — halaman create repo terbuka. Centang <strong>Add a README file</strong>, buat repo, lalu kembali ke sini dan klik Copy &amp; Open GitHub lagi.`;
-            step1.innerHTML = `Buat repo publik <strong style="color:var(--ink)">ulong</strong> di halaman yang terbuka (centang "Add a README file"), lalu kembali ke sini`;
-            window.open(`https://github.com/new?name=ulong&visibility=public`, "_blank", "noopener");
-          } else {
-            window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
-          }
-        } catch {
-          window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
-        }
-      } else {
-        guideUrl.textContent = "github.com/<username>/ulong";
+      if (!prof.github) {
         notice.className = "export-repo-notice not-found show";
-        notice.innerHTML = `Isi GitHub username di profil agar showcase-mu bisa diarahkan ke repo yang tepat.`;
+        notice.innerHTML = `Isi GitHub username di profil agar langkah-langkah di bawah muncul.`;
+        guide.innerHTML = "";
+        guide.classList.remove("show");
+        return;
       }
+
+      // Detect repo state then build steps
+      let repoExists = false, repoEmpty = false, branch = "main";
+      try {
+        const res = await fetch(`https://api.github.com/repos/${prof.github}/ulong`);
+        if (res.ok) {
+          const d = await res.json();
+          repoExists = true;
+          repoEmpty  = d.size === 0;
+          branch     = d.default_branch || "main";
+        }
+      } catch { /* offline — assume not found */ }
+
+      const createRepoUrl  = `https://github.com/new?name=ulong&visibility=public`;
+      const createFileUrl  = repoExists
+        ? `https://github.com/${prof.github}/ulong/new/${branch}`
+        : `https://github.com/${prof.github}/ulong/new/main`;
+      const pagesUrl       = `https://github.com/${prof.github}/ulong/settings/pages`;
+      const liveUrl        = `https://${prof.github}.github.io/ulong/`;
+
+      let steps = "";
+      if (!repoExists) {
+        // Step 1: create repo
+        steps += makeStep(1, `Buat repo <strong>ulong</strong> di GitHub`, `Centang "Add a README file" agar repo langsung punya branch main`, "Buat repo ulong", createRepoUrl, "", false, true);
+        // Step 2: copy & create index.html (HTML sudah di-copy di atas)
+        steps += makeStep(2, `Buat file <code>index.html</code> di repo`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub.`, "Buka Create New File", createFileUrl, "", false, false);
+        // Step 3: pages
+        steps += makeStep(3, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
+        // Step 4: live
+        steps += makeStep(4, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, `Tunggu ~1 menit setelah Pages diaktifkan`, "Buka Showcase", liveUrl, "green", false, false);
+      } else if (repoEmpty) {
+        // Repo ada tapi kosong (belum ada commit)
+        steps += makeStep(1, `Repo <strong>${prof.github}/ulong</strong> ditemukan ✓`, `Tapi masih kosong — belum ada branch/commit`, null, null, "", true, false);
+        steps += makeStep(2, `Buat file <code>index.html</code>`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub, lalu commit.`, "Buka Create New File", createFileUrl, "", false, true);
+        steps += makeStep(3, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
+        steps += makeStep(4, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
+        window.open(createFileUrl, "_blank", "noopener");
+      } else {
+        // Repo ada dan punya file — update mode
+        steps += makeStep(1, `Repo <strong>${prof.github}/ulong</strong> ditemukan ✓`, null, null, null, "", true, false);
+        steps += makeStep(2, `Update <code>index.html</code>`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub, lalu commit.`, "Buka Create New File", createFileUrl, "", false, true);
+        steps += makeStep(3, `Aktifkan GitHub Pages <em style="opacity:.6">(jika belum)</em>`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
+        steps += makeStep(4, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
+        window.open(createFileUrl, "_blank", "noopener");
+      }
+
+      guide.innerHTML = steps;
       guide.classList.add("show");
+      fallbackWrap.style.display = copied ? "none" : "block";
     });
 
     // ══════════════════════════════════════════
