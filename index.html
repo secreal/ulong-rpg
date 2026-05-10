@@ -2827,11 +2827,18 @@
         try {
           const res = await fetch(`https://api.github.com/repos/${prof.github}/ulong`, { method: "GET" });
           if (res.ok) {
+            const repoData = await res.json();
+            const isEmpty = repoData.size === 0;
+            const branch = repoData.default_branch || "main";
             notice.className = "export-repo-notice found show";
             notice.innerHTML = `✓ Repo <strong>${prof.github}/ulong</strong> ditemukan — paste di halaman yang terbuka, lalu commit.`;
             step1.innerHTML = `Repo <strong style="color:var(--ink)">${prof.github}/ulong</strong> sudah ada ✓`;
-            // Open create-file page in existing repo
-            window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
+            // Empty repo: open repo root (shows quick-setup with "create new file" button)
+            // Non-empty repo: open create-file page on the default branch
+            const targetUrl = isEmpty
+              ? `https://github.com/${prof.github}/ulong`
+              : `https://github.com/${prof.github}/ulong/new/${branch}`;
+            window.open(targetUrl, "_blank", "noopener");
           } else if (res.status === 404) {
             notice.className = "export-repo-notice not-found show";
             notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada — halaman create repo terbuka. Setelah repo dibuat, upload <code>index.html</code> yang sudah di-copy.`;
