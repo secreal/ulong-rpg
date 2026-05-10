@@ -1455,8 +1455,8 @@
         <div class="export-guide-title">📖 Langkah selanjutnya</div>
         <ol>
           <li id="export-guide-step1">Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)</li>
-          <li>Di halaman GitHub yang terbuka, ketik <code style="color:var(--gold)">index.html</code> sebagai nama file, lalu <strong style="color:var(--ink)">paste</strong> (Ctrl+V / ⌘V) konten yang sudah di-copy</li>
-          <li>Klik <strong style="color:var(--ink)">Commit changes</strong> → Pages akan aktif otomatis</li>
+          <li>Di repo <strong style="color:var(--ink)">ulong</strong>, klik <strong style="color:var(--ink)">Add file → Create new file</strong>, ketik <code style="color:var(--gold)">index.html</code>, lalu <strong style="color:var(--ink)">paste</strong> (Ctrl+V / ⌘V)</li>
+          <li>Klik <strong style="color:var(--ink)">Commit changes</strong>, lalu aktifkan <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a> di Settings → Pages</li>
           <li>Showcase kamu akan live di <span id="export-guide-url" style="color:var(--gold)">github.com/&lt;username&gt;/ulong</span></li>
         </ol>
         <div style="margin-top:10px;font-size:11px;color:var(--muted)">Tidak bisa paste? <a id="export-fallback-dl" href="#" style="color:var(--gold);opacity:.8">Download file saja</a></div>
@@ -2437,8 +2437,10 @@
             window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
           } else if (res.status === 404) {
             notice.className = "export-repo-notice not-found show";
-            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada. <a href="https://github.com/new?name=ulong&visibility=public" target="_blank" rel="noopener">Buat repo dulu →</a>, lalu upload <code>index.html</code>.`;
-            step1.innerHTML = `<a href="https://github.com/new?name=ulong&visibility=public" target="_blank" rel="noopener" style="color:var(--gold)">Buat repo publik bernama <strong>ulong</strong> di GitHub</a> (belum ada)`;
+            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada — halaman create repo terbuka. Setelah repo dibuat, upload <code>index.html</code> yang sudah di-copy.`;
+            step1.innerHTML = `Buat repo publik <strong style="color:var(--ink)">ulong</strong> di halaman yang terbuka, lalu kembali ke sini`;
+            // Langsung buka create-repo page tanpa konfirmasi
+            window.open(`https://github.com/new?name=ulong&visibility=public`, "_blank", "noopener");
           } else {
             window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
           }
