@@ -2127,6 +2127,380 @@
       "API basic":        "Basics of understanding HTTP request/response for reading and debugging APIs.",
     };
 
+    function skillDescriptionFor(skill, lang = currentLang) {
+      const staticDesc = lang === "en" ? skillDescs_en[skill] : skillDescriptions[skill];
+      if (staticDesc) return staticDesc;
+      return buildSkillDescription(skill, lang);
+    }
+
+    function buildSkillDescription(skill, lang) {
+      const lower = skill.toLowerCase();
+      const rules = [
+        {
+          test: s => s.includes("responsive layout"),
+          id: "Kemampuan membuat susunan halaman yang tetap rapi dan mudah dipakai di desktop, tablet, dan handphone.",
+          en: "Ability to make page layouts stay usable and well arranged on desktop, tablet, and phone screens."
+        },
+        {
+          test: s => s.includes("version control"),
+          id: "Kemampuan mencatat riwayat perubahan kerja, membandingkan versi, dan berkolaborasi tanpa saling menimpa pekerjaan.",
+          en: "Ability to track work history, compare versions, and collaborate without overwriting each other's changes."
+        },
+        {
+          test: s => s.includes("semantic markup"),
+          id: "Kemampuan menyusun struktur halaman web dengan arti yang jelas, sehingga browser, mesin pencari, dan alat aksesibilitas memahami isi halaman.",
+          en: "Ability to structure web pages with clear meaning so browsers, search engines, and accessibility tools understand the content."
+        },
+        {
+          test: s => s.includes("browser interaction"),
+          id: "Kemampuan membuat halaman web merespons klik, input, navigasi, dan perubahan data yang dilakukan pengguna.",
+          en: "Ability to make web pages respond to clicks, input, navigation, and user-driven data changes."
+        },
+        {
+          test: s => s.includes("api"),
+          id: "Kemampuan bekerja dengan jalur komunikasi antar sistem, termasuk memahami data yang dikirim, diterima, divalidasi, dan ditangani saat gagal.",
+          en: "Ability to work with communication paths between systems, including sent data, received data, validation, and failure handling."
+        },
+        {
+          test: s => s.includes("data querying"),
+          id: "Kemampuan mengambil dan menyaring data dari sumber data agar pertanyaan bisnis atau operasional bisa dijawab dengan bukti.",
+          en: "Ability to retrieve and filter data from a data source so business or operational questions can be answered with evidence."
+        },
+        {
+          test: s => s.includes("data modeling") || s.includes("warehouse modeling") || s.includes("semantic model"),
+          id: "Kemampuan menyusun bentuk data agar hubungan antar informasi jelas, konsisten, dan mudah dipakai untuk laporan atau aplikasi.",
+          en: "Ability to shape data so relationships are clear, consistent, and usable for reporting or applications."
+        },
+        {
+          test: s => s.includes("access control") || s.includes("access management"),
+          id: "Kemampuan menentukan siapa boleh melihat atau melakukan apa di sebuah sistem, lalu memastikan aturan akses itu diterapkan.",
+          en: "Ability to decide who may see or do what in a system and make sure those access rules are enforced."
+        },
+        {
+          test: s => s.includes("background processing"),
+          id: "Kemampuan menjalankan pekerjaan berat atau berulang di belakang layar agar aplikasi utama tetap cepat digunakan.",
+          en: "Ability to run heavy or repeated work in the background so the main application stays responsive."
+        },
+        {
+          test: s => s.includes("mobile screen") || s.includes("interface composition") || s.includes("layout composition"),
+          id: "Kemampuan menyusun layar atau tampilan agar informasi, tombol, dan alur tindakan mudah dipahami pengguna.",
+          en: "Ability to arrange screens or interfaces so information, buttons, and actions are easy for users to understand."
+        },
+        {
+          test: s => s.includes("device integration"),
+          id: "Kemampuan menghubungkan aplikasi dengan fitur perangkat seperti kamera, lokasi, file, notifikasi, atau sensor.",
+          en: "Ability to connect an application with device features such as camera, location, files, notifications, or sensors."
+        },
+        {
+          test: s => s.includes("offline"),
+          id: "Kemampuan membuat aplikasi tetap berguna saat koneksi internet lemah atau terputus, lalu menyinkronkan data saat online lagi.",
+          en: "Ability to keep an app useful when internet access is weak or unavailable, then sync data when it comes back online."
+        },
+        {
+          test: s => s.includes("release"),
+          id: "Kemampuan menyiapkan, memeriksa, dan meluncurkan perubahan ke pengguna dengan risiko gangguan yang terkendali.",
+          en: "Ability to prepare, verify, and launch changes to users while keeping disruption risk controlled."
+        },
+        {
+          test: s => s.includes("debugging") || s.includes("troubleshooting") || s.includes("investigation"),
+          id: "Kemampuan menelusuri gejala masalah sampai menemukan penyebabnya, lalu menentukan perbaikan yang masuk akal.",
+          en: "Ability to trace symptoms back to their cause and choose a reasonable fix."
+        },
+        {
+          test: s => s.includes("problem solving"),
+          id: "Kemampuan memecah masalah yang belum jelas menjadi bagian kecil, mencari penyebab utama, lalu memilih langkah penyelesaian yang realistis.",
+          en: "Ability to break an unclear problem into smaller parts, find the root cause, and choose a realistic path to solve it."
+        },
+        {
+          test: s => s.includes("contract"),
+          id: "Kemampuan menyepakati bentuk data, aturan, dan ekspektasi antar bagian sistem atau antar tim agar integrasi tidak salah paham.",
+          en: "Ability to align data shape, rules, and expectations between systems or teams so integrations do not break from misunderstanding."
+        },
+        {
+          test: s => s.includes("integration boundary"),
+          id: "Kemampuan menentukan batas antara dua sistem atau modul: data apa yang masuk, keluar, dimiliki, dan menjadi tanggung jawab masing-masing pihak.",
+          en: "Ability to define the boundary between systems or modules: what data enters, leaves, is owned, and is each side's responsibility."
+        },
+        {
+          test: s => s.includes("session state"),
+          id: "Kemampuan mengelola data sementara tentang pengguna, seperti status login atau pilihan aktif, agar pengalaman tetap konsisten selama memakai aplikasi.",
+          en: "Ability to manage temporary user state, such as login status or active choices, so the experience stays consistent during app use."
+        },
+        {
+          test: s => s.includes("transactional workflow") || s.includes("workflow"),
+          id: "Kemampuan merancang urutan kerja yang menjaga data tetap konsisten meskipun ada banyak langkah, kondisi gagal, atau aksi berulang.",
+          en: "Ability to design work sequences that keep data consistent across many steps, failures, or repeated actions."
+        },
+        {
+          test: s => s.includes("architecture") || s.includes("platform investment"),
+          id: "Kemampuan menentukan struktur besar sistem, batas tanggung jawab, dan pilihan teknologi berdasarkan kebutuhan jangka panjang.",
+          en: "Ability to decide system structure, responsibility boundaries, and technology choices based on long-term needs."
+        },
+        {
+          test: s => s.includes("review"),
+          id: "Kemampuan memeriksa pekerjaan orang lain untuk menemukan risiko, menjaga kualitas, dan memberi masukan yang bisa ditindaklanjuti.",
+          en: "Ability to inspect other people's work for risk, quality, and actionable feedback."
+        },
+        {
+          test: s => s.includes("quality standard"),
+          id: "Kemampuan menetapkan dan menjaga standar kualitas agar hasil kerja tim konsisten, mudah dirawat, dan tidak menurunkan kepercayaan pengguna.",
+          en: "Ability to define and uphold quality standards so team output stays consistent, maintainable, and trustworthy for users."
+        },
+        {
+          test: s => s.includes("migration planning"),
+          id: "Kemampuan merencanakan perpindahan sistem, data, atau arsitektur dari kondisi lama ke kondisi baru tanpa mengganggu layanan utama.",
+          en: "Ability to plan movement from an old system, data shape, or architecture to a new one without disrupting the main service."
+        },
+        {
+          test: s => s.includes("mentoring") || s.includes("coaching"),
+          id: "Kemampuan membantu orang lain berkembang lewat arahan, contoh, feedback, dan dukungan yang sesuai levelnya.",
+          en: "Ability to help others grow through guidance, examples, feedback, and support matched to their level."
+        },
+        {
+          test: s => s.includes("automation") || s.includes("orchestration"),
+          id: "Kemampuan membuat pekerjaan berulang berjalan otomatis dan teratur, sehingga hasilnya lebih konsisten dan tidak bergantung pada langkah manual.",
+          en: "Ability to make repeated work run automatically and in order so results are more consistent and less dependent on manual steps."
+        },
+        {
+          test: s => s.includes("test") || s.includes("testing") || s.includes("regression") || s.includes("smoke"),
+          id: "Kemampuan memeriksa apakah sistem bekerja sesuai harapan, termasuk skenario normal, perubahan lama, dan kondisi yang rawan rusak.",
+          en: "Ability to check whether a system works as expected, including normal scenarios, old behavior, and fragile conditions."
+        },
+        {
+          test: s => s.includes("flake"),
+          id: "Kemampuan mencari penyebab test otomatis yang kadang gagal kadang berhasil, biasanya karena timing, data, atau kondisi lingkungan.",
+          en: "Ability to find why automated tests sometimes pass and sometimes fail, often due to timing, data, or environment state."
+        },
+        {
+          test: s => s.includes("parallel execution"),
+          id: "Kemampuan menjalankan beberapa test atau proses sekaligus dengan aman agar lebih cepat tanpa saling mengganggu hasilnya.",
+          en: "Ability to run multiple tests or processes at the same time safely so they finish faster without interfering with each other."
+        },
+        {
+          test: s => s.includes("selector"),
+          id: "Kemampuan memilih penanda elemen layar yang stabil agar test otomatis tidak mudah rusak saat tampilan berubah kecil.",
+          en: "Ability to choose stable screen element identifiers so automated tests do not break from small visual changes."
+        },
+        {
+          test: s => s.includes("workload") || s.includes("capacity") || s.includes("bottleneck") || s.includes("saturation") || s.includes("percentile") || s.includes("stress"),
+          id: "Kemampuan mengukur batas kemampuan sistem saat banyak pengguna atau data masuk, lalu menjelaskan bagian mana yang menjadi penghambat.",
+          en: "Ability to measure system limits under heavy users or data and explain which part becomes the bottleneck."
+        },
+        {
+          test: s => s.includes("dashboard") || s.includes("metric") || s.includes("report"),
+          id: "Kemampuan mengubah data menjadi tampilan atau laporan yang membantu orang membaca kondisi, tren, dan masalah penting.",
+          en: "Ability to turn data into views or reports that help people read status, trends, and important problems."
+        },
+        {
+          test: s => s.includes("self-service analytics"),
+          id: "Kemampuan membuat orang bisnis bisa mengambil insight dasar sendiri dari data tanpa selalu menunggu tim data membuat laporan manual.",
+          en: "Ability to let business users get basic insights from data themselves without always waiting for the data team to build manual reports."
+        },
+        {
+          test: s => s.includes("data lookup"),
+          id: "Kemampuan mencari data spesifik di sistem untuk menjawab pertanyaan operasional, memverifikasi kasus, atau membantu investigasi masalah.",
+          en: "Ability to find specific records in a system to answer operational questions, verify cases, or support issue investigation."
+        },
+        {
+          test: s => s.includes("data quality"),
+          id: "Kemampuan memastikan data lengkap, masuk akal, tidak duplikat, dan cukup dapat dipercaya sebelum dipakai untuk laporan atau keputusan.",
+          en: "Ability to make sure data is complete, reasonable, not duplicated, and trustworthy enough before it is used for reporting or decisions."
+        },
+        {
+          test: s => s.includes("spreadsheet"),
+          id: "Kemampuan menganalisis data di lembar kerja memakai tabel, formula, filter, pivot, dan grafik sederhana.",
+          en: "Ability to analyze data in spreadsheets using tables, formulas, filters, pivots, and simple charts."
+        },
+        {
+          test: s => s.includes("statistical") || s.includes("validation") || s.includes("experiment") || s.includes("error analysis"),
+          id: "Kemampuan memakai angka dan percobaan untuk menilai apakah pola, hasil, atau keputusan benar-benar didukung data.",
+          en: "Ability to use numbers and experiments to judge whether patterns, results, or decisions are truly supported by data."
+        },
+        {
+          test: s => s.includes("pipeline") || s.includes("incremental loading") || s.includes("lineage") || s.includes("schema evolution"),
+          id: "Kemampuan mengatur aliran data dari sumber ke tujuan agar data tiba lengkap, terjadwal, terlacak, dan tetap cocok saat bentuk data berubah.",
+          en: "Ability to manage data flow from source to destination so data arrives complete, scheduled, traceable, and resilient to shape changes."
+        },
+        {
+          test: s => s.includes("feature engineering") || s.includes("model"),
+          id: "Kemampuan menyiapkan data, melatih model, dan mengevaluasi hasil prediksi agar model berguna untuk keputusan nyata.",
+          en: "Ability to prepare data, train models, and evaluate predictions so a model is useful for real decisions."
+        },
+        {
+          test: s => s.includes("prompt") || s.includes("retrieval") || s.includes("context window") || s.includes("guardrail") || s.includes("tool-use"),
+          id: "Kemampuan mengarahkan sistem AI agar memakai instruksi, konteks, batasan, dan alat dengan hasil yang bisa dipercaya.",
+          en: "Ability to guide AI systems with instructions, context, limits, and tools so their output can be trusted."
+        },
+        {
+          test: s => s.includes("server") || s.includes("patch") || s.includes("backup") || s.includes("replication") || s.includes("failover"),
+          id: "Kemampuan menjaga mesin, layanan, atau database tetap sehat melalui pemeliharaan, cadangan, pemulihan, dan rencana saat terjadi gangguan.",
+          en: "Ability to keep machines, services, or databases healthy through maintenance, backups, recovery, and disruption planning."
+        },
+        {
+          test: s => s.includes("user management"),
+          id: "Kemampuan mengatur akun pengguna, grup, hak akses, dan perubahan status pengguna agar orang yang tepat bisa memakai sistem dengan aman.",
+          en: "Ability to manage user accounts, groups, permissions, and user status so the right people can safely use the system."
+        },
+        {
+          test: s => s.includes("availability planning"),
+          id: "Kemampuan merancang cara agar layanan tetap tersedia ketika ada komponen gagal, perawatan terjadwal, atau lonjakan penggunaan.",
+          en: "Ability to plan how a service stays available during component failure, scheduled maintenance, or usage spikes."
+        },
+        {
+          test: s => s.includes("query tuning"),
+          id: "Kemampuan mempercepat pencarian data dengan memperbaiki query, indeks, atau cara database membaca data.",
+          en: "Ability to speed up data retrieval by improving queries, indexes, or the way the database reads data."
+        },
+        {
+          test: s => s.includes("routing") || s.includes("switching") || s.includes("tcp/ip") || s.includes("firewall") || s.includes("networking"),
+          id: "Kemampuan memahami dan mengatur lalu lintas jaringan agar perangkat dan sistem bisa saling terhubung dengan aman.",
+          en: "Ability to understand and manage network traffic so devices and systems can connect safely."
+        },
+        {
+          test: s => s.includes("cloud") || s.includes("compute") || s.includes("managed service") || s.includes("cost monitoring"),
+          id: "Kemampuan mengelola layanan cloud seperti komputasi, jaringan, biaya, dan layanan terkelola agar sistem berjalan efisien.",
+          en: "Ability to manage cloud services such as compute, networking, cost, and managed services so systems run efficiently."
+        },
+        {
+          test: s => s.includes("resilience planning"),
+          id: "Kemampuan menyiapkan sistem agar tetap bertahan atau cepat pulih ketika ada kegagalan, lonjakan beban, atau dependency bermasalah.",
+          en: "Ability to prepare a system to withstand or recover quickly from failures, traffic spikes, or dependency problems."
+        },
+        {
+          test: s => s.includes("container") || s.includes("environment parity") || s.includes("infrastructure provisioning"),
+          id: "Kemampuan menyiapkan lingkungan aplikasi dan infrastruktur yang konsisten dari development sampai production.",
+          en: "Ability to prepare application environments and infrastructure that stay consistent from development to production."
+        },
+        {
+          test: s => s.includes("reliability") || s.includes("observability") || s.includes("postmortem") || s.includes("toil") || s.includes("error budget") || s.includes("incident command"),
+          id: "Kemampuan menjaga layanan tetap andal dengan target yang jelas, pemantauan yang baik, respons insiden, dan pengurangan kerja manual berulang.",
+          en: "Ability to keep services reliable through clear targets, good observability, incident response, and reducing repetitive manual work."
+        },
+        {
+          test: s => s.includes("incident handling"),
+          id: "Kemampuan menangani gangguan layanan dari deteksi, koordinasi, pemulihan, sampai komunikasi dampak kepada pihak terkait.",
+          en: "Ability to handle service disruptions from detection and coordination through recovery and impact communication."
+        },
+        {
+          test: s => s.includes("deployment rollback"),
+          id: "Kemampuan mengembalikan rilis bermasalah ke versi aman sebelumnya agar dampak ke pengguna bisa cepat dihentikan.",
+          en: "Ability to return a problematic release to a previous safe version so user impact can be stopped quickly."
+        },
+        {
+          test: s => s.includes("alert") || s.includes("threat") || s.includes("log"),
+          id: "Kemampuan membaca sinyal dari log atau alert untuk menemukan masalah keamanan, gangguan aplikasi, atau pola serangan.",
+          en: "Ability to read signals from logs or alerts to find security issues, application failures, or attack patterns."
+        },
+        {
+          test: s => s.includes("hardening") || s.includes("endpoint") || s.includes("secrets") || s.includes("detection control"),
+          id: "Kemampuan memperkuat sistem agar lebih sulit diserang, termasuk mengurangi celah konfigurasi, perangkat, dan rahasia yang bocor.",
+          en: "Ability to strengthen systems against attack by reducing weak configuration, device exposure, and leaked secrets."
+        },
+        {
+          test: s => s.includes("reconnaissance") || s.includes("exploit") || s.includes("vulnerability") || s.includes("privilege escalation") || s.includes("attack narrative"),
+          id: "Kemampuan mencari, membuktikan, dan menjelaskan celah keamanan secara legal agar tim tahu risiko dan prioritas perbaikannya.",
+          en: "Ability to legally find, prove, and explain security weaknesses so teams understand risk and repair priority."
+        },
+        {
+          test: s => s.includes("remediation"),
+          id: "Kemampuan mengubah temuan masalah menjadi urutan perbaikan yang jelas, masuk akal, dan sesuai tingkat risiko.",
+          en: "Ability to turn problem findings into a clear, realistic fix sequence based on risk level."
+        },
+        {
+          test: s => s.includes("control mapping") || s.includes("risk register") || s.includes("audit") || s.includes("policy") || s.includes("compliance") || s.includes("exception") || s.includes("regulatory"),
+          id: "Kemampuan menghubungkan risiko, aturan, bukti, dan kebijakan agar organisasi bisa membuktikan kontrolnya berjalan.",
+          en: "Ability to connect risks, rules, evidence, and policies so an organization can prove its controls are working."
+        },
+        {
+          test: s => s.includes("secure coding") || s.includes("abuse case") || s.includes("security requirement") || s.includes("threat modeling"),
+          id: "Kemampuan melihat cara aplikasi bisa disalahgunakan lalu menentukan aturan, review, dan perbaikan agar risiko turun.",
+          en: "Ability to see how an application could be abused and define rules, reviews, and fixes that reduce risk."
+        },
+        {
+          test: s => s.includes("requirement") || s.includes("acceptance criteria") || s.includes("user story"),
+          id: "Kemampuan menerjemahkan kebutuhan bisnis menjadi aturan kerja yang jelas, bisa dibangun, dan bisa dicek selesai atau belum.",
+          en: "Ability to translate business needs into clear work rules that can be built and checked for completion."
+        },
+        {
+          test: s => s.includes("backlog") || s.includes("sprint") || s.includes("stakeholder") || s.includes("scope"),
+          id: "Kemampuan mengatur prioritas pekerjaan, batas ruang lingkup, dan kesepakatan dengan pihak terkait agar tim mengerjakan hal paling penting.",
+          en: "Ability to manage work priority, scope boundaries, and stakeholder agreement so the team works on what matters most."
+        },
+        {
+          test: s => s.includes("dependency") || s.includes("resource") || s.includes("delivery") || s.includes("status escalation") || s.includes("risk mitigation"),
+          id: "Kemampuan menjaga pekerjaan lintas orang atau tim tetap berjalan dengan mengelola ketergantungan, risiko, status, dan sumber daya.",
+          en: "Ability to keep cross-person or cross-team work moving by managing dependencies, risks, status, and resources."
+        },
+        {
+          test: s => s.includes("escalation"),
+          id: "Kemampuan menaikkan masalah ke pihak yang tepat dengan konteks yang cukup agar keputusan atau bantuan bisa diberikan cepat.",
+          en: "Ability to raise an issue to the right people with enough context so decisions or help can happen quickly."
+        },
+        {
+          test: s => s.includes("opportunity") || s.includes("product strategy") || s.includes("roadmap") || s.includes("outcome"),
+          id: "Kemampuan memilih arah produk berdasarkan peluang, dampak, prioritas, dan cerita hasil yang mudah dipahami organisasi.",
+          en: "Ability to choose product direction using opportunity, impact, priority, and an outcome story the organization can understand."
+        },
+        {
+          test: s => s.includes("visual") || s.includes("typography") || s.includes("color"),
+          id: "Kemampuan membuat tampilan mudah dibaca dan terasa rapi lewat urutan visual, huruf, warna, dan penekanan yang tepat.",
+          en: "Ability to make an interface readable and polished through visual order, type, color, and emphasis."
+        },
+        {
+          test: s => s.includes("journey") || s.includes("usability") || s.includes("information architecture") || s.includes("task analysis") || s.includes("research synthesis") || s.includes("flow"),
+          id: "Kemampuan memahami perjalanan pengguna, menyusun informasi, dan menguji apakah orang bisa menyelesaikan tugas tanpa bingung.",
+          en: "Ability to understand the user's journey, organize information, and test whether people can complete tasks without confusion."
+        },
+        {
+          test: s => s.includes("experience") || s.includes("prototyping") || s.includes("design system") || s.includes("critique"),
+          id: "Kemampuan merancang pengalaman produk dari konsep sampai prototipe dan aturan desain yang bisa dipakai konsisten oleh tim.",
+          en: "Ability to design a product experience from concept to prototype and reusable design rules for the team."
+        },
+        {
+          test: s => s.includes("interaction system"),
+          id: "Kemampuan merancang pola interaksi yang konsisten, seperti cara pengguna membuka, memilih, membatalkan, menyimpan, atau berpindah antar bagian produk.",
+          en: "Ability to design consistent interaction patterns, such as how users open, choose, cancel, save, or move across product areas."
+        },
+        {
+          test: s => s.includes("ticket") || s.includes("workstation") || s.includes("account") || s.includes("user guidance"),
+          id: "Kemampuan membantu pengguna menyelesaikan masalah harian melalui tiket, panduan, akses akun, dan pengecekan perangkat kerja.",
+          en: "Ability to help users solve daily problems through tickets, guidance, account access, and workstation checks."
+        },
+        {
+          test: s => s.includes("issue reproduction") || s.includes("customer impact") || s.includes("workaround") || s.includes("escalation packet"),
+          id: "Kemampuan mengulang masalah pelanggan, mengukur dampaknya, menulis konteks eskalasi, dan memberi solusi sementara yang aman.",
+          en: "Ability to reproduce customer issues, assess impact, write escalation context, and provide safe temporary workarounds."
+        },
+        {
+          test: s => s.includes("runbook") || s.includes("data correction") || s.includes("application monitoring") || s.includes("recurring issue"),
+          id: "Kemampuan menjaga aplikasi berjalan harian dengan pemantauan, prosedur operasi, koreksi data, dan analisis masalah yang berulang.",
+          en: "Ability to keep applications running day to day through monitoring, runbooks, data correction, and recurring issue analysis."
+        },
+        {
+          test: s => s.includes("hiring") || s.includes("team health") || s.includes("conflict") || s.includes("performance") || s.includes("planning facilitation"),
+          id: "Kemampuan memimpin kesehatan tim, performa, rekrutmen, konflik, dan perencanaan agar delivery tetap realistis.",
+          en: "Ability to lead team health, performance, hiring, conflict, and planning so delivery stays realistic."
+        },
+        {
+          test: s => s.includes("strategy") || s.includes("governance") || s.includes("organization design") || s.includes("executive") || s.includes("board-level") || s.includes("program prioritization"),
+          id: "Kemampuan menetapkan arah besar, prioritas, tata kelola, dan komunikasi eksekutif agar keputusan teknis selaras dengan risiko bisnis.",
+          en: "Ability to set direction, priorities, governance, and executive communication so technical decisions align with business risk."
+        },
+        {
+          test: s => s.includes("technical risk portfolio"),
+          id: "Kemampuan melihat kumpulan risiko teknis secara menyeluruh, memilih mana yang paling berbahaya, dan menentukan investasi perbaikannya.",
+          en: "Ability to view technical risks as a portfolio, choose which are most dangerous, and decide where to invest in fixes."
+        }
+      ];
+
+      const found = rules.find(rule => rule.test(lower));
+      if (found) return lang === "en" ? found.en : found.id;
+
+      return lang === "en"
+        ? `${skill} means the work ability to understand the goal, steps, risks, and expected result of this activity well enough to explain it to technical and non-technical people.`
+        : `${skill} adalah kemampuan kerja untuk memahami tujuan, langkah, risiko, dan hasil dari aktivitas ini sampai bisa dijelaskan ke orang teknis maupun non-teknis.`;
+    }
+
     const questData_en = {
       "Frontend Developer": {
         phases: [
@@ -2223,7 +2597,6 @@
         questPathTo:   "Path to",
         salaryLabel:   "Salary Range",
         salaryNote:    "",
-        skillFallback: "Skill praktis yang dipakai role ini.",
         emptyState:    "Belum ada progress. Mulai level-up skill pertamamu!",
         sidebarTitle:  "IT Job Tree",
       },
@@ -2232,7 +2605,6 @@
         questPathTo:   "Path to",
         salaryLabel:   "Salary Range",
         salaryNote:    "Note: Indonesian rates differ significantly.",
-        skillFallback: "Practical skill used in this role.",
         emptyState:    "No progress yet. Start leveling up your first skill!",
         sidebarTitle:  "IT Job Tree",
       },
@@ -2607,9 +2979,7 @@
 
     function renderSkills(title, skills) {
       return skills.split(", ").map(s => {
-        const tip = currentLang === "en"
-          ? (skillDescs_en[s] || skillDescriptions[s] || UI_STRINGS.en.skillFallback)
-          : (skillDescriptions[s] || UI_STRINGS.id.skillFallback);
+        const tip = skillDescriptionFor(s, currentLang);
         const lv = skillLevel(title, s);
         const lvClass = lv > 0 ? `lv${lv}` : "";
         return `<span class="skill ${lvClass}" tabindex="0" data-tip="${tip}" data-title="${title}" data-skill="${s}">
