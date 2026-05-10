@@ -99,13 +99,39 @@
 
     h1 {
       font-family: 'Cinzel', serif;
-      font-size: clamp(28px, 4.5vw, 62px);
-      font-weight: 900; line-height: .94;
-      background: linear-gradient(135deg, #ffe9a0 0%, var(--gold) 40%, #d4903a 75%, #f0bb4e 100%);
+      font-size: clamp(36px, 6vw, 80px);
+      font-weight: 900; line-height: 1;
+      letter-spacing: .01em;
+      background: linear-gradient(160deg, #fff5c2 0%, #f0bb4e 30%, #c8922a 60%, #f0bb4e 80%, #ffe9a0 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 18px rgba(240,187,78,.45)) drop-shadow(0 2px 0 rgba(0,0,0,.9));
+      position: relative;
+    }
+    h1 .logo-rpg {
+      font-size: .62em; letter-spacing: .12em;
+      background: linear-gradient(160deg, #ffe9a0 0%, #f0bb4e 50%, #c8922a 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
+    .logo-tagline {
+      display: block; margin-top: 6px;
+      font-family: 'Inter', sans-serif; font-size: clamp(9px, 1vw, 12px);
+      font-weight: 600; letter-spacing: .28em; text-transform: uppercase;
+      color: rgba(240,187,78,.45);
+    }
+
     .intro { max-width: 480px; color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-top: 10px; }
+
+    /* IT emoji background */
+    .it-bg {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; overflow: hidden;
+    }
+    .it-bg span {
+      position: absolute; display: block;
+      font-size: 22px; opacity: .13;
+      user-select: none; line-height: 1;
+    }
 
     /* sync button in header */
     .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -1307,6 +1333,56 @@
 </head>
 <body>
 
+  <div class="it-bg" aria-hidden="true">
+    <span style="top:2%;left:3%;transform:rotate(-15deg);font-size:28px">💻</span>
+    <span style="top:5%;left:18%;transform:rotate(8deg)">⌨️</span>
+    <span style="top:1%;left:35%;transform:rotate(-6deg);font-size:18px">🖥️</span>
+    <span style="top:7%;left:52%;transform:rotate(12deg);font-size:26px">🐛</span>
+    <span style="top:3%;left:68%;transform:rotate(-20deg)">🔌</span>
+    <span style="top:6%;left:82%;transform:rotate(5deg);font-size:30px">💾</span>
+    <span style="top:12%;left:92%;transform:rotate(-8deg)">⚙️</span>
+    <span style="top:14%;left:8%;transform:rotate(18deg);font-size:20px">🖱️</span>
+    <span style="top:18%;left:27%;transform:rotate(-12deg);font-size:26px">📡</span>
+    <span style="top:16%;left:45%;transform:rotate(7deg)">🐍</span>
+    <span style="top:20%;left:61%;transform:rotate(-22deg);font-size:20px">🔧</span>
+    <span style="top:15%;left:76%;transform:rotate(14deg);font-size:28px">💿</span>
+    <span style="top:22%;left:88%;transform:rotate(-5deg)">📟</span>
+    <span style="top:28%;left:2%;transform:rotate(10deg);font-size:24px">🖧</span>
+    <span style="top:32%;left:14%;transform:rotate(-18deg)">⌨️</span>
+    <span style="top:29%;left:31%;transform:rotate(6deg);font-size:20px">🔋</span>
+    <span style="top:35%;left:48%;transform:rotate(-9deg);font-size:26px">💡</span>
+    <span style="top:31%;left:64%;transform:rotate(16deg)">🖨️</span>
+    <span style="top:37%;left:79%;transform:rotate(-4deg);font-size:22px">📱</span>
+    <span style="top:33%;left:94%;transform:rotate(11deg)">🔩</span>
+    <span style="top:44%;left:6%;transform:rotate(-14deg);font-size:28px">💻</span>
+    <span style="top:48%;left:22%;transform:rotate(9deg);font-size:18px">⚙️</span>
+    <span style="top:42%;left:40%;transform:rotate(-7deg)">🐛</span>
+    <span style="top:50%;left:57%;transform:rotate(20deg);font-size:24px">🔌</span>
+    <span style="top:46%;left:73%;transform:rotate(-16deg)">🖥️</span>
+    <span style="top:52%;left:87%;transform:rotate(3deg);font-size:26px">🐍</span>
+    <span style="top:60%;left:4%;transform:rotate(-11deg)">📡</span>
+    <span style="top:63%;left:19%;transform:rotate(15deg);font-size:22px">💾</span>
+    <span style="top:58%;left:36%;transform:rotate(-20deg);font-size:28px">🖱️</span>
+    <span style="top:65%;left:53%;transform:rotate(8deg)">🔧</span>
+    <span style="top:61%;left:70%;transform:rotate(-5deg);font-size:20px">📟</span>
+    <span style="top:67%;left:84%;transform:rotate(13deg)">💡</span>
+    <span style="top:73%;left:9%;transform:rotate(-17deg);font-size:26px">⌨️</span>
+    <span style="top:76%;left:25%;transform:rotate(6deg)">🖨️</span>
+    <span style="top:71%;left:43%;transform:rotate(-10deg);font-size:24px">💻</span>
+    <span style="top:78%;left:60%;transform:rotate(18deg)">🔩</span>
+    <span style="top:74%;left:77%;transform:rotate(-8deg);font-size:28px">📱</span>
+    <span style="top:80%;left:91%;transform:rotate(4deg)">🐛</span>
+    <span style="top:86%;left:5%;transform:rotate(-13deg)">💾</span>
+    <span style="top:89%;left:21%;transform:rotate(10deg);font-size:22px">⚙️</span>
+    <span style="top:84%;left:38%;transform:rotate(-6deg);font-size:26px">🔌</span>
+    <span style="top:91%;left:55%;transform:rotate(15deg)">🖥️</span>
+    <span style="top:87%;left:71%;transform:rotate(-19deg);font-size:20px">🐍</span>
+    <span style="top:93%;left:86%;transform:rotate(7deg)">📡</span>
+    <span style="top:96%;left:12%;transform:rotate(-4deg);font-size:28px">🔧</span>
+    <span style="top:94%;left:42%;transform:rotate(12deg)">💿</span>
+    <span style="top:97%;left:67%;transform:rotate(-15deg);font-size:24px">💻</span>
+  </div>
+
   <header>
     <div class="header-inner">
       <div class="header-left">
@@ -1314,8 +1390,7 @@
           <div class="crest"><span>IT</span></div>
           <span class="topline-text">ulong RPG &mdash; MMORPG Edition</span>
         </div>
-        <h1>Dunia IT sebagai<br>Kelas Petualang</h1>
-        <p class="intro">Setiap role punya senjata, skill aktif, dan range salary. Mulai dari <strong style="color:var(--ink-dim)">Novice</strong> sampai <strong style="color:var(--gold)">Final Class</strong> seperti CTO.</p>
+        <h1>ulong <span class="logo-rpg">RPG</span><span class="logo-tagline">ur long role playing game</span></h1>
       </div>
       <div class="header-actions">
         <div class="auto-wrapper" id="auto-wrapper">
