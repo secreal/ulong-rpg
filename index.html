@@ -802,6 +802,23 @@
       box-shadow: 0 0 14px color-mix(in srgb, var(--gold) 25%, transparent);
     }
 
+    /* ══ LOCKED CARD STATE ══ */
+    .card-locked {
+      opacity: .45;
+      filter: grayscale(.6);
+    }
+    .btn-do-jobchange:disabled {
+      opacity: .35; cursor: not-allowed;
+      pointer-events: none;
+    }
+    .card-lock-badge {
+      position: absolute; top: 8px; right: 8px; z-index: 2;
+      background: rgba(0,0,0,.65); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 6px; padding: 2px 7px;
+      font: 700 9px 'Inter', sans-serif; color: rgba(255,255,255,.55);
+      letter-spacing: .5px; pointer-events: none;
+    }
+
     /* ══ JOB CHANGE MODAL ══ */
     .jobchange-overlay {
       position: fixed; inset: 0; z-index: 750;
@@ -2615,8 +2632,7 @@
       const jobsEl = document.getElementById("jobs");
       let filtered = group === "All" ? jobs : jobs.filter(j => j[0] === group);
 
-      // Tier-gate: hide T2/T3 jobs until prerequisites are met
-      filtered = filtered.filter(j => isJobUnlocked(j[1], j[8]));
+      // Tier-gate: T2/T3 jobs always visible, but marked locked until prerequisites are met
 
       if (activeMyProgress) {
         filtered = filtered.filter(([, title,, skills]) => {
@@ -2640,12 +2656,14 @@
         const displayDesc   = isEN ? (jobDescs_en[title] || desc) : desc;
         const displaySalary = isEN ? (salaries_en[title] || salary) : salary;
         const salaryLabel   = UI_STRINGS[currentLang].salaryLabel;
+        const unlocked = isJobUnlocked(title, tier);
 
         return `
-          <article class="card" style="--role:${role};--hair:${hair};${charStyle}">
+          <article class="card${unlocked ? "" : " card-locked"}" style="--role:${role};--hair:${hair};${charStyle}">
             <i class="card-corner tl"></i><i class="card-corner tr"></i><i class="card-corner bl"></i><i class="card-corner br"></i>
             <div class="card-accent"></div>
             <div class="card-progress-bar"><div class="card-progress-fill" style="width:${pct}%"></div></div>
+            ${!unlocked ? `<div class="card-lock-badge">🔒 Locked</div>` : ""}
             <div class="sprite-stage">${sprite(tool, accClass)}</div>
             <div class="card-body">
               <div class="card-top-row">
@@ -2674,7 +2692,7 @@
                 ${hasQuest ? `<button class="btn-job-change" data-job="${title}" data-role="${role}">
                   📋 Qualification${qp && qp.done > 0 ? ` · ${qp.pct}%` : ""}
                 </button>` : ""}
-                ${tier >= 2 ? `<button class="btn-do-jobchange" data-job="${title}" data-role="${role}">
+                ${tier >= 2 ? `<button class="btn-do-jobchange" data-job="${title}" data-role="${role}" ${unlocked ? "" : "disabled"}>
                   ⚔ Job Change
                 </button>` : ""}
               </div>
@@ -2875,8 +2893,9 @@
       _jobchangeTarget = jobTitle;
       document.getElementById("jobchange-target-label").textContent = `Naik ke: ${jobTitle}`;
 
+      const prereqTitles = (jobProgressionTree[jobTitle]?.unlockedBy || []).filter(t => t !== "__any_t2_t3__");
       const eligibleJobs = jobs.filter(([,title,,skillsStr]) =>
-        title !== jobTitle && jobHasProgress(title, skillsStr)
+        prereqTitles.includes(title) && jobHasProgress(title, skillsStr)
       );
 
       const currentSubs = (jobChangeState && jobChangeState.primary === jobTitle)
@@ -2885,7 +2904,7 @@
 
       const list = document.getElementById("jobchange-include-list");
       if (eligibleJobs.length === 0) {
-        list.innerHTML = `<div class="jobchange-empty-notice">Belum ada job T1 dengan skill aktif yang bisa di-include.</div>`;
+        list.innerHTML = `<div class="jobchange-empty-notice">Belum ada prerequisite job dengan skill aktif yang bisa di-include.</div>`;
       } else {
         list.innerHTML = eligibleJobs.map(([grp, title,,,,,,, tier]) => {
           const safeId = `jc-sub-${title.replace(/\s+/g, "-")}`;
