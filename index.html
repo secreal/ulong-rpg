@@ -3215,7 +3215,7 @@
         card.querySelector(".card-xp-fill").style.width = pct + "%";
         card.querySelector(".card-progress-fill").style.width = pct + "%";
         card.querySelector(".card-xp-text").textContent = `${done}/${allSkills.length} skill learned`;
-        if (activeMyProgress) { renderCards(activeFilter); }
+        renderCards(activeFilter);
         renderSidebar();
         return;
       }
