@@ -1503,8 +1503,8 @@
         <ol>
           <li id="export-guide-step1">Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)</li>
           <li>Di repo <strong style="color:var(--ink)">ulong</strong>, klik <strong style="color:var(--ink)">Add file → Create new file</strong>, ketik <code style="color:var(--gold)">index.html</code>, lalu <strong style="color:var(--ink)">paste</strong> (Ctrl+V / ⌘V)</li>
-          <li>Klik <strong style="color:var(--ink)">Commit changes</strong>, lalu aktifkan <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a> di Settings → Pages</li>
-          <li>Showcase kamu akan live di <span id="export-guide-url" style="color:var(--gold)">github.com/&lt;username&gt;/ulong</span></li>
+          <li>Klik <strong style="color:var(--ink)">Commit changes</strong>, lalu aktifkan <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a> di <strong>Settings → Pages → Source: Deploy from a branch → main → / (root)</strong></li>
+          <li>Showcase kamu akan live di <span id="export-guide-url" style="color:var(--gold)">github.com/&lt;username&gt;/ulong</span> (URL: <code style="color:var(--muted)">&lt;username&gt;.github.io/ulong</code>)</li>
         </ol>
         <div style="margin-top:10px;font-size:11px;color:var(--muted)">Tidak bisa paste? <a id="export-fallback-dl" href="#" style="color:var(--gold);opacity:.8">Download file saja</a></div>
       </div>
@@ -2865,18 +2865,18 @@
             notice.className = "export-repo-notice found show";
             notice.innerHTML = `✓ Repo <strong>${prof.github}/ulong</strong> ditemukan — paste di halaman yang terbuka, lalu commit.`;
             step1.innerHTML = `Repo <strong style="color:var(--ink)">${prof.github}/ulong</strong> sudah ada ✓`;
-            // Empty repo: open repo root (shows quick-setup with "create new file" button)
+            // Empty repo: open create-file page on main (repo was likely just created)
             // Non-empty repo: open create-file page on the default branch
             const targetUrl = isEmpty
-              ? `https://github.com/${prof.github}/ulong`
+              ? `https://github.com/${prof.github}/ulong/new/main`
               : `https://github.com/${prof.github}/ulong/new/${branch}`;
             window.open(targetUrl, "_blank", "noopener");
           } else if (res.status === 404) {
             notice.className = "export-repo-notice not-found show";
-            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada — halaman create repo terbuka. Setelah repo dibuat, upload <code>index.html</code> yang sudah di-copy.`;
-            step1.innerHTML = `Buat repo publik <strong style="color:var(--ink)">ulong</strong> di halaman yang terbuka, lalu kembali ke sini`;
-            // Langsung buka create-repo page tanpa konfirmasi
-            window.open(`https://github.com/new?name=ulong&visibility=public`, "_blank", "noopener");
+            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada — halaman create repo terbuka. Centang <strong>Add a README file</strong>, buat repo, lalu kembali ke sini dan klik Copy &amp; Open GitHub lagi.`;
+            step1.innerHTML = `Buat repo publik <strong style="color:var(--ink)">ulong</strong> di halaman yang terbuka (centang "Add a README file"), lalu kembali ke sini`;
+            // gitignore_template makes GitHub auto-check "Initialize with README"
+            window.open(`https://github.com/new?name=ulong&visibility=public&gitignore_template=VisualStudio`, "_blank", "noopener");
           } else {
             window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
           }
