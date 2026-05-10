@@ -155,6 +155,32 @@
     }
     .myprogress-empty strong { display: block; color: var(--ink-dim); font-size: 16px; margin-bottom: 8px; }
 
+    .btn-lang {
+      display: flex; align-items: center;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      overflow: hidden;
+      background: transparent;
+    }
+    .lang-opt {
+      padding: 7px 11px;
+      font: 600 11px 'Inter', sans-serif;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all .18s ease;
+      white-space: nowrap;
+    }
+    .lang-opt:hover { color: var(--ink-dim); background: rgba(255,255,255,.05); }
+    .lang-opt.active {
+      color: var(--gold);
+      background: rgba(240,187,78,.12);
+    }
+    .lang-opt + .lang-opt {
+      border-left: 1px solid rgba(255,255,255,.12);
+    }
+
     .btn-reset-all {
       display: flex; align-items: center; gap: 6px;
       padding: 8px 12px;
@@ -607,6 +633,7 @@
     .meta { display: grid; gap: 10px; }
     .meta-label { display: block; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
     .salary { color: var(--gold); font-size: 14px; font-weight: 700; }
+    .salary-note { display: block; font-size: 9.5px; color: var(--muted); margin-top: 3px; opacity: .75; }
     .meta-sep { height: 1px; background: var(--line); opacity: .55; }
 
     .skill-list { display: flex; flex-wrap: wrap; gap: 5px; }
@@ -1253,6 +1280,10 @@
             <button class="btn-auto-copy" id="btn-auto-copy">Copy to Claude</button>
           </div>
         </div>
+        <div class="btn-lang" id="btn-lang">
+          <button class="lang-opt" id="lang-id" data-lang="id">ID</button>
+          <button class="lang-opt" id="lang-en" data-lang="en">EN</button>
+        </div>
         <button class="btn-myprogress" id="btn-myprogress" title="Tampilkan hanya job yang sudah di-progress">⚑ My Progress</button>
         <button class="btn-export-showcase-header" id="btn-open-export" title="Export showcase ke GitHub">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1638,6 +1669,329 @@
       "API basic":"Dasar memahami request/response HTTP untuk membaca dan debugging API.",
     };
 
+    // ── English translation data ──
+
+    const jobDescs_en = {
+      "IT Novice":           "Fresh grad entering the IT training ground — learning the foundations of the digital world.",
+      "Frontend Developer":  "UI archer who fires components, layouts, and interactions at the browser.",
+      "Backend Developer":   "Server mage who guards the API, business logic, database, and authentication.",
+      "Mobile Developer":    "App adventurer who brings the product to Android and iOS.",
+      "Fullstack Developer":  "Hybrid class that can shift from client to server within a single party.",
+      "Tech Lead":           "Technical party leader who keeps the implementation direction and code quality on track.",
+      "Manual QA":           "Bug scout who combs through features, edge cases, and user flows.",
+      "QA Automation":       "Trap hunter who catches bugs through automated scripts.",
+      "Performance Tester":  "Damage tester who pushes the system until bottlenecks show up.",
+      "Data Analyst":        "Numbers sage who turns raw data into business insight.",
+      "BI Developer":        "Support class who builds dashboards and party metrics.",
+      "Data Engineer":       "Pipeline blacksmith who forges raw data into ready-to-use data.",
+      "Data Scientist":      "Experiment professor who builds prediction models and runs analysis.",
+      "AI Engineer":         "Model summoner who connects LLMs, RAG, and agents into the product.",
+      "System Administrator":"Server priest who keeps machines, users, backups, and patches healthy.",
+      "Network Engineer":    "Network crusader who guards routing, switching, and firewalls.",
+      "Cloud Engineer":      "Cloud high priest who manages compute, storage, IAM, and networking.",
+      "DevOps Engineer":     "Automation alchemist who sets up CI/CD and infrastructure as code.",
+      "Database Admin":      "Database keeper who guards backups, tuning, and high availability.",
+      "SRE":                 "Uptime paladin tasked with keeping production reliability strong.",
+      "SOC Analyst":         "City guard who reads alerts, logs, and signs of attack.",
+      "Security Engineer":   "Security crusader who installs system defenses.",
+      "Pentester":           "Legal assassin who finds vulnerabilities before the enemy does.",
+      "GRC Specialist":      "Rules sage who handles risk, policy, audit, and compliance.",
+      "AppSec Engineer":     "Application rune guard who reviews code and threat models.",
+      "Business Analyst":    "NPC translator who converts business language into technical requirements.",
+      "Product Owner":       "Quest owner who builds the backlog and sprint priorities.",
+      "Project Manager":     "Party organizer who keeps timeline, resources, and risks in check.",
+      "Product Manager":     "Guild strategist who chooses the product direction and victory metrics.",
+      "UI Designer":         "Costume designer who makes the interface feel polished and characterful.",
+      "UX Designer":         "Quest designer who ensures the user flow is logical and comfortable.",
+      "Product Designer":    "Hybrid UI/UX class who designs the product experience end-to-end.",
+      "Helpdesk":            "Entry-level acolyte who helps users through tickets and troubleshooting.",
+      "IT Support":          "IT support who handles user hardware, software, and network issues.",
+      "Technical Support":   "Product support who reads logs, APIs, and customer issues.",
+      "Application Support": "Application priest who keeps the product running day-to-day.",
+      "Engineering Manager": "Guild captain who balances delivery, people, and technical quality.",
+      "CTO":                 "Final tech class who sets the system direction and engineering organization.",
+      "CISO":                "Final security class who leads the company's defense posture.",
+    };
+
+    const salaries_en = {
+      "IT Novice":           "$25,000–$45,000/yr",
+      "Frontend Developer":  "$45,000–$115,000/yr",
+      "Backend Developer":   "$50,000–$125,000/yr",
+      "Mobile Developer":    "$50,000–$120,000/yr",
+      "Fullstack Developer":  "$48,000–$120,000/yr",
+      "Tech Lead":           "$90,000–$160,000/yr",
+      "Manual QA":           "$35,000–$85,000/yr",
+      "QA Automation":       "$50,000–$100,000/yr",
+      "Performance Tester":  "$55,000–$105,000/yr",
+      "Data Analyst":        "$45,000–$100,000/yr",
+      "BI Developer":        "$55,000–$115,000/yr",
+      "Data Engineer":       "$65,000–$130,000/yr",
+      "Data Scientist":      "$70,000–$140,000/yr",
+      "AI Engineer":         "$90,000–$180,000/yr",
+      "System Administrator":"$40,000–$85,000/yr",
+      "Network Engineer":    "$45,000–$100,000/yr",
+      "Cloud Engineer":      "$70,000–$140,000/yr",
+      "DevOps Engineer":     "$65,000–$140,000/yr",
+      "Database Admin":      "$50,000–$108,000/yr",
+      "SRE":                 "$70,000–$145,000/yr",
+      "SOC Analyst":         "$45,000–$110,000/yr",
+      "Security Engineer":   "$75,000–$135,000/yr",
+      "Pentester":           "$60,000–$130,000/yr",
+      "GRC Specialist":      "$55,000–$110,000/yr",
+      "AppSec Engineer":     "$85,000–$165,000/yr",
+      "Business Analyst":    "$50,000–$110,000/yr",
+      "Product Owner":       "$65,000–$140,000/yr",
+      "Project Manager":     "$55,000–$115,000/yr",
+      "Product Manager":     "$65,000–$155,000/yr",
+      "UI Designer":         "$40,000–$95,000/yr",
+      "UX Designer":         "$50,000–$110,000/yr",
+      "Product Designer":    "$55,000–$120,000/yr",
+      "Helpdesk":            "$28,000–$65,000/yr",
+      "IT Support":          "$32,000–$70,000/yr",
+      "Technical Support":   "$38,000–$80,000/yr",
+      "Application Support": "$38,000–$80,000/yr",
+      "Engineering Manager": "$80,000–$150,000/yr",
+      "CTO":                 "$150,000–$300,000/yr",
+      "CISO":                "$130,000–$280,000/yr",
+    };
+
+    const skillDescs_en = {
+      "Git":              "Version control for tracking code history and collaborating with a team.",
+      "SQL basic":        "Basics of retrieving, filtering, and modifying data from a relational database.",
+      "SQL":              "Querying, filtering, joining, and aggregating data from a database.",
+      "logic":            "Breaking a problem into small steps a program can execute.",
+      "troubleshooting":  "Tracing the cause of an error from symptoms, logs, config, and recent changes.",
+      "HTML":             "Web page structure: headings, forms, tables, navigation, and semantic elements.",
+      "CSS":              "Controlling layout, colors, responsive design, animations, and component styling.",
+      "JavaScript":       "The primary browser language for interaction, state, API requests, and UI logic.",
+      "React/Vue":        "Frontend framework for building component-based, stateful UIs.",
+      "API":              "Communication contract between systems, typically via HTTP, REST, GraphQL, or RPC.",
+      "database":         "Where app data lives — queries, indexes, constraints, and transactions.",
+      "auth":             "Login, permissions, session/token, and protecting access to features or data.",
+      "queue":            "Background job queue so heavy tasks don't block the main request.",
+      "caching":          "Storing results temporarily so the system is faster and server load drops.",
+      "Frontend":         "The part of the app users see and interact with directly.",
+      "backend":          "The server side that handles data, business rules, and system integrations.",
+      "deployment":       "The process of releasing an application to an environment users can access.",
+      "Kotlin":           "Modern language for native Android development.",
+      "Swift":            "Primary language for native iOS development.",
+      "Flutter":          "Cross-platform framework built on Dart for mobile apps.",
+      "React Native":     "Mobile framework using JavaScript and React patterns.",
+      "Architecture":     "System structure decisions: modules, dependencies, boundaries, scaling, and tradeoffs.",
+      "review":           "Examining code changes for correctness, security, maintainability, and consistency.",
+      "mentoring":        "Helping other engineers level up through technical guidance and feedback.",
+      "Smoke test":       "Quick test of core features after a build/deploy to ensure the app is still alive.",
+      "regression":       "Re-testing existing features so new changes don't break prior behavior.",
+      "test case":        "A scenario with steps, data, and expected result to verify a feature.",
+      "Playwright":       "Browser automation tool for end-to-end UI testing.",
+      "Cypress":          "Frontend automation tool for testing web interactions.",
+      "Selenium":         "Widely used, cross-language browser automation tool.",
+      "API test":         "Testing endpoints without a UI to verify correct request and response behavior.",
+      "JMeter":           "Load testing tool for measuring system performance under high traffic.",
+      "k6":               "Modern script-based performance testing tool.",
+      "load test":        "Measuring system capacity from normal to high load.",
+      "stress test":      "Pushing the system beyond normal limits to find its breaking point.",
+      "Excel":            "Rapid data analysis with tables, formulas, pivots, and charts.",
+      "dashboard":        "A metric view that helps people monitor business or system health.",
+      "statistics":       "Basics of reading patterns, distributions, correlation, and data validity.",
+      "Power BI":         "Microsoft's dashboard and business intelligence platform.",
+      "Tableau":          "Data visualization platform for interactive dashboards.",
+      "Looker":           "BI platform with a modeling layer for consistent metrics.",
+      "modeling":         "Structuring data so it's easy to analyze and unambiguous.",
+      "ETL":              "Extract, transform, load: taking data, cleaning it, and loading it to a destination.",
+      "Airflow":          "DAG-based pipeline orchestrator with scheduling.",
+      "Spark":            "Large-scale data processing engine.",
+      "warehouse":        "Central analytics database for reporting and analysis.",
+      "Python":           "General-purpose language for data, backend, automation, and machine learning.",
+      "ML":               "Machine learning: models that learn patterns from data for prediction or classification.",
+      "experiment":       "Testing a hypothesis with experimental design, metrics, and evaluation.",
+      "LLM API":          "Using large language models via API to build AI features.",
+      "RAG":              "Retrieval-augmented generation: giving a model context from your own documents or data.",
+      "evaluation":       "Measuring the quality of model or system output with tests and metrics.",
+      "agents":           "AI systems that can choose steps, use tools, and run work loops.",
+      "Linux":            "Common server OS used for hosting and infrastructure.",
+      "Windows Server":   "Microsoft server OS for domain, file server, and enterprise applications.",
+      "monitoring":       "Watching metrics, logs, and alerts so problems surface quickly.",
+      "TCP/IP":           "Foundation of internet and intranet network communication.",
+      "routing":          "Directing data packets between networks.",
+      "switching":        "Connecting devices within a local network.",
+      "firewall":         "Restricting network traffic based on security rules.",
+      "AWS/GCP/Azure":    "Cloud platforms for running servers, storage, networking, and managed services.",
+      "IAM":              "Identity and access management: who can do what.",
+      "containers":       "Packaging an application and its dependencies for consistent deployment.",
+      "Docker":           "The most common container tool for bundling applications.",
+      "Kubernetes":       "Container orchestrator for scaling, deployment, and recovery.",
+      "Terraform":        "Infrastructure as code for creating and modifying infra declaratively.",
+      "CI/CD":            "Automated build, test, and deploy pipeline.",
+      "SLO":              "Service level objective: an agreed reliability target.",
+      "incident response":"Process for handling production outages through resolution and retrospective.",
+      "PostgreSQL":       "Powerful open-source relational database for serious applications.",
+      "MySQL":            "Popular relational database for web and business applications.",
+      "tuning":           "Optimizing queries, indexes, configuration, and database resources.",
+      "HA":               "High availability: designing systems to stay alive when components fail.",
+      "SIEM":             "Platform for collecting and analyzing security logs.",
+      "log analysis":     "Reading event patterns from logs for debugging or attack detection.",
+      "triage":           "Prioritizing alerts or bugs based on impact and urgency.",
+      "Hardening":        "Reducing the attack surface through secure configuration.",
+      "endpoint":         "User or server devices that need protection from malware and unauthorized access.",
+      "OWASP":            "Reference for the most common web application security risks.",
+      "Burp":             "Proxy tool for testing web application security.",
+      "exploit basics":   "Understanding and proving security vulnerabilities in a controlled way.",
+      "Secure coding":    "Writing code that avoids injection, auth bugs, data leaks, and common vulnerabilities.",
+      "SAST/DAST":        "Static and dynamic security testing to find security risks.",
+      "ISO 27001":        "Standard for an information security management system.",
+      "risk":             "Assessing the likelihood and impact of a problem before deciding on mitigation.",
+      "audit":            "Reviewing evidence that controls and processes meet a standard.",
+      "policy":           "Written rules that guide security and operational practices.",
+      "Requirement":      "Business or user need translated into a working specification.",
+      "flow":             "The process or screen journey from start to completed goal.",
+      "documentation":    "Records that make requirements, decisions, and how-tos understandable later.",
+      "Backlog":          "A prioritized list of product work.",
+      "user story":       "Requirement format from the user's perspective and goal.",
+      "stakeholder":      "Someone with an interest in the product or project outcome.",
+      "Discovery":        "Early research to find the most important problem and a viable solution.",
+      "roadmap":          "A product direction plan over a time horizon.",
+      "metrics":          "Numbers used to assess product or system health.",
+      "Planning":         "Defining scope, sequencing work, estimating, and identifying risks.",
+      "coordination":     "Aligning people, dependencies, and decisions so work moves forward.",
+      "reporting":        "Communicating status, risks, and results clearly.",
+      "Figma":            "UI design tool for creating layouts, prototypes, and design systems.",
+      "layout":           "Arranging visual elements for readability and usability.",
+      "typography":       "Controlling font, size, hierarchy, and text legibility.",
+      "color":            "Using color for brand, hierarchy, status, and contrast.",
+      "Wireframe":        "A structural sketch of a screen before detailed visuals are added.",
+      "usability test":   "Observing users interacting with the product to find real friction points.",
+      "UX":               "User experience: from need, flow, and emotion to the final outcome.",
+      "UI":               "The interactive visual components users touch.",
+      "prototype":        "A product simulation for testing flow before full build.",
+      "design system":    "A collection of components, tokens, and consistent design rules.",
+      "Ticketing":        "A request or issue tracking system so work is handled and traceable.",
+      "Windows":          "Basic administration and troubleshooting for user computers.",
+      "account support":  "Helping users with account access, passwords, permissions, and onboarding.",
+      "Log reading":      "Reading app logs to find errors and root causes.",
+      "SOP":              "Standard operating procedure for consistent operational work.",
+      "People management":"Managing team growth, feedback, performance, and wellbeing.",
+      "delivery":         "Ensuring work ships with acceptable quality and on reasonable timelines.",
+      "hiring":           "Recruiting people who fit team needs and technical level.",
+      "Strategy":         "Setting big-picture direction based on business goals and real constraints.",
+      "leadership":       "Guiding people and decisions when the problem isn't purely technical.",
+      "Cyber risk":       "Risk of loss from attacks, data breaches, or system weaknesses.",
+      "governance":       "Decision structures, rules, and accountability for security and IT.",
+      "incident":         "An event that disrupts security, reliability, or operations.",
+      "API basic":        "Basics of understanding HTTP request/response for reading and debugging APIs.",
+    };
+
+    const questData_en = {
+      "Frontend Developer": {
+        phases: [
+          {
+            title: "Web Foundations",
+            items: [
+              { id:"fe-1", label:"Master semantic HTML", sub:"Learn headings, forms, tables, landmark elements. Reference: MDN HTML.", ref:"https://developer.mozilla.org/en-US/docs/Learn/HTML" },
+              { id:"fe-2", label:"Master CSS basics & layout", sub:"Flexbox, Grid, responsive design, CSS variables.", ref:"https://developer.mozilla.org/en-US/docs/Learn/CSS" },
+              { id:"fe-3", label:"Master JavaScript ES6+", sub:"Arrow functions, destructuring, async/await, fetch API.", ref:"https://javascript.info" },
+            ]
+          },
+          {
+            title: "Equipment",
+            items: [
+              { id:"fe-4", label:"Equip: React or Vue", sub:"Components, state, props, hooks. Start with the official tutorial.", ref:"https://react.dev/learn" },
+              { id:"fe-5", label:"Equip: Git + GitHub", sub:"Commit, branch, pull request. Create a GitHub account and start contributing.", ref:"https://learngitbranching.js.org" },
+              { id:"fe-6", label:"Equip: Vite as bundler", sub:"Set up a modern project with Vite, npm/yarn, and clean folder structure.", ref:"https://vitejs.dev/guide/" },
+            ]
+          },
+          {
+            title: "Achievement",
+            items: [
+              { id:"fe-7", label:"Build: 2–3 projects on GitHub", sub:"Landing page, todo app, or UI clone. Must be live and accessible.", ref:"https://github.com" },
+              { id:"fe-8", label:"Deploy to Vercel or Netlify", sub:"A live URL is required for every project — proof you can ship.", ref:"https://vercel.com" },
+              { id:"fe-9", label:"Craft: GitHub profile README", sub:"Showcase your best projects, tech stack, and contact info.", ref:"https://github.com" },
+            ]
+          },
+          {
+            title: "Find Your Guild",
+            items: [
+              { id:"fe-10", label:"Glints: Apply Frontend Developer Remote", sub:"Search: \"Frontend Developer\" + filter Remote + Entry Level. Send 5–10 applications per week.", ref:"https://glints.com/id/opportunities/jobs/explore/?keyword=Frontend+Developer&locationName=Indonesia&workArrangement=REMOTE" },
+              { id:"fe-11", label:"Indeed: Find Remote Frontend Listings", sub:"Query: \"Frontend Developer remote\" or \"React Developer remote Indonesia\". Enable email alerts.", ref:"https://id.indeed.com/jobs?q=frontend+developer+remote&l=Indonesia" },
+              { id:"fe-12", label:"LinkedIn: Enable Open to Work + Apply", sub:"Set Open to Work, filter Jobs: Remote, Frontend, Entry Level. Easy Apply to 10+ listings.", ref:"https://www.linkedin.com/jobs/search/?keywords=Frontend%20Developer&f_WT=2&f_E=2" },
+            ]
+          },
+          {
+            title: "Vendor Quest",
+            items: [
+              { id:"fe-13", label:"Upwork: Open account & bid on small projects", sub:"Start with small fixed-price projects ($50–200) to build your rating. Search: \"React developer\", \"landing page\".", ref:"https://www.upwork.com/freelance-jobs/react/" },
+              { id:"fe-14", label:"Fiverr: Create a Frontend / Landing Page Gig", sub:"Create a specific gig: \"I will build a responsive React landing page\". Price from $25–50 to build portfolio.", ref:"https://www.fiverr.com/categories/programming-tech/website-development" },
+              { id:"fe-15", label:"Toptal: Apply if you have 2+ years experience", sub:"Strict selection but high rates ($60–150/hr). Suitable after you have a solid portfolio.", ref:"https://www.toptal.com/developers/join" },
+            ]
+          },
+        ]
+      },
+      "Manual QA": {
+        phases: [
+          {
+            title: "Job Change Quest!",
+            items: [
+              { id:"qa-1", label:"Understand SDLC & QA's role in it", sub:"Agile, Scrum, bug lifecycle from report to closed.", ref:"https://www.guru99.com/software-testing.html" },
+              { id:"qa-2", label:"Learn to write good test cases", sub:"Format: precondition, steps, expected result. Practice on apps you use daily.", ref:"https://www.guru99.com/test-case.html" },
+              { id:"qa-3", label:"Understand testing types: functional, regression, UAT", sub:"Know when each is used and who runs it.", ref:"https://www.softwaretestinghelp.com" },
+            ]
+          },
+          {
+            title: "Equipment",
+            items: [
+              { id:"qa-4", label:"Equip: Jira for bug tracking", sub:"How to write a clear bug report: severity, priority, steps to reproduce.", ref:"https://www.atlassian.com/software/jira" },
+              { id:"qa-5", label:"Equip: Basic SQL for data verification", sub:"SELECT, WHERE, JOIN — useful for checking data directly in the DB.", ref:"https://sqlbolt.com" },
+              { id:"qa-6", label:"Equip: Postman for API testing", sub:"Send GET/POST, read responses, validate status codes and payloads.", ref:"https://learning.postman.com" },
+            ]
+          },
+          {
+            title: "Achievement",
+            items: [
+              { id:"qa-7", label:"Craft: Test case docs for 1 real app", sub:"Pick a public app (e-commerce, etc.), write 20+ test cases, upload to Google Doc or GitHub.", ref:"https://github.com" },
+              { id:"qa-8", label:"Craft: Bug report portfolio", sub:"Report at least 5 bugs from a public app, complete with screenshots and reproduction steps.", ref:"https://www.guru99.com/how-to-write-a-bug-report.html" },
+            ]
+          },
+          {
+            title: "Find Your Guild",
+            items: [
+              { id:"qa-9", label:"Glints: Apply QA Tester Remote", sub:"Search: \"QA Tester\" or \"Manual QA\" + filter Remote. Many SaaS startups need entry-level QA.", ref:"https://glints.com/id/opportunities/jobs/explore/?keyword=Manual+QA&locationName=Indonesia&workArrangement=REMOTE" },
+              { id:"qa-10", label:"Indeed: Find QA Remote (ID & international)", sub:"Query: \"manual QA remote\" or \"QA engineer remote Indonesia\". Enable alerts for these keywords.", ref:"https://id.indeed.com/jobs?q=manual+qa+remote&l=Indonesia" },
+              { id:"qa-11", label:"LinkedIn: Open to Work + Apply QA listings", sub:"Set Open to Work, filter Jobs: Remote, QA Tester / Quality Assurance, Entry Level. Easy Apply 10+ companies.", ref:"https://www.linkedin.com/jobs/search/?keywords=Manual%20QA&f_WT=2&f_E=2" },
+            ]
+          },
+          {
+            title: "Vendor Quest",
+            items: [
+              { id:"qa-12", label:"Upwork: Bid on QA / testing freelance projects", sub:"Search: \"manual testing\", \"test case writing\", \"bug reporting\". Start small fixed-price to build reputation.", ref:"https://www.upwork.com/freelance-jobs/qa/" },
+              { id:"qa-13", label:"Fiverr: Create a QA Testing / Bug Report Gig", sub:"Example gig: \"I will manually test your web app and deliver a bug report\". Price $20–50 for small projects.", ref:"https://www.fiverr.com/categories/programming-tech/website-development" },
+              { id:"qa-14", label:"Testlio / uTest: Dedicated QA freelance platform", sub:"Crowdsourced testing platform — great for QA wanting real experience without applying to companies.", ref:"https://utest.com" },
+            ]
+          },
+        ]
+      }
+    };
+
+    const UI_STRINGS = {
+      id: {
+        questTitle:    "⚔ Job Change Quest",
+        questPathTo:   "Path to",
+        salaryLabel:   "Salary Range",
+        salaryNote:    "",
+        skillFallback: "Skill praktis yang dipakai role ini.",
+        emptyState:    "Belum ada progress. Mulai level-up skill pertamamu!",
+        sidebarTitle:  "IT Job Tree",
+      },
+      en: {
+        questTitle:    "⚔ Job Change Quest",
+        questPathTo:   "Path to",
+        salaryLabel:   "Salary Range",
+        salaryNote:    "Note: Indonesian rates differ significantly.",
+        skillFallback: "Practical skill used in this role.",
+        emptyState:    "No progress yet. Start leveling up your first skill!",
+        sidebarTitle:  "IT Job Tree",
+      },
+    };
+
     // ── Job Change quest data ──
     const jobQuests = {
       "Frontend Developer": {
@@ -1736,6 +2090,7 @@
     const LINKS_KEY   = "itjt_links_v1";
     const PROFILE_KEY = "itjt_profile_v1";
     const AUTO_KEY    = "itjt_auto_v1";
+    const LANG_KEY    = "itjt_lang_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -1845,6 +2200,7 @@
 
     let activeFilter = "All";
     let activeMyProgress = false;
+    let currentLang = localStorage.getItem(LANG_KEY) || "id";
 
     function getCategoryProgress(filter) {
       const catJobs = filter === "All" ? jobs : jobs.filter(j => j[0] === filter);
@@ -1929,7 +2285,9 @@
 
     function renderSkills(title, skills) {
       return skills.split(", ").map(s => {
-        const tip = skillDescriptions[s] || "Skill praktis yang dipakai role ini.";
+        const tip = currentLang === "en"
+          ? (skillDescs_en[s] || skillDescriptions[s] || UI_STRINGS.en.skillFallback)
+          : (skillDescriptions[s] || UI_STRINGS.id.skillFallback);
         const lv = skillLevel(title, s);
         const lvClass = lv > 0 ? `lv${lv}` : "";
         return `<span class="skill ${lvClass}" tabindex="0" data-tip="${tip}" data-title="${title}" data-skill="${s}">
@@ -1972,15 +2330,21 @@
           return hasSkill || (qp !== null && qp.done > 0);
         });
         if (filtered.length === 0) {
-          jobsEl.innerHTML = `<div class="myprogress-empty"><strong>Belum ada progress.</strong>Mulai level-up skill pertamamu untuk melihatnya di sini!</div>`;
+          const emptyMsg = UI_STRINGS[currentLang].emptyState;
+          jobsEl.innerHTML = `<div class="myprogress-empty"><strong>${emptyMsg}</strong></div>`;
           return;
         }
       }
+
+      const isEN = currentLang === "en";
 
       jobsEl.innerHTML = filtered.map(([grp, title, desc, skills, salary, role, hair, tool, tier]) => {
         const { done, total, pct } = getSkillProgress(title, skills);
         const hasQuest = !!jobQuests[title];
         const qp = hasQuest ? getQuestProgress(title) : null;
+        const displayDesc   = isEN ? (jobDescs_en[title] || desc) : desc;
+        const displaySalary = isEN ? (salaries_en[title] || salary) : salary;
+        const salaryLabel   = UI_STRINGS[currentLang].salaryLabel;
 
         return `
           <article class="card" style="--role:${role};--hair:${hair}">
@@ -1994,7 +2358,7 @@
                 ${tierPill(tier)}
               </div>
               <h2 class="card-title">${title}</h2>
-              <p class="desc">${desc}</p>
+              <p class="desc">${displayDesc}</p>
               <div class="meta">
                 <div>
                   <span class="meta-label">Skills</span>
@@ -2002,8 +2366,9 @@
                 </div>
                 <div class="meta-sep"></div>
                 <div>
-                  <span class="meta-label">Salary Range</span>
-                  <strong class="salary">${salary}</strong>
+                  <span class="meta-label">${salaryLabel}</span>
+                  <strong class="salary">${displaySalary}</strong>
+                  ${isEN ? `<small class="salary-note">${UI_STRINGS.en.salaryNote}</small>` : ""}
                 </div>
               </div>
               <div class="card-footer">
@@ -2025,6 +2390,34 @@
       renderCards(activeFilter);
       renderSidebar();
     }
+
+    // ══════════════════════════════════════════
+    // LANGUAGE SWITCHER
+    // ══════════════════════════════════════════
+    function updateStaticStrings() {
+      // Updated in U3 — applies currentLang to static UI text nodes
+    }
+
+    (function initLang() {
+      const idBtn = document.getElementById("lang-id");
+      const enBtn = document.getElementById("lang-en");
+
+      function applyLang(lang) {
+        currentLang = lang;
+        localStorage.setItem(LANG_KEY, lang);
+        idBtn.classList.toggle("active", lang === "id");
+        enBtn.classList.toggle("active", lang === "en");
+        updateStaticStrings();
+        renderCards(activeFilter);
+        renderSidebar();
+      }
+
+      idBtn.addEventListener("click", () => applyLang("id"));
+      enBtn.addEventListener("click", () => applyLang("en"));
+
+      // Apply persisted lang on load
+      applyLang(currentLang);
+    })();
 
     // ══════════════════════════════════════════
     // MY PROGRESS FILTER
@@ -2072,6 +2465,7 @@
 
     function renderQuestContent() {
       const quest = jobQuests[currentQuestJob];
+      const questEN = (currentLang === "en" && questData_en[currentQuestJob]) ? questData_en[currentQuestJob] : null;
       const qp = getQuestProgress(currentQuestJob);
 
       document.getElementById("quest-progress-fill").style.width = qp.pct + "%";
@@ -2080,13 +2474,16 @@
       const banner = document.getElementById("quest-complete-banner");
       banner.classList.toggle("show", qp.done === qp.total && qp.total > 0);
 
-      document.getElementById("quest-content").innerHTML = quest.phases.map((phase, pi) => `
+      document.getElementById("quest-content").innerHTML = quest.phases.map((phase, pi) => {
+        const phaseDisplay = questEN ? questEN.phases[pi] : phase;
+        return `
         <div class="quest-phase">
           <div class="quest-phase-title">
             <span class="quest-phase-num">${pi + 1}</span>
-            ${phase.title}
+            ${phaseDisplay.title}
           </div>
-          ${phase.items.map(item => {
+          ${phase.items.map((item, ii) => {
+            const itemDisplay = questEN ? questEN.phases[pi].items[ii] : item;
             const done = !!progress[questKey(item.id)];
             return `
               <div class="quest-item ${done ? "done" : ""}" data-quest-id="${item.id}">
@@ -2094,16 +2491,16 @@
                   <span class="quest-checkbox-tick">✓</span>
                 </div>
                 <div class="quest-item-content">
-                  <div class="quest-item-label">${item.label}</div>
-                  <div class="quest-item-sub">${item.sub}</div>
+                  <div class="quest-item-label">${itemDisplay.label}</div>
+                  <div class="quest-item-sub">${itemDisplay.sub}</div>
                   ${item.ref ? `<a class="quest-item-link" href="${item.ref}" target="_blank" rel="noopener">
                     Open Portal ↗
                   </a>` : ""}
                 </div>
               </div>`;
           }).join("")}
-        </div>
-      `).join("");
+        </div>`;
+      }).join("");
     }
 
     function closeQuest() {
@@ -2484,6 +2881,9 @@
         const tierColors = ["#6b7280","#69a8f5","#b889f4","#f0bb4e","#ef9b3e"];
         const tc = tierColors[tier] || "#6b7280";
 
+        const descEN   = jobDescs_en[title] || desc;
+        const salaryEN = salaries_en[title] || salary;
+
         return `
   <article class="card" style="--role:${role};--hair:${hair}">
     <div class="card-accent"></div>
@@ -2503,16 +2903,20 @@
         <span class="tier-pill" style="border-color:${tc}20;color:${tc}">T${tier}</span>
       </div>
       <h2 class="card-title">${title}</h2>
-      <p class="desc">${desc}</p>
+      <p class="desc" data-id="${desc}" data-en="${descEN}">${descEN}</p>
       <div class="skill-list">${skillsHTML}</div>
       ${linksSection}
-      <div class="salary-row"><span class="salary-label">Salary</span><strong class="salary">${salary}</strong></div>
+      <div class="salary-row">
+        <span class="salary-label">Salary</span>
+        <strong class="salary" data-id="${salary}" data-en="${salaryEN}">${salaryEN}</strong>
+        <small class="salary-note" data-hide-on-id>Note: Indonesian rates differ significantly.</small>
+      </div>
     </div>
   </article>`;
       }).join("\n");
 
       return `<!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -2672,9 +3076,16 @@ a{color:inherit}
 .skill.lv2{background:color-mix(in srgb,var(--role) 22%,transparent);border-color:var(--role);color:var(--ink);box-shadow:0 0 6px color-mix(in srgb,var(--role) 30%,transparent)}
 .skill.lv3{background:color-mix(in srgb,var(--role) 32%,transparent);border-color:var(--role);color:var(--ink);box-shadow:0 0 12px color-mix(in srgb,var(--role) 40%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--role) 20%,transparent)}
 .skill-lv-badge{font-size:8px;font-weight:900;letter-spacing:.4px;opacity:.8}
-.salary-row{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.salary-row{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);flex-wrap:wrap}
 .salary-label{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
 .salary{font-size:13px;font-weight:900;color:var(--gold)}
+.salary-note{font-size:9px;color:var(--muted);width:100%;margin-top:2px;opacity:.75}
+/* lang switcher */
+.lang-switcher{display:inline-flex;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden;margin-top:10px}
+.lang-opt{padding:5px 12px;font:600 11px system-ui,sans-serif;color:var(--muted);background:transparent;border:none;cursor:pointer;transition:all .15s}
+.lang-opt:hover{color:var(--ink-dim);background:rgba(255,255,255,.05)}
+.lang-opt.active{color:var(--gold);background:rgba(240,187,78,.12)}
+.lang-opt+.lang-opt{border-left:1px solid rgba(255,255,255,.12)}
 /* porto */
 .porto-section{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
 .porto-label{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
@@ -2694,6 +3105,10 @@ a{color:inherit}
     ${github ? `<a href="https://github.com/${github}" target="_blank" rel="noopener">github.com/${github}</a> · ` : ""}
     Generated by <a href="https://secreal.github.io/ulong-rpg/" target="_blank" rel="noopener">ulong RPG</a>
   </div>
+  <div class="lang-switcher" id="showcase-lang">
+    <button class="lang-opt active" data-lang="en">EN</button>
+    <button class="lang-opt" data-lang="id">ID</button>
+  </div>
 </div>
 <div class="grid">
 ${cardHTML}
@@ -2701,6 +3116,27 @@ ${cardHTML}
 <div class="showcase-footer">
   © secreal 2026 · <a href="https://secreal.github.io/ulong-rpg/" target="_blank" rel="noopener">ulong RPG</a>
 </div>
+<script>
+(function(){
+  var cur="en";
+  var switcher=document.getElementById("showcase-lang");
+  var opts=switcher.querySelectorAll(".lang-opt");
+  var els=document.querySelectorAll("[data-id][data-en]");
+  var notes=document.querySelectorAll("[data-hide-on-id]");
+  function apply(lang){
+    cur=lang;
+    els.forEach(function(el){el.textContent=el.dataset[lang]||el.textContent;});
+    notes.forEach(function(n){n.style.display=lang==="en"?"":"none";});
+    opts.forEach(function(b){b.classList.toggle("active",b.dataset.lang===lang);});
+    document.documentElement.lang=lang;
+  }
+  switcher.addEventListener("click",function(e){
+    var b=e.target.closest(".lang-opt");
+    if(b&&b.dataset.lang!==cur)apply(b.dataset.lang);
+  });
+  apply("en");
+})();
+</script>
 </body>
 </html>`;
     }
