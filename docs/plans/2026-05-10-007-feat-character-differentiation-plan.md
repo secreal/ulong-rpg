@@ -1,7 +1,7 @@
 ---
 date: 2026-05-10
 feature: character-differentiation
-status: active
+status: completed
 origin: docs/brainstorms/character-differentiation-requirements.md
 ---
 
