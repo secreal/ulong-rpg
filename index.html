@@ -1068,6 +1068,8 @@
       transition: all .16s ease; margin-bottom: 10px;
     }
     .btn-export-showcase:hover { background: color-mix(in srgb, var(--gold) 20%, transparent); border-color: color-mix(in srgb, var(--gold) 70%, transparent); }
+    .btn-export-showcase:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-export-showcase.copied { border-color: rgba(93,201,126,.6); background: rgba(93,201,126,.12); color: #5dc97e; }
 
     .export-guide { display: none; }
     .export-guide.show { display: block; }
@@ -1424,7 +1426,7 @@
     <div class="export-modal">
       <button class="modal-close sync-close" id="export-close" aria-label="Tutup">&times;</button>
       <div class="export-modal-title">⚔ Export /ulong</div>
-      <div class="export-modal-sub">Generate halaman showcase pribadimu. Isi profil dulu, lalu download dan upload ke repo GitHub <code style="font-size:11px;color:var(--gold)">ulong</code> milikmu.</div>
+      <div class="export-modal-sub">Generate halaman showcase pribadimu. Isi profil, klik tombol — konten di-copy ke clipboard dan GitHub terbuka otomatis. Tinggal paste &amp; commit.</div>
 
       <div class="profile-form">
         <div class="profile-field">
@@ -1444,7 +1446,7 @@
       <div class="export-divider"></div>
 
       <button class="btn-export-showcase" id="btn-do-export">
-        ⬇ Download index.html
+        📋 Copy &amp; Open GitHub
       </button>
 
       <div class="export-repo-notice" id="export-repo-notice"></div>
@@ -1453,10 +1455,11 @@
         <div class="export-guide-title">📖 Langkah selanjutnya</div>
         <ol>
           <li id="export-guide-step1">Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)</li>
-          <li>Upload file <code style="color:var(--gold)">index.html</code> yang baru di-download ke repo tersebut</li>
-          <li>Aktifkan <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a> di Settings → Pages → Deploy from Branch</li>
+          <li>Di halaman GitHub yang terbuka, ketik <code style="color:var(--gold)">index.html</code> sebagai nama file, lalu <strong style="color:var(--ink)">paste</strong> (Ctrl+V / ⌘V) konten yang sudah di-copy</li>
+          <li>Klik <strong style="color:var(--ink)">Commit changes</strong> → Pages akan aktif otomatis</li>
           <li>Showcase kamu akan live di <span id="export-guide-url" style="color:var(--gold)">github.com/&lt;username&gt;/ulong</span></li>
         </ol>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Tidak bisa paste? <a id="export-fallback-dl" href="#" style="color:var(--gold);opacity:.8">Download file saja</a></div>
       </div>
     </div>
   </div>
@@ -2351,11 +2354,11 @@
     });
 
     // Generate & download
-    document.getElementById("btn-do-export").addEventListener("click", async () => {
+    // Shared helper: generate HTML and return it (used by copy flow and fallback download)
+    function buildExportHTML() {
       const prof = loadProfile();
       const snap = loadProgress();
       const snapLinks = loadLinks();
-
       const filtered = jobs.filter(([, title,, skills]) =>
         skills.split(", ").some(s => {
           const v = snap[skillKey(title, s)];
@@ -2364,50 +2367,83 @@
           return Number(v) > 0;
         })
       );
+      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks) : null };
+    }
 
-      if (!filtered.length) {
-        alert("Belum ada progress yang bisa di-export. Level up beberapa skill dulu!");
-        return;
-      }
-
-      const html = generateShowcaseHTML(prof, filtered, snap, snapLinks);
+    function triggerDownload(html) {
       const blob = new Blob([html], { type: "text/html" });
       const url  = URL.createObjectURL(blob);
       const a    = document.createElement("a");
       a.href = url; a.download = "index.html"; a.click();
       URL.revokeObjectURL(url);
+    }
 
-      // Guide
-      const guide     = document.getElementById("export-guide");
-      const guideUrl  = document.getElementById("export-guide-url");
-      const notice    = document.getElementById("export-repo-notice");
-      const step1     = document.getElementById("export-guide-step1");
+    document.getElementById("export-fallback-dl").addEventListener("click", e => {
+      e.preventDefault();
+      const { html } = buildExportHTML();
+      if (html) triggerDownload(html);
+    });
+
+    document.getElementById("btn-do-export").addEventListener("click", async () => {
+      const { prof, html } = buildExportHTML();
+
+      if (!html) {
+        alert("Belum ada progress yang bisa di-export. Level up beberapa skill dulu!");
+        return;
+      }
+
+      const btn    = document.getElementById("btn-do-export");
+      const guide  = document.getElementById("export-guide");
+      const guideUrl = document.getElementById("export-guide-url");
+      const notice = document.getElementById("export-repo-notice");
+      const step1  = document.getElementById("export-guide-step1");
       notice.className = "export-repo-notice";
       notice.textContent = "";
 
+      // Try clipboard copy; fallback to download if not available
+      let copied = false;
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(html);
+          copied = true;
+        } catch { /* permission denied or unavailable */ }
+      }
+
+      if (!copied) {
+        // Clipboard unavailable — fall back to download silently
+        triggerDownload(html);
+      }
+
+      // Show feedback on button
+      if (copied) {
+        btn.textContent = "✓ Copied! Opening GitHub…";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "📋 Copy & Open GitHub";
+          btn.classList.remove("copied");
+        }, 3000);
+      }
+
+      // Check repo & open correct GitHub URL
       if (prof.github) {
         guideUrl.textContent = `github.com/${prof.github}/ulong`;
-        // Check if repo exists (public → no auth needed)
         try {
           const res = await fetch(`https://api.github.com/repos/${prof.github}/ulong`, { method: "GET" });
           if (res.ok) {
-            // Repo found — open it
             notice.className = "export-repo-notice found show";
-            notice.innerHTML = `✓ Repo <strong>${prof.github}/ulong</strong> ditemukan! <a href="https://github.com/${prof.github}/ulong" target="_blank" rel="noopener">Buka repo →</a>`;
+            notice.innerHTML = `✓ Repo <strong>${prof.github}/ulong</strong> ditemukan — paste di halaman yang terbuka, lalu commit.`;
             step1.innerHTML = `Repo <strong style="color:var(--ink)">${prof.github}/ulong</strong> sudah ada ✓`;
-            window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+            // Open create-file page in existing repo
+            window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
           } else if (res.status === 404) {
-            // Repo not found — guide to create
             notice.className = "export-repo-notice not-found show";
-            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada atau private. <a href="https://github.com/new?name=ulong&visibility=public" target="_blank" rel="noopener">Buat repo sekarang →</a>`;
+            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada. <a href="https://github.com/new?name=ulong&visibility=public" target="_blank" rel="noopener">Buat repo dulu →</a>, lalu upload <code>index.html</code>.`;
             step1.innerHTML = `<a href="https://github.com/new?name=ulong&visibility=public" target="_blank" rel="noopener" style="color:var(--gold)">Buat repo publik bernama <strong>ulong</strong> di GitHub</a> (belum ada)`;
           } else {
-            // Other error — fall back silently
-            window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+            window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
           }
         } catch {
-          // Network error — fall back silently
-          window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+          window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
         }
       } else {
         guideUrl.textContent = "github.com/<username>/ulong";
