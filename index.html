@@ -2875,8 +2875,7 @@
             notice.className = "export-repo-notice not-found show";
             notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada — halaman create repo terbuka. Centang <strong>Add a README file</strong>, buat repo, lalu kembali ke sini dan klik Copy &amp; Open GitHub lagi.`;
             step1.innerHTML = `Buat repo publik <strong style="color:var(--ink)">ulong</strong> di halaman yang terbuka (centang "Add a README file"), lalu kembali ke sini`;
-            // gitignore_template makes GitHub auto-check "Initialize with README"
-            window.open(`https://github.com/new?name=ulong&visibility=public&gitignore_template=VisualStudio`, "_blank", "noopener");
+            window.open(`https://github.com/new?name=ulong&visibility=public`, "_blank", "noopener");
           } else {
             window.open(`https://github.com/${prof.github}/ulong/new/main`, "_blank", "noopener");
           }
