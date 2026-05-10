@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ulong RPG</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffe9a0'/%3E%3Cstop offset='50%25' stop-color='%23f0bb4e'/%3E%3Cstop offset='100%25' stop-color='%23c8922a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='8' y='8' width='16' height='16' rx='2' fill='url(%23g)' transform='rotate(45 16 16)'/%3E%3Ctext x='16' y='20.5' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='12' fill='%231a0e00'%3EU%3C/text%3E%3C/svg%3E">
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -1503,7 +1505,7 @@
     <div class="sync-modal">
       <button class="modal-close sync-close" id="sync-close" aria-label="Tutup">&times;</button>
       <div class="sync-modal-title">Sync Progress</div>
-      <div class="sync-modal-sub">Progress tersimpan otomatis di browser kamu. Gunakan Export/Import untuk backup atau pindah perangkat — mirip cara kerja <a href="https://paimon.moe/settings" target="_blank" rel="noopener">paimon.moe</a>.</div>
+      <div class="sync-modal-sub">Progress tersimpan otomatis di browser kamu. Gunakan Export/Import untuk backup atau pindah perangkat.</div>
       <div class="sync-actions">
         <button class="sync-btn" id="btn-export">
           <div class="sync-btn-icon local">
@@ -1582,7 +1584,7 @@
           </div>
         </button>
       </div>
-      <p class="sync-notice">Google Drive menggunakan Google Picker API — file disimpan di folder "ulong RPG" di Drive kamu. Tidak ada data yang dikirim ke server lain.</p>
+      <p class="sync-notice">Google Drive menyimpan file ke folder tersembunyi milik app ini di Drive kamu (<code>appDataFolder</code>). Tidak ada data yang dikirim ke server lain.</p>
     </div>
   </div>
 
@@ -2727,38 +2729,135 @@
       e.target.value = "";
     });
 
-    // Google Drive — export
-    document.getElementById("btn-gdrive-export").addEventListener("click", async () => {
-      try {
-        const tokenResp = await new Promise((resolve, reject) => {
-          if (!window.google?.accounts?.oauth2) { reject(new Error("Google API belum dimuat.")); return; }
-          const client = google.accounts.oauth2.initTokenClient({
-            client_id: "YOUR_GOOGLE_CLIENT_ID",
-            scope: "https://www.googleapis.com/auth/drive.file",
-            callback: resolve,
+    function buildExportPayload() { return progress; }
+    function applyImportPayload(data) {
+      if (typeof data !== "object" || data === null) throw new Error("Format tidak valid.");
+      progress = data;
+      saveProgress(progress);
+      refreshCards();
+      renderPyramid(activeFilter);
+      closeSync();
+    }
+
+    // ── GOOGLE DRIVE SYNC ──────────────────────
+    const GDRIVE_CLIENT_ID = "131561512024-kn0podkkvia1rr19tqr7b1lse1mdcurg.apps.googleusercontent.com";
+    const GDRIVE_SCOPE     = "https://www.googleapis.com/auth/drive.appdata";
+    const GDRIVE_FILENAME  = "ulong-progress.json";
+    let   _gapiReady       = false;
+
+    function loadGapi() {
+      return new Promise((resolve, reject) => {
+        if (_gapiReady) { resolve(); return; }
+        const check = () => {
+          if (typeof gapi === "undefined") { setTimeout(check, 100); return; }
+          gapi.load("client", async () => {
+            try {
+              await gapi.client.init({});
+              await gapi.client.load("https://www.googleapis.com/discovery/v1/apis/drive/v3/rest");
+              _gapiReady = true;
+              resolve();
+            } catch(e) { reject(e); }
           });
-          client.requestAccessToken();
+        };
+        check();
+      });
+    }
+
+    function getGdriveToken() {
+      return new Promise((resolve, reject) => {
+        if (!window.google?.accounts?.oauth2) { reject(new Error("Google Identity belum dimuat.")); return; }
+        const client = google.accounts.oauth2.initTokenClient({
+          client_id: GDRIVE_CLIENT_ID,
+          scope: GDRIVE_SCOPE,
+          callback: (resp) => {
+            if (resp.error) { reject(new Error(resp.error)); return; }
+            resolve(resp.access_token);
+          },
         });
-        const token = tokenResp.access_token;
-        const content = JSON.stringify(progress, null, 2);
-        const metadata = { name: "itjt-progress.json", mimeType: "application/json" };
-        const form = new FormData();
-        form.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
-        form.append("file", new Blob([content], { type: "application/json" }));
-        await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-          body: form,
-        });
-        alert("Progress tersimpan ke Google Drive!");
-      } catch (err) {
-        alert("Google Drive belum dikonfigurasi. Gunakan Export ke File untuk sementara.\n\n(Untuk aktifkan Drive sync, tambahkan Google Client ID ke kode sumber.)");
+        client.requestAccessToken({ prompt: "" });
+      });
+    }
+
+    async function gdriveGetFileId() {
+      const res = await gapi.client.drive.files.list({
+        spaces: "appDataFolder",
+        q: `name = '${GDRIVE_FILENAME}'`,
+        fields: "files(id)",
+        pageSize: 1,
+      });
+      const files = res.result.files;
+      return files && files.length ? files[0].id : null;
+    }
+
+    async function gdriveSave(token, content) {
+      gapi.client.setToken({ access_token: token });
+      const fileId = await gdriveGetFileId();
+      const meta   = { name: GDRIVE_FILENAME };
+      if (!fileId) meta.parents = ["appDataFolder"];
+      const form   = new FormData();
+      form.append("metadata", new Blob([JSON.stringify(meta)], { type: "application/json" }));
+      form.append("file", new Blob([content], { type: "application/json" }));
+      const url    = fileId
+        ? `https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=multipart`
+        : `https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart`;
+      const res = await fetch(url, {
+        method: fileId ? "PATCH" : "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: form,
+      });
+      if (!res.ok) throw new Error(`Drive error ${res.status}`);
+    }
+
+    async function gdriveLoad(token) {
+      gapi.client.setToken({ access_token: token });
+      const fileId = await gdriveGetFileId();
+      if (!fileId) return null;
+      const res = await fetch(
+        `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (!res.ok) throw new Error(`Drive error ${res.status}`);
+      return res.json();
+    }
+
+    document.getElementById("btn-gdrive-export").addEventListener("click", async () => {
+      const btn = document.getElementById("btn-gdrive-export");
+      const orig = btn.querySelector(".sync-btn-title").textContent;
+      try {
+        btn.querySelector(".sync-btn-title").textContent = "Menghubungkan…";
+        btn.disabled = true;
+        await loadGapi();
+        const token   = await getGdriveToken();
+        const content = JSON.stringify(buildExportPayload(), null, 2);
+        await gdriveSave(token, content);
+        btn.querySelector(".sync-btn-title").textContent = "✓ Tersimpan!";
+        setTimeout(() => { btn.querySelector(".sync-btn-title").textContent = orig; btn.disabled = false; }, 2500);
+      } catch(err) {
+        btn.querySelector(".sync-btn-title").textContent = orig;
+        btn.disabled = false;
+        alert("Gagal menyimpan ke Google Drive.\n" + err.message);
       }
     });
 
-    // Google Drive — import (same note)
-    document.getElementById("btn-gdrive-import").addEventListener("click", () => {
-      alert("Google Drive sync memerlukan konfigurasi Google Client ID.\nGunakan Import dari File untuk sementara.");
+    document.getElementById("btn-gdrive-import").addEventListener("click", async () => {
+      const btn = document.getElementById("btn-gdrive-import");
+      const orig = btn.querySelector(".sync-btn-title").textContent;
+      try {
+        btn.querySelector(".sync-btn-title").textContent = "Menghubungkan…";
+        btn.disabled = true;
+        await loadGapi();
+        const token = await getGdriveToken();
+        const data  = await gdriveLoad(token);
+        if (!data) { alert("Tidak ada file backup di Google Drive."); btn.querySelector(".sync-btn-title").textContent = orig; btn.disabled = false; return; }
+        if (!confirm("Load progress dari Google Drive? Progress lokal sekarang akan diganti.")) { btn.querySelector(".sync-btn-title").textContent = orig; btn.disabled = false; return; }
+        applyImportPayload(data);
+        btn.querySelector(".sync-btn-title").textContent = "✓ Loaded!";
+        setTimeout(() => { btn.querySelector(".sync-btn-title").textContent = orig; btn.disabled = false; }, 2500);
+      } catch(err) {
+        btn.querySelector(".sync-btn-title").textContent = orig;
+        btn.disabled = false;
+        alert("Gagal load dari Google Drive.\n" + err.message);
+      }
     });
 
     // Reset all
