@@ -3101,6 +3101,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${name} — ulong RPG Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -3275,11 +3278,70 @@ a{color:inherit}
 .showcase-footer{text-align:center;padding:24px;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
 .showcase-footer a{color:var(--gold);opacity:.7;text-decoration:none}
 .showcase-footer a:hover{opacity:1}
+/* it emoji background */
+.it-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.it-bg span{position:absolute;display:block;font-size:22px;opacity:.13;user-select:none;line-height:1}
+/* game banner */
+.showcase-header{position:relative;z-index:1}
+.showcase-logo{font-family:'Cinzel',serif;font-size:clamp(28px,5vw,64px);font-weight:900;line-height:1;letter-spacing:.01em;background:linear-gradient(160deg,#fff5c2 0%,#f0bb4e 30%,#c8922a 60%,#f0bb4e 80%,#ffe9a0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 14px rgba(240,187,78,.45)) drop-shadow(0 2px 0 rgba(0,0,0,.9));margin-bottom:4px}
+.showcase-logo .logo-rpg{font-size:.62em;letter-spacing:.12em;background:linear-gradient(160deg,#ffe9a0 0%,#f0bb4e 50%,#c8922a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.showcase-logo-tagline{display:block;font-family:system-ui,sans-serif;font-size:clamp(8px,.9vw,11px);font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,187,78,.45);margin-bottom:16px}
+.grid,.showcase-header,.showcase-footer{position:relative;z-index:1}
 </style>
 </head>
 <body>
+<div class="it-bg" aria-hidden="true">
+<span style="top:2%;left:3%;transform:rotate(-15deg);font-size:28px">💻</span>
+<span style="top:5%;left:18%;transform:rotate(8deg)">🖥️</span>
+<span style="top:1%;left:35%;transform:rotate(-5deg);font-size:18px">⌨️</span>
+<span style="top:7%;left:55%;transform:rotate(20deg)">🐛</span>
+<span style="top:3%;left:72%;transform:rotate(-12deg);font-size:26px">🔌</span>
+<span style="top:6%;left:88%;transform:rotate(6deg)">💾</span>
+<span style="top:14%;left:8%;transform:rotate(22deg);font-size:20px">⚙️</span>
+<span style="top:12%;left:28%;transform:rotate(-18deg)">🖱️</span>
+<span style="top:18%;left:46%;transform:rotate(10deg);font-size:24px">📡</span>
+<span style="top:11%;left:64%;transform:rotate(-8deg)">🐍</span>
+<span style="top:16%;left:82%;transform:rotate(15deg);font-size:20px">🔧</span>
+<span style="top:24%;left:5%;transform:rotate(-20deg)">💿</span>
+<span style="top:22%;left:22%;transform:rotate(5deg);font-size:26px">📟</span>
+<span style="top:28%;left:40%;transform:rotate(-14deg)">🛢️</span>
+<span style="top:21%;left:58%;transform:rotate(18deg);font-size:18px">🔐</span>
+<span style="top:26%;left:76%;transform:rotate(-6deg)">📱</span>
+<span style="top:31%;left:92%;transform:rotate(12deg);font-size:22px">🌐</span>
+<span style="top:36%;left:11%;transform:rotate(-9deg)">🖨️</span>
+<span style="top:34%;left:30%;transform:rotate(16deg);font-size:20px">📊</span>
+<span style="top:40%;left:50%;transform:rotate(-22deg)">🔍</span>
+<span style="top:37%;left:68%;transform:rotate(7deg);font-size:24px">💡</span>
+<span style="top:43%;left:86%;transform:rotate(-16deg)">🧩</span>
+<span style="top:48%;left:4%;transform:rotate(11deg);font-size:18px">🖥️</span>
+<span style="top:46%;left:24%;transform:rotate(-4deg)">⚡</span>
+<span style="top:52%;left:42%;transform:rotate(19deg);font-size:26px">💻</span>
+<span style="top:50%;left:60%;transform:rotate(-11deg)">🔩</span>
+<span style="top:55%;left:78%;transform:rotate(8deg);font-size:20px">📦</span>
+<span style="top:58%;left:14%;transform:rotate(-17deg)">🐳</span>
+<span style="top:56%;left:34%;transform:rotate(13deg);font-size:22px">⚙️</span>
+<span style="top:62%;left:52%;transform:rotate(-7deg)">🛡️</span>
+<span style="top:60%;left:70%;transform:rotate(21deg);font-size:18px">🔧</span>
+<span style="top:65%;left:90%;transform:rotate(-13deg)">💾</span>
+<span style="top:68%;left:7%;transform:rotate(9deg);font-size:24px">🐛</span>
+<span style="top:70%;left:26%;transform:rotate(-19deg)">📡</span>
+<span style="top:72%;left:45%;transform:rotate(6deg);font-size:20px">🔌</span>
+<span style="top:67%;left:63%;transform:rotate(-10deg)">🐍</span>
+<span style="top:75%;left:82%;transform:rotate(14deg);font-size:26px">📱</span>
+<span style="top:80%;left:3%;transform:rotate(-8deg)">🌐</span>
+<span style="top:78%;left:20%;transform:rotate(17deg);font-size:18px">💡</span>
+<span style="top:82%;left:38%;transform:rotate(-15deg)">🔐</span>
+<span style="top:84%;left:56%;transform:rotate(10deg);font-size:22px">🧩</span>
+<span style="top:81%;left:74%;transform:rotate(-5deg)">📊</span>
+<span style="top:88%;left:10%;transform:rotate(20deg);font-size:20px">⚡</span>
+<span style="top:86%;left:30%;transform:rotate(-12deg)">🖨️</span>
+<span style="top:90%;left:48%;transform:rotate(8deg);font-size:28px">💻</span>
+<span style="top:92%;left:66%;transform:rotate(-18deg)">🔩</span>
+<span style="top:94%;left:85%;transform:rotate(11deg);font-size:20px">📦</span>
+</div>
 <div class="showcase-header">
-  <div class="showcase-name">${name}</div>
+  <div class="showcase-logo">ulong <span class="logo-rpg">RPG</span><span class="showcase-logo-tagline">ur long role playing game</span></div>
+  <div class="showcase-name" style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px">${name}</div>
   ${nick ? `<div class="showcase-nick">${nick}</div>` : ""}
   <div class="showcase-meta">
     ${github ? `<a href="https://github.com/${github}" target="_blank" rel="noopener">github.com/${github}</a> · ` : ""}
