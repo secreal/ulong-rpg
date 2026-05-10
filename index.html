@@ -1077,6 +1077,17 @@
     .export-guide li a { color: var(--gold); opacity: .8; text-decoration: none; }
     .export-guide li a:hover { opacity: 1; }
 
+    .export-repo-notice {
+      margin-top: 12px; padding: 10px 14px; border-radius: 8px;
+      font-size: 11.5px; line-height: 1.6;
+      border: 1px solid; display: none;
+    }
+    .export-repo-notice.show { display: block; }
+    .export-repo-notice.found { border-color: rgba(93,201,126,.35); background: rgba(93,201,126,.07); color: #5dc97e; }
+    .export-repo-notice.not-found { border-color: rgba(240,187,78,.35); background: rgba(240,187,78,.07); color: var(--gold); }
+    .export-repo-notice a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .export-repo-notice a:hover { opacity: .8; }
+
     .btn-export-showcase-header {
       display: flex; align-items: center; gap: 7px;
       padding: 7px 13px; border-radius: 8px;
@@ -1436,10 +1447,12 @@
         ⬇ Download index.html
       </button>
 
+      <div class="export-repo-notice" id="export-repo-notice"></div>
+
       <div class="export-guide" id="export-guide">
         <div class="export-guide-title">📖 Langkah selanjutnya</div>
         <ol>
-          <li>Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)</li>
+          <li id="export-guide-step1">Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)</li>
           <li>Upload file <code style="color:var(--gold)">index.html</code> yang baru di-download ke repo tersebut</li>
           <li>Aktifkan <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a> di Settings → Pages → Deploy from Branch</li>
           <li>Showcase kamu akan live di <span id="export-guide-url" style="color:var(--gold)">github.com/&lt;username&gt;/ulong</span></li>
@@ -2312,6 +2325,10 @@
       document.getElementById("profile-nick").value   = prof.nick   || "";
       document.getElementById("profile-github").value = prof.github || "";
       document.getElementById("export-guide").classList.remove("show");
+      const notice = document.getElementById("export-repo-notice");
+      notice.className = "export-repo-notice";
+      notice.textContent = "";
+      document.getElementById("export-guide-step1").innerHTML = `Buat repo publik bernama <strong style="color:var(--ink)">ulong</strong> di GitHub (jika belum ada)`;
       document.getElementById("export-overlay").classList.add("open");
     }
     function closeExport() { document.getElementById("export-overlay").classList.remove("open"); }
@@ -2334,7 +2351,7 @@
     });
 
     // Generate & download
-    document.getElementById("btn-do-export").addEventListener("click", () => {
+    document.getElementById("btn-do-export").addEventListener("click", async () => {
       const prof = loadProfile();
       const snap = loadProgress();
       const snapLinks = loadLinks();
@@ -2361,13 +2378,41 @@
       URL.revokeObjectURL(url);
 
       // Guide
-      const guide = document.getElementById("export-guide");
-      const guideUrl = document.getElementById("export-guide-url");
+      const guide     = document.getElementById("export-guide");
+      const guideUrl  = document.getElementById("export-guide-url");
+      const notice    = document.getElementById("export-repo-notice");
+      const step1     = document.getElementById("export-guide-step1");
+      notice.className = "export-repo-notice";
+      notice.textContent = "";
+
       if (prof.github) {
         guideUrl.textContent = `github.com/${prof.github}/ulong`;
-        window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+        // Check if repo exists (public → no auth needed)
+        try {
+          const res = await fetch(`https://api.github.com/repos/${prof.github}/ulong`, { method: "GET" });
+          if (res.ok) {
+            // Repo found — open it
+            notice.className = "export-repo-notice found show";
+            notice.innerHTML = `✓ Repo <strong>${prof.github}/ulong</strong> ditemukan! <a href="https://github.com/${prof.github}/ulong" target="_blank" rel="noopener">Buka repo →</a>`;
+            step1.innerHTML = `Repo <strong style="color:var(--ink)">${prof.github}/ulong</strong> sudah ada ✓`;
+            window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+          } else if (res.status === 404) {
+            // Repo not found — guide to create
+            notice.className = "export-repo-notice not-found show";
+            notice.innerHTML = `⚠ Repo <strong>${prof.github}/ulong</strong> belum ada atau private. <a href="https://github.com/new?name=ulong&visibility=public" target="_blank" rel="noopener">Buat repo sekarang →</a>`;
+            step1.innerHTML = `<a href="https://github.com/new?name=ulong&visibility=public" target="_blank" rel="noopener" style="color:var(--gold)">Buat repo publik bernama <strong>ulong</strong> di GitHub</a> (belum ada)`;
+          } else {
+            // Other error — fall back silently
+            window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+          }
+        } catch {
+          // Network error — fall back silently
+          window.open(`https://github.com/${prof.github}/ulong`, "_blank", "noopener");
+        }
       } else {
         guideUrl.textContent = "github.com/<username>/ulong";
+        notice.className = "export-repo-notice not-found show";
+        notice.innerHTML = `Isi GitHub username di profil agar showcase-mu bisa diarahkan ke repo yang tepat.`;
       }
       guide.classList.add("show");
     });

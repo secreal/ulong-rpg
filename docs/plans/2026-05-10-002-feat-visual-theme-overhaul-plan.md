@@ -1,7 +1,7 @@
 ---
 title: "feat: Visual Theme Overhaul — Ornate Frames, Grid Background, Favicon, Weapon Sprites"
 type: feat
-status: active
+status: completed
 date: 2026-05-10
 origin: docs/brainstorms/visual-theme-requirements.md
 ---

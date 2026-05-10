@@ -1,7 +1,7 @@
 ---
 title: "feat: My Progress Filter"
 type: feat
-status: active
+status: completed
 date: 2026-05-10
 ---
 

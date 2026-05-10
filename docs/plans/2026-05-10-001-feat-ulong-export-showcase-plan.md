@@ -1,7 +1,7 @@
 ---
 title: "feat: ulong Export — Personal GitHub Showcase"
 type: feat
-status: active
+status: completed
 date: 2026-05-10
 origin: docs/brainstorms/ulong-export-requirements.md
 ---
