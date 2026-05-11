@@ -2742,6 +2742,7 @@
     const AUTO_KEY    = "itjt_auto_v1";
     const LANG_KEY    = "itjt_lang_v1";
     const JOB_CHANGE_KEY = "itjt_jobchange_v1";
+    const QUEST_PROGRESS_KEY = "itjt_quest_progress_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -2789,8 +2790,35 @@
       localStorage.setItem(JOB_CHANGE_KEY, JSON.stringify(data));
     }
 
+    function loadQuestProgress() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(QUEST_PROGRESS_KEY)) || {};
+        return normalizeQuestProgress(raw);
+      }
+      catch {
+        return { completed: {}, daily: {} };
+      }
+    }
+
+    function normalizeQuestProgress(raw) {
+      return {
+        completed: raw?.completed && typeof raw.completed === "object" ? raw.completed : {},
+        daily: raw?.daily && typeof raw.daily === "object" ? raw.daily : {},
+      };
+    }
+
+    function saveQuestProgress(data) {
+      localStorage.setItem(QUEST_PROGRESS_KEY, JSON.stringify(data));
+      localStorage.setItem("ulong_local_modified", Date.now());
+    }
+
     let links = loadLinks();
     let jobChangeState = loadJobChange();
+    let questProgress = loadQuestProgress();
+    let questIndex = null;
+    let questIndexPromise = null;
+    let questFileCache = {};
+    let currentQuestData = null;
 
     // Skill progress is shared by skill name across jobs.
     function skillKey(title, skill) { return `skill::${skill}`; }
@@ -2800,6 +2828,112 @@
     function questKey(itemId) { return `quest::${itemId}`; }
 
     let progress = loadProgress();
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, ch => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }[ch]));
+    }
+
+    function todayKey(date = new Date()) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const d = String(date.getDate()).padStart(2, "0");
+      return `${y}-${m}-${d}`;
+    }
+
+    function stableHash(value) {
+      return String(value).split("").reduce((hash, ch) => ((hash * 31) + ch.charCodeAt(0)) >>> 0, 0);
+    }
+
+    function isExternalQuestData(data) {
+      return !!data && Array.isArray(data.main) && Array.isArray(data.daily);
+    }
+
+    function questCompleted(questId) {
+      return !!questProgress.completed[questId] || !!progress[questKey(questId)];
+    }
+
+    function questRecordsForJob(jobTitle) {
+      return Object.values(questProgress.completed)
+        .filter(record => record && record.job === jobTitle)
+        .sort((a, b) => String(b.completedAt).localeCompare(String(a.completedAt)));
+    }
+
+    function getQuestIndexEntry(jobTitle) {
+      if (!questIndex) return null;
+      return questIndex.jobs?.find(entry => entry.job === jobTitle) || null;
+    }
+
+    function hasQuestForJob(jobTitle) {
+      return !!jobQuests[jobTitle] || !!getQuestIndexEntry(jobTitle);
+    }
+
+    async function loadQuestIndex() {
+      if (questIndex) return questIndex;
+      if (!questIndexPromise) {
+        questIndexPromise = (async () => {
+          try {
+            const response = await fetch("data/quests/index.json", { cache: "no-cache" });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            questIndex = await response.json();
+            refreshCards();
+            return questIndex;
+          }
+          catch (err) {
+            console.warn("Quest index could not be loaded.", err);
+            questIndex = { jobs: [] };
+            return questIndex;
+          }
+        })();
+      }
+      return questIndexPromise;
+    }
+
+    async function loadQuestFile(jobTitle) {
+      await loadQuestIndex();
+      const entry = getQuestIndexEntry(jobTitle);
+      if (!entry) return jobQuests[jobTitle] || null;
+      if (questFileCache[jobTitle]) return questFileCache[jobTitle];
+      const response = await fetch(`data/quests/${entry.file}`, { cache: "no-cache" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      questFileCache[jobTitle] = data;
+      return data;
+    }
+
+    function getTodaysDailyQuest(questData, jobTitle) {
+      if (!questData.daily?.length) return null;
+      const key = todayKey();
+      const index = stableHash(`${jobTitle}:${key}`) % questData.daily.length;
+      return questData.daily[index];
+    }
+
+    function completeQuest(jobTitle, quest, type, summary) {
+      const cleanSummary = summary.trim();
+      if (!cleanSummary) return false;
+      const completedAt = new Date().toISOString();
+      questProgress.completed[quest.id] = {
+        id: quest.id,
+        job: jobTitle,
+        type,
+        completedAt,
+        summary: cleanSummary,
+      };
+      if (type === "daily") {
+        questProgress.daily[jobTitle] = {
+          date: todayKey(),
+          questId: quest.id,
+          completedAt,
+        };
+      }
+      saveQuestProgress(questProgress);
+      return true;
+    }
 
     function toggleSkill(title, skill) {
       const k = skillKey(title, skill);
@@ -2860,6 +2994,16 @@
     }
 
     function getQuestProgress(jobTitle) {
+      const external = questFileCache[jobTitle];
+      if (isExternalQuestData(external)) {
+        const items = [...external.main, ...external.daily];
+        const done = items.filter(i => questCompleted(i.id)).length;
+        return { done, total: items.length, pct: items.length ? Math.round(done / items.length * 100) : 0 };
+      }
+      const saved = questRecordsForJob(jobTitle).length;
+      if (getQuestIndexEntry(jobTitle)) {
+        return { done: saved, total: saved, pct: saved ? 100 : 0 };
+      }
       const quest = jobQuests[jobTitle];
       if (!quest) return null;
       const items = quest.phases.flatMap(p => p.items);
@@ -3034,7 +3178,7 @@
 
       jobsEl.innerHTML = filtered.map(([grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass]) => {
         const { done, total, pct } = getSkillProgress(title, skills);
-        const hasQuest = !!jobQuests[title];
+        const hasQuest = hasQuestForJob(title);
         const qp = hasQuest ? getQuestProgress(title) : null;
         const displayDesc   = isEN ? (jobDescs_en[title] || desc) : desc;
         const displaySalary = isEN ? (salaries_en[title] || salary) : salary;
@@ -3162,23 +3306,149 @@
     // ══════════════════════════════════════════
     let currentQuestJob = null;
 
-    function openQuest(jobTitle, roleColor) {
+    async function openQuest(jobTitle, roleColor) {
       currentQuestJob = jobTitle;
-      const quest = jobQuests[jobTitle];
-      if (!quest) return;
+      currentQuestData = null;
 
       document.getElementById("quest-job-name").textContent = jobTitle;
       document.querySelector(".modal").style.setProperty("--modal-role", roleColor);
-
-      renderQuestContent();
+      document.getElementById("quest-progress-fill").style.width = "0%";
+      document.getElementById("quest-progress-text").textContent = "Loading quest...";
+      document.getElementById("quest-complete-banner").classList.remove("show");
+      document.getElementById("quest-content").innerHTML = `<div class="quest-phase"><div class="quest-phase-title">Loading quest data...</div></div>`;
 
       const overlay = document.getElementById("quest-overlay");
       overlay.classList.add("open");
       document.body.style.overflow = "hidden";
+
+      try {
+        currentQuestData = await loadQuestFile(jobTitle);
+        if (!currentQuestData) {
+          document.getElementById("quest-progress-text").textContent = "No quest data yet";
+          document.getElementById("quest-content").innerHTML = `<div class="quest-phase"><div class="quest-phase-title">Quest data belum tersedia untuk job ini.</div></div>`;
+          return;
+        }
+        renderQuestContent();
+      }
+      catch (err) {
+        console.warn("Quest data could not be loaded.", err);
+        document.getElementById("quest-progress-text").textContent = "Quest load failed";
+        document.getElementById("quest-content").innerHTML = `<div class="quest-phase"><div class="quest-phase-title">Quest data gagal dimuat. Coba refresh atau buka dari server lokal.</div></div>`;
+      }
     }
 
     function renderQuestContent() {
-      const quest = jobQuests[currentQuestJob];
+      const quest = currentQuestData || jobQuests[currentQuestJob];
+      if (isExternalQuestData(quest)) {
+        renderExternalQuestContent(quest);
+        return;
+      }
+      renderLegacyQuestContent(quest);
+    }
+
+    function renderExternalQuestContent(quest) {
+      const main = quest.main || [];
+      const daily = quest.daily || [];
+      const items = [...main, ...daily];
+      const done = items.filter(i => questCompleted(i.id)).length;
+      const total = items.length;
+      const pct = total ? Math.round(done / total * 100) : 0;
+
+      document.getElementById("quest-progress-fill").style.width = pct + "%";
+      document.getElementById("quest-progress-text").textContent = `${done}/${total} completed`;
+      document.getElementById("quest-complete-banner").classList.toggle("show", total > 0 && done === total);
+
+      const nextMain = main.find(item => !questCompleted(item.id));
+      const todaysDaily = getTodaysDailyQuest(quest, currentQuestJob);
+      const dailyState = questProgress.daily[currentQuestJob];
+      const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
+      const records = questRecordsForJob(currentQuestJob);
+      const delegated = quest.mainSource ? `
+        <div class="quest-item">
+          <div class="quest-checkbox"><span class="quest-checkbox-tick">↗</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">${escapeHtml(quest.mainSource.title || "Main quest delegated")}</div>
+            <div class="quest-item-sub">Main quest job ini diarahkan ke sumber eksternal.</div>
+            <a class="quest-item-link" href="${escapeHtml(quest.mainSource.url)}" target="_blank" rel="noopener">Open Portal ↗</a>
+          </div>
+        </div>` : "";
+
+      const mainHtml = nextMain ? renderCompletableQuest(nextMain, "main") : `
+        ${delegated}
+        <div class="quest-item done">
+          <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">${main.length ? "All main quests completed" : "No local main quest chain"}</div>
+            <div class="quest-item-sub">${main.length ? "Semua main quest job ini sudah masuk history." : "Main quest belum ditulis di file lokal."}</div>
+          </div>
+        </div>`;
+
+      const dailyHtml = !todaysDaily ? `
+        <div class="quest-item">
+          <div class="quest-checkbox"></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">No daily quest pool</div>
+            <div class="quest-item-sub">Daily quest untuk job ini belum tersedia.</div>
+          </div>
+        </div>` : dailyDoneToday ? `
+        <div class="quest-item done">
+          <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">Daily quest completed today</div>
+            <div class="quest-item-sub">Daily quest berikutnya tersedia besok.</div>
+          </div>
+        </div>` : renderCompletableQuest(todaysDaily, "daily");
+
+      const historyHtml = records.length ? records.map(record => `
+        <div class="quest-item done">
+          <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">${escapeHtml(record.type)} · ${escapeHtml(record.id)}</div>
+            <div class="quest-item-sub">${escapeHtml(record.summary)}</div>
+          </div>
+        </div>`).join("") : `
+        <div class="quest-item">
+          <div class="quest-checkbox"></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">History kosong</div>
+            <div class="quest-item-sub">Quest yang selesai akan muncul di sini beserta summary.</div>
+          </div>
+        </div>`;
+
+      document.getElementById("quest-content").innerHTML = `
+        <div class="quest-phase">
+          <div class="quest-phase-title"><span class="quest-phase-num">1</span>Main Quest</div>
+          ${mainHtml}
+        </div>
+        <div class="quest-phase">
+          <div class="quest-phase-title"><span class="quest-phase-num">2</span>Daily Quest</div>
+          ${dailyHtml}
+        </div>
+        <div class="quest-phase">
+          <div class="quest-phase-title"><span class="quest-phase-num">3</span>History</div>
+          ${historyHtml}
+        </div>`;
+    }
+
+    function renderCompletableQuest(item, type) {
+      const links = (item.sources || []).map(source => `
+        <a class="quest-item-link" href="${escapeHtml(source.url)}" target="_blank" rel="noopener">${escapeHtml(source.label || "Open Portal")} ↗</a>
+      `).join("");
+      return `
+        <div class="quest-item" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">
+          <div class="quest-checkbox"></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">${escapeHtml(item.title)}</div>
+            <div class="quest-item-sub">${escapeHtml(item.description)}</div>
+            ${links}
+            <textarea class="quest-summary-input" data-quest-id="${escapeHtml(item.id)}" rows="3" placeholder="Tulis summary setelah selesai mengerjakan quest ini"></textarea>
+            <button class="btn-job-change quest-complete-btn" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">Complete Quest</button>
+          </div>
+        </div>`;
+    }
+
+    function renderLegacyQuestContent(quest) {
+      if (!quest) return;
       const questEN = (currentLang === "en" && questData_en[currentQuestJob]) ? questData_en[currentQuestJob] : null;
       const qp = getQuestProgress(currentQuestJob);
 
@@ -3221,6 +3491,7 @@
       document.getElementById("quest-overlay").classList.remove("open");
       document.body.style.overflow = "";
       currentQuestJob = null;
+      currentQuestData = null;
       refreshCards();
     }
 
@@ -3231,8 +3502,24 @@
     document.getElementById("quest-close").addEventListener("click", closeQuest);
 
     document.getElementById("quest-content").addEventListener("click", e => {
+      const completeBtn = e.target.closest(".quest-complete-btn");
+      if (completeBtn && isExternalQuestData(currentQuestData)) {
+        const questId = completeBtn.dataset.questId;
+        const type = completeBtn.dataset.questType;
+        const quest = [...(currentQuestData.main || []), ...(currentQuestData.daily || [])].find(item => item.id === questId);
+        const summaryInput = document.querySelector(`.quest-summary-input[data-quest-id="${CSS.escape(questId)}"]`);
+        const summary = summaryInput ? summaryInput.value : "";
+        if (!quest || !completeQuest(currentQuestJob, quest, type, summary)) {
+          alert("Summary wajib diisi sebelum quest selesai.");
+          return;
+        }
+        renderQuestContent();
+        refreshCards();
+        return;
+      }
       const item = e.target.closest(".quest-item");
       if (!item) return;
+      if (isExternalQuestData(currentQuestData)) return;
       // don't toggle if clicking the external link
       if (e.target.closest(".quest-item-link")) return;
       toggleQuest(item.dataset.questId);
@@ -3241,6 +3528,14 @@
 
     document.getElementById("quest-reset").addEventListener("click", () => {
       if (!currentQuestJob) return;
+      if (isExternalQuestData(currentQuestData)) {
+        questRecordsForJob(currentQuestJob).forEach(record => { delete questProgress.completed[record.id]; });
+        delete questProgress.daily[currentQuestJob];
+        saveQuestProgress(questProgress);
+        renderQuestContent();
+        refreshCards();
+        return;
+      }
       const quest = jobQuests[currentQuestJob];
       quest.phases.flatMap(p => p.items).forEach(i => { delete progress[questKey(i.id)]; });
       saveProgress(progress);
@@ -3325,7 +3620,7 @@
 
     // Export
     document.getElementById("btn-export").addEventListener("click", () => {
-      const blob = new Blob([JSON.stringify(progress, null, 2)], { type: "application/json" });
+      const blob = new Blob([JSON.stringify(buildExportPayload(), null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url; a.download = "itjt-progress.json"; a.click();
@@ -3345,11 +3640,7 @@
         try {
           const data = JSON.parse(ev.target.result);
           if (typeof data === "object" && data !== null) {
-            progress = data;
-            saveProgress(progress);
-            refreshCards();
-            renderPyramid(activeFilter);
-            closeSync();
+            applyImportPayload(data);
             alert("Progress berhasil diimport!");
           } else {
             alert("File tidak valid.");
@@ -3362,14 +3653,16 @@
 
     const GDRIVE_SYNC_KEY = "ulong_last_synced";
 
-    function buildExportPayload() {
-      return { ...progress, __syncedAt: Date.now() };
+    function buildExportPayload(ts = Date.now()) {
+      return { ...progress, __questProgress: questProgress, __syncedAt: ts };
     }
     function applyImportPayload(data) {
       if (typeof data !== "object" || data === null) throw new Error("Format tidak valid.");
-      const { __syncedAt, ...rest } = data;
+      const { __syncedAt, __questProgress, ...rest } = data;
       progress = rest;
+      questProgress = normalizeQuestProgress(__questProgress);
       saveProgress(progress);
+      saveQuestProgress(questProgress);
       refreshCards();
       renderPyramid(activeFilter);
       closeSync();
@@ -3481,7 +3774,7 @@
         if (!driveData) {
           // nothing on Drive yet — push local
           const now = Date.now();
-          await gdriveSave(token, JSON.stringify({ ...progress, __syncedAt: now }, null, 2));
+          await gdriveSave(token, JSON.stringify(buildExportPayload(now), null, 2));
           localStorage.setItem(GDRIVE_SYNC_KEY, now);
           localStorage.setItem("ulong_local_modified", now);
           updateLastSyncLabel(now);
@@ -3503,9 +3796,11 @@
           btn.disabled = false;
         } else if (driveNewer) {
           // only Drive changed — pull; don't bump localModified so next sync stays in sync
-          const { __syncedAt, ...rest } = driveData;
+          const { __syncedAt, __questProgress, ...rest } = driveData;
           progress = rest;
+          questProgress = normalizeQuestProgress(__questProgress);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+          localStorage.setItem(QUEST_PROGRESS_KEY, JSON.stringify(questProgress));
           localStorage.setItem(GDRIVE_SYNC_KEY, driveTs);
           localStorage.setItem("ulong_local_modified", driveTs);
           updateLastSyncLabel(driveTs);
@@ -3516,7 +3811,7 @@
         } else {
           // local is newer or both in sync — push
           const now = Date.now();
-          await gdriveSave(token, JSON.stringify({ ...progress, __syncedAt: now }, null, 2));
+          await gdriveSave(token, JSON.stringify(buildExportPayload(now), null, 2));
           localStorage.setItem(GDRIVE_SYNC_KEY, now);
           localStorage.setItem("ulong_local_modified", now);
           updateLastSyncLabel(now);
@@ -3540,7 +3835,7 @@
         await loadGapi();
         const token = await getGdriveToken();
         const now   = Date.now();
-        await gdriveSave(token, JSON.stringify({ ...progress, __syncedAt: now }, null, 2));
+        await gdriveSave(token, JSON.stringify(buildExportPayload(now), null, 2));
         localStorage.setItem(GDRIVE_SYNC_KEY, now);
         localStorage.setItem("ulong_local_modified", now);
         updateLastSyncLabel(now);
@@ -3552,10 +3847,12 @@
     document.getElementById("btn-conflict-drive").addEventListener("click", async () => {
       document.getElementById("gdrive-conflict").style.display = "none";
       if (!_conflictDriveData) return;
-      const { __syncedAt, ...rest } = _conflictDriveData;
+      const { __syncedAt, __questProgress, ...rest } = _conflictDriveData;
       progress = rest;
+      questProgress = normalizeQuestProgress(__questProgress);
       // write directly — don't touch ulong_local_modified so next sync sees no local change
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      localStorage.setItem(QUEST_PROGRESS_KEY, JSON.stringify(questProgress));
       const ts = __syncedAt || Date.now();
       localStorage.setItem(GDRIVE_SYNC_KEY, ts);
       localStorage.setItem("ulong_local_modified", ts);
@@ -3571,7 +3868,9 @@
     document.getElementById("btn-reset-all-sync").addEventListener("click", () => {
       if (!confirm("Reset semua progress? Ini tidak bisa di-undo.")) return;
       progress = {};
+      questProgress = { completed: {}, daily: {} };
       saveProgress(progress);
+      saveQuestProgress(questProgress);
       refreshCards();
       renderPyramid(activeFilter);
       closeSync();
@@ -4540,6 +4839,7 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
     renderSidebar();
     renderPyramid();
     renderCards();
+    loadQuestIndex();
   </script>
 </body>
 </html>
