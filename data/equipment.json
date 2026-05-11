@@ -345,6 +345,24 @@
       "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "Database Admin", "Technical Support", "Application Support"]
     },
     {
+      "id": "heidisql",
+      "name": "HeidiSQL",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "Lightweight database client commonly used for MySQL, MariaDB, PostgreSQL, SQL Server, and quick database inspection.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "phpmyadmin",
+      "name": "phpMyAdmin",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "Web-based MySQL and MariaDB administration tool often found in PHP hosting, legacy apps, and shared server environments.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "Database Admin", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
       "id": "datagrip",
       "name": "DataGrip",
       "category": "database",
@@ -388,6 +406,15 @@
       "aliases": ["Docker Desktop", "Docker Engine"],
       "description": "Container platform for packaging and running applications with consistent environments.",
       "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "CTO"]
+    },
+    {
+      "id": "xampp",
+      "name": "XAMPP",
+      "category": "devops",
+      "kind": "software",
+      "aliases": ["Apache Friends XAMPP"],
+      "description": "Local development bundle with Apache, MariaDB, PHP, and Perl, often used for PHP learning, legacy projects, and quick local web servers.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
     },
     {
       "id": "kubernetes",
@@ -1252,6 +1279,15 @@
       "aliases": [],
       "description": "Markdown note-taking tool used for personal knowledge bases, troubleshooting notes, and research.",
       "tags": ["IT Novice", "Tech Lead", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester", "GRC Specialist", "Business Analyst", "Product Manager", "UX Designer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "notepad-plus-plus",
+      "name": "Notepad++",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["Notepad Plus Plus", "N++"],
+      "description": "Lightweight Windows text editor used for quick config edits, scripts, logs, SQL snippets, and legacy support work.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "System Administrator", "Network Engineer", "Database Admin", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support"]
     },
     {
       "id": "linear",
