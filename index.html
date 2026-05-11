@@ -811,29 +811,6 @@
       opacity: .35; cursor: not-allowed;
       pointer-events: none;
     }
-    .foundation-links {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-      margin: 8px 0 0;
-    }
-    .foundation-label {
-      font: 700 9px 'Inter', sans-serif;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .5px;
-    }
-    .foundation-chip {
-      border: 1px solid color-mix(in srgb, var(--role) 38%, transparent);
-      background: color-mix(in srgb, var(--role) 10%, transparent);
-      color: color-mix(in srgb, var(--role) 72%, white);
-      border-radius: 6px;
-      padding: 3px 7px;
-      font: 700 10px 'Inter', sans-serif;
-      cursor: pointer;
-    }
-    .foundation-chip:hover {
-      border-color: var(--role);
-      background: color-mix(in srgb, var(--role) 18%, transparent);
-    }
     .card-lock-badge {
       position: absolute; top: 8px; right: 8px; z-index: 2;
       background: rgba(0,0,0,.65); border: 1px solid rgba(255,255,255,.15);
@@ -1750,9 +1727,9 @@
       <button class="modal-close jobchange-close" id="jobchange-close" aria-label="Tutup">&times;</button>
       <div class="jobchange-modal-title">⚔ Job Change</div>
       <div class="jobchange-modal-target" id="jobchange-target-label"></div>
-      <div class="jobchange-modal-sub">Pilih foundation job yang ingin kamu bawa ke identitas baru. Foundation tetap reusable untuk job change lain.</div>
+      <div class="jobchange-modal-sub">Pilih job mana yang ingin kamu bawa sebagai sub-skill dalam identitasmu yang baru. Opsional — kamu bisa konfirmasi tanpa memilih apapun.</div>
 
-      <div class="jobchange-include-label">Include sebagai foundation</div>
+      <div class="jobchange-include-label">Include sebagai sub-skill</div>
       <div class="jobchange-include-list" id="jobchange-include-list">
         <!-- injected by JS -->
       </div>
@@ -2803,24 +2780,13 @@
       localStorage.setItem(AUTO_KEY, JSON.stringify(data));
     }
 
-    function normalizeJobChangeState(raw) {
-      if (!raw) return [];
-      const entries = Array.isArray(raw) ? raw : [raw];
-      return entries
-        .filter(entry => entry && entry.primary)
-        .map(entry => ({
-          primary: entry.primary,
-          foundations: [...new Set(entry.foundations || entry.subs || [])],
-        }));
-    }
-
     function loadJobChange() {
-      try { return normalizeJobChangeState(JSON.parse(localStorage.getItem(JOB_CHANGE_KEY))); }
-      catch { return []; }
+      try { return JSON.parse(localStorage.getItem(JOB_CHANGE_KEY)) || null; }
+      catch { return null; }
     }
 
     function saveJobChange(data) {
-      localStorage.setItem(JOB_CHANGE_KEY, JSON.stringify(normalizeJobChangeState(data)));
+      localStorage.setItem(JOB_CHANGE_KEY, JSON.stringify(data));
     }
 
     let links = loadLinks();
@@ -3089,7 +3055,6 @@
               </div>
               <h2 class="card-title">${title}</h2>
               <p class="desc">${displayDesc}</p>
-              ${renderFoundationLinks(title)}
               <div class="meta">
                 <div>
                   <span class="meta-label">Skills</span>
@@ -3302,24 +3267,6 @@
       return skillsStr.split(", ").some(s => skillLevel(title, s) >= 1);
     }
 
-    function getJobChangeEntry(jobTitle) {
-      return jobChangeState.find(entry => entry.primary === jobTitle) || null;
-    }
-
-    function getJobFoundations(jobTitle) {
-      const entry = getJobChangeEntry(jobTitle);
-      return entry ? entry.foundations : [];
-    }
-
-    function renderFoundationLinks(title) {
-      const foundations = getJobFoundations(title);
-      if (!foundations.length) return "";
-      return `<div class="foundation-links">
-        <span class="foundation-label">Foundation</span>
-        ${foundations.map(name => `<button type="button" class="foundation-chip" data-foundation-focus="${name}">${name}</button>`).join("")}
-      </div>`;
-    }
-
     // ══════════════════════════════════════════
     // JOB CHANGE MODAL
     // ══════════════════════════════════════════
@@ -3334,7 +3281,9 @@
         prereqTitles.includes(title) && jobHasProgress(title, skillsStr)
       );
 
-      const currentFoundations = getJobFoundations(jobTitle);
+      const currentSubs = (jobChangeState && jobChangeState.primary === jobTitle)
+        ? (jobChangeState.subs || [])
+        : [];
 
       const list = document.getElementById("jobchange-include-list");
       if (eligibleJobs.length === 0) {
@@ -3342,7 +3291,7 @@
       } else {
         list.innerHTML = eligibleJobs.map(([grp, title,,,,,,, tier]) => {
           const safeId = `jc-sub-${title.replace(/\s+/g, "-")}`;
-          const checked = currentFoundations.includes(title) ? "checked" : "";
+          const checked = currentSubs.includes(title) ? "checked" : "";
           return `<div class="jobchange-include-item">
             <input type="checkbox" id="${safeId}" value="${title}" ${checked}>
             <label for="${safeId}">${title} <span class="jc-tier">[T${tier}] ${grp}</span></label>
@@ -3361,9 +3310,7 @@
     function confirmJobChange() {
       if (!_jobchangeTarget) return;
       const checked = [...document.querySelectorAll("#jobchange-include-list input:checked")].map(cb => cb.value);
-      const nextState = jobChangeState.filter(entry => entry.primary !== _jobchangeTarget);
-      nextState.push({ primary: _jobchangeTarget, foundations: checked });
-      jobChangeState = normalizeJobChangeState(nextState);
+      jobChangeState = { primary: _jobchangeTarget, subs: checked };
       saveJobChange(jobChangeState);
       closeJobChangeModal();
       refreshCards();
@@ -3667,15 +3614,6 @@
       const jcBtn = e.target.closest(".btn-do-jobchange");
       if (jcBtn) {
         openJobChangeModal(jcBtn.dataset.job, jcBtn.dataset.role);
-        return;
-      }
-
-      const foundationBtn = e.target.closest(".foundation-chip");
-      if (foundationBtn) {
-        const card = [...document.querySelectorAll(".card-title")]
-          .find(el => el.textContent === foundationBtn.dataset.foundationFocus)
-          ?.closest(".card");
-        if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
 
@@ -3914,10 +3852,11 @@
       const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
       const tierColors = ["#6b7280","#69a8f5","#b889f4","#f0bb4e","#ef9b3e"];
 
-      const validJobChanges = normalizeJobChangeState(snapJobChange)
-        .filter(entry => filteredJobs.some(([,t]) => t === entry.primary));
+      const validJobChange = snapJobChange && snapJobChange.primary && filteredJobs.some(([,t]) => t === snapJobChange.primary)
+        ? snapJobChange
+        : null;
 
-      const anchorTitles = new Set(validJobChanges.map(entry => entry.primary));
+      const anchorTitles = validJobChange ? new Set([validJobChange.primary]) : new Set();
 
       const standaloneTitles = new Set(
         filteredJobs.map(([,t]) => t).filter(t => !anchorTitles.has(t))
@@ -3973,13 +3912,14 @@
     </div>`;
       }
 
-      // Build anchor cards with reusable foundation panels.
-      const anchorHTML = validJobChanges.map((entry, idx) => {
-        const jobData = filteredJobs.find(([,t]) => t === entry.primary);
+      // Build anchor card with sub-skill panel (single Job Change state)
+      let anchorHTML = "";
+      if (validJobChange) {
+        const jobData = filteredJobs.find(([,t]) => t === validJobChange.primary);
         if (jobData) {
           const [grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass] = jobData;
 
-          const subJobsData = (entry.foundations || [])
+          const subJobsData = (validJobChange.subs || [])
             .map(subTitle => filteredJobs.find(([,t]) => t === subTitle))
             .filter(Boolean);
 
@@ -4019,24 +3959,23 @@
 
           const hasSubs = subJobsData.length > 0;
 
-          return `
-  <article class="card anchor-card${hasSubs ? " has-subs" : ""}" style="--role:${role};--hair:${hair};${charStyle}" data-panel="anchor-panel-${idx}">
+          anchorHTML = `
+  <article class="card anchor-card${hasSubs ? " has-subs" : ""}" style="--role:${role};--hair:${hair};${charStyle}" data-panel="anchor-panel-0">
     <div class="anchor-badge">⚓ Active Identity</div>
     ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
-    ${hasSubs ? `<div class="anchor-expand-hint">▼ ${subJobsData.length} foundation${subJobsData.length > 1 ? "s" : ""} — click to expand</div>` : ""}
+    ${hasSubs ? `<div class="anchor-expand-hint">▼ ${subJobsData.length} sub-skill${subJobsData.length > 1 ? "s" : ""} — click to expand</div>` : ""}
   </article>
-  <div class="anchor-panel" id="anchor-panel-${idx}" hidden>
+  <div class="anchor-panel" id="anchor-panel-0" hidden>
     <div class="anchor-panel-header">
-      <span class="anchor-panel-title">Foundations inside <strong>${title}</strong></span>
+      <span class="anchor-panel-title">Skills inside <strong>${title}</strong></span>
       <button class="anchor-panel-close" aria-label="Close">✕</button>
     </div>
     <div class="anchor-panel-subs">
-      ${subsHTML || '<p style="color:var(--muted);font-size:12px;padding:8px 0">No foundations configured.</p>'}
+      ${subsHTML || '<p style="color:var(--muted);font-size:12px;padding:8px 0">No sub-skills configured.</p>'}
     </div>
   </div>`;
         }
-        return "";
-      }).join("\n");
+      }
 
       // Build standalone cards
       const standaloneHTML = filteredJobs
@@ -4046,7 +3985,7 @@
     ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
   </article>`).join("\n");
 
-      const hasAnchors = validJobChanges.length > 0;
+      const hasAnchors = validJobChange !== null;
 
       return `<!DOCTYPE html>
 <html lang="en">
