@@ -1378,6 +1378,339 @@
       "aliases": ["GA4"],
       "description": "Web and app analytics platform for traffic, acquisition, engagement, events, and conversion reporting.",
       "tags": ["Frontend Developer", "Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "navicat",
+      "name": "Navicat",
+      "category": "database",
+      "kind": "software",
+      "aliases": ["Navicat Premium"],
+      "description": "Commercial database client for managing, querying, transferring, and modeling multiple database engines.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "adminer",
+      "name": "Adminer",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "Single-file web database administration tool often used as a lightweight alternative to phpMyAdmin.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Data Analyst", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "tableplus",
+      "name": "TablePlus",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "Modern database client for querying and managing multiple relational and NoSQL databases.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "oracle-sql-developer",
+      "name": "Oracle SQL Developer",
+      "category": "database",
+      "kind": "software",
+      "aliases": ["SQL Developer"],
+      "description": "Oracle database IDE for SQL writing, schema browsing, PL/SQL work, and database administration.",
+      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "toad",
+      "name": "Toad",
+      "category": "database",
+      "kind": "software",
+      "aliases": ["Toad for Oracle", "Toad for SQL Server"],
+      "description": "Database development and administration tool often found in enterprise Oracle and SQL Server environments.",
+      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Application Support"]
+    },
+    {
+      "id": "sequel-ace",
+      "name": "Sequel Ace",
+      "category": "database",
+      "kind": "software",
+      "aliases": ["Sequel Pro"],
+      "description": "macOS database client for MySQL and MariaDB administration and queries.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "laragon",
+      "name": "Laragon",
+      "category": "devops",
+      "kind": "software",
+      "aliases": [],
+      "description": "Windows local development environment commonly used for PHP, Laravel, Apache/Nginx, MySQL, and quick web stacks.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "wampserver",
+      "name": "WampServer",
+      "category": "devops",
+      "kind": "software",
+      "aliases": ["WAMP"],
+      "description": "Windows local web development bundle for Apache, PHP, and MySQL/MariaDB.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "mamp",
+      "name": "MAMP",
+      "category": "devops",
+      "kind": "software",
+      "aliases": [],
+      "description": "Local web development bundle for macOS and Windows with Apache/Nginx, PHP, and MySQL.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "composer",
+      "name": "Composer",
+      "category": "devops",
+      "kind": "cli",
+      "aliases": ["PHP Composer"],
+      "description": "PHP dependency manager used to install libraries, manage autoloading, and maintain PHP project packages.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "Application Support"]
+    },
+    {
+      "id": "filezilla",
+      "name": "FileZilla",
+      "category": "support",
+      "kind": "software",
+      "aliases": ["FTP client"],
+      "description": "FTP, FTPS, and SFTP client used to transfer files to servers and hosting environments.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "System Administrator", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "winscp",
+      "name": "WinSCP",
+      "category": "support",
+      "kind": "software",
+      "aliases": [],
+      "description": "Windows SFTP, SCP, FTP, and file transfer client often used for server maintenance and support.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "mobaxterm",
+      "name": "MobaXterm",
+      "category": "terminal",
+      "kind": "software",
+      "aliases": [],
+      "description": "Windows terminal and remote access toolbox with SSH, SFTP, X11, RDP, serial, and network utilities.",
+      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "mremoteng",
+      "name": "mRemoteNG",
+      "category": "support",
+      "kind": "software",
+      "aliases": [],
+      "description": "Remote connection manager for organizing RDP, SSH, VNC, and other administrative sessions.",
+      "tags": ["System Administrator", "Network Engineer", "Database Admin", "SRE", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "remote-desktop",
+      "name": "Remote Desktop",
+      "category": "support",
+      "kind": "software",
+      "aliases": ["RDP", "Microsoft Remote Desktop"],
+      "description": "Remote access protocol and client used to connect to Windows desktops and servers.",
+      "tags": ["IT Novice", "System Administrator", "Database Admin", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "vnc-viewer",
+      "name": "VNC Viewer",
+      "category": "support",
+      "kind": "software",
+      "aliases": ["RealVNC", "TightVNC", "UltraVNC"],
+      "description": "Remote desktop viewer used to access and support machines through VNC.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "sublime-text",
+      "name": "Sublime Text",
+      "category": "editor",
+      "kind": "software",
+      "aliases": [],
+      "description": "Fast lightweight code and text editor used for scripts, web files, configs, and general development.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Data Analyst", "System Administrator", "Network Engineer", "Security Engineer", "Pentester", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "vim",
+      "name": "Vim",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["Vi"],
+      "description": "Terminal text editor commonly used for editing files directly on servers and Unix-like systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "eclipse",
+      "name": "Eclipse IDE",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["Eclipse"],
+      "description": "Long-running IDE commonly found in Java, enterprise, Android legacy, and plugin-based development environments.",
+      "tags": ["Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support"]
+    },
+    {
+      "id": "netbeans",
+      "name": "NetBeans",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["Apache NetBeans"],
+      "description": "IDE used for Java, PHP, and enterprise application development, especially in older stacks.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "phpstorm",
+      "name": "PhpStorm",
+      "category": "editor",
+      "kind": "software",
+      "aliases": [],
+      "description": "JetBrains IDE for PHP, web development, debugging, refactoring, and framework-heavy PHP projects.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "rider",
+      "name": "Rider",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["JetBrains Rider"],
+      "description": "JetBrains IDE for .NET, C#, ASP.NET, game, and enterprise application development.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "rsat",
+      "name": "RSAT",
+      "category": "support",
+      "kind": "software",
+      "aliases": ["Remote Server Administration Tools"],
+      "description": "Microsoft Windows admin tools for managing Active Directory, DNS, DHCP, Group Policy, and Windows Server roles.",
+      "tags": ["System Administrator", "Network Engineer", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "event-viewer",
+      "name": "Event Viewer",
+      "category": "support",
+      "kind": "software",
+      "aliases": ["Windows Event Viewer"],
+      "description": "Windows log viewer for investigating system, application, security, and operational events.",
+      "tags": ["IT Novice", "System Administrator", "SOC Analyst", "Security Engineer", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "group-policy-management-console",
+      "name": "Group Policy Management Console",
+      "category": "support",
+      "kind": "software",
+      "aliases": ["GPMC", "Group Policy"],
+      "description": "Windows administration console for managing domain group policies and workstation/server configuration rules.",
+      "tags": ["System Administrator", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+    },
+    {
+      "id": "task-scheduler",
+      "name": "Task Scheduler",
+      "category": "support",
+      "kind": "software",
+      "aliases": ["Windows Task Scheduler"],
+      "description": "Windows scheduling tool for recurring scripts, maintenance jobs, and operational automation.",
+      "tags": ["IT Novice", "System Administrator", "Database Admin", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "argocd",
+      "name": "Argo CD",
+      "category": "devops",
+      "kind": "platform",
+      "aliases": ["ArgoCD"],
+      "description": "GitOps continuous delivery platform for deploying and syncing Kubernetes applications.",
+      "tags": ["Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "CTO"]
+    },
+    {
+      "id": "flux",
+      "name": "Flux",
+      "category": "devops",
+      "kind": "platform",
+      "aliases": ["Flux CD"],
+      "description": "GitOps toolkit for Kubernetes deployment automation and cluster state reconciliation.",
+      "tags": ["Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer"]
+    },
+    {
+      "id": "pulumi",
+      "name": "Pulumi",
+      "category": "devops",
+      "kind": "cli",
+      "aliases": [],
+      "description": "Infrastructure as code tool that lets teams define cloud resources using general-purpose programming languages.",
+      "tags": ["Backend Developer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "CTO"]
+    },
+    {
+      "id": "packer",
+      "name": "Packer",
+      "category": "devops",
+      "kind": "cli",
+      "aliases": ["HashiCorp Packer"],
+      "description": "Image building tool for creating machine images across cloud, VM, and container environments.",
+      "tags": ["System Administrator", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer"]
+    },
+    {
+      "id": "vagrant",
+      "name": "Vagrant",
+      "category": "devops",
+      "kind": "software",
+      "aliases": [],
+      "description": "Local virtual machine environment tool used for repeatable development and infrastructure labs.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "QA Automation", "System Administrator", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Pentester", "Application Support"]
+    },
+    {
+      "id": "rancher",
+      "name": "Rancher",
+      "category": "devops",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Kubernetes management platform for clusters, access, workloads, policies, and operations.",
+      "tags": ["Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "zeplin",
+      "name": "Zeplin",
+      "category": "design",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Design handoff platform for specs, assets, style guides, and collaboration between designers and developers.",
+      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "UI Designer", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "sketch",
+      "name": "Sketch",
+      "category": "design",
+      "kind": "software",
+      "aliases": [],
+      "description": "macOS design tool historically popular for UI design, symbols, and design system work.",
+      "tags": ["Frontend Developer", "Mobile Developer", "UI Designer", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "axure-rp",
+      "name": "Axure RP",
+      "category": "design",
+      "kind": "software",
+      "aliases": ["Axure"],
+      "description": "Prototyping and wireframing tool used for complex interactive flows and enterprise UX specs.",
+      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "balsamiq",
+      "name": "Balsamiq",
+      "category": "design",
+      "kind": "software",
+      "aliases": [],
+      "description": "Low-fidelity wireframing tool for quick sketches of screens, flows, and interface ideas.",
+      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "lucidchart",
+      "name": "Lucidchart",
+      "category": "collaboration",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Diagramming platform for flowcharts, architecture diagrams, process maps, and technical documentation.",
+      "tags": ["Tech Lead", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Product Designer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "GRC Specialist", "Engineering Manager", "CTO", "CISO"]
     }
   ]
 }
