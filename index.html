@@ -1750,9 +1750,9 @@
       <button class="modal-close jobchange-close" id="jobchange-close" aria-label="Tutup">&times;</button>
       <div class="jobchange-modal-title">⚔ Job Change</div>
       <div class="jobchange-modal-target" id="jobchange-target-label"></div>
-      <div class="jobchange-modal-sub">Pilih foundation job yang ingin kamu bawa ke identitas baru. Foundation tetap reusable untuk job change lain.</div>
+      <div class="jobchange-modal-sub">Pilih base class yang ingin diwariskan ke class baru ini. Base class tetap bisa dipakai untuk jalur job change lain.</div>
 
-      <div class="jobchange-include-label">Include sebagai foundation</div>
+      <div class="jobchange-include-label">Wariskan base class</div>
       <div class="jobchange-include-list" id="jobchange-include-list">
         <!-- injected by JS -->
       </div>
@@ -3315,7 +3315,7 @@
       const foundations = getJobFoundations(title);
       if (!foundations.length) return "";
       return `<div class="foundation-links">
-        <span class="foundation-label">Foundation</span>
+        <span class="foundation-label">Base Class</span>
         ${foundations.map(name => `<button type="button" class="foundation-chip" data-foundation-focus="${name}">${name}</button>`).join("")}
       </div>`;
     }
@@ -4021,17 +4021,17 @@
 
           return `
   <article class="card anchor-card${hasSubs ? " has-subs" : ""}" style="--role:${role};--hair:${hair};${charStyle}" data-panel="anchor-panel-${idx}">
-    <div class="anchor-badge">⚓ Active Identity</div>
+    <div class="anchor-badge">⚔ Main Class</div>
     ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
-    ${hasSubs ? `<div class="anchor-expand-hint">▼ ${subJobsData.length} foundation${subJobsData.length > 1 ? "s" : ""} — click to expand</div>` : ""}
+    ${hasSubs ? `<div class="anchor-expand-hint">▼ ${subJobsData.length} inherited class${subJobsData.length > 1 ? "es" : ""} — click to expand</div>` : ""}
   </article>
   <div class="anchor-panel" id="anchor-panel-${idx}" hidden>
     <div class="anchor-panel-header">
-      <span class="anchor-panel-title">Foundations inside <strong>${title}</strong></span>
+      <span class="anchor-panel-title">Class lineage of <strong>${title}</strong></span>
       <button class="anchor-panel-close" aria-label="Close">✕</button>
     </div>
     <div class="anchor-panel-subs">
-      ${subsHTML || '<p style="color:var(--muted);font-size:12px;padding:8px 0">No foundations configured.</p>'}
+      ${subsHTML || '<p style="color:var(--muted);font-size:12px;padding:8px 0">No inherited classes configured.</p>'}
     </div>
   </div>`;
         }
@@ -4335,7 +4335,7 @@ a{color:inherit}
   </div>
 </div>
 <div class="grid">
-${hasAnchors ? '<div class="anchor-section-label">⚓ Active Identity</div>' : ""}
+${hasAnchors ? '<div class="anchor-section-label">⚔ Main Class</div>' : ""}
 ${anchorHTML}
 ${hasAnchors && standaloneHTML ? '<div class="standalone-section-label">Other Skills</div>' : ""}
 ${standaloneHTML}
