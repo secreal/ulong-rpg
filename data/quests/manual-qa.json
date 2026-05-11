@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-12",
+  "job": "Manual QA",
+  "slug": "manual-qa",
+  "mainSource": {
+    "type": "authored",
+    "description": "Main quests are chained to cover Manual QA skills from Lv1 to Lv3."
+  },
+  "main": [
+    {
+      "id": "manual-qa-main-001",
+      "title": "Understand how QA fits into SDLC",
+      "description": "Study the software testing lifecycle and write how QA work changes before, during, and after a release.",
+      "summaryRequired": true,
+      "unlocksAfter": null,
+      "skillTargets": [
+        { "skill": "Smoke test", "targetLevel": 1 },
+        { "skill": "test case", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "Guru99 Software Testing",
+          "url": "https://www.guru99.com/software-testing.html"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-main-002",
+      "title": "Write a clean test case set",
+      "description": "Choose a public app flow and write test cases with preconditions, steps, expected results, and priority.",
+      "summaryRequired": true,
+      "unlocksAfter": "manual-qa-main-001",
+      "skillTargets": [
+        { "skill": "test case", "targetLevel": 2 }
+      ],
+      "links": [
+        {
+          "label": "Guru99 Test Case",
+          "url": "https://www.guru99.com/test-case.html"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-main-003",
+      "title": "Run a smoke test checklist",
+      "description": "Build and execute a smoke test checklist for login, navigation, one create flow, one edit flow, and one error case.",
+      "summaryRequired": true,
+      "unlocksAfter": "manual-qa-main-002",
+      "skillTargets": [
+        { "skill": "Smoke test", "targetLevel": 2 },
+        { "skill": "test case", "targetLevel": 2 }
+      ],
+      "links": [
+        {
+          "label": "Software Testing Help smoke testing",
+          "url": "https://www.softwaretestinghelp.com/smoke-testing-and-sanity-testing-difference/"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-main-004",
+      "title": "Plan a regression pass",
+      "description": "Map an app feature into affected areas and write a regression checklist that protects old behavior after a change.",
+      "summaryRequired": true,
+      "unlocksAfter": "manual-qa-main-003",
+      "skillTargets": [
+        { "skill": "regression", "targetLevel": 1 },
+        { "skill": "Smoke test", "targetLevel": 3 }
+      ],
+      "links": [
+        {
+          "label": "BrowserStack Regression Testing",
+          "url": "https://www.browserstack.com/guide/regression-testing"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-main-005",
+      "title": "Create a bug report portfolio",
+      "description": "Find five real or practice bugs and document reproduction steps, expected behavior, actual behavior, severity, and evidence.",
+      "summaryRequired": true,
+      "unlocksAfter": "manual-qa-main-004",
+      "skillTargets": [
+        { "skill": "regression", "targetLevel": 2 },
+        { "skill": "test case", "targetLevel": 3 }
+      ],
+      "links": [
+        {
+          "label": "Guru99 Bug Report",
+          "url": "https://www.guru99.com/how-to-write-a-bug-report.html"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-main-006",
+      "title": "Run a release-style QA review",
+      "description": "Combine smoke, regression, bug reporting, and test case documentation into one release readiness report for a small app.",
+      "summaryRequired": true,
+      "unlocksAfter": "manual-qa-main-005",
+      "skillTargets": [
+        { "skill": "Smoke test", "targetLevel": 3 },
+        { "skill": "regression", "targetLevel": 3 },
+        { "skill": "test case", "targetLevel": 3 }
+      ],
+      "links": [
+        {
+          "label": "Atlassian QA in software testing",
+          "url": "https://www.atlassian.com/continuous-delivery/software-testing"
+        }
+      ]
+    }
+  ],
+  "daily": [
+    {
+      "id": "manual-qa-daily-001",
+      "title": "Write three test cases for a daily app",
+      "description": "Pick an app you used today and write three test cases for one common flow.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "test case", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "Guru99 Test Case",
+          "url": "https://www.guru99.com/test-case.html"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-daily-002",
+      "title": "Practice one bug report",
+      "description": "Write one bug report from a real app, demo app, or remembered issue. Include steps, expected result, actual result, and evidence.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "test case", "targetLevel": 1 },
+        { "skill": "regression", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "How to write a bug report",
+          "url": "https://www.guru99.com/how-to-write-a-bug-report.html"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-daily-003",
+      "title": "Run one smoke checklist",
+      "description": "Choose any website and run a five-item smoke checklist covering load, navigation, login/search, one action, and error feedback.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "Smoke test", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "Smoke testing overview",
+          "url": "https://www.softwaretestinghelp.com/smoke-testing-and-sanity-testing-difference/"
+        }
+      ]
+    },
+    {
+      "id": "manual-qa-daily-004",
+      "title": "Compare functional and regression testing",
+      "description": "Read a short testing reference and write when you would run functional testing versus regression testing.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "regression", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "Atlassian software testing",
+          "url": "https://www.atlassian.com/continuous-delivery/software-testing"
+        }
+      ]
+    }
+  ]
+}

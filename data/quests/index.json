@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-12",
+  "schema": {
+    "job": "exact job title from index.html",
+    "file": "relative file path under data/quests",
+    "status": "available | planned"
+  },
+  "quests": [
+    {
+      "job": "IT Novice",
+      "file": "it-novice.json",
+      "status": "available"
+    },
+    {
+      "job": "Frontend Developer",
+      "file": "frontend-developer.json",
+      "status": "available"
+    },
+    {
+      "job": "Manual QA",
+      "file": "manual-qa.json",
+      "status": "available"
+    }
+  ]
+}

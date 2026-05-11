@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-12",
+  "job": "Frontend Developer",
+  "slug": "frontend-developer",
+  "mainSource": {
+    "type": "authored",
+    "description": "Main quests are chained to cover Frontend Developer skills from Lv1 to Lv3."
+  },
+  "main": [
+    {
+      "id": "frontend-main-001",
+      "title": "Build the semantic skeleton",
+      "description": "Study semantic HTML and create a simple page that uses headings, landmarks, lists, links, forms, and tables correctly.",
+      "summaryRequired": true,
+      "unlocksAfter": null,
+      "skillTargets": [
+        { "skill": "Semantic markup", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "MDN Learn HTML",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/HTML"
+        }
+      ]
+    },
+    {
+      "id": "frontend-main-002",
+      "title": "Create a responsive layout",
+      "description": "Study CSS layout fundamentals, then build a page that adapts cleanly between mobile, tablet, and desktop widths.",
+      "summaryRequired": true,
+      "unlocksAfter": "frontend-main-001",
+      "skillTargets": [
+        { "skill": "responsive layout", "targetLevel": 1 },
+        { "skill": "Semantic markup", "targetLevel": 2 }
+      ],
+      "links": [
+        {
+          "label": "MDN Learn CSS",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS"
+        },
+        {
+          "label": "web.dev Responsive Design",
+          "url": "https://web.dev/learn/design"
+        }
+      ]
+    },
+    {
+      "id": "frontend-main-003",
+      "title": "Make the browser respond",
+      "description": "Use JavaScript to add interaction to a page: user input, DOM updates, events, and basic state changes.",
+      "summaryRequired": true,
+      "unlocksAfter": "frontend-main-002",
+      "skillTargets": [
+        { "skill": "browser interaction", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "javascript.info Fundamentals",
+          "url": "https://javascript.info/first-steps"
+        },
+        {
+          "label": "MDN Events",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events"
+        }
+      ]
+    },
+    {
+      "id": "frontend-main-004",
+      "title": "Fetch and render remote data",
+      "description": "Call a public API, handle loading and error states, then render the response into the page.",
+      "summaryRequired": true,
+      "unlocksAfter": "frontend-main-003",
+      "skillTargets": [
+        { "skill": "API integration", "targetLevel": 1 },
+        { "skill": "browser interaction", "targetLevel": 2 }
+      ],
+      "links": [
+        {
+          "label": "MDN Fetch API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+        }
+      ]
+    },
+    {
+      "id": "frontend-main-005",
+      "title": "Ship a versioned frontend project",
+      "description": "Create a Git repository, commit meaningful checkpoints, push to GitHub, and deploy the project to a public URL.",
+      "summaryRequired": true,
+      "unlocksAfter": "frontend-main-004",
+      "skillTargets": [
+        { "skill": "version control", "targetLevel": 1 },
+        { "skill": "responsive layout", "targetLevel": 2 }
+      ],
+      "links": [
+        {
+          "label": "Learn Git Branching",
+          "url": "https://learngitbranching.js.org/"
+        },
+        {
+          "label": "Vercel Getting Started",
+          "url": "https://vercel.com/docs/getting-started-with-vercel"
+        }
+      ]
+    },
+    {
+      "id": "frontend-main-006",
+      "title": "Build a component-based app",
+      "description": "Use React or Vue to build a small app with components, props/state, form handling, API loading, and a deployed build.",
+      "summaryRequired": true,
+      "unlocksAfter": "frontend-main-005",
+      "skillTargets": [
+        { "skill": "Semantic markup", "targetLevel": 3 },
+        { "skill": "responsive layout", "targetLevel": 3 },
+        { "skill": "browser interaction", "targetLevel": 3 },
+        { "skill": "API integration", "targetLevel": 2 },
+        { "skill": "version control", "targetLevel": 2 }
+      ],
+      "links": [
+        {
+          "label": "React Learn",
+          "url": "https://react.dev/learn"
+        },
+        {
+          "label": "Vue Tutorial",
+          "url": "https://vuejs.org/tutorial/"
+        }
+      ]
+    },
+    {
+      "id": "frontend-main-007",
+      "title": "Polish and document your frontend proof",
+      "description": "Improve accessibility, document setup steps, explain tradeoffs in a README, and make one pull request style change before finalizing.",
+      "summaryRequired": true,
+      "unlocksAfter": "frontend-main-006",
+      "skillTargets": [
+        { "skill": "API integration", "targetLevel": 3 },
+        { "skill": "version control", "targetLevel": 3 }
+      ],
+      "links": [
+        {
+          "label": "GitHub Pull Requests",
+          "url": "https://docs.github.com/en/pull-requests"
+        },
+        {
+          "label": "web.dev Accessibility",
+          "url": "https://web.dev/learn/accessibility"
+        }
+      ]
+    }
+  ],
+  "daily": [
+    {
+      "id": "frontend-daily-001",
+      "title": "Read one MDN HTML element page",
+      "description": "Pick one HTML element you rarely use, read its MDN page, and write where it would fit in a real interface.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "Semantic markup", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "MDN HTML Elements",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+        }
+      ]
+    },
+    {
+      "id": "frontend-daily-002",
+      "title": "Practice one CSS layout pattern",
+      "description": "Recreate one small layout pattern using Flexbox or Grid and summarize which property controlled the layout.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "responsive layout", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "MDN CSS Layout",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout"
+        }
+      ]
+    },
+    {
+      "id": "frontend-daily-003",
+      "title": "Inspect one website with DevTools",
+      "description": "Open a website you use, inspect its layout, network requests, and console. Write one thing you learned from the inspection.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "browser interaction", "targetLevel": 1 },
+        { "skill": "API integration", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "Chrome DevTools overview",
+          "url": "https://developer.chrome.com/docs/devtools/overview"
+        }
+      ]
+    },
+    {
+      "id": "frontend-daily-004",
+      "title": "Make one small Git branch",
+      "description": "Create a branch, make one small UI change, commit it, and summarize the branch/commit flow.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "version control", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "GitHub Hello World",
+          "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+        }
+      ]
+    }
+  ]
+}

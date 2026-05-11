@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-12",
+  "job": "IT Novice",
+  "slug": "it-novice",
+  "mainSource": {
+    "type": "external",
+    "name": "Perguruan Ulong",
+    "description": "Main quest IT Novice sengaja tidak ditulis di file ini karena jalur utamanya memakai Perguruan Ulong."
+  },
+  "main": [],
+  "daily": [
+    {
+      "id": "it-novice-daily-001",
+      "title": "Read one technical error message carefully",
+      "description": "Pick one error message from your computer, browser console, terminal, or an online example. Identify the system, the exact failure, and one likely next action.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "Problem solving", "targetLevel": 1 },
+        { "skill": "troubleshooting", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "How to read error messages",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools"
+        }
+      ]
+    },
+    {
+      "id": "it-novice-daily-002",
+      "title": "Practice one SQL SELECT query",
+      "description": "Complete one beginner SQL SELECT exercise and write what the query asked for, what table it used, and what result it returned.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "data querying", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "SQLBolt Lesson 1",
+          "url": "https://sqlbolt.com/lesson/select_queries_introduction"
+        }
+      ]
+    },
+    {
+      "id": "it-novice-daily-003",
+      "title": "Finish one Git branching exercise",
+      "description": "Complete one Learn Git Branching level and summarize the command you used and why it changed the repository state.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "version control", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "Learn Git Branching",
+          "url": "https://learngitbranching.js.org/"
+        }
+      ]
+    },
+    {
+      "id": "it-novice-daily-004",
+      "title": "Trace one troubleshooting checklist",
+      "description": "Pick one small issue such as no internet, app not opening, or login failure. Write a step-by-step checklist before trying random fixes.",
+      "summaryRequired": true,
+      "cooldown": "daily",
+      "skillTargets": [
+        { "skill": "Problem solving", "targetLevel": 1 },
+        { "skill": "troubleshooting", "targetLevel": 1 }
+      ],
+      "links": [
+        {
+          "label": "Google IT Support troubleshooting guide",
+          "url": "https://www.coursera.org/articles/troubleshooting"
+        }
+      ]
+    }
+  ]
+}
