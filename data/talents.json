@@ -1,0 +1,1334 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-11",
+  "schema": {
+    "id": "stable kebab-case id",
+    "name": "display name",
+    "category": "frontend | backend | mobile | qa | data | ai | infra | security | product | design | support | leadership",
+    "era": "modern | established | legacy",
+    "description": "short explanation of the specialization, framework, library, method, or domain knowledge",
+    "tags": "job titles that can learn or equip this talent"
+  },
+  "talents": [
+    {
+      "id": "html-css",
+      "name": "HTML & CSS",
+      "category": "frontend",
+      "era": "established",
+      "description": "Core web markup and styling talent for building page structure, visual layout, and browser-rendered interfaces.",
+      "tags": ["IT Novice", "Frontend Developer", "Fullstack Developer", "UI Designer", "Product Designer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "category": "frontend",
+      "era": "established",
+      "description": "Programming language talent for browser interaction, UI behavior, API calls, and many server-side JavaScript stacks.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "QA Automation", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Typed JavaScript talent used to make frontend, backend, and fullstack code safer and easier to maintain.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "AI Engineer", "AppSec Engineer"]
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Component-based JavaScript library talent for building interactive web interfaces and app frontends.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "UI Designer", "Product Designer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "category": "frontend",
+      "era": "modern",
+      "description": "React framework talent for routing, server rendering, API routes, fullstack web apps, and production deployment patterns.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "DevOps Engineer", "SRE", "Application Support"]
+    },
+    {
+      "id": "vue",
+      "name": "Vue.js",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Progressive JavaScript framework talent for component-based frontend applications.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "UI Designer", "Product Designer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "nuxt",
+      "name": "Nuxt",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Vue framework talent for server rendering, routing, content sites, and fullstack Vue applications.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Enterprise frontend framework talent for structured TypeScript applications, forms, routing, and large UI systems.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "angularjs",
+      "name": "AngularJS",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy JavaScript framework talent still found in older enterprise single-page applications.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "svelte",
+      "name": "Svelte",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Compiler-based frontend framework talent for building reactive web interfaces with less runtime overhead.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "Product Designer"]
+    },
+    {
+      "id": "astro",
+      "name": "Astro",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Content-first web framework talent for fast sites, islands architecture, and multi-framework frontend projects.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead"]
+    },
+    {
+      "id": "tailwind-css",
+      "name": "Tailwind CSS",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Utility-first CSS framework talent for composing responsive UI directly from reusable styling classes.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "UI Designer", "Product Designer", "Technical Support"]
+    },
+    {
+      "id": "bootstrap",
+      "name": "Bootstrap",
+      "category": "frontend",
+      "era": "established",
+      "description": "UI framework talent for quickly building responsive layouts and common web components.",
+      "tags": ["IT Novice", "Frontend Developer", "Fullstack Developer", "UI Designer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "jquery",
+      "name": "jQuery",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy JavaScript library talent for DOM manipulation, events, AJAX, and older web applications.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "backbone",
+      "name": "Backbone.js",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Older JavaScript MVC-style library talent found in legacy single-page applications.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "ember",
+      "name": "Ember.js",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Opinionated JavaScript framework talent still found in long-lived web applications.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "knockout",
+      "name": "Knockout.js",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy JavaScript MVVM talent used for data binding in older web interfaces.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "prototype-js",
+      "name": "Prototype.js",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Old JavaScript framework talent often found in very old Rails or enterprise web applications.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "mootools",
+      "name": "MooTools",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy JavaScript framework talent used in older interactive websites and custom UI behavior.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "dojo",
+      "name": "Dojo Toolkit",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Older JavaScript toolkit talent found in enterprise web apps, widgets, and legacy portals.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "extjs",
+      "name": "Ext JS",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Enterprise JavaScript UI framework talent for data-heavy grids, admin panels, and older business applications.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Business Analyst", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "yui",
+      "name": "YUI",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy Yahoo JavaScript library talent found in old web products and enterprise portals.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "coffeescript",
+      "name": "CoffeeScript",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy JavaScript-transpiled language talent often found in older Rails and frontend codebases.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "bower",
+      "name": "Bower",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy frontend package manager talent useful for maintaining older web projects.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "grunt",
+      "name": "Grunt",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy JavaScript task runner talent for older build pipelines and asset automation.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "QA Automation", "Application Support"]
+    },
+    {
+      "id": "gulp",
+      "name": "Gulp",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "JavaScript task runner talent still seen in older asset build and automation pipelines.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "QA Automation", "Application Support"]
+    },
+    {
+      "id": "requirejs",
+      "name": "RequireJS",
+      "category": "frontend",
+      "era": "legacy",
+      "description": "Legacy JavaScript module loader talent used before modern bundlers became common.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "webpack",
+      "name": "Webpack",
+      "category": "frontend",
+      "era": "established",
+      "description": "JavaScript bundler talent for compiling, optimizing, and packaging frontend application assets.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "DevOps Engineer", "Application Support"]
+    },
+    {
+      "id": "vite",
+      "name": "Vite",
+      "category": "frontend",
+      "era": "modern",
+      "description": "Fast frontend build tool talent for modern JavaScript development and bundling.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "QA Automation"]
+    },
+    {
+      "id": "php",
+      "name": "PHP",
+      "category": "backend",
+      "era": "established",
+      "description": "Server-side language talent still widely used for web applications, CMS platforms, and legacy systems.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Tech Lead", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "laravel",
+      "name": "Laravel",
+      "category": "backend",
+      "era": "modern",
+      "description": "PHP framework talent for MVC web apps, APIs, queues, authentication, and common business systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "symfony",
+      "name": "Symfony",
+      "category": "backend",
+      "era": "established",
+      "description": "PHP framework talent used for modular, enterprise-grade web applications and reusable components.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "codeigniter",
+      "name": "CodeIgniter",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Lightweight PHP framework talent often found in older Indonesian and small-business web systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "zend-framework",
+      "name": "Zend Framework",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Legacy PHP enterprise framework talent, now often encountered through Laminas migrations or old systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "laminas",
+      "name": "Laminas",
+      "category": "backend",
+      "era": "established",
+      "description": "Continuation of Zend Framework talent for enterprise PHP components and applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "cakephp",
+      "name": "CakePHP",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Older PHP MVC framework talent still found in long-running business applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "yii",
+      "name": "Yii",
+      "category": "backend",
+      "era": "legacy",
+      "description": "PHP framework talent used in older and some current web applications requiring fast CRUD development.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "phalcon",
+      "name": "Phalcon",
+      "category": "backend",
+      "era": "legacy",
+      "description": "High-performance PHP framework talent historically used for fast web applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "slim",
+      "name": "Slim",
+      "category": "backend",
+      "era": "established",
+      "description": "PHP micro-framework talent for lightweight APIs and small services.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "fuelphp",
+      "name": "FuelPHP",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Older PHP framework talent found in legacy web applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "wordpress",
+      "name": "WordPress",
+      "category": "backend",
+      "era": "established",
+      "description": "CMS and plugin ecosystem talent for content sites, custom themes, plugins, and maintenance work.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "UI Designer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "drupal",
+      "name": "Drupal",
+      "category": "backend",
+      "era": "established",
+      "description": "Enterprise CMS talent for complex content models, permissions, workflows, and custom modules.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "joomla",
+      "name": "Joomla",
+      "category": "backend",
+      "era": "legacy",
+      "description": "CMS talent often found in older websites, portals, and content-heavy web systems.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "category": "backend",
+      "era": "modern",
+      "description": "JavaScript runtime talent for APIs, backend services, tooling, realtime apps, and server-side JavaScript.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "AI Engineer", "Application Support"]
+    },
+    {
+      "id": "express",
+      "name": "Express.js",
+      "category": "backend",
+      "era": "established",
+      "description": "Minimal Node.js web framework talent for APIs, routing, middleware, and backend services.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "nestjs",
+      "name": "NestJS",
+      "category": "backend",
+      "era": "modern",
+      "description": "TypeScript backend framework talent for structured APIs, dependency injection, modules, and enterprise Node systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support"]
+    },
+    {
+      "id": "java",
+      "name": "Java",
+      "category": "backend",
+      "era": "established",
+      "description": "Enterprise programming language talent for backend services, Android legacy code, banking systems, and large applications.",
+      "tags": ["Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support", "CTO"]
+    },
+    {
+      "id": "spring-boot",
+      "name": "Spring Boot",
+      "category": "backend",
+      "era": "modern",
+      "description": "Java framework talent for building production backend services, APIs, jobs, and enterprise applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support", "CTO"]
+    },
+    {
+      "id": "struts",
+      "name": "Apache Struts",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Legacy Java web framework talent commonly found in older enterprise applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Security Engineer", "AppSec Engineer", "Application Support"]
+    },
+    {
+      "id": "jsf",
+      "name": "JavaServer Faces",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Legacy Java web framework talent for component-based server-rendered enterprise UIs.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "ejb",
+      "name": "Enterprise JavaBeans",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Legacy Java enterprise component model talent found in older application servers and business systems.",
+      "tags": ["Backend Developer", "Tech Lead", "Application Support", "CTO"]
+    },
+    {
+      "id": "dotnet",
+      "name": ".NET",
+      "category": "backend",
+      "era": "modern",
+      "description": "Microsoft development platform talent for APIs, web apps, desktop apps, services, and enterprise systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support", "CTO"]
+    },
+    {
+      "id": "aspnet-core",
+      "name": "ASP.NET Core",
+      "category": "backend",
+      "era": "modern",
+      "description": "Modern .NET web framework talent for APIs, MVC apps, Razor apps, and cloud-ready services.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support"]
+    },
+    {
+      "id": "aspnet-mvc",
+      "name": "ASP.NET MVC",
+      "category": "backend",
+      "era": "established",
+      "description": "Microsoft MVC web framework talent often found in enterprise .NET applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "aspnet-web-forms",
+      "name": "ASP.NET Web Forms",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Legacy Microsoft web framework talent still found in older enterprise and internal business applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "classic-asp",
+      "name": "Classic ASP",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Old Microsoft server-side web technology talent found in very old intranet and business applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "wcf",
+      "name": "WCF",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Windows Communication Foundation talent for maintaining older .NET SOAP and service-oriented systems.",
+      "tags": ["Backend Developer", "Tech Lead", "Security Engineer", "AppSec Engineer", "Application Support"]
+    },
+    {
+      "id": "vbnet",
+      "name": "VB.NET",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Microsoft .NET language talent often encountered in older internal business applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "vb6",
+      "name": "Visual Basic 6",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Classic Windows desktop application talent still seen in old business systems and maintenance projects.",
+      "tags": ["Backend Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "delphi",
+      "name": "Delphi",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Pascal-based desktop and business application talent still used in some long-lived enterprise systems.",
+      "tags": ["Backend Developer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "backend",
+      "era": "modern",
+      "description": "General-purpose programming language talent used for APIs, automation, data, AI, scripting, and security work.",
+      "tags": ["IT Novice", "Backend Developer", "QA Automation", "Data Analyst", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Application Support"]
+    },
+    {
+      "id": "django",
+      "name": "Django",
+      "category": "backend",
+      "era": "established",
+      "description": "Python web framework talent for full-featured web applications, admin panels, APIs, and business systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Engineer", "AI Engineer", "Application Support"]
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "category": "backend",
+      "era": "modern",
+      "description": "Python API framework talent for typed, fast, documented services and AI/data product APIs.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Application Support"]
+    },
+    {
+      "id": "flask",
+      "name": "Flask",
+      "category": "backend",
+      "era": "established",
+      "description": "Lightweight Python web framework talent for APIs, prototypes, internal tools, and small web services.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Application Support"]
+    },
+    {
+      "id": "ruby-on-rails",
+      "name": "Ruby on Rails",
+      "category": "backend",
+      "era": "established",
+      "description": "Ruby web framework talent for fast business application development, MVC, and convention-driven fullstack systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "sinatra",
+      "name": "Sinatra",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Lightweight Ruby web framework talent for small services, internal tools, and older Ruby applications.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "go",
+      "name": "Go",
+      "category": "backend",
+      "era": "modern",
+      "description": "Systems and backend programming language talent for services, CLIs, cloud infrastructure, and high-concurrency systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "CTO"]
+    },
+    {
+      "id": "rust",
+      "name": "Rust",
+      "category": "backend",
+      "era": "modern",
+      "description": "Systems programming talent for safe high-performance services, tooling, security, embedded, and infrastructure software.",
+      "tags": ["Backend Developer", "Tech Lead", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Pentester", "CTO"]
+    },
+    {
+      "id": "perl",
+      "name": "Perl",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Legacy scripting language talent often found in old automation, system scripts, reporting, and web systems.",
+      "tags": ["Backend Developer", "System Administrator", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support"]
+    },
+    {
+      "id": "cobol",
+      "name": "COBOL",
+      "category": "backend",
+      "era": "legacy",
+      "description": "Mainframe business programming talent still used in banking, insurance, government, and long-lived transaction systems.",
+      "tags": ["Backend Developer", "Database Admin", "Application Support", "CTO"]
+    },
+    {
+      "id": "soap",
+      "name": "SOAP",
+      "category": "backend",
+      "era": "legacy",
+      "description": "XML-based web service protocol talent still used in older enterprise integrations and regulated systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Security Engineer", "AppSec Engineer", "Business Analyst", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "graphql",
+      "name": "GraphQL",
+      "category": "backend",
+      "era": "modern",
+      "description": "API query language talent for flexible client-driven data fetching and typed schema-driven APIs.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support"]
+    },
+    {
+      "id": "grpc",
+      "name": "gRPC",
+      "category": "backend",
+      "era": "modern",
+      "description": "High-performance RPC framework talent for service-to-service communication using protobuf contracts.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Application Support"]
+    },
+    {
+      "id": "rest-api",
+      "name": "REST API",
+      "category": "backend",
+      "era": "established",
+      "description": "API design talent for resource-based HTTP services, request/response contracts, and integration behavior.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Business Analyst", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "swift",
+      "name": "Swift",
+      "category": "mobile",
+      "era": "modern",
+      "description": "Apple programming language talent for iOS, iPadOS, macOS, watchOS, and Apple platform apps.",
+      "tags": ["Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation"]
+    },
+    {
+      "id": "swiftui",
+      "name": "SwiftUI",
+      "category": "mobile",
+      "era": "modern",
+      "description": "Apple declarative UI framework talent for building modern iOS and Apple platform interfaces.",
+      "tags": ["Mobile Developer", "Tech Lead", "UI Designer", "Product Designer"]
+    },
+    {
+      "id": "objective-c",
+      "name": "Objective-C",
+      "category": "mobile",
+      "era": "legacy",
+      "description": "Legacy Apple programming language talent for maintaining older iOS and macOS applications.",
+      "tags": ["Mobile Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "kotlin",
+      "name": "Kotlin",
+      "category": "mobile",
+      "era": "modern",
+      "description": "Modern JVM language talent used for Android apps, backend services, and multiplatform development.",
+      "tags": ["Mobile Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation"]
+    },
+    {
+      "id": "android-jetpack",
+      "name": "Android Jetpack",
+      "category": "mobile",
+      "era": "modern",
+      "description": "Android library and architecture talent for lifecycle, navigation, persistence, UI, and app reliability.",
+      "tags": ["Mobile Developer", "Tech Lead", "QA Automation"]
+    },
+    {
+      "id": "react-native",
+      "name": "React Native",
+      "category": "mobile",
+      "era": "modern",
+      "description": "Cross-platform mobile framework talent for building iOS and Android apps with React concepts.",
+      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support"]
+    },
+    {
+      "id": "flutter",
+      "name": "Flutter",
+      "category": "mobile",
+      "era": "modern",
+      "description": "Cross-platform UI framework talent for building mobile, desktop, and web apps with Dart.",
+      "tags": ["Mobile Developer", "Frontend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "UI Designer", "Product Designer"]
+    },
+    {
+      "id": "ionic",
+      "name": "Ionic",
+      "category": "mobile",
+      "era": "established",
+      "description": "Hybrid mobile app framework talent for building mobile apps with web technologies.",
+      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "cordova",
+      "name": "Cordova",
+      "category": "mobile",
+      "era": "legacy",
+      "description": "Hybrid mobile app wrapper talent used for older web-based mobile applications.",
+      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "phonegap",
+      "name": "PhoneGap",
+      "category": "mobile",
+      "era": "legacy",
+      "description": "Legacy hybrid mobile app framework talent historically used before modern mobile frameworks became common.",
+      "tags": ["Mobile Developer", "Fullstack Developer", "Application Support"]
+    },
+    {
+      "id": "xamarin",
+      "name": "Xamarin",
+      "category": "mobile",
+      "era": "legacy",
+      "description": "Legacy cross-platform .NET mobile framework talent for maintaining older iOS and Android applications.",
+      "tags": ["Mobile Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+    },
+    {
+      "id": "manual-testing",
+      "name": "Manual Testing",
+      "category": "qa",
+      "era": "established",
+      "description": "QA talent for exploring product behavior, executing test cases, finding defects, and validating user flows.",
+      "tags": ["IT Novice", "Manual QA", "QA Automation", "Business Analyst", "Product Owner", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "test-automation",
+      "name": "Test Automation",
+      "category": "qa",
+      "era": "modern",
+      "description": "QA talent for turning repeatable checks into scripts, pipelines, and automated regression coverage.",
+      "tags": ["QA Automation", "Performance Tester", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "SRE"]
+    },
+    {
+      "id": "playwright-testing",
+      "name": "Playwright Testing",
+      "category": "qa",
+      "era": "modern",
+      "description": "Browser automation talent for writing reliable end-to-end tests and UI validation across browsers.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Manual QA", "QA Automation", "Performance Tester", "AppSec Engineer"]
+    },
+    {
+      "id": "selenium-testing",
+      "name": "Selenium Testing",
+      "category": "qa",
+      "era": "established",
+      "description": "Browser automation talent for maintaining web test suites across older and current systems.",
+      "tags": ["Manual QA", "QA Automation", "Performance Tester", "AppSec Engineer"]
+    },
+    {
+      "id": "performance-testing",
+      "name": "Performance Testing",
+      "category": "qa",
+      "era": "established",
+      "description": "Testing talent for measuring response time, throughput, load limits, bottlenecks, and capacity risk.",
+      "tags": ["Performance Tester", "QA Automation", "Backend Developer", "DevOps Engineer", "SRE", "Application Support"]
+    },
+    {
+      "id": "sql",
+      "name": "SQL",
+      "category": "data",
+      "era": "established",
+      "description": "Data query language talent for retrieving, joining, filtering, aggregating, and validating relational data.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "Database Admin", "Business Analyst", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "postgresql",
+      "name": "PostgreSQL",
+      "category": "data",
+      "era": "modern",
+      "description": "Relational database talent for schema design, queries, indexes, transactions, and production application data.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Application Support"]
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL / MariaDB",
+      "category": "data",
+      "era": "established",
+      "description": "Relational database talent common in web hosting, PHP stacks, business apps, and legacy systems.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "oracle-database",
+      "name": "Oracle Database",
+      "category": "data",
+      "era": "established",
+      "description": "Enterprise relational database talent often used in banking, ERP, government, and high-volume business systems.",
+      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "GRC Specialist", "Application Support", "CTO"]
+    },
+    {
+      "id": "plsql",
+      "name": "PL/SQL",
+      "category": "data",
+      "era": "established",
+      "description": "Oracle procedural SQL talent for stored procedures, packages, triggers, and enterprise database logic.",
+      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Application Support"]
+    },
+    {
+      "id": "tsql",
+      "name": "T-SQL",
+      "category": "data",
+      "era": "established",
+      "description": "Microsoft SQL Server procedural SQL talent for queries, stored procedures, jobs, and reporting systems.",
+      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Application Support"]
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "category": "data",
+      "era": "modern",
+      "description": "Document database talent for flexible JSON-like data models, application persistence, and operational queries.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "Database Admin", "Application Support"]
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "category": "data",
+      "era": "modern",
+      "description": "In-memory data store talent for caching, queues, sessions, rate limits, and fast operational data.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "DevOps Engineer", "Database Admin", "SRE", "Application Support"]
+    },
+    {
+      "id": "data-warehousing",
+      "name": "Data Warehousing",
+      "category": "data",
+      "era": "established",
+      "description": "Data talent for organizing business data into analytical models, facts, dimensions, and reporting-ready structures.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Business Analyst", "Product Manager", "CTO"]
+    },
+    {
+      "id": "etl-elt",
+      "name": "ETL / ELT",
+      "category": "data",
+      "era": "established",
+      "description": "Data pipeline talent for extracting, loading, transforming, validating, and scheduling data movement.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "Database Admin", "Application Support"]
+    },
+    {
+      "id": "dbt",
+      "name": "dbt",
+      "category": "data",
+      "era": "modern",
+      "description": "Analytics engineering talent for SQL-based transformations, tests, documentation, and metric-friendly data models.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist"]
+    },
+    {
+      "id": "apache-airflow",
+      "name": "Apache Airflow",
+      "category": "data",
+      "era": "modern",
+      "description": "Workflow orchestration talent for scheduling, monitoring, and maintaining data pipelines.",
+      "tags": ["Data Engineer", "Data Scientist", "AI Engineer", "DevOps Engineer", "SRE"]
+    },
+    {
+      "id": "apache-spark",
+      "name": "Apache Spark",
+      "category": "data",
+      "era": "modern",
+      "description": "Distributed processing talent for large-scale batch, streaming, feature engineering, and analytics workloads.",
+      "tags": ["Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer"]
+    },
+    {
+      "id": "pandas",
+      "name": "pandas",
+      "category": "data",
+      "era": "modern",
+      "description": "Python data analysis library talent for cleaning, transforming, joining, and analyzing tabular data.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer"]
+    },
+    {
+      "id": "power-bi-modeling",
+      "name": "Power BI Modeling",
+      "category": "data",
+      "era": "modern",
+      "description": "BI talent for building semantic models, DAX measures, report relationships, and governed dashboards.",
+      "tags": ["Data Analyst", "BI Developer", "Business Analyst", "Product Manager", "GRC Specialist"]
+    },
+    {
+      "id": "tableau-dashboarding",
+      "name": "Tableau Dashboarding",
+      "category": "data",
+      "era": "established",
+      "description": "BI talent for building interactive dashboards, visual analysis, and stakeholder reporting in Tableau.",
+      "tags": ["Data Analyst", "BI Developer", "Business Analyst", "Product Manager"]
+    },
+    {
+      "id": "machine-learning",
+      "name": "Machine Learning",
+      "category": "ai",
+      "era": "modern",
+      "description": "AI talent for training, evaluating, and applying predictive models to data-driven problems.",
+      "tags": ["Data Scientist", "AI Engineer", "Data Engineer", "Product Manager", "CTO"]
+    },
+    {
+      "id": "deep-learning",
+      "name": "Deep Learning",
+      "category": "ai",
+      "era": "modern",
+      "description": "AI talent for neural networks, representation learning, computer vision, NLP, and large model workflows.",
+      "tags": ["Data Scientist", "AI Engineer", "CTO"]
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch",
+      "category": "ai",
+      "era": "modern",
+      "description": "Deep learning framework talent for model experimentation, training, fine-tuning, and research-to-production workflows.",
+      "tags": ["Data Scientist", "AI Engineer"]
+    },
+    {
+      "id": "tensorflow",
+      "name": "TensorFlow",
+      "category": "ai",
+      "era": "established",
+      "description": "Machine learning framework talent for training, deploying, and maintaining neural network models.",
+      "tags": ["Data Scientist", "AI Engineer"]
+    },
+    {
+      "id": "scikit-learn",
+      "name": "scikit-learn",
+      "category": "ai",
+      "era": "established",
+      "description": "Python machine learning library talent for classical models, preprocessing, validation, and evaluation.",
+      "tags": ["Data Analyst", "Data Scientist", "AI Engineer"]
+    },
+    {
+      "id": "rag",
+      "name": "RAG",
+      "category": "ai",
+      "era": "modern",
+      "description": "Retrieval-augmented generation talent for grounding LLM answers in documents, databases, and search systems.",
+      "tags": ["Backend Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Product Manager", "CTO"]
+    },
+    {
+      "id": "prompt-engineering",
+      "name": "Prompt Engineering",
+      "category": "ai",
+      "era": "modern",
+      "description": "AI interaction talent for shaping instructions, context, examples, and tool use to get reliable model behavior.",
+      "tags": ["IT Novice", "Backend Developer", "Data Analyst", "Data Scientist", "AI Engineer", "Business Analyst", "Product Manager", "UX Designer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "llm-evaluation",
+      "name": "LLM Evaluation",
+      "category": "ai",
+      "era": "modern",
+      "description": "AI quality talent for measuring model outputs, regression testing prompts, checking safety, and comparing model behavior.",
+      "tags": ["QA Automation", "Data Scientist", "AI Engineer", "Product Manager", "AppSec Engineer", "CTO", "CISO"]
+    },
+    {
+      "id": "agent-workflows",
+      "name": "Agent Workflows",
+      "category": "ai",
+      "era": "modern",
+      "description": "AI talent for designing multi-step model workflows that use tools, memory, planning, and verification loops.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Scientist", "AI Engineer", "Product Manager", "CTO"]
+    },
+    {
+      "id": "linux-administration",
+      "name": "Linux Administration",
+      "category": "infra",
+      "era": "established",
+      "description": "Infrastructure talent for managing Linux servers, users, services, filesystems, logs, packages, and permissions.",
+      "tags": ["IT Novice", "Backend Developer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "windows-server",
+      "name": "Windows Server",
+      "category": "infra",
+      "era": "established",
+      "description": "Infrastructure talent for managing Microsoft server environments, roles, logs, services, domains, and administration tools.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Database Admin", "SOC Analyst", "Security Engineer", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "active-directory",
+      "name": "Active Directory",
+      "category": "infra",
+      "era": "established",
+      "description": "Directory services talent for managing users, groups, computers, domains, permissions, and enterprise identity basics.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support", "CISO"]
+    },
+    {
+      "id": "vmware",
+      "name": "VMware",
+      "category": "infra",
+      "era": "established",
+      "description": "Virtualization talent for managing virtual machines, hosts, clusters, storage, and enterprise datacenter workloads.",
+      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Technical Support", "Application Support", "CTO"]
+    },
+    {
+      "id": "hyper-v",
+      "name": "Hyper-V",
+      "category": "infra",
+      "era": "established",
+      "description": "Microsoft virtualization talent for Windows-based virtual machines, hosts, and lab or server environments.",
+      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "category": "infra",
+      "era": "modern",
+      "description": "Container talent for packaging applications, running services locally, and creating consistent environments.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support"]
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "category": "infra",
+      "era": "modern",
+      "description": "Container orchestration talent for deploying, scaling, operating, and troubleshooting distributed workloads.",
+      "tags": ["Backend Developer", "Tech Lead", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Application Support", "CTO"]
+    },
+    {
+      "id": "terraform",
+      "name": "Terraform",
+      "category": "infra",
+      "era": "modern",
+      "description": "Infrastructure as code talent for declaring, reviewing, provisioning, and changing cloud resources safely.",
+      "tags": ["Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "CTO", "CISO"]
+    },
+    {
+      "id": "ansible",
+      "name": "Ansible",
+      "category": "infra",
+      "era": "established",
+      "description": "Automation talent for configuration management, server provisioning, patching, and repeatable operational runbooks.",
+      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support"]
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "category": "infra",
+      "era": "modern",
+      "description": "Cloud platform talent for compute, storage, identity, networking, databases, monitoring, and managed services.",
+      "tags": ["Backend Developer", "Tech Lead", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Application Support", "CTO", "CISO"]
+    },
+    {
+      "id": "azure",
+      "name": "Azure",
+      "category": "infra",
+      "era": "modern",
+      "description": "Microsoft cloud talent for compute, identity, databases, networking, enterprise services, and security integrations.",
+      "tags": ["Backend Developer", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Application Support", "CTO", "CISO"]
+    },
+    {
+      "id": "gcp",
+      "name": "Google Cloud",
+      "category": "infra",
+      "era": "modern",
+      "description": "Google cloud talent for compute, storage, analytics, AI, networking, and managed platform services.",
+      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support", "CTO", "CISO"]
+    },
+    {
+      "id": "tcp-ip",
+      "name": "TCP/IP",
+      "category": "infra",
+      "era": "established",
+      "description": "Networking fundamentals talent for understanding IP addressing, ports, routing, transport, and network troubleshooting.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "bgp",
+      "name": "BGP",
+      "category": "infra",
+      "era": "established",
+      "description": "Advanced routing talent for exchanging routes between networks, internet providers, and large infrastructure environments.",
+      "tags": ["Network Engineer", "Cloud Engineer", "SRE", "Security Engineer"]
+    },
+    {
+      "id": "ospf",
+      "name": "OSPF",
+      "category": "infra",
+      "era": "established",
+      "description": "Interior routing protocol talent for dynamic routing inside enterprise and service provider networks.",
+      "tags": ["Network Engineer", "System Administrator", "Security Engineer", "Technical Support"]
+    },
+    {
+      "id": "mpls",
+      "name": "MPLS",
+      "category": "infra",
+      "era": "legacy",
+      "description": "Carrier and enterprise network talent for label-switched WAN connectivity and older managed network designs.",
+      "tags": ["Network Engineer", "Security Engineer", "Technical Support"]
+    },
+    {
+      "id": "sd-wan",
+      "name": "SD-WAN",
+      "category": "infra",
+      "era": "modern",
+      "description": "Network talent for software-defined branch connectivity, policy routing, VPN overlays, and WAN optimization.",
+      "tags": ["Network Engineer", "Cloud Engineer", "Security Engineer", "Technical Support", "CISO"]
+    },
+    {
+      "id": "observability",
+      "name": "Observability",
+      "category": "infra",
+      "era": "modern",
+      "description": "Operational talent for understanding systems through metrics, logs, traces, alerts, dashboards, and user-impact signals.",
+      "tags": ["Backend Developer", "Tech Lead", "Performance Tester", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Application Support", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "incident-response",
+      "name": "Incident Response",
+      "category": "security",
+      "era": "established",
+      "description": "Security and operations talent for triaging incidents, containing impact, coordinating responders, and restoring service.",
+      "tags": ["SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Technical Support", "Application Support", "Engineering Manager", "CISO"]
+    },
+    {
+      "id": "siem",
+      "name": "SIEM",
+      "category": "security",
+      "era": "established",
+      "description": "Security monitoring talent for collecting logs, correlating events, detecting threats, and investigating alerts.",
+      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "SRE", "CISO"]
+    },
+    {
+      "id": "edr",
+      "name": "EDR",
+      "category": "security",
+      "era": "modern",
+      "description": "Endpoint detection and response talent for investigating endpoint behavior, alerts, malware, and suspicious activity.",
+      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+    },
+    {
+      "id": "vulnerability-management",
+      "name": "Vulnerability Management",
+      "category": "security",
+      "era": "established",
+      "description": "Security talent for finding, prioritizing, tracking, and remediating weaknesses across systems and applications.",
+      "tags": ["SOC Analyst", "Security Engineer", "Pentester", "GRC Specialist", "AppSec Engineer", "Engineering Manager", "CISO"]
+    },
+    {
+      "id": "penetration-testing",
+      "name": "Penetration Testing",
+      "category": "security",
+      "era": "established",
+      "description": "Offensive security talent for legally testing systems, exploiting weaknesses, and reporting attack paths.",
+      "tags": ["Security Engineer", "Pentester", "AppSec Engineer", "CISO"]
+    },
+    {
+      "id": "web-security",
+      "name": "Web Security",
+      "category": "security",
+      "era": "established",
+      "description": "Security talent for understanding web vulnerabilities, authentication issues, injection, XSS, CSRF, and secure web behavior.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "QA Automation", "Security Engineer", "Pentester", "AppSec Engineer"]
+    },
+    {
+      "id": "threat-modeling",
+      "name": "Threat Modeling",
+      "category": "security",
+      "era": "modern",
+      "description": "Security design talent for identifying abuse paths, trust boundaries, assets, mitigations, and design risks before build.",
+      "tags": ["Tech Lead", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Product Manager", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "secure-code-review",
+      "name": "Secure Code Review",
+      "category": "security",
+      "era": "established",
+      "description": "Application security talent for reviewing code to find vulnerabilities, unsafe patterns, and missing protections.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Security Engineer", "Pentester", "AppSec Engineer"]
+    },
+    {
+      "id": "iso-27001",
+      "name": "ISO 27001",
+      "category": "security",
+      "era": "established",
+      "description": "Information security management standard talent for policies, controls, risk treatment, audits, and certification work.",
+      "tags": ["Security Engineer", "GRC Specialist", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "soc-2",
+      "name": "SOC 2",
+      "category": "security",
+      "era": "modern",
+      "description": "Trust services compliance talent for controls, evidence, audit readiness, vendors, and SaaS customer assurance.",
+      "tags": ["Security Engineer", "GRC Specialist", "Product Manager", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "nist-csf",
+      "name": "NIST CSF",
+      "category": "security",
+      "era": "modern",
+      "description": "Cybersecurity framework talent for organizing security capabilities, risk posture, and improvement programs.",
+      "tags": ["Security Engineer", "GRC Specialist", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "privacy-compliance",
+      "name": "Privacy Compliance",
+      "category": "security",
+      "era": "modern",
+      "description": "Compliance talent for handling personal data obligations, consent, retention, access rights, and privacy controls.",
+      "tags": ["GRC Specialist", "Business Analyst", "Product Owner", "Product Manager", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "requirements-analysis",
+      "name": "Requirements Analysis",
+      "category": "product",
+      "era": "established",
+      "description": "Product and business talent for clarifying needs, constraints, acceptance criteria, flows, and stakeholder expectations.",
+      "tags": ["Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager"]
+    },
+    {
+      "id": "agile-scrum",
+      "name": "Agile / Scrum",
+      "category": "product",
+      "era": "established",
+      "description": "Delivery process talent for sprint planning, backlog refinement, ceremonies, feedback loops, and iterative work.",
+      "tags": ["Tech Lead", "Manual QA", "QA Automation", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "kanban",
+      "name": "Kanban",
+      "category": "product",
+      "era": "established",
+      "description": "Workflow management talent for visualizing work, limiting work in progress, and improving delivery flow.",
+      "tags": ["Tech Lead", "Project Manager", "Product Owner", "Product Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager"]
+    },
+    {
+      "id": "roadmapping",
+      "name": "Roadmapping",
+      "category": "product",
+      "era": "established",
+      "description": "Product planning talent for sequencing outcomes, tradeoffs, releases, stakeholder expectations, and strategic direction.",
+      "tags": ["Product Owner", "Project Manager", "Product Manager", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "product-discovery",
+      "name": "Product Discovery",
+      "category": "product",
+      "era": "modern",
+      "description": "Product talent for exploring customer problems, validating opportunities, reducing uncertainty, and shaping solutions.",
+      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager"]
+    },
+    {
+      "id": "user-research",
+      "name": "User Research",
+      "category": "design",
+      "era": "established",
+      "description": "Research talent for learning user behavior, needs, pain points, motivations, and workflow context.",
+      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "wireframing",
+      "name": "Wireframing",
+      "category": "design",
+      "era": "established",
+      "description": "Design talent for sketching screen structure, content priority, layout, and interaction ideas before final visuals.",
+      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "prototyping",
+      "name": "Prototyping",
+      "category": "design",
+      "era": "modern",
+      "description": "Design talent for making clickable or interactive representations of product flows before engineering builds them.",
+      "tags": ["Frontend Developer", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "design-systems",
+      "name": "Design Systems",
+      "category": "design",
+      "era": "modern",
+      "description": "Design and frontend talent for reusable components, tokens, patterns, guidelines, and consistent product UI.",
+      "tags": ["Frontend Developer", "Tech Lead", "UI Designer", "UX Designer", "Product Designer", "Product Manager"]
+    },
+    {
+      "id": "accessibility",
+      "name": "Accessibility",
+      "category": "design",
+      "era": "modern",
+      "description": "Inclusive design and frontend talent for making products usable by people with different abilities and assistive tools.",
+      "tags": ["Frontend Developer", "Manual QA", "QA Automation", "Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "AppSec Engineer"]
+    },
+    {
+      "id": "service-desk",
+      "name": "Service Desk",
+      "category": "support",
+      "era": "established",
+      "description": "Support talent for handling user requests, incidents, triage, escalation, SLAs, and communication through a help channel.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "itil",
+      "name": "ITIL",
+      "category": "support",
+      "era": "established",
+      "description": "IT service management talent for incidents, problems, changes, service requests, SLAs, and operational process discipline.",
+      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "GRC Specialist", "Project Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "runbook-writing",
+      "name": "Runbook Writing",
+      "category": "support",
+      "era": "established",
+      "description": "Operational documentation talent for writing repeatable troubleshooting, recovery, escalation, and maintenance procedures.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "root-cause-analysis",
+      "name": "Root Cause Analysis",
+      "category": "support",
+      "era": "established",
+      "description": "Investigation talent for identifying why an issue happened, what contributed, and what should prevent recurrence.",
+      "tags": ["Manual QA", "QA Automation", "Performance Tester", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager"]
+    },
+    {
+      "id": "application-monitoring",
+      "name": "Application Monitoring",
+      "category": "support",
+      "era": "modern",
+      "description": "Support talent for watching application health, logs, alerts, dashboards, errors, and user-impact signals.",
+      "tags": ["Backend Developer", "Manual QA", "Performance Tester", "DevOps Engineer", "SRE", "Technical Support", "Application Support", "Engineering Manager"]
+    },
+    {
+      "id": "technical-mentoring",
+      "name": "Technical Mentoring",
+      "category": "leadership",
+      "era": "established",
+      "description": "Leadership talent for helping others grow through guidance, review, feedback, pairing, and structured learning.",
+      "tags": ["Tech Lead", "Data Engineer", "AI Engineer", "SRE", "Security Engineer", "AppSec Engineer", "Product Designer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "architecture-governance",
+      "name": "Architecture Governance",
+      "category": "leadership",
+      "era": "established",
+      "description": "Leadership talent for setting technical direction, reviewing major decisions, managing standards, and reducing long-term risk.",
+      "tags": ["Tech Lead", "SRE", "Security Engineer", "AppSec Engineer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "engineering-management",
+      "name": "Engineering Management",
+      "category": "leadership",
+      "era": "established",
+      "description": "Management talent for balancing people, delivery, hiring, performance, team health, and engineering outcomes.",
+      "tags": ["Tech Lead", "Project Manager", "Product Manager", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "technology-strategy",
+      "name": "Technology Strategy",
+      "category": "leadership",
+      "era": "established",
+      "description": "Executive technology talent for aligning platform choices, architecture, investment, risk, and company direction.",
+      "tags": ["Tech Lead", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "security-strategy",
+      "name": "Security Strategy",
+      "category": "leadership",
+      "era": "established",
+      "description": "Security leadership talent for setting risk priorities, program direction, budget tradeoffs, and executive security posture.",
+      "tags": ["Security Engineer", "GRC Specialist", "AppSec Engineer", "Engineering Manager", "CTO", "CISO"]
+    }
+  ]
+}
