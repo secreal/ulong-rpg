@@ -1,0 +1,1347 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-11",
+  "schema": {
+    "id": "stable kebab-case id",
+    "name": "display name",
+    "category": "editor | version-control | terminal | design | api | database | cloud | devops | qa | data | security | network | support | product | collaboration | operating-system | observability | ai",
+    "kind": "software | platform | cli | service | device | suite",
+    "aliases": "alternate names or related product names",
+    "description": "short non-UI explanation of what this equip is used for",
+    "tags": "job titles that can equip this item"
+  },
+  "equipment": [
+    {
+      "id": "visual-studio-code",
+      "name": "Visual Studio Code",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["VS Code", "Code"],
+      "description": "Code editor used for writing, navigating, debugging, and managing project files.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "CTO"]
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "category": "version-control",
+      "kind": "cli",
+      "aliases": ["git cli"],
+      "description": "Version control tool for tracking file changes, branching work, and collaborating safely.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "version-control",
+      "kind": "platform",
+      "aliases": ["GitHub Actions", "GitHub Issues", "GitHub Projects"],
+      "description": "Repository hosting and collaboration platform for code review, issues, releases, and automation.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Product Owner", "Project Manager", "Product Manager", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "gitlab",
+      "name": "GitLab",
+      "category": "version-control",
+      "kind": "platform",
+      "aliases": ["GitLab CI/CD"],
+      "description": "Repository and DevSecOps platform for source control, merge requests, CI/CD, and deployments.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "bitbucket",
+      "name": "Bitbucket",
+      "category": "version-control",
+      "kind": "platform",
+      "aliases": ["Bitbucket Pipelines"],
+      "description": "Repository hosting platform often used with Jira and CI pipelines.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "SRE", "AppSec Engineer", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "windows-terminal",
+      "name": "Windows Terminal",
+      "category": "terminal",
+      "kind": "software",
+      "aliases": ["PowerShell Terminal"],
+      "description": "Terminal application for running command-line tools and scripts on Windows.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "QA Automation", "Data Engineer", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "powershell",
+      "name": "PowerShell",
+      "category": "terminal",
+      "kind": "cli",
+      "aliases": ["pwsh", "Windows PowerShell"],
+      "description": "Command shell and scripting language for automation, administration, and troubleshooting.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "GRC Specialist", "AppSec Engineer", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "bash",
+      "name": "Bash",
+      "category": "terminal",
+      "kind": "cli",
+      "aliases": ["GNU Bash", "shell"],
+      "description": "Unix shell used for command-line work, scripting, servers, containers, and automation.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "QA Automation", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "linux",
+      "name": "Linux",
+      "category": "operating-system",
+      "kind": "software",
+      "aliases": ["Ubuntu", "Debian", "RHEL", "CentOS", "Rocky Linux"],
+      "description": "Server and workstation operating system used for hosting, scripting, security, and infrastructure work.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "QA Automation", "Performance Tester", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "CTO", "CISO"]
+    },
+    {
+      "id": "windows",
+      "name": "Windows",
+      "category": "operating-system",
+      "kind": "software",
+      "aliases": ["Windows 10", "Windows 11"],
+      "description": "Desktop operating system commonly supported in corporate IT environments.",
+      "tags": ["IT Novice", "Manual QA", "System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "macos",
+      "name": "macOS",
+      "category": "operating-system",
+      "kind": "software",
+      "aliases": ["Mac"],
+      "description": "Apple desktop operating system used for design, mobile development, and general engineering work.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "intellij-idea",
+      "name": "IntelliJ IDEA",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["IntelliJ"],
+      "description": "JetBrains IDE commonly used for Java, Kotlin, backend services, and enterprise applications.",
+      "tags": ["Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support", "CTO"]
+    },
+    {
+      "id": "webstorm",
+      "name": "WebStorm",
+      "category": "editor",
+      "kind": "software",
+      "aliases": [],
+      "description": "JetBrains IDE focused on JavaScript, TypeScript, frontend, and Node.js development.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead"]
+    },
+    {
+      "id": "pycharm",
+      "name": "PyCharm",
+      "category": "editor",
+      "kind": "software",
+      "aliases": [],
+      "description": "JetBrains IDE for Python development, data scripts, APIs, and automation.",
+      "tags": ["Backend Developer", "QA Automation", "Data Analyst", "Data Engineer", "Data Scientist", "AI Engineer", "SRE", "Security Engineer", "Pentester"]
+    },
+    {
+      "id": "android-studio",
+      "name": "Android Studio",
+      "category": "editor",
+      "kind": "software",
+      "aliases": [],
+      "description": "Official IDE for building, debugging, profiling, and releasing Android applications.",
+      "tags": ["Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation"]
+    },
+    {
+      "id": "xcode",
+      "name": "Xcode",
+      "category": "editor",
+      "kind": "software",
+      "aliases": [],
+      "description": "Apple IDE for building, debugging, signing, and releasing iOS and macOS applications.",
+      "tags": ["Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation"]
+    },
+    {
+      "id": "chrome-devtools",
+      "name": "Chrome DevTools",
+      "category": "editor",
+      "kind": "software",
+      "aliases": ["Browser DevTools"],
+      "description": "Browser debugging tools for inspecting HTML, CSS, JavaScript, network calls, storage, and performance.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Technical Support", "Application Support", "AppSec Engineer"]
+    },
+    {
+      "id": "postman",
+      "name": "Postman",
+      "category": "api",
+      "kind": "software",
+      "aliases": [],
+      "description": "API client and collaboration tool for sending requests, testing endpoints, and documenting APIs.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Engineer", "AI Engineer", "Technical Support", "Application Support", "AppSec Engineer"]
+    },
+    {
+      "id": "insomnia",
+      "name": "Insomnia",
+      "category": "api",
+      "kind": "software",
+      "aliases": [],
+      "description": "API client for REST, GraphQL, and request collections.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "QA Automation", "Technical Support", "Application Support", "AppSec Engineer"]
+    },
+    {
+      "id": "swagger-ui",
+      "name": "Swagger UI",
+      "category": "api",
+      "kind": "software",
+      "aliases": ["OpenAPI UI"],
+      "description": "Interactive API documentation viewer generated from OpenAPI specifications.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Business Analyst", "Product Owner", "Technical Support", "Application Support", "AppSec Engineer"]
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "category": "design",
+      "kind": "platform",
+      "aliases": ["FigJam"],
+      "description": "Collaborative design platform for UI layouts, prototypes, design systems, and handoff.",
+      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "adobe-photoshop",
+      "name": "Adobe Photoshop",
+      "category": "design",
+      "kind": "software",
+      "aliases": ["Photoshop"],
+      "description": "Image editing software used for raster graphics, assets, screenshots, and visual adjustments.",
+      "tags": ["Frontend Developer", "UI Designer", "Product Designer"]
+    },
+    {
+      "id": "adobe-illustrator",
+      "name": "Adobe Illustrator",
+      "category": "design",
+      "kind": "software",
+      "aliases": ["Illustrator"],
+      "description": "Vector design software used for icons, illustrations, logos, and scalable artwork.",
+      "tags": ["UI Designer", "Product Designer"]
+    },
+    {
+      "id": "miro",
+      "name": "Miro",
+      "category": "collaboration",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Online whiteboard for workshops, mapping flows, prioritization, and team collaboration.",
+      "tags": ["Tech Lead", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "draw-io",
+      "name": "draw.io",
+      "category": "collaboration",
+      "kind": "software",
+      "aliases": ["diagrams.net"],
+      "description": "Diagramming tool for architecture, flowcharts, network diagrams, and process maps.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Tech Lead", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Product Designer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "jira",
+      "name": "Jira",
+      "category": "product",
+      "kind": "platform",
+      "aliases": ["Jira Software"],
+      "description": "Issue and project tracking platform used for backlogs, sprint work, bugs, and delivery visibility.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "confluence",
+      "name": "Confluence",
+      "category": "collaboration",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Team documentation platform for requirements, runbooks, meeting notes, decisions, and knowledge bases.",
+      "tags": ["IT Novice", "Tech Lead", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "category": "collaboration",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Workspace for docs, databases, planning, notes, and lightweight knowledge management.",
+      "tags": ["IT Novice", "Tech Lead", "Data Analyst", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "category": "collaboration",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Team messaging platform used for coordination, support channels, alerts, and incident communication.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "GRC Specialist", "AppSec Engineer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "microsoft-teams",
+      "name": "Microsoft Teams",
+      "category": "collaboration",
+      "kind": "platform",
+      "aliases": ["Teams"],
+      "description": "Microsoft collaboration platform for chat, meetings, calls, files, and operational communication.",
+      "tags": ["IT Novice", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO", "GRC Specialist"]
+    },
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace",
+      "category": "collaboration",
+      "kind": "suite",
+      "aliases": ["Google Docs", "Google Sheets", "Google Slides", "Google Drive"],
+      "description": "Office and collaboration suite for documents, spreadsheets, slides, storage, and shared work.",
+      "tags": ["IT Novice", "Data Analyst", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO", "GRC Specialist"]
+    },
+    {
+      "id": "microsoft-365",
+      "name": "Microsoft 365",
+      "category": "collaboration",
+      "kind": "suite",
+      "aliases": ["Excel", "Word", "PowerPoint", "OneDrive", "SharePoint"],
+      "description": "Microsoft office and collaboration suite used for documents, spreadsheets, presentations, email, and file sharing.",
+      "tags": ["IT Novice", "Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO", "GRC Specialist"]
+    },
+    {
+      "id": "excel",
+      "name": "Microsoft Excel",
+      "category": "data",
+      "kind": "software",
+      "aliases": ["Excel"],
+      "description": "Spreadsheet tool for analysis, reporting, reconciliation, formulas, pivot tables, and operational tracking.",
+      "tags": ["IT Novice", "Manual QA", "Data Analyst", "BI Developer", "Database Admin", "GRC Specialist", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CISO"]
+    },
+    {
+      "id": "google-sheets",
+      "name": "Google Sheets",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Sheets"],
+      "description": "Collaborative spreadsheet tool for lightweight analysis, tracking, and reporting.",
+      "tags": ["IT Novice", "Manual QA", "Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "mysql-workbench",
+      "name": "MySQL Workbench",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "Database client and modeling tool for MySQL administration, queries, and schema inspection.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "pgadmin",
+      "name": "pgAdmin",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "PostgreSQL administration and query tool for inspecting databases, users, backups, and schemas.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "dbeaver",
+      "name": "DBeaver",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "Universal database client used to query and inspect many database engines from one interface.",
+      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "datagrip",
+      "name": "DataGrip",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "JetBrains database IDE for SQL writing, schema navigation, and multi-database work.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "sql-server-management-studio",
+      "name": "SQL Server Management Studio",
+      "category": "database",
+      "kind": "software",
+      "aliases": ["SSMS"],
+      "description": "Microsoft SQL Server administration and query tool.",
+      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "mongodb-compass",
+      "name": "MongoDB Compass",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "MongoDB GUI for exploring collections, documents, indexes, and query behavior.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "redis-insight",
+      "name": "Redis Insight",
+      "category": "database",
+      "kind": "software",
+      "aliases": [],
+      "description": "Redis GUI for inspecting keys, memory usage, streams, and cached data.",
+      "tags": ["Backend Developer", "Fullstack Developer", "DevOps Engineer", "Database Admin", "SRE", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "category": "devops",
+      "kind": "software",
+      "aliases": ["Docker Desktop", "Docker Engine"],
+      "description": "Container platform for packaging and running applications with consistent environments.",
+      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "CTO"]
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "category": "devops",
+      "kind": "platform",
+      "aliases": ["K8s"],
+      "description": "Container orchestration platform for deploying, scaling, and operating containerized systems.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "helm",
+      "name": "Helm",
+      "category": "devops",
+      "kind": "cli",
+      "aliases": ["Helm charts"],
+      "description": "Package manager for Kubernetes applications and deployment templates.",
+      "tags": ["Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Application Support"]
+    },
+    {
+      "id": "terraform",
+      "name": "Terraform",
+      "category": "devops",
+      "kind": "cli",
+      "aliases": ["OpenTofu"],
+      "description": "Infrastructure as code tool for provisioning cloud and platform resources from declarative configuration.",
+      "tags": ["Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "ansible",
+      "name": "Ansible",
+      "category": "devops",
+      "kind": "cli",
+      "aliases": [],
+      "description": "Automation tool for configuration management, server provisioning, and operational runbooks.",
+      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support"]
+    },
+    {
+      "id": "jenkins",
+      "name": "Jenkins",
+      "category": "devops",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Automation server commonly used for CI/CD pipelines, builds, tests, and deployments.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "Data Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Application Support"]
+    },
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions",
+      "category": "devops",
+      "kind": "platform",
+      "aliases": [],
+      "description": "GitHub-native automation system for CI/CD workflows, tests, builds, releases, and scheduled jobs.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "AppSec Engineer", "CTO"]
+    },
+    {
+      "id": "azure-devops",
+      "name": "Azure DevOps",
+      "category": "devops",
+      "kind": "platform",
+      "aliases": ["Azure Boards", "Azure Pipelines", "Azure Repos"],
+      "description": "Microsoft platform for work tracking, repositories, CI/CD pipelines, artifacts, and test plans.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Business Analyst", "Product Owner", "Project Manager", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "aws",
+      "name": "Amazon Web Services",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": ["AWS", "EC2", "S3", "IAM", "RDS", "Lambda", "CloudWatch"],
+      "description": "Cloud platform for compute, storage, networking, identity, databases, serverless, monitoring, and managed services.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "microsoft-azure",
+      "name": "Microsoft Azure",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": ["Azure", "Azure VM", "Azure SQL", "Azure Monitor", "Microsoft Entra ID"],
+      "description": "Microsoft cloud platform for compute, identity, databases, networking, security, and enterprise workloads.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "google-cloud",
+      "name": "Google Cloud",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": ["GCP", "Compute Engine", "Cloud Storage", "BigQuery", "Cloud Run"],
+      "description": "Google cloud platform for compute, storage, analytics, AI, networking, and managed services.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": ["Cloudflare Workers", "Cloudflare Pages", "Cloudflare DNS", "Cloudflare WAF"],
+      "description": "Edge, DNS, security, CDN, worker, and web application protection platform.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "Application Support", "CTO", "CISO"]
+    },
+    {
+      "id": "firebase",
+      "name": "Firebase",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": ["Firestore", "Firebase Auth", "Firebase Hosting", "Firebase Crashlytics"],
+      "description": "App development platform for hosting, authentication, realtime databases, notifications, and crash reporting.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": ["Supabase Auth", "Supabase Database", "Supabase Storage"],
+      "description": "Backend-as-a-service platform built around PostgreSQL, auth, storage, and edge functions.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Data Analyst", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Frontend and fullstack deployment platform commonly used for web apps, previews, and edge functions.",
+      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "SRE", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify",
+      "category": "cloud",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Web deployment platform for static sites, functions, forms, previews, and frontend workflows.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "Technical Support"]
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright",
+      "category": "qa",
+      "kind": "software",
+      "aliases": [],
+      "description": "Browser automation framework for end-to-end tests, UI checks, screenshots, and browser workflows.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "AppSec Engineer"]
+    },
+    {
+      "id": "selenium",
+      "name": "Selenium",
+      "category": "qa",
+      "kind": "software",
+      "aliases": ["Selenium WebDriver"],
+      "description": "Browser automation framework used for web UI testing across browsers.",
+      "tags": ["Manual QA", "QA Automation", "Performance Tester", "AppSec Engineer"]
+    },
+    {
+      "id": "cypress",
+      "name": "Cypress",
+      "category": "qa",
+      "kind": "software",
+      "aliases": [],
+      "description": "Frontend test automation framework for web application integration and end-to-end tests.",
+      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation"]
+    },
+    {
+      "id": "testlink",
+      "name": "TestLink",
+      "category": "qa",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Test management tool for organizing test cases, test plans, and manual execution records.",
+      "tags": ["Manual QA", "QA Automation", "Project Manager"]
+    },
+    {
+      "id": "testrail",
+      "name": "TestRail",
+      "category": "qa",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Test case management platform for manual and automated QA planning, runs, and reporting.",
+      "tags": ["Manual QA", "QA Automation", "Performance Tester", "Project Manager", "Product Owner"]
+    },
+    {
+      "id": "browserstack",
+      "name": "BrowserStack",
+      "category": "qa",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Cloud testing platform for real browsers, devices, cross-browser checks, and mobile app testing.",
+      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "Manual QA", "QA Automation", "Performance Tester", "Technical Support"]
+    },
+    {
+      "id": "jmeter",
+      "name": "Apache JMeter",
+      "category": "qa",
+      "kind": "software",
+      "aliases": ["JMeter"],
+      "description": "Load testing tool for simulating traffic and measuring system behavior under stress.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "DevOps Engineer", "SRE"]
+    },
+    {
+      "id": "k6",
+      "name": "Grafana k6",
+      "category": "qa",
+      "kind": "cli",
+      "aliases": ["k6"],
+      "description": "Developer-oriented load testing tool for scripted performance tests and CI integration.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "DevOps Engineer", "SRE"]
+    },
+    {
+      "id": "gatling",
+      "name": "Gatling",
+      "category": "qa",
+      "kind": "software",
+      "aliases": [],
+      "description": "Performance testing tool for simulating high traffic and analyzing web application load behavior.",
+      "tags": ["Performance Tester", "Backend Developer", "DevOps Engineer", "SRE"]
+    },
+    {
+      "id": "tableau",
+      "name": "Tableau",
+      "category": "data",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Business intelligence and visualization platform for dashboards and analytical reporting.",
+      "tags": ["Data Analyst", "BI Developer", "Data Scientist", "Business Analyst", "Product Manager", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "power-bi",
+      "name": "Power BI",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Microsoft Power BI"],
+      "description": "Microsoft BI platform for data modeling, dashboards, reports, and business analytics.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Business Analyst", "Product Owner", "Product Manager", "Engineering Manager", "CISO"]
+    },
+    {
+      "id": "looker-studio",
+      "name": "Looker Studio",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Google Data Studio"],
+      "description": "Google reporting tool for dashboards and visualizations connected to multiple data sources.",
+      "tags": ["Data Analyst", "BI Developer", "Business Analyst", "Product Manager"]
+    },
+    {
+      "id": "looker",
+      "name": "Looker",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["LookML"],
+      "description": "BI and semantic modeling platform for governed metrics, dashboards, and analytics workflows.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Product Manager", "Engineering Manager"]
+    },
+    {
+      "id": "metabase",
+      "name": "Metabase",
+      "category": "data",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Open-source BI tool for dashboards, SQL questions, and internal analytics.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Backend Developer", "Product Manager", "Application Support"]
+    },
+    {
+      "id": "apache-airflow",
+      "name": "Apache Airflow",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Airflow"],
+      "description": "Workflow orchestration platform for scheduling and monitoring data pipelines.",
+      "tags": ["Data Engineer", "Data Scientist", "AI Engineer", "DevOps Engineer", "SRE"]
+    },
+    {
+      "id": "dbt",
+      "name": "dbt",
+      "category": "data",
+      "kind": "cli",
+      "aliases": ["dbt Core", "dbt Cloud"],
+      "description": "Analytics engineering tool for transforming warehouse data with SQL models, tests, and documentation.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist"]
+    },
+    {
+      "id": "apache-spark",
+      "name": "Apache Spark",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Spark", "PySpark"],
+      "description": "Distributed data processing engine for large-scale batch, streaming, and machine learning workloads.",
+      "tags": ["Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer"]
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Lakehouse", "Delta Lake"],
+      "description": "Lakehouse platform for data engineering, analytics, machine learning, notebooks, and managed Spark.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "CTO"]
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "category": "data",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Cloud data platform for warehousing, analytics, data sharing, and scalable SQL workloads.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "Database Admin", "GRC Specialist", "CTO"]
+    },
+    {
+      "id": "bigquery",
+      "name": "BigQuery",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Google BigQuery"],
+      "description": "Google Cloud data warehouse for large-scale SQL analytics and managed data processing.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "Database Admin"]
+    },
+    {
+      "id": "jupyter",
+      "name": "Jupyter Notebook",
+      "category": "data",
+      "kind": "software",
+      "aliases": ["JupyterLab", "Notebook"],
+      "description": "Interactive notebook environment for Python analysis, experiments, documentation, and visualization.",
+      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester"]
+    },
+    {
+      "id": "google-colab",
+      "name": "Google Colab",
+      "category": "data",
+      "kind": "platform",
+      "aliases": ["Colab"],
+      "description": "Hosted notebook environment for Python experiments, data analysis, and machine learning.",
+      "tags": ["Data Analyst", "Data Scientist", "AI Engineer"]
+    },
+    {
+      "id": "anaconda",
+      "name": "Anaconda",
+      "category": "data",
+      "kind": "software",
+      "aliases": ["Conda"],
+      "description": "Python distribution and environment manager commonly used for data science and analytics.",
+      "tags": ["Data Analyst", "Data Engineer", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester"]
+    },
+    {
+      "id": "mlflow",
+      "name": "MLflow",
+      "category": "ai",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Machine learning lifecycle platform for experiment tracking, model packaging, and model registry workflows.",
+      "tags": ["Data Scientist", "AI Engineer", "Data Engineer", "SRE"]
+    },
+    {
+      "id": "hugging-face",
+      "name": "Hugging Face",
+      "category": "ai",
+      "kind": "platform",
+      "aliases": ["Transformers", "Hugging Face Hub"],
+      "description": "AI platform and model hub for using, sharing, fine-tuning, and deploying machine learning models.",
+      "tags": ["Data Scientist", "AI Engineer", "AppSec Engineer", "CTO"]
+    },
+    {
+      "id": "openai-api",
+      "name": "OpenAI API",
+      "category": "ai",
+      "kind": "service",
+      "aliases": ["OpenAI Platform"],
+      "description": "API platform for building applications with language, vision, audio, and agentic AI models.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Scientist", "AI Engineer", "Product Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "category": "ai",
+      "kind": "software",
+      "aliases": [],
+      "description": "Framework and ecosystem for building LLM applications, RAG flows, tool use, and agent workflows.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Data Scientist", "AI Engineer", "CTO"]
+    },
+    {
+      "id": "llamaindex",
+      "name": "LlamaIndex",
+      "category": "ai",
+      "kind": "software",
+      "aliases": [],
+      "description": "Framework for connecting data sources to LLM applications, especially retrieval and RAG workflows.",
+      "tags": ["Backend Developer", "Data Engineer", "Data Scientist", "AI Engineer"]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "category": "ai",
+      "kind": "software",
+      "aliases": [],
+      "description": "Local model runner for experimenting with and serving open language models on a workstation or server.",
+      "tags": ["Backend Developer", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester", "CTO"]
+    },
+    {
+      "id": "wireshark",
+      "name": "Wireshark",
+      "category": "network",
+      "kind": "software",
+      "aliases": [],
+      "description": "Packet analysis tool for inspecting network traffic and troubleshooting protocols.",
+      "tags": ["IT Novice", "Network Engineer", "System Administrator", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "Technical Support"]
+    },
+    {
+      "id": "cisco-ios",
+      "name": "Cisco IOS",
+      "category": "network",
+      "kind": "platform",
+      "aliases": ["Cisco CLI", "Cisco Catalyst"],
+      "description": "Cisco network operating system and command interface for routing, switching, and network configuration.",
+      "tags": ["Network Engineer", "System Administrator", "Cloud Engineer", "Security Engineer", "Technical Support"]
+    },
+    {
+      "id": "cisco-packet-tracer",
+      "name": "Cisco Packet Tracer",
+      "category": "network",
+      "kind": "software",
+      "aliases": [],
+      "description": "Network simulation tool for learning and testing Cisco-style routing and switching scenarios.",
+      "tags": ["IT Novice", "Network Engineer", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "gns3",
+      "name": "GNS3",
+      "category": "network",
+      "kind": "software",
+      "aliases": [],
+      "description": "Network emulator for building realistic multi-vendor lab topologies.",
+      "tags": ["Network Engineer", "Security Engineer", "Pentester"]
+    },
+    {
+      "id": "eve-ng",
+      "name": "EVE-NG",
+      "category": "network",
+      "kind": "software",
+      "aliases": [],
+      "description": "Network emulation platform for advanced lab environments and multi-vendor infrastructure testing.",
+      "tags": ["Network Engineer", "Security Engineer", "Pentester"]
+    },
+    {
+      "id": "mikrotik-routeros",
+      "name": "MikroTik RouterOS",
+      "category": "network",
+      "kind": "platform",
+      "aliases": ["WinBox", "RouterOS"],
+      "description": "Router and network operating system used for routing, firewalling, VPN, and small-to-mid network management.",
+      "tags": ["Network Engineer", "System Administrator", "Security Engineer", "Technical Support"]
+    },
+    {
+      "id": "fortigate",
+      "name": "FortiGate",
+      "category": "network",
+      "kind": "platform",
+      "aliases": ["Fortinet FortiGate", "FortiOS"],
+      "description": "Firewall and security gateway platform used for network protection, VPN, filtering, and traffic control.",
+      "tags": ["Network Engineer", "System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Technical Support", "CISO"]
+    },
+    {
+      "id": "palo-alto-ngfw",
+      "name": "Palo Alto Networks NGFW",
+      "category": "network",
+      "kind": "platform",
+      "aliases": ["PAN-OS", "Palo Alto firewall"],
+      "description": "Enterprise next-generation firewall platform for network security policy, inspection, and threat prevention.",
+      "tags": ["Network Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "CISO"]
+    },
+    {
+      "id": "juniper-junos",
+      "name": "Juniper Junos",
+      "category": "network",
+      "kind": "platform",
+      "aliases": ["Junos OS"],
+      "description": "Juniper network operating system used for routing, switching, security, and service provider networks.",
+      "tags": ["Network Engineer", "Security Engineer"]
+    },
+    {
+      "id": "ubiquiti-unifi",
+      "name": "Ubiquiti UniFi",
+      "category": "network",
+      "kind": "platform",
+      "aliases": ["UniFi Controller", "UniFi Network"],
+      "description": "Network management platform for access points, switches, gateways, and small-to-mid office networks.",
+      "tags": ["Network Engineer", "System Administrator", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "putty",
+      "name": "PuTTY",
+      "category": "terminal",
+      "kind": "software",
+      "aliases": [],
+      "description": "SSH and serial client often used to access servers, routers, switches, and appliances.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "openvpn",
+      "name": "OpenVPN",
+      "category": "network",
+      "kind": "software",
+      "aliases": [],
+      "description": "VPN software used to securely connect users or systems to private networks.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "active-directory",
+      "name": "Active Directory",
+      "category": "support",
+      "kind": "platform",
+      "aliases": ["AD DS", "Microsoft Active Directory"],
+      "description": "Microsoft directory service for users, groups, computers, domains, and access policies.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support", "CISO"]
+    },
+    {
+      "id": "microsoft-entra-id",
+      "name": "Microsoft Entra ID",
+      "category": "support",
+      "kind": "platform",
+      "aliases": ["Azure AD", "Entra ID"],
+      "description": "Cloud identity and access management platform for users, groups, SSO, MFA, and conditional access.",
+      "tags": ["System Administrator", "Cloud Engineer", "DevOps Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support", "CISO"]
+    },
+    {
+      "id": "okta",
+      "name": "Okta",
+      "category": "support",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Identity platform for SSO, MFA, user lifecycle, and application access management.",
+      "tags": ["System Administrator", "Cloud Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support", "CISO"]
+    },
+    {
+      "id": "jamf",
+      "name": "Jamf",
+      "category": "support",
+      "kind": "platform",
+      "aliases": ["Jamf Pro"],
+      "description": "Apple device management platform for macOS and iOS fleet administration.",
+      "tags": ["System Administrator", "Security Engineer", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "microsoft-intune",
+      "name": "Microsoft Intune",
+      "category": "support",
+      "kind": "platform",
+      "aliases": ["Intune", "Endpoint Manager"],
+      "description": "Endpoint and mobile device management platform for policy, application deployment, and device compliance.",
+      "tags": ["System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+    },
+    {
+      "id": "anydesk",
+      "name": "AnyDesk",
+      "category": "support",
+      "kind": "software",
+      "aliases": [],
+      "description": "Remote desktop support tool for assisting users and troubleshooting machines.",
+      "tags": ["IT Novice", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "teamviewer",
+      "name": "TeamViewer",
+      "category": "support",
+      "kind": "software",
+      "aliases": [],
+      "description": "Remote access and support tool for user assistance, device troubleshooting, and remote control.",
+      "tags": ["IT Novice", "System Administrator", "Helpdesk", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "jira-service-management",
+      "name": "Jira Service Management",
+      "category": "support",
+      "kind": "platform",
+      "aliases": ["JSM"],
+      "description": "IT service management platform for service desks, requests, incidents, changes, assets, and SLAs.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Business Analyst", "Project Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "servicenow",
+      "name": "ServiceNow",
+      "category": "support",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Enterprise workflow and ITSM platform for incidents, requests, changes, CMDB, assets, and service operations.",
+      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Business Analyst", "Project Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "zendesk",
+      "name": "Zendesk",
+      "category": "support",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Customer support and ticketing platform for handling support requests and knowledge base workflows.",
+      "tags": ["Helpdesk", "Technical Support", "Application Support", "Product Owner", "Product Manager"]
+    },
+    {
+      "id": "freshservice",
+      "name": "Freshservice",
+      "category": "support",
+      "kind": "platform",
+      "aliases": [],
+      "description": "ITSM service desk platform for incidents, service requests, changes, assets, and automation.",
+      "tags": ["IT Novice", "System Administrator", "Helpdesk", "Technical Support", "Application Support", "Project Manager"]
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "category": "observability",
+      "kind": "platform",
+      "aliases": ["Grafana Cloud"],
+      "description": "Observability and dashboard platform for metrics, logs, traces, alerts, and operational views.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Data Analyst", "BI Developer", "Data Engineer", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "prometheus",
+      "name": "Prometheus",
+      "category": "observability",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Metrics collection and alerting system commonly used for infrastructure and application monitoring.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support"]
+    },
+    {
+      "id": "datadog",
+      "name": "Datadog",
+      "category": "observability",
+      "kind": "platform",
+      "aliases": ["Datadog APM", "Datadog Logs", "Datadog Cloud SIEM"],
+      "description": "Observability and security monitoring platform for metrics, logs, traces, alerts, APM, and cloud environments.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "new-relic",
+      "name": "New Relic",
+      "category": "observability",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Application performance monitoring and observability platform for services, traces, logs, and user experience.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Cloud Engineer", "DevOps Engineer", "SRE", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "category": "observability",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Application error monitoring platform for exceptions, releases, stack traces, and performance issues.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "SRE", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "elastic-stack",
+      "name": "Elastic Stack",
+      "category": "observability",
+      "kind": "platform",
+      "aliases": ["Elasticsearch", "Logstash", "Kibana", "ELK"],
+      "description": "Search, logging, analytics, and visualization stack used for observability and security investigations.",
+      "tags": ["Backend Developer", "Data Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Technical Support", "Application Support"]
+    },
+    {
+      "id": "splunk",
+      "name": "Splunk",
+      "category": "security",
+      "kind": "platform",
+      "aliases": ["Splunk Enterprise", "Splunk Enterprise Security"],
+      "description": "Log analytics and SIEM platform used for search, monitoring, security detection, and incident investigation.",
+      "tags": ["System Administrator", "Network Engineer", "DevOps Engineer", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Technical Support", "Application Support", "CISO"]
+    },
+    {
+      "id": "microsoft-sentinel",
+      "name": "Microsoft Sentinel",
+      "category": "security",
+      "kind": "platform",
+      "aliases": ["Azure Sentinel"],
+      "description": "Microsoft cloud SIEM and SOAR platform for collecting, detecting, investigating, and responding to threats.",
+      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "Cloud Engineer", "SRE", "CISO"]
+    },
+    {
+      "id": "ibm-qradar",
+      "name": "IBM QRadar",
+      "category": "security",
+      "kind": "platform",
+      "aliases": ["QRadar SIEM"],
+      "description": "SIEM platform used for security event correlation, detection, investigation, and compliance reporting.",
+      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "CISO"]
+    },
+    {
+      "id": "wazuh",
+      "name": "Wazuh",
+      "category": "security",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Open-source security monitoring platform for endpoint telemetry, threat detection, vulnerability detection, and compliance.",
+      "tags": ["SOC Analyst", "Security Engineer", "System Administrator", "GRC Specialist", "CISO"]
+    },
+    {
+      "id": "crowdstrike-falcon",
+      "name": "CrowdStrike Falcon",
+      "category": "security",
+      "kind": "platform",
+      "aliases": ["Falcon EDR"],
+      "description": "Endpoint detection and response platform for threat prevention, investigation, and endpoint telemetry.",
+      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+    },
+    {
+      "id": "microsoft-defender",
+      "name": "Microsoft Defender",
+      "category": "security",
+      "kind": "platform",
+      "aliases": ["Defender for Endpoint", "Defender XDR"],
+      "description": "Microsoft security platform for endpoint protection, XDR, identity, cloud, and threat response.",
+      "tags": ["System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+    },
+    {
+      "id": "nessus",
+      "name": "Nessus",
+      "category": "security",
+      "kind": "software",
+      "aliases": ["Tenable Nessus"],
+      "description": "Vulnerability scanner used to identify known security weaknesses in systems and networks.",
+      "tags": ["System Administrator", "Network Engineer", "SOC Analyst", "Security Engineer", "Pentester", "GRC Specialist", "AppSec Engineer", "CISO"]
+    },
+    {
+      "id": "qualys",
+      "name": "Qualys",
+      "category": "security",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Cloud security and vulnerability management platform for scanning, asset visibility, and compliance.",
+      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "CISO"]
+    },
+    {
+      "id": "burp-suite",
+      "name": "Burp Suite",
+      "category": "security",
+      "kind": "software",
+      "aliases": [],
+      "description": "Web application security testing suite for intercepting, scanning, and validating vulnerabilities.",
+      "tags": ["QA Automation", "Security Engineer", "Pentester", "AppSec Engineer"]
+    },
+    {
+      "id": "owasp-zap",
+      "name": "OWASP ZAP",
+      "category": "security",
+      "kind": "software",
+      "aliases": ["ZAP"],
+      "description": "Open-source web application security scanner and intercepting proxy.",
+      "tags": ["QA Automation", "Security Engineer", "Pentester", "AppSec Engineer"]
+    },
+    {
+      "id": "nmap",
+      "name": "Nmap",
+      "category": "security",
+      "kind": "cli",
+      "aliases": ["Zenmap"],
+      "description": "Network scanning tool for discovering hosts, ports, services, and exposed attack surface.",
+      "tags": ["IT Novice", "Network Engineer", "SOC Analyst", "Security Engineer", "Pentester", "Technical Support"]
+    },
+    {
+      "id": "metasploit",
+      "name": "Metasploit",
+      "category": "security",
+      "kind": "software",
+      "aliases": ["Metasploit Framework"],
+      "description": "Penetration testing framework used for exploit validation, payload testing, and security research labs.",
+      "tags": ["Security Engineer", "Pentester"]
+    },
+    {
+      "id": "kali-linux",
+      "name": "Kali Linux",
+      "category": "security",
+      "kind": "software",
+      "aliases": [],
+      "description": "Linux distribution bundled with penetration testing and security assessment tools.",
+      "tags": ["Security Engineer", "Pentester", "AppSec Engineer"]
+    },
+    {
+      "id": "hashicorp-vault",
+      "name": "HashiCorp Vault",
+      "category": "security",
+      "kind": "platform",
+      "aliases": ["Vault"],
+      "description": "Secrets management platform for storing, rotating, and controlling access to credentials and tokens.",
+      "tags": ["Backend Developer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "CISO"]
+    },
+    {
+      "id": "sonarqube",
+      "name": "SonarQube",
+      "category": "security",
+      "kind": "platform",
+      "aliases": ["SonarCloud"],
+      "description": "Code quality and static analysis platform for detecting bugs, vulnerabilities, and maintainability issues.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Security Engineer", "AppSec Engineer", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "snyk",
+      "name": "Snyk",
+      "category": "security",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Developer security platform for dependency scanning, container scanning, IaC scanning, and vulnerability remediation.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Cloud Engineer", "DevOps Engineer", "Security Engineer", "AppSec Engineer", "CISO"]
+    },
+    {
+      "id": "semgrep",
+      "name": "Semgrep",
+      "category": "security",
+      "kind": "software",
+      "aliases": [],
+      "description": "Static analysis tool for finding security, correctness, and custom code pattern issues.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Security Engineer", "Pentester", "AppSec Engineer"]
+    },
+    {
+      "id": "owasp-dependency-check",
+      "name": "OWASP Dependency-Check",
+      "category": "security",
+      "kind": "software",
+      "aliases": [],
+      "description": "Software composition analysis tool for identifying known vulnerable dependencies.",
+      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Security Engineer", "AppSec Engineer"]
+    },
+    {
+      "id": "drata",
+      "name": "Drata",
+      "category": "security",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Compliance automation platform for collecting evidence and managing security compliance programs.",
+      "tags": ["GRC Specialist", "Security Engineer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "vanta",
+      "name": "Vanta",
+      "category": "security",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Trust management and compliance automation platform for security frameworks and audit evidence.",
+      "tags": ["GRC Specialist", "Security Engineer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "service-desktop-hardware-kit",
+      "name": "Desktop Support Toolkit",
+      "category": "support",
+      "kind": "device",
+      "aliases": ["Screwdriver kit", "USB boot drive", "LAN tester", "adapter kit"],
+      "description": "Physical support kit for workstation troubleshooting, cabling checks, boot repair, and device setup.",
+      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "rufus",
+      "name": "Rufus",
+      "category": "support",
+      "kind": "software",
+      "aliases": [],
+      "description": "Tool for creating bootable USB drives used in OS installation and recovery work.",
+      "tags": ["IT Novice", "System Administrator", "Helpdesk", "Technical Support"]
+    },
+    {
+      "id": "obsidian",
+      "name": "Obsidian",
+      "category": "collaboration",
+      "kind": "software",
+      "aliases": [],
+      "description": "Markdown note-taking tool used for personal knowledge bases, troubleshooting notes, and research.",
+      "tags": ["IT Novice", "Tech Lead", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester", "GRC Specialist", "Business Analyst", "Product Manager", "UX Designer", "Engineering Manager", "CTO", "CISO"]
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "category": "product",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Issue tracking and product development platform for roadmaps, cycles, projects, and engineering execution.",
+      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "aha",
+      "name": "Aha!",
+      "category": "product",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Product management platform for strategy, roadmaps, ideas, releases, and portfolio planning.",
+      "tags": ["Product Owner", "Project Manager", "Product Manager", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "productboard",
+      "name": "Productboard",
+      "category": "product",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Product management platform for feedback, prioritization, roadmaps, and product discovery.",
+      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager"]
+    },
+    {
+      "id": "jira-product-discovery",
+      "name": "Jira Product Discovery",
+      "category": "product",
+      "kind": "platform",
+      "aliases": ["JPD"],
+      "description": "Atlassian product discovery tool for ideas, prioritization, roadmaps, and product decision tracking.",
+      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager"]
+    },
+    {
+      "id": "hotjar",
+      "name": "Hotjar",
+      "category": "product",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Product experience analytics tool for heatmaps, recordings, surveys, and user behavior signals.",
+      "tags": ["Product Manager", "UX Designer", "Product Designer", "UI Designer"]
+    },
+    {
+      "id": "maze",
+      "name": "Maze",
+      "category": "design",
+      "kind": "platform",
+      "aliases": [],
+      "description": "User research and usability testing platform for validating prototypes, flows, and product decisions.",
+      "tags": ["UX Designer", "Product Designer", "Product Manager", "Business Analyst"]
+    },
+    {
+      "id": "dovetail",
+      "name": "Dovetail",
+      "category": "design",
+      "kind": "platform",
+      "aliases": [],
+      "description": "User research repository and synthesis platform for interviews, notes, tags, and insights.",
+      "tags": ["UX Designer", "Product Designer", "Product Manager", "Business Analyst"]
+    },
+    {
+      "id": "amplitude",
+      "name": "Amplitude",
+      "category": "product",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Product analytics platform for funnels, cohorts, retention, experimentation, and behavior analysis.",
+      "tags": ["Data Analyst", "BI Developer", "Data Scientist", "Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager", "CTO"]
+    },
+    {
+      "id": "mixpanel",
+      "name": "Mixpanel",
+      "category": "product",
+      "kind": "platform",
+      "aliases": [],
+      "description": "Product analytics platform for event tracking, funnels, retention, and user behavior insights.",
+      "tags": ["Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer"]
+    },
+    {
+      "id": "google-analytics",
+      "name": "Google Analytics",
+      "category": "product",
+      "kind": "platform",
+      "aliases": ["GA4"],
+      "description": "Web and app analytics platform for traffic, acquisition, engagement, events, and conversion reporting.",
+      "tags": ["Frontend Developer", "Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer"]
+    }
+  ]
+}
