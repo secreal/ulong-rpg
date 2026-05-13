@@ -3758,8 +3758,15 @@
         return;
       }
 
+      // Progress hitung dari main + daily yang completed
+      const main  = questData.main  || [];
+      const daily = questData.daily || [];
+      const allItems = [...main, ...daily];
+      const doneCount  = allItems.filter(i => questCompleted(i.id)).length;
+      const totalCount = allItems.length;
+      const pct = totalCount ? Math.round(doneCount / totalCount * 100) : 0;
+
       // Main quest — tampilkan 1 quest aktif berikutnya
-      const main = questData.main || [];
       const nextMain = main.find(item => !questCompleted(item.id));
       const mainHtml = nextMain
         ? renderCompletableQuest(nextMain, "main")
@@ -3772,8 +3779,8 @@
           </div>`;
 
       // Daily quest — 1 per hari
-      const todaysDaily = getTodaysDailyQuest(questData, currentDetailJob);
-      const dailyState  = questProgress.daily[currentDetailJob];
+      const todaysDaily    = getTodaysDailyQuest(questData, currentDetailJob);
+      const dailyState     = questProgress.daily[currentDetailJob];
       const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
       const dailyHtml = !todaysDaily
         ? `<div class="quest-item">
@@ -3793,12 +3800,16 @@
           : renderCompletableQuest(todaysDaily, "daily");
 
       pane.innerHTML = `
+        <div class="modal-progress-header">
+          <div class="modal-progress-track"><div class="modal-progress-fill" style="width:${pct}%"></div></div>
+          <span class="modal-progress-text">${doneCount}/${totalCount} completed</span>
+        </div>
         <div class="quest-phase">
-          <div class="quest-phase-title"><span class="quest-phase-num">★</span>Main Quest</div>
+          <div class="quest-phase-title"><span class="quest-phase-num">1</span>Main Quest</div>
           ${mainHtml}
         </div>
         <div class="quest-phase">
-          <div class="quest-phase-title"><span class="quest-phase-num">🗓</span>Daily Quest</div>
+          <div class="quest-phase-title"><span class="quest-phase-num">2</span>Daily Quest</div>
           ${dailyHtml}
         </div>`;
 
@@ -3984,6 +3995,7 @@
 
       document.getElementById("detail-job-name").textContent = jobTitle;
       document.getElementById("detail-modal").style.setProperty("--modal-role", roleColor);
+      document.getElementById("detail-modal").style.setProperty("--role", roleColor);
 
       document.getElementById("detail-overlay").classList.add("open");
       document.body.style.overflow = "hidden";
