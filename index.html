@@ -2866,7 +2866,7 @@
 
     function getQuestIndexEntry(jobTitle) {
       if (!questIndex) return null;
-      return questIndex.jobs?.find(entry => entry.job === jobTitle) || null;
+      return questIndex.quests?.find(entry => entry.job === jobTitle) || null;
     }
 
     function hasQuestForJob(jobTitle) {
@@ -2886,7 +2886,7 @@
           }
           catch (err) {
             console.warn("Quest index could not be loaded.", err);
-            questIndex = { jobs: [] };
+            questIndex = { quests: [] };
             return questIndex;
           }
         })();
@@ -3216,9 +3216,6 @@
                   <div class="card-xp-bar"><div class="card-xp-fill" style="width:${pct}%"></div></div>
                   <span class="card-xp-text">${done}/${total} skill learned</span>
                 </div>
-                ${hasQuest ? `<button class="btn-job-change" data-job="${title}" data-role="${role}">
-                  📋 Qualification${qp && qp.done > 0 ? ` · ${qp.pct}%` : ""}
-                </button>` : ""}
                 ${tier >= 2 ? `<button class="btn-do-jobchange" data-job="${title}" data-role="${role}" ${unlocked ? "" : "disabled"}>
                   ⚔ Job Change
                 </button>` : ""}
@@ -3899,13 +3896,6 @@
         card.querySelector(".card-xp-text").textContent = `${done}/${allSkills.length} skill learned`;
         renderCards(activeFilter);
         renderSidebar();
-        return;
-      }
-
-      // qualification button (opens quest modal)
-      const qualBtn = e.target.closest(".btn-job-change");
-      if (qualBtn) {
-        openQuest(qualBtn.dataset.job, qualBtn.dataset.role);
         return;
       }
 
