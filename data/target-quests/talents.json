@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-13",
+  "kind": "talent",
+  "schema": {
+    "targetId": "talent id from data/talents.json",
+    "targetName": "talent display name",
+    "intro": "one daily activation quest",
+    "levels": "object with keys 1, 2, 3; each level contains exactly three required main quests"
+  },
+  "targets": [
+    {
+      "kind": "talent",
+      "targetId": "react",
+      "targetName": "React",
+      "source": {
+        "type": "talent",
+        "progressKey": "talent::react"
+      },
+      "intro": {
+        "id": "talent-react-intro",
+        "title": "Meet React as a UI Talent",
+        "description": "Read the React quick start, then summarize what problem React solves and what a component represents.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "React - Quick Start",
+            "url": "https://react.dev/learn"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "talent-react-lv1-01",
+            "title": "Think in Components",
+            "description": "Study how UI is broken into components, then summarize how component boundaries make an interface easier to reason about.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Thinking in React",
+                "url": "https://react.dev/learn/thinking-in-react"
+              }
+            ]
+          },
+          {
+            "id": "talent-react-lv1-02",
+            "title": "Describe UI with JSX",
+            "description": "Review how React describes UI, then write the difference between markup structure and component logic in your own words.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Describing the UI",
+                "url": "https://react.dev/learn/describing-the-ui"
+              }
+            ]
+          },
+          {
+            "id": "talent-react-lv1-03",
+            "title": "Handle Basic Interaction",
+            "description": "Study event handling and state basics, then summarize how user actions can change what appears on screen.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Adding Interactivity",
+                "url": "https://react.dev/learn/adding-interactivity"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "talent-react-lv2-01",
+            "title": "Manage State Deliberately",
+            "description": "Read about state management, then explain how deciding where state lives affects component clarity and bugs.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Managing State",
+                "url": "https://react.dev/learn/managing-state"
+              }
+            ]
+          },
+          {
+            "id": "talent-react-lv2-02",
+            "title": "Reuse Logic with Hooks",
+            "description": "Study custom hooks, then summarize when extracting a hook makes code clearer and when it only hides simple logic.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Reusing Logic with Custom Hooks",
+                "url": "https://react.dev/learn/reusing-logic-with-custom-hooks"
+              }
+            ]
+          },
+          {
+            "id": "talent-react-lv2-03",
+            "title": "Share Data Through Context",
+            "description": "Learn context usage, then describe a case where context is helpful and a case where passing props is still simpler.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Passing Data Deeply with Context",
+                "url": "https://react.dev/learn/passing-data-deeply-with-context"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "talent-react-lv3-01",
+            "title": "Scale State with Reducer and Context",
+            "description": "Study reducer and context scaling, then summarize how a larger UI can organize complex state changes without losing traceability.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Scaling Up with Reducer and Context",
+                "url": "https://react.dev/learn/scaling-up-with-reducer-and-context"
+              }
+            ]
+          },
+          {
+            "id": "talent-react-lv3-02",
+            "title": "Use Escape Hatches Carefully",
+            "description": "Review escape hatches, then explain why effects and refs should solve integration needs rather than replace normal React data flow.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - Escape Hatches",
+                "url": "https://react.dev/learn/escape-hatches"
+              }
+            ]
+          },
+          {
+            "id": "talent-react-lv3-03",
+            "title": "Read the API Reference Strategically",
+            "description": "Use the React reference to investigate one API, then write how official API docs help verify behavior beyond tutorials.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "React - API Reference",
+                "url": "https://react.dev/reference/react"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

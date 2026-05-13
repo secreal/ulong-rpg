@@ -519,6 +519,7 @@ daily completion
 - The requirements source is `docs/brainstorms/quest-system-requirements.md`.
 - Content authoring should cite source links inside quest data; no separate bibliography is required for every quest if the data itself contains URLs.
 - If a later agent implements UI, it should treat this plan as data/logic scope and avoid inventing visual design.
+- Supersession note: future quest data authoring should follow the target-owned model in `docs/brainstorms/target-quest-system-requirements.md` and `docs/plans/2026-05-13-013-feat-target-quest-data-plan.md`. The per-job files under `data/quests/` are legacy/transitional until explicitly migrated or removed.
 
 ---
 

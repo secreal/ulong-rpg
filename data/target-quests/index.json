@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-13",
+  "schema": {
+    "kind": "skill | equipment | talent",
+    "file": "relative file path under data/target-quests",
+    "status": "available | planned"
+  },
+  "questFiles": [
+    {
+      "kind": "skill",
+      "file": "skills.json",
+      "status": "available"
+    },
+    {
+      "kind": "equipment",
+      "file": "equipment.json",
+      "status": "available"
+    },
+    {
+      "kind": "talent",
+      "file": "talents.json",
+      "status": "available"
+    }
+  ]
+}

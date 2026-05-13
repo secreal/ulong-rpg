@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-13",
+  "kind": "equipment",
+  "schema": {
+    "targetId": "equipment id from data/equipment.json",
+    "targetName": "equipment display name",
+    "intro": "one daily activation quest",
+    "levels": "object with keys 1, 2, 3; each level contains exactly three required main quests"
+  },
+  "targets": [
+    {
+      "kind": "equipment",
+      "targetId": "visual-studio-code",
+      "targetName": "Visual Studio Code",
+      "source": {
+        "type": "equipment",
+        "progressKey": "equip::visual-studio-code"
+      },
+      "intro": {
+        "id": "equipment-visual-studio-code-intro",
+        "title": "Open the Editor Workspace",
+        "description": "Learn the VS Code workspace basics, then summarize what panels, files, and commands a beginner should recognize first.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "VS Code - Getting Started",
+            "url": "https://code.visualstudio.com/docs/introvideos/basics"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "equipment-visual-studio-code-lv1-01",
+            "title": "Navigate and Edit Files",
+            "description": "Study basic editing and navigation, then describe how VS Code helps someone move through project files without losing context.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Code Editing",
+                "url": "https://code.visualstudio.com/docs/editing/codebasics"
+              }
+            ]
+          },
+          {
+            "id": "equipment-visual-studio-code-lv1-02",
+            "title": "Use Built-in Source Control",
+            "description": "Learn the Source Control view, then summarize how VS Code exposes changed files, staged files, and commit messages.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Source Control",
+                "url": "https://code.visualstudio.com/docs/sourcecontrol/overview"
+              }
+            ]
+          },
+          {
+            "id": "equipment-visual-studio-code-lv1-03",
+            "title": "Adjust Basic Settings",
+            "description": "Review settings, then write which editor preferences are safe for personal workflow and which should be shared carefully with a team.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Settings",
+                "url": "https://code.visualstudio.com/docs/editor/settings"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "equipment-visual-studio-code-lv2-01",
+            "title": "Debug a Program Flow",
+            "description": "Study debugging concepts, then summarize how breakpoints, variables, and call stacks help find a bug faster than reading code blindly.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Debugging",
+                "url": "https://code.visualstudio.com/docs/editor/debugging"
+              }
+            ]
+          },
+          {
+            "id": "equipment-visual-studio-code-lv2-02",
+            "title": "Run a Repeatable Task",
+            "description": "Learn VS Code tasks, then describe a task that would save repeated terminal work in a real project.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Tasks",
+                "url": "https://code.visualstudio.com/docs/editor/tasks"
+              }
+            ]
+          },
+          {
+            "id": "equipment-visual-studio-code-lv2-03",
+            "title": "Choose Extensions Deliberately",
+            "description": "Review the extension marketplace, then write a short policy for choosing useful extensions without overloading the editor.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Extension Marketplace",
+                "url": "https://code.visualstudio.com/docs/editor/extension-marketplace"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "equipment-visual-studio-code-lv3-01",
+            "title": "Organize a Multi-folder Workspace",
+            "description": "Study workspaces, then explain how a multi-folder workspace can support a project with frontend, backend, and documentation areas.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Workspaces",
+                "url": "https://code.visualstudio.com/docs/editor/workspaces"
+              }
+            ]
+          },
+          {
+            "id": "equipment-visual-studio-code-lv3-02",
+            "title": "Create a Profile for a Role",
+            "description": "Learn profiles, then summarize how separate profiles can keep different job contexts or project types from polluting each other.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Profiles",
+                "url": "https://code.visualstudio.com/docs/editor/profiles"
+              }
+            ]
+          },
+          {
+            "id": "equipment-visual-studio-code-lv3-03",
+            "title": "Automate Editor Launches",
+            "description": "Review command-line usage, then describe how opening files, folders, or commands from the terminal can speed up troubleshooting.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "VS Code - Command Line",
+                "url": "https://code.visualstudio.com/docs/editor/command-line"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

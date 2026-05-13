@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-13",
+  "kind": "skill",
+  "schema": {
+    "targetId": "stable kebab-case id derived from the skill display name",
+    "targetName": "exact skill display name used by progress keys",
+    "intro": "one daily activation quest",
+    "levels": "object with keys 1, 2, 3; each level contains exactly three required main quests"
+  },
+  "targets": [
+    {
+      "kind": "skill",
+      "targetId": "version-control",
+      "targetName": "version control",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::version control"
+      },
+      "intro": {
+        "id": "skill-version-control-intro",
+        "title": "Meet Version Control",
+        "description": "Learn what version control is, why IT teams use it, and write a short summary of how it protects project work from accidental loss.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Git Book - About Version Control",
+            "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-version-control-lv1-01",
+            "title": "Create a Local Repository",
+            "description": "Study how a repository starts, then explain the difference between a normal folder and a folder tracked by version control.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting a Git Repository",
+                "url": "https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository"
+              }
+            ]
+          },
+          {
+            "id": "skill-version-control-lv1-02",
+            "title": "Record a Small Change",
+            "description": "Learn the add-and-commit flow, then summarize what staging means and why a commit should describe one coherent change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Recording Changes",
+                "url": "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+              }
+            ]
+          },
+          {
+            "id": "skill-version-control-lv1-03",
+            "title": "Read Project History",
+            "description": "Review how history is inspected, then write what information a teammate can learn from commit history before changing a file.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Viewing Commit History",
+                "url": "https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-version-control-lv2-01",
+            "title": "Explain Branch Purpose",
+            "description": "Study branches, then summarize how a branch lets someone work on a feature without disturbing the main line of work.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Branches in a Nutshell",
+                "url": "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"
+              }
+            ]
+          },
+          {
+            "id": "skill-version-control-lv2-02",
+            "title": "Practice Branch and Merge Thinking",
+            "description": "Read the basic branch-and-merge flow, then describe a realistic case where merging is safer than editing directly on the main branch.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Basic Branching and Merging",
+                "url": "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging"
+              }
+            ]
+          },
+          {
+            "id": "skill-version-control-lv2-03",
+            "title": "Recover from a Local Mistake",
+            "description": "Study reset behavior at a conceptual level, then summarize how someone should think before undoing local work.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Reset Demystified",
+                "url": "https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-version-control-lv3-01",
+            "title": "Review History Rewriting Risk",
+            "description": "Study history rewriting, then explain when rewriting history is useful and when it can harm collaborators.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Rewriting History",
+                "url": "https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History"
+              }
+            ]
+          },
+          {
+            "id": "skill-version-control-lv3-02",
+            "title": "Analyze a Hard Merge",
+            "description": "Read about advanced merging, then write a checklist for investigating a merge conflict before choosing a resolution.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Advanced Merging",
+                "url": "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+              }
+            ]
+          },
+          {
+            "id": "skill-version-control-lv3-03",
+            "title": "Prepare a Contribution Flow",
+            "description": "Study distributed contribution workflows, then summarize how a clean branch, reviewable commits, and a pull request support teamwork.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Contributing to a Project",
+                "url": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
