@@ -841,6 +841,7 @@
       font-size: 10.5px; font-weight: 700; color: var(--muted);
       display: flex; align-items: center; gap: 5px;
     }
+    .card-ulong-progress { color: var(--gold); font-size: 11px; }
 
     .card-xp-bar {
       width: 60px; height: 5px; border-radius: 3px;
@@ -1453,6 +1454,81 @@
       font: 400 10.5px 'Inter', sans-serif;
       color: var(--muted); margin-bottom: 8px;
     }
+
+    /* ══ PERGURUAN ULONG QUEST TAB ══ */
+    .ulong-month-header {
+      font: 600 11px 'Inter', sans-serif;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 14px 0 6px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .ulong-month-count { font-weight: 400; opacity: .65; }
+    .ulong-quest-item {
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      background: var(--panel-2);
+    }
+    .ulong-quest-item.done { opacity: .6; }
+    .ulong-quest-meta {
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 4px;
+    }
+    .ulong-day-badge {
+      font: 700 10px 'Inter', sans-serif;
+      color: var(--bg);
+      background: var(--gold);
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
+    .ulong-quest-date { font: 400 10px 'Inter', sans-serif; color: var(--muted); }
+    .ulong-quest-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .ulong-quest-title {
+      font: 500 12px 'Inter', sans-serif;
+      color: var(--fg);
+      text-decoration: none;
+      flex: 1;
+    }
+    a.ulong-quest-title:hover { color: var(--gold); text-decoration: underline; }
+    .ulong-no-link { opacity: .5; }
+    .ulong-done-stamp {
+      font: 600 10px 'Inter', sans-serif;
+      color: #4caf50;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ulong-submit-row {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 7px;
+    }
+    .ulong-discord-input {
+      flex: 1; min-width: 0;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--fg);
+      font: 400 11px 'Inter', sans-serif;
+      padding: 5px 8px;
+      outline: none;
+    }
+    .ulong-discord-input:focus { border-color: var(--modal-role, var(--gold)); }
+    .ulong-submit-btn {
+      flex-shrink: 0;
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      border-radius: 6px;
+      font: 700 11px 'Inter', sans-serif;
+      padding: 5px 12px;
+      cursor: pointer;
+    }
+    .ulong-submit-btn:disabled { opacity: .35; cursor: not-allowed; }
 
     .alpha-group {
       display: flex; align-items: flex-start;
@@ -3299,6 +3375,7 @@
     const QUEST_PROGRESS_KEY = "itjt_quest_progress_v1";
     const GUILD_KEY = "itjt_guild_v1";
     const ACHIEVEMENT_KEY = "itjt_achievements_v1";
+    const ULONG_PROGRESS_KEY = "itjt_ulong_progress_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -3382,10 +3459,152 @@
       try { localStorage.setItem(ACHIEVEMENT_KEY, JSON.stringify(data)); } catch {}
     }
 
+    function loadUlongProgress() {
+      try { return JSON.parse(localStorage.getItem(ULONG_PROGRESS_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveUlongProgress(data) {
+      try { localStorage.setItem(ULONG_PROGRESS_KEY, JSON.stringify(data)); } catch {}
+    }
+
+    // 123 daily articles, Sep 2022 – Jan 2023. Slugs with null are missing (Medium list cuts at 20).
+    const ULONG_ARTICLES = [
+      // September 2022 (30)
+      { day:1,  date:"01 Sep 2022", title:"Install Chocolatey",                                              slug:"01-september-2022-install-chocolatey-d5dbaaebaad7" },
+      { day:2,  date:"02 Sep 2022", title:"Install Git Extensions dan Kdiff3 dengan Chocolatey",             slug:"02-september-2022-install-git-extensions-dan-kdiff3-dengan-chocolatey-efe2c3c1f0c9" },
+      { day:3,  date:"03 Sep 2022", title:"Buat akun di 4 repository gratis tis tis",                        slug:"03-september-2022-buat-akun-di-4-repository-gratis-tis-tis-0d509335dfb3" },
+      { day:4,  date:"04 Sep 2022", title:"Generate ssh key untuk repository git online",                    slug:"04-september-2022-generate-ssh-key-untuk-repository-git-online-8f1598b953ae" },
+      { day:5,  date:"05 Sep 2022", title:"Install visual studio 2022 community",                            slug:"05-september-2022-install-visual-studio-2022-community-4ec2ddfcb25b" },
+      { day:6,  date:"06 Sep 2022", title:"Buat folder git",                                                 slug:"06-september-2022-buat-folder-git-101364b5f9a1" },
+      { day:7,  date:"07 Sep 2022", title:"Buat aplikasi Console",                                           slug:"07-september-2022-buat-aplikasi-console-7e147167d8f1" },
+      { day:8,  date:"08 Sep 2022", title:"Git ignore dan commit",                                           slug:"08-september-2022-git-ignore-dan-commit-3b1809791d76" },
+      { day:9,  date:"09 Sep 2022", title:"Git push",                                                        slug:"09-september-2022-git-push-e1d6dd3d8d19" },
+      { day:10, date:"10 Sep 2022", title:"Git push lagi",                                                   slug:"10-september-2022-git-push-lagi-7335039bab3a" },
+      { day:11, date:"11 Sep 2022", title:"Git push lagi dan lagi",                                          slug:"11-september-2022-git-push-lagi-dan-lagi-a6a069a9612e" },
+      { day:12, date:"12 Sep 2022", title:"Git push selamanya",                                              slug:"12-september-2022-git-push-selamanya-1914b34717e4" },
+      { day:13, date:"13 Sep 2022", title:"Variabel dan tipe data",                                          slug:"13-september-2022-variabel-dan-tipe-data-926f9251d86e" },
+      { day:14, date:"14 Sep 2022", title:"Tipe data integer",                                               slug:"14-september-2022-tipe-data-integer-c8aa291eab97" },
+      { day:15, date:"15 Sep 2022", title:"Tipe data long",                                                  slug:"15-september-2022-tipe-data-long-55cd33d55767" },
+      { day:16, date:"16 Sep 2022", title:"Tipe data float",                                                 slug:"16-september-2022-tipe-data-float-6ab70274d3c5" },
+      { day:17, date:"17 Sep 2022", title:"Tipe data double",                                                slug:"17-september-2022-tipe-data-double-66e23a13a2e6" },
+      { day:18, date:"18 Sep 2022", title:"Tipe data decimal",                                               slug:"18-september-2022-tipe-data-decimal-32c16c3cd360" },
+      { day:19, date:"19 Sep 2022", title:"Tipe data bool atau boolean",                                     slug:"19-september-2022-tipe-data-bool-atau-boolean-c1ed0dc2f6fa" },
+      { day:20, date:"20 Sep 2022", title:"Tipe data char",                                                  slug:"20-september-2022-tipe-data-char-a9cd0788248e" },
+      { day:21, date:"21 Sep 2022", title:"Tipe data string",                                                slug:null },
+      { day:22, date:"22 Sep 2022", title:"Tipe data object",                                                slug:null },
+      { day:23, date:"23 Sep 2022", title:"Tipe data array",                                                 slug:null },
+      { day:24, date:"24 Sep 2022", title:"Operator aritmatika",                                             slug:null },
+      { day:25, date:"25 Sep 2022", title:"Operator perbandingan",                                           slug:null },
+      { day:26, date:"26 Sep 2022", title:"Operator logika",                                                 slug:null },
+      { day:27, date:"27 Sep 2022", title:"Percabangan if else",                                             slug:null },
+      { day:28, date:"28 Sep 2022", title:"Perulangan for",                                                  slug:null },
+      { day:29, date:"29 Sep 2022", title:"Perulangan while",                                                slug:null },
+      { day:30, date:"30 Sep 2022", title:"Perulangan foreach",                                              slug:null },
+      // Oktober 2022 (31)
+      { day:31, date:"01 Okt 2022", title:"Array",                                                           slug:"01-oktober-2022-array-39dc2c32f946" },
+      { day:32, date:"02 Okt 2022", title:"Menggunakan array",                                               slug:"02-oktober-2022-menggunakan-array-f4e858ae2f63" },
+      { day:33, date:"03 Okt 2022", title:"List",                                                            slug:"03-oktober-2022-list-91960abb5fae" },
+      { day:34, date:"04 Okt 2022", title:"List add",                                                        slug:"04-oktober-2022-list-add-06f03808297b" },
+      { day:35, date:"05 Okt 2022", title:"List remove",                                                     slug:"05-oktober-2022-list-remove-1eb5c1954229" },
+      { day:36, date:"06 Okt 2022", title:"Foreach list",                                                    slug:"06-oktober-2022-foreach-list-2b41cc1c085b" },
+      { day:37, date:"07 Okt 2022", title:"Conditional if",                                                  slug:"07-oktober-2022-conditional-if-14c7b4ef69dc" },
+      { day:38, date:"08 Okt 2022", title:"Conditional if, and (&&) else if, else",                          slug:"08-oktober-2022-conditional-if-and-else-if-else-f94b0a835a10" },
+      { day:39, date:"09 Okt 2022", title:"Conditional if or",                                               slug:"09-oktober-2022-conditional-if-or-1ea5dd9530d6" },
+      { day:40, date:"10 Okt 2022", title:"Switch case break",                                               slug:"10-oktober-2022-switch-case-break-dc1ffe623b40" },
+      { day:41, date:"11 Okt 2022", title:"Recursive method",                                                slug:"11-oktober-2022-recursive-method-39b0fc0dc432" },
+      { day:42, date:"12 Okt 2022", title:"Static class",                                                    slug:"12-oktober-2022-static-class-374528a4208d" },
+      { day:43, date:"13 Okt 2022", title:"Static method",                                                   slug:"13-oktober-2022-static-method-924fb8e96c0e" },
+      { day:44, date:"14 Okt 2022", title:"Static variabel",                                                  slug:"14-oktober-2022-static-variabel-84ba46916224" },
+      { day:45, date:"15 Okt 2022", title:"Enum",                                                            slug:"15-oktober-2022-enum-45460db67f93" },
+      { day:46, date:"16 Okt 2022", title:"LINQ lambda FirstOrDefault",                                      slug:"16-oktober-2022-linq-lambda-firstordefault-f35847764b96" },
+      { day:47, date:"17 Okt 2022", title:"LINQ lambda Where ToList",                                        slug:"17-oktober-2022-linq-lambda-where-tolist-85f3128cae57" },
+      { day:48, date:"18 Okt 2022", title:"LINQ lambda where contains",                                      slug:"18-oktober-2022-linq-lambda-where-contains-7a6c049a5329" },
+      { day:49, date:"19 Okt 2022", title:"LINQ lambda OrderBy",                                             slug:"19-oktober-2022-linq-lambda-orderby-a29bb5301051" },
+      { day:50, date:"20 Okt 2022", title:"LINQ lambda OrderByDescending",                                   slug:"20-oktober-2022-linq-lambda-orderbydescending-8ce87d6af224" },
+      { day:51, date:"21 Okt 2022", title:"LINQ lambda GroupBy",                                             slug:null },
+      { day:52, date:"22 Okt 2022", title:"LINQ lambda list toQueryable",                                    slug:"22-oktober-2022-linq-lambda-list-toqueryable-74a7d326bfbc" },
+      { day:53, date:"23 Okt 2022", title:"LINQ lambda Queryable to list",                                   slug:"23-oktober-2022-linq-lambda-queryable-to-list-0434b65398bf" },
+      { day:54, date:"24 Okt 2022", title:"LINQ lambda toArray",                                             slug:"24-oktober-2022-linq-lambda-toarray-45aecf25179b" },
+      { day:55, date:"25 Okt 2022", title:"LINQ lambda select new class",                                    slug:"25-oktober-2022-linq-lambda-select-new-class-65d1f31dcc53" },
+      { day:56, date:"26 Okt 2022", title:"LINQ lambda select index",                                        slug:"26-oktober-2022-linq-lambda-select-index-c52e2d768369" },
+      { day:57, date:"27 Okt 2022", title:"LINQ toList Take",                                                slug:"27-oktober-2022-linq-tolist-take-a68e3dffe1bc" },
+      { day:58, date:"28 Okt 2022", title:"LINQ toList sum",                                                 slug:"28-oktober-2022-linq-tolist-sum-9a340fc6ff75" },
+      { day:59, date:"29 Okt 2022", title:"LINQ toList min",                                                 slug:"29-oktober-2022-linq-tolist-min-22d361b67f6c" },
+      { day:60, date:"30 Okt 2022", title:"LINQ toList max",                                                 slug:"30-oktober-2022-linq-tolist-max-a3649113da60" },
+      { day:61, date:"31 Okt 2022", title:"LINQ toList distinct",                                            slug:"31-oktober-2022-linq-tolist-distinct-259511d04d4a" },
+      // November 2022 (30)
+      { day:62, date:"01 Nov 2022", title:"Directory (folder)",                                              slug:"01-november-2022-directory-folder-4c22856e9e94" },
+      { day:63, date:"02 Nov 2022", title:"File write",                                                      slug:"02-november-2022-file-write-c3868ab95b75" },
+      { day:64, date:"03 Nov 2022", title:"File read",                                                       slug:"03-november-2022-file-read-9de853b53ef1" },
+      { day:65, date:"04 Nov 2022", title:"CRUD",                                                            slug:"04-november-2022-crud-bfee41959ce8" },
+      { day:66, date:"05 Nov 2022", title:"Create csv",                                                      slug:"05-november-2022-create-csv-26e661b99751" },
+      { day:67, date:"06 Nov 2022", title:"Read csv",                                                        slug:"06-november-2022-read-csv-c6813c09d3f" },
+      { day:68, date:"07 Nov 2022", title:"Update csv",                                                      slug:"07-november-2022-update-csv-6b24874033b" },
+      { day:69, date:"08 Nov 2022", title:"Delete csv",                                                      slug:"08-november-2022-delete-csv-dceeada89028" },
+      { day:70, date:"09 Nov 2022", title:"Install SQL Server",                                              slug:"09-november-2022-install-sql-server-7188405a6d5e" },
+      { day:71, date:"10 Nov 2022", title:"Install SSMS (SQL Server Management Studio)",                     slug:"10-november-2022-install-ssms-sql-server-management-studio-d3baa16403d2" },
+      { day:72, date:"11 Nov 2022", title:"Install dbeaver",                                                 slug:"11-november-2022-install-dbeaver-af8a90e5bd8b" },
+      { day:73, date:"12 Nov 2022", title:"Buat database",                                                   slug:"12-november-2022-buat-database-75eaf487db92" },
+      { day:74, date:"13 Nov 2022", title:"Buat tabel",                                                      slug:"13-november-2022-buat-tabel-2a3b06d51e14" },
+      { day:75, date:"14 Nov 2022", title:"Primary Key",                                                     slug:"14-november-2022-primary-key-a2f28e100790" },
+      { day:76, date:"15 Nov 2022", title:"INSERT INTO",                                                     slug:"15-november-2022-insert-into-5f8d785dbe8" },
+      { day:77, date:"16 Nov 2022", title:"UPDATE QUERY",                                                    slug:"16-november-2022-update-query-1ba7c90ec4f7" },
+      { day:78, date:"17 Nov 2022", title:"Delete Query",                                                    slug:"17-november-2022-delete-query-9e28db4017ee" },
+      { day:79, date:"18 Nov 2022", title:"Select Query",                                                    slug:"18-november-2022-select-query-522bed968852" },
+      { day:80, date:"19 Nov 2022", title:"Where",                                                           slug:"19-november-2022-where-f6c698c8cb5c" },
+      { day:81, date:"20 Nov 2022", title:"Where And",                                                       slug:"20-november-2022-where-and-2711a23b86a1" },
+      { day:82, date:"21 Nov 2022", title:"Where Or",                                                        slug:null },
+      { day:83, date:"22 Nov 2022", title:"Where Not",                                                       slug:null },
+      { day:84, date:"23 Nov 2022", title:"Order By",                                                        slug:null },
+      { day:85, date:"24 Nov 2022", title:"Group By",                                                        slug:null },
+      { day:86, date:"25 Nov 2022", title:"Join",                                                            slug:null },
+      { day:87, date:"26 Nov 2022", title:"Left Join",                                                       slug:null },
+      { day:88, date:"27 Nov 2022", title:"Right Join",                                                      slug:null },
+      { day:89, date:"28 Nov 2022", title:"Inner Join",                                                      slug:null },
+      { day:90, date:"29 Nov 2022", title:"Having",                                                          slug:null },
+      { day:91, date:"30 Nov 2022", title:"Subquery",                                                        slug:null },
+      // Desember 2022 (31)
+      { day:92,  date:"01 Des 2022", title:"Merancang Tabel",                                                slug:"01-desember-2022-merancang-tabel-93dae80bc5ce" },
+      { day:93,  date:"02 Des 2022", title:"Mengevaluasi hasil analisa",                                     slug:"02-desember-2022-mengevaluasi-hasil-analisa-db39eefeb2" },
+      { day:94,  date:"03 Des 2022", title:"Mengevaluasi lagi hasil analisa",                                slug:"03-desember-mengevaluasi-lagi-hasil-analisa-8155a8147bb3" },
+      { day:95,  date:"04 Des 2022", title:"Memahami Maksud Pembuatan Tabel",                                slug:"04-desember-2022-memahami-maksud-pembuatan-tabel-1838c28510d1" },
+      { day:96,  date:"05 Des 2022", title:"Buat Project InvenTk menggunakan visual studio",                 slug:"05-desember-2022-buat-project-inventk-menggunakan-visual-studio-474bff1a70be" },
+      { day:97,  date:"06 Des 2022", title:"Simpan ke git",                                                  slug:"06-desember-2022-simpan-ke-git-67cc59061f26" },
+      { day:98,  date:"07 Des 2022", title:"Membuat Model",                                                  slug:"07-desember-2022-membuat-model-8687e4f248c4" },
+      { day:99,  date:"08 Des 2022", title:"Membuat BusinessLogic",                                          slug:"08-desember-2022-membuat-businesslogic-58b58bc26cbf" },
+      { day:100, date:"09 Des 2022", title:"Membuat Controller",                                             slug:"09-desember-2022-membuat-controller-83f5ee0ef2a9" },
+      { day:101, date:"10 Des 2022", title:"Membuat View",                                                   slug:"10-desember-2022-membuat-view-132aca64f7e5" },
+      { day:102, date:"11 Des 2022", title:"Pasang Entity Framework",                                        slug:"11-desember-2022-pasang-entity-framework-f9d68f8d9c5" },
+      { day:103, date:"12 Des 2022", title:"Membuat DataContext",                                            slug:"12-desember-2022-membuat-datacontext-213b8c473df8" },
+      { day:104, date:"13 Des 2022", title:"Membuat Connection String",                                      slug:"13-desember-2022-membuat-connection-string-f2f71c828b34" },
+      { day:105, date:"14 Des 2022", title:"Memasang dan Menerapkan Migration",                              slug:"14-desember-2022-memasang-dan-menerapkan-migration-27d5f355274f" },
+      { day:106, date:"15 Des 2022", title:"Menambahkan MVC di Project",                                     slug:"15-desember-2022-menambahkan-mvc-di-project-b077ffadb01f" },
+      { day:107, date:"16 Des 2022", title:"Commit dulu ke git biar aman",                                   slug:"16-desember-2022-commit-dulu-ke-git-biar-aman-ec5f8c4524ab" },
+      { day:108, date:"17 Des 2022", title:"Membuat Form HTML",                                              slug:"17-desember-2022-membuat-form-html-534c740bd0e1" },
+      { day:109, date:"18 Des 2022", title:"Mengenal Request",                                               slug:"18-desember-2022-mengenal-request-9804098f1e1e" },
+      { day:110, date:"19 Des 2022", title:"Mengenal Response",                                              slug:"19-desember-2022-mengenal-response-27e66c49a947" },
+      { day:111, date:"20 Des 2022", title:"Melanjutkan Form",                                               slug:"20-desember-2022-melanjutkan-form-b8a2cbccb8af" },
+      { day:112, date:"21 Des 2022", title:"Membuat Validasi",                                               slug:null },
+      { day:113, date:"22 Des 2022", title:"Membuat CRUD Controller",                                        slug:null },
+      { day:114, date:"23 Des 2022", title:"Membuat CRUD View",                                              slug:null },
+      { day:115, date:"24 Des 2022", title:"Membuat CRUD Model",                                             slug:null },
+      { day:116, date:"25 Des 2022", title:"Membuat CRUD BusinessLogic",                                     slug:null },
+      { day:117, date:"26 Des 2022", title:"Membuat CRUD DataContext",                                       slug:null },
+      { day:118, date:"27 Des 2022", title:"Testing CRUD",                                                   slug:null },
+      { day:119, date:"28 Des 2022", title:"Membuat Search",                                                 slug:null },
+      { day:120, date:"29 Des 2022", title:"Membuat Filter",                                                 slug:null },
+      { day:121, date:"30 Des 2022", title:"Membuat Pagination",                                             slug:null },
+      { day:122, date:"31 Des 2022", title:"Deploy ke IIS",                                                  slug:null },
+      // Januari 2023 (1)
+      { day:123, date:"01 Jan 2023", title:"Visual Studio Code (vscode)",                                    slug:"01-januari-2023-visual-studio-code-vscode-40e2f96f4e9e" },
+    ];
+
     let links = loadLinks();
     let jobChangeState = loadJobChange();
     let questProgress = loadQuestProgress();
     let achievements = loadAchievements();
+    let ulongProgress = loadUlongProgress();
     let questIndex = null;
     let questIndexPromise = null;
     let questFileCache = {};
@@ -3876,10 +4095,12 @@
                   <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">${TAB_ICONS.achievement} Achievement</button>
                 </div>
                 <div class="card-footer">
-                  <div class="card-xp">
+                  ${tier === 0
+                    ? `<div class="card-xp"><span class="card-xp-text card-ulong-progress">${Object.keys(ulongProgress).length} / 123 hari</span></div>`
+                    : `<div class="card-xp">
                     <div class="card-xp-bar"><div class="card-xp-fill" style="width:${pct}%"></div></div>
                     <span class="card-xp-text">${done}/${total} skill learned</span>
-                  </div>
+                  </div>`}
                   ${tier >= 2 ? `<button class="btn-do-jobchange" data-job="${title}" data-role="${role}" ${unlocked ? "" : "disabled"}>
                     ⚔ Job Change
                   </button>` : ""}
@@ -4681,6 +4902,70 @@
       });
     }
 
+    function renderUlongQuestTab(pane) {
+      const months = [
+        { label: "September 2022", start: 0,   end: 30  },
+        { label: "Oktober 2022",   start: 30,  end: 61  },
+        { label: "November 2022",  start: 61,  end: 91  },
+        { label: "Desember 2022",  start: 91,  end: 122 },
+        { label: "Januari 2023",   start: 122, end: 123 },
+      ];
+      const done = Object.keys(ulongProgress).length;
+      let html = `<div class="detail-panel-header"><span class="detail-panel-title">Perguruan Ulong</span><span class="detail-panel-count">${done} / 123 hari selesai</span></div>`;
+      months.forEach(({ label, start, end }) => {
+        const count = end - start;
+        html += `<div class="ulong-month-header">${label} <span class="ulong-month-count">· ${count} hari</span></div>`;
+        for (let i = start; i < end; i++) {
+          const art = ULONG_ARTICLES[i];
+          const saved = ulongProgress[i];
+          const url = art.slug ? `https://medium.com/@isecreal/${art.slug}` : null;
+          if (saved) {
+            html += `<div class="ulong-quest-item done" data-idx="${i}">
+              <div class="ulong-quest-meta"><span class="ulong-day-badge">Hari ${art.day}</span><span class="ulong-quest-date">${art.date}</span></div>
+              <div class="ulong-quest-row">
+                ${url ? `<a class="ulong-quest-title" href="${url}" target="_blank" rel="noopener">${escapeHtml(art.title)}</a>` : `<span class="ulong-quest-title">${escapeHtml(art.title)}</span>`}
+                <span class="ulong-done-stamp">✓ ${saved.completedAt}</span>
+              </div>
+            </div>`;
+          } else {
+            html += `<div class="ulong-quest-item" data-idx="${i}">
+              <div class="ulong-quest-meta"><span class="ulong-day-badge">Hari ${art.day}</span><span class="ulong-quest-date">${art.date}</span></div>
+              <div class="ulong-quest-row">
+                ${url ? `<a class="ulong-quest-title" href="${url}" target="_blank" rel="noopener">${escapeHtml(art.title)}</a>` : `<span class="ulong-quest-title ulong-no-link">${escapeHtml(art.title)}</span>`}
+              </div>
+              <div class="ulong-submit-row">
+                <input class="ulong-discord-input" type="url" placeholder="https://discord.com/channels/..." data-idx="${i}">
+                <button class="ulong-submit-btn" data-idx="${i}" disabled>Selesai</button>
+              </div>
+            </div>`;
+          }
+        }
+      });
+      pane.innerHTML = html;
+
+      // Enable button when input valid
+      pane.addEventListener("input", e => {
+        const inp = e.target.closest(".ulong-discord-input");
+        if (!inp) return;
+        const btn = pane.querySelector(`.ulong-submit-btn[data-idx="${inp.dataset.idx}"]`);
+        if (btn) btn.disabled = !inp.value.startsWith("https://discord.com/");
+      });
+
+      // Submit handler
+      pane.addEventListener("click", e => {
+        const btn = e.target.closest(".ulong-submit-btn");
+        if (!btn || btn.disabled) return;
+        const idx = Number(btn.dataset.idx);
+        const inp = pane.querySelector(`.ulong-discord-input[data-idx="${idx}"]`);
+        if (!inp || !inp.value.startsWith("https://discord.com/")) return;
+        ulongProgress[idx] = { discordUrl: inp.value, completedAt: todayKey() };
+        saveUlongProgress(ulongProgress);
+        detailRenderedTabs["quest"] = false;
+        renderUlongQuestTab(pane);
+        refreshCards();
+      });
+    }
+
     async function renderDetailEquipTab(pane) {
       pane.innerHTML = detailEmptyHtml("⏳", "Memuat equipment data…");
       try {
@@ -4934,10 +5219,21 @@
       document.getElementById("detail-modal").style.setProperty("--modal-role", roleColor);
       document.getElementById("detail-modal").style.setProperty("--role", roleColor);
 
+      // Hide tabs not relevant to IT Novice (tier 0)
+      const _tier = (jobs.find(j => j[1] === jobTitle) || [])[8] ?? -1;
+      const _isNovice = _tier === 0;
+      ["equip", "talent", "daily"].forEach(tab => {
+        const btn  = document.querySelector(`.detail-tab-btn[data-tab="${tab}"]`);
+        const pane = document.getElementById(`detail-content-${tab}`);
+        if (btn)  btn.style.display  = _isNovice ? "none" : "";
+        if (pane) pane.style.display = _isNovice ? "none" : "";
+      });
+      const _safeTab = _isNovice && ["equip","talent","daily"].includes(activeTab || "") ? "quest" : (activeTab || "quest");
+
       document.getElementById("detail-overlay").classList.add("open");
       document.body.style.overflow = "hidden";
 
-      activateDetailTab(activeTab || "quest");
+      activateDetailTab(_safeTab);
     }
 
     function closeDetailModal() {
@@ -4961,6 +5257,7 @@
     async function loadDetailTabContent(tab) {
       const pane = document.getElementById(`detail-content-${tab}`);
       if (!pane) return;
+      if (tab === "quest" && currentDetailJob === "IT Novice") { renderUlongQuestTab(pane); return; }
       if (tab === "quest") { await renderDetailQuestTab(pane); return; }
       if (tab === "equip") { await renderDetailEquipTab(pane); return; }
       if (tab === "talent") { await renderDetailTalentTab(pane); return; }

@@ -1,7 +1,7 @@
 ---
 title: "feat: IT Novice — Perguruan Ulong Quest Tab"
 type: feat
-status: active
+status: completed
 date: 2026-05-13
 origin: docs/brainstorms/it-novice-perguruan-ulong-requirements.md
 ---
