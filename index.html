@@ -1160,17 +1160,64 @@
       text-decoration-color: rgba(255,255,255,.2);
     }
 
-    .quest-item-sub { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+    .quest-item-sub { font-size: 11.5px; color: var(--muted); line-height: 1.4; margin-top: 5px; }
 
     .quest-item-link {
       display: inline-flex; align-items: center; gap: 4px;
       font-size: 10.5px; font-weight: 600;
       color: var(--modal-role, var(--gold)); opacity: .75;
-      text-decoration: none; margin-top: 5px;
+      text-decoration: none; margin-top: 8px;
       transition: opacity .14s ease;
     }
 
     .quest-item-link:hover { opacity: 1; }
+
+    /* quest summary editor */
+    .quest-summary-wrap {
+      margin-top: 14px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 30%, transparent);
+      background: #0d1117;
+    }
+
+    .quest-summary-topbar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 10px;
+      background: color-mix(in srgb, var(--modal-role, var(--gold)) 10%, #0d1117);
+      border-bottom: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 20%, transparent);
+      font: 600 9.5px 'Inter', monospace;
+      color: color-mix(in srgb, var(--modal-role, var(--gold)) 70%, transparent);
+      letter-spacing: .5px;
+    }
+
+    /* circuit-dot decorations in topbar */
+    .quest-summary-topbar::before {
+      content: "◉ ◎ ◉";
+      font-size: 7px;
+      letter-spacing: 3px;
+      opacity: .5;
+    }
+
+    .quest-summary-topbar-label { flex: 1; }
+
+    .quest-summary-input {
+      display: block; width: 100%; box-sizing: border-box;
+      background: #0d1117; color: #c9d1d9;
+      border: none; outline: none; resize: none;
+      font: 12px/1.6 'Courier New', 'Consolas', monospace;
+      padding: 10px 12px;
+      min-height: 72px;
+      field-sizing: content;
+    }
+
+    .quest-summary-input::placeholder { color: rgba(201,209,217,.25); }
+    .quest-summary-input:focus { background: #10161e; }
+
+    .quest-complete-btn {
+      display: block; width: 100%;
+      margin-top: 10px;
+    }
 
     /* completed badge */
     .quest-complete-banner {
@@ -3741,7 +3788,10 @@
             ${titleEl}
             <div class="quest-item-sub">${escapeHtml(item.description)}</div>
             ${extraLinks}
-            <textarea class="quest-summary-input" data-quest-id="${escapeHtml(item.id)}" rows="3" placeholder="Tulis summary setelah selesai mengerjakan quest ini"></textarea>
+            <div class="quest-summary-wrap">
+              <div class="quest-summary-topbar"><span class="quest-summary-topbar-label">// QUEST LOG — tulis summary setelah selesai</span></div>
+              <textarea class="quest-summary-input" data-quest-id="${escapeHtml(item.id)}" placeholder="Tulis di sini apa yang kamu pelajari..."></textarea>
+            </div>
             <button class="btn-job-change quest-complete-btn" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">Complete Quest</button>
           </div>
         </div>`;
@@ -3805,13 +3855,8 @@
         return;
       }
 
-      // Progress hitung dari main + daily yang completed
       const main  = questData.main  || [];
       const daily = questData.daily || [];
-      const allItems = [...main, ...daily];
-      const doneCount  = allItems.filter(i => questCompleted(i.id)).length;
-      const totalCount = allItems.length;
-      const pct = totalCount ? Math.round(doneCount / totalCount * 100) : 0;
 
       // Main quest — tampilkan 1 quest aktif berikutnya
       const nextMain = main.find(item => !questCompleted(item.id));
@@ -3847,10 +3892,6 @@
           : renderCompletableQuest(todaysDaily, "daily");
 
       pane.innerHTML = `
-        <div class="modal-progress-header">
-          <div class="modal-progress-track"><div class="modal-progress-fill" style="width:${pct}%"></div></div>
-          <span class="modal-progress-text">${doneCount}/${totalCount} completed</span>
-        </div>
         <div class="quest-phase">
           <div class="quest-phase-title"><span class="quest-phase-num">1</span>Main Quest</div>
           ${mainHtml}
@@ -3859,6 +3900,14 @@
           <div class="quest-phase-title"><span class="quest-phase-num">2</span>Daily Quest</div>
           ${dailyHtml}
         </div>`;
+
+      // Auto-resize textarea on input
+      pane.querySelectorAll(".quest-summary-input").forEach(ta => {
+        ta.addEventListener("input", () => {
+          ta.style.height = "auto";
+          ta.style.height = ta.scrollHeight + "px";
+        });
+      });
 
       pane.addEventListener("click", e => {
         const btn = e.target.closest(".quest-complete-btn");
