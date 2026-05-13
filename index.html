@@ -3768,6 +3768,13 @@
         updateStaticStrings();
         renderCards(activeFilter);
         renderSidebar();
+        // invalidate equip/talent tab cache so descriptions re-render in new lang
+        detailRenderedTabs["equip"] = false;
+        detailRenderedTabs["talent"] = false;
+        const equipPane = document.getElementById("detail-content-equip");
+        const talentPane = document.getElementById("detail-content-talent");
+        if (equipPane?.classList.contains("active")) renderDetailEquipTab(equipPane);
+        else if (talentPane?.classList.contains("active")) renderDetailTalentTab(talentPane);
       }
 
       idBtn.addEventListener("click", () => applyLang("id"));
@@ -5402,7 +5409,7 @@
             const pills = groups[letter].map(item => {
               const lv = Math.min(3, Number(keyFn(item)) || 1);
               const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
-              const tip = escAttr(descriptionTextFor(item));
+              const tip = escAttr(descriptionTextFor(item, "en"));
               return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}">${escAttr(item.name)}${badge}</span>`;
             }).join("");
             return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pills}</div></div>`;
