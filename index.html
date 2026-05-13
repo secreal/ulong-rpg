@@ -4291,13 +4291,16 @@
           </div>
         </div>`;
       } else {
-        // Pick one random item — priority: skills first, then equip, then talent
-        const skillCandidates  = dailyCandidates.filter(c => c.kind === "skill");
-        const equipCandidates  = dailyCandidates.filter(c => c.kind === "equip");
-        const talentCandidates = dailyCandidates.filter(c => c.kind === "talent");
-        const pool = skillCandidates.length ? skillCandidates
-                   : equipCandidates.length  ? equipCandidates
-                   : talentCandidates;
+        // Pick one random item — fundamental first, then non-fundamental; within each tier: skill → equip → talent
+        const isFund = c => c.targetEntry?.fundamental === true;
+        const byPhase = (list) => {
+          const s = list.filter(c => c.kind === "skill");
+          const e = list.filter(c => c.kind === "equip");
+          const t = list.filter(c => c.kind === "talent");
+          return s.length ? s : e.length ? e : t;
+        };
+        const fundPool = byPhase(dailyCandidates.filter(isFund));
+        const pool = fundPool.length ? fundPool : byPhase(dailyCandidates.filter(c => !isFund(c)));
         const picked = pool[Math.floor(Math.random() * pool.length)];
         const introQuest = makeSyntheticIntroQuest(picked.kind, picked.item, picked.targetEntry);
         const kindLabel = picked.kind === "skill" ? "Skill" : picked.kind === "equip" ? "Equipment" : "Talent";
