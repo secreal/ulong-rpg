@@ -6214,10 +6214,9 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
         const q   = encodeURIComponent(jobTitle);
         const loc = encodeURIComponent("Indonesia");
         return [
-          { label: "LinkedIn", url: `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
-          { label: "Indeed",   url: `https://id.indeed.com/jobs?q=${q}&l=Indonesia` },
           { label: "Glints",   url: `https://glints.com/id/opportunities/jobs/explore?keyword=${q}&country=ID` },
-          { label: "Kalibrr", url: `https://www.kalibrr.id/job-board?q=${q}` },
+          { label: "Indeed",   url: `https://id.indeed.com/jobs?q=${q}&l=Indonesia` },
+          { label: "LinkedIn", url: `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
         ];
       }
 
