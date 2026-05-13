@@ -2025,11 +2025,11 @@
           </svg>
         </div>
       </div>
-      <div class="detail-tabs" role="tablist">
-        <button class="detail-tab-btn active" data-tab="quest" role="tab"><svg class="tab-icon" viewBox="0 0 14 18" fill="currentColor"><rect x="5" y="0" width="4" height="11" rx="2"/><rect x="5" y="14" width="4" height="4" rx="2"/></svg> Quest</button>
-        <button class="detail-tab-btn" data-tab="equip" role="tab"><svg class="tab-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="2" y1="14" x2="11" y2="5"/><polygon points="11,2 14,5 12,7 9,4" fill="currentColor" stroke="none"/><rect x="1" y="10" width="5" height="5" rx="1.5" fill="currentColor" stroke="none" opacity=".7"/></svg> Equip</button>
-        <button class="detail-tab-btn" data-tab="talent" role="tab"><svg class="tab-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="2" y1="6" x2="14" y2="6"/><line x1="8" y1="6" x2="8" y2="14"/><line x1="8" y1="9" x2="4" y2="13"/><line x1="8" y1="9" x2="12" y2="13"/><line x1="8" y1="12" x2="6" y2="15"/><line x1="8" y1="12" x2="10" y2="15"/></svg> Talent</button>
-        <button class="detail-tab-btn" data-tab="achievement" role="tab">🏆 Achievement</button>
+      <div class="detail-tabs" id="detail-tabs-placeholder" role="tablist">
+        <button class="detail-tab-btn active" data-tab="quest" role="tab">Quest</button>
+        <button class="detail-tab-btn" data-tab="equip" role="tab">Equip</button>
+        <button class="detail-tab-btn" data-tab="talent" role="tab">Talent</button>
+        <button class="detail-tab-btn" data-tab="achievement" role="tab">Achievement</button>
       </div>
       <div class="modal-body">
         <div class="detail-tab-content active" data-tab="quest" id="detail-content-quest"></div>
@@ -3336,6 +3336,14 @@
       }[ch]));
     }
 
+    const _SVG_FILE_BADGE = `<svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 22h5a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.3"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="m7.69 16.479 1.29 4.88a.5.5 0 0 1-.698.591l-1.843-.849a1 1 0 0 0-.879.001l-1.846.85a.5.5 0 0 1-.692-.593l1.29-4.88"/><circle cx="6" cy="14" r="3"/></svg>`;
+    const TAB_ICONS = {
+      quest:       `<svg class="tab-icon" viewBox="0 0 14 18" fill="currentColor"><rect x="5" y="0" width="4" height="11" rx="2"/><rect x="5" y="14" width="4" height="4" rx="2"/></svg>`,
+      equip:       _SVG_FILE_BADGE,
+      talent:      `<svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7v10"/><path d="M11 7v10"/><path d="m15 7 2 10"/></svg>`,
+      achievement: _SVG_FILE_BADGE,
+    };
+
     function descriptionTextFor(item, lang = currentLang) {
       const desc = item?.description;
       if (!desc || typeof desc === "string") return desc || item?.name || "";
@@ -3716,10 +3724,10 @@
                   ${isEN ? `<small class="salary-note">${UI_STRINGS.en.salaryNote}</small>` : ""}
                 </div>
                 <div class="card-actions-row">
-                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest"><svg class="tab-icon" viewBox="0 0 14 18" fill="currentColor"><rect x="5" y="0" width="4" height="11" rx="2"/><rect x="5" y="14" width="4" height="4" rx="2"/></svg> Quest</button>
-                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip"><svg class="tab-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="2" y1="14" x2="11" y2="5"/><polygon points="11,2 14,5 12,7 9,4" fill="currentColor" stroke="none"/><rect x="1" y="10" width="5" height="5" rx="1.5" fill="currentColor" stroke="none" opacity=".7"/></svg> Equip</button>
-                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="talent"><svg class="tab-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="2" y1="6" x2="14" y2="6"/><line x1="8" y1="6" x2="8" y2="14"/><line x1="8" y1="9" x2="4" y2="13"/><line x1="8" y1="9" x2="12" y2="13"/><line x1="8" y1="12" x2="6" y2="15"/><line x1="8" y1="12" x2="10" y2="15"/></svg> Talent</button>
-                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">🏆 Achievement</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">${TAB_ICONS.quest} Quest</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip">${TAB_ICONS.equip} Equip</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="talent">${TAB_ICONS.talent} Talent</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">${TAB_ICONS.achievement} Achievement</button>
                 </div>
                 <div class="card-footer">
                   <div class="card-xp">
@@ -4283,25 +4291,28 @@
           </div>
         </div>`;
       } else {
-        // Show picker: list of Lv0 items player can choose
-        const pickerItems = dailyCandidates.map(({ kind, item, targetEntry }) => {
-          const kindIcon = kind === "skill" ? "◈" : kind === "equip" ? "🛡" : "✨";
-          const hasQuest = targetEntry ? "1" : "0";
-          return `<button class="quest-daily-pick-btn" data-kind="${escapeHtml(kind)}" data-item-id="${escapeHtml(item.id || item.name)}" data-item-name="${escapeHtml(item.name)}" data-has-quest="${hasQuest}">
-            <span class="quest-daily-kind-icon">${kindIcon}</span>
-            <span>${escapeHtml(item.name)}</span>
-          </button>`;
-        }).join("");
-        dailyHtml = `<div class="quest-daily-picker">
-          <div class="quest-daily-picker-label">Pilih item untuk diaktifkan hari ini:</div>
-          <div class="quest-daily-picker-list">${pickerItems}</div>
-        </div>
-        <div id="quest-daily-active" style="display:none"></div>`;
+        // Pick one random item — priority: skills first, then equip, then talent
+        const skillCandidates  = dailyCandidates.filter(c => c.kind === "skill");
+        const equipCandidates  = dailyCandidates.filter(c => c.kind === "equip");
+        const talentCandidates = dailyCandidates.filter(c => c.kind === "talent");
+        const pool = skillCandidates.length ? skillCandidates
+                   : equipCandidates.length  ? equipCandidates
+                   : talentCandidates;
+        const picked = pool[Math.floor(Math.random() * pool.length)];
+        const introQuest = makeSyntheticIntroQuest(picked.kind, picked.item, picked.targetEntry);
+        const kindLabel = picked.kind === "skill" ? "Skill" : picked.kind === "equip" ? "Equipment" : "Talent";
+        dailyHtml = `
+          <div class="quest-item-group-header">
+            <span class="quest-group-kind">${kindLabel}</span>
+            <strong>${escapeHtml(picked.item.name)}</strong>
+            <span class="quest-group-target">Lv0 → Lv1</span>
+          </div>
+          <div id="quest-daily-active">${renderSubQuest(introQuest, "daily")}</div>`;
       }
 
       pane.innerHTML = `
         <div class="detail-panel-header">
-          <div class="detail-panel-title"><svg class="tab-icon" viewBox="0 0 14 18" fill="currentColor"><rect x="5" y="0" width="4" height="11" rx="2"/><rect x="5" y="14" width="4" height="4" rx="2"/></svg> Quest</div>
+          <div class="detail-panel-title">${TAB_ICONS.quest} Quest</div>
           <div class="detail-panel-desc">Main quest: selesaikan 3 quest per level untuk tiap skill, equip, dan talent aktifmu. Daily quest: aktifkan satu item baru ke Lv 1 setiap hari.</div>
         </div>
         <div class="quest-phase">
@@ -4314,43 +4325,8 @@
         </div>`;
 
       // Index daily candidates by id for fast lookup in click handler
-      const dailyCandidateMap = new Map(dailyCandidates.map(c => [c.item.id || c.item.name, c]));
-
       // ── EVENT DELEGATION ──
       pane.addEventListener("click", async e => {
-        // Daily picker — choose item
-        const pickBtn = e.target.closest(".quest-daily-pick-btn");
-        if (pickBtn) {
-          const kind = pickBtn.dataset.kind;
-          const itemId = pickBtn.dataset.itemId;
-          const itemName = pickBtn.dataset.itemName;
-          // Look up pre-loaded candidate (has targetEntry)
-          const candidate = dailyCandidateMap.get(itemId);
-          let rawItem = candidate?.item || { id: itemId, name: itemName };
-          let targetEntry = candidate?.targetEntry || null;
-          // Fallback: load full item if not in candidate (shouldn't happen)
-          if (!candidate) {
-            try {
-              if (kind === "equip") {
-                const ed = await loadEquipmentData();
-                rawItem = ed.equipment.find(e => e.id === itemId) || rawItem;
-              } else if (kind === "talent") {
-                const td = await loadTalentData();
-                rawItem = td.talents.find(t => t.id === itemId) || rawItem;
-              }
-              const qMap = await loadTargetQuestData(kind);
-              targetEntry = getTargetQuestEntry(qMap, rawItem);
-            } catch {}
-          }
-          const introQuest = makeSyntheticIntroQuest(kind, rawItem, targetEntry);
-          // Hide picker, show quest
-          pane.querySelector(".quest-daily-picker").style.display = "none";
-          const activeEl = pane.querySelector("#quest-daily-active");
-          activeEl.innerHTML = renderSubQuest(introQuest, "daily");
-          activeEl.style.display = "";
-          return;
-        }
-
         // Accept quest
         const acceptBtn = e.target.closest(".quest-accept-btn");
         if (acceptBtn) {
@@ -6238,10 +6214,10 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
         const q   = encodeURIComponent(jobTitle);
         const loc = encodeURIComponent("Indonesia");
         return [
-          { label: "LinkedIn",  url: `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
-          { label: "Glints",    url: `https://glints.com/id/opportunities/jobs/explore?keyword=${q}&country=ID` },
-          { label: "Jobstreet", url: `https://www.jobstreet.co.id/en/job-search/${q.replace(/%20/g, "-")}-jobs/` },
-          { label: "Kalibrr",  url: `https://www.kalibrr.id/job-board?q=${q}` },
+          { label: "LinkedIn", url: `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
+          { label: "Indeed",   url: `https://id.indeed.com/jobs?q=${q}&l=Indonesia` },
+          { label: "Glints",   url: `https://glints.com/id/opportunities/jobs/explore?keyword=${q}&country=ID` },
+          { label: "Kalibrr", url: `https://www.kalibrr.id/job-board?q=${q}` },
         ];
       }
 
@@ -6284,6 +6260,12 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
     // ══════════════════════════════════════════
     // INIT
     // ══════════════════════════════════════════
+    // Inject tab icons into modal tabs
+    document.querySelectorAll(".detail-tab-btn[data-tab]").forEach(btn => {
+      const icon = TAB_ICONS[btn.dataset.tab];
+      if (icon) btn.innerHTML = icon + " " + btn.textContent.trim();
+    });
+
     renderSidebar();
     renderPyramid();
     renderCards();
