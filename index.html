@@ -1489,7 +1489,7 @@
     }
 
     /* ══ ACHIEVEMENT LINKS ══ */
-    .achievement-links { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+    .achievement-links { margin-top: 0; padding-top: 0; border-top: none; }
     .achievement-links-label {
       font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
       color: var(--muted); margin-bottom: 6px;
@@ -1529,6 +1529,37 @@
       white-space: nowrap; transition: all .14s ease;
     }
     .btn-add-link:hover { border-color: color-mix(in srgb, var(--role) 70%, transparent); }
+
+    /* ══ SELF-ACHIEVEMENT SUB-SECTION ══ */
+    .sa-section { margin-bottom: 16px; }
+    .sa-section-title { font: 700 10px 'Inter', sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px; }
+    .sa-toggle { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; width: fit-content; }
+    .sa-toggle-btn { padding: 5px 12px; font: 600 10.5px 'Inter', sans-serif; color: var(--muted); background: none; border: none; cursor: pointer; transition: all .14s ease; white-space: nowrap; }
+    .sa-toggle-btn + .sa-toggle-btn { border-left: 1px solid var(--line); }
+    .sa-toggle-btn.active { color: var(--gold); background: color-mix(in srgb, var(--gold) 10%, transparent); }
+    .sa-badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .sa-badge-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel-2); text-align: center; }
+    .sa-badge-slot.empty { opacity: .45; }
+    .ach-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .sa-badge-slot .ach-icon { width: 18px; height: 18px; }
+    .sa-tier-chip { font: 700 9px 'Inter', sans-serif; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: .5px; }
+    .sa-tier-chip.bronze { background: color-mix(in srgb, #cd7f32 18%, transparent); color: #cd7f32; border: 1px solid color-mix(in srgb, #cd7f32 35%, transparent); }
+    .sa-tier-chip.silver { background: color-mix(in srgb, #a8a9ad 18%, transparent); color: #a8a9ad; border: 1px solid color-mix(in srgb, #a8a9ad 35%, transparent); }
+    .sa-tier-chip.gold   { background: color-mix(in srgb, var(--gold) 18%, transparent); color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); }
+    .sa-tier-chip.empty  { background: color-mix(in srgb, var(--muted) 12%, transparent); color: var(--muted); border: 1px solid var(--line); }
+    .sa-badge-label { font: 500 9px 'Inter', sans-serif; color: var(--muted); line-height: 1.3; }
+    .sa-badge-stat { font: 600 10px 'Inter', sans-serif; color: var(--ink-dim); }
+    .sa-list { display: flex; flex-direction: column; gap: 6px; }
+    .sa-list-empty { font-size: 12px; color: var(--muted); text-align: center; padding: 16px 0; }
+    .sa-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel-2); }
+    .sa-item-row { display: flex; align-items: center; gap: 8px; padding: 9px 12px; cursor: pointer; transition: background .12s ease; }
+    .sa-item-row:hover { background: color-mix(in srgb, var(--gold) 6%, transparent); }
+    .sa-item-name { flex: 1; font: 600 12px 'Inter', sans-serif; color: var(--ink); }
+    .sa-item-date { font: 400 10px 'Inter', sans-serif; color: var(--muted); white-space: nowrap; }
+    .sa-item-expand { display: none; padding: 10px 12px 12px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--ink-dim); line-height: 1.6; }
+    .sa-item-expand.open { display: block; }
+    .sa-item-expand strong { display: block; font: 700 10px 'Inter', sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+    .sa-divider { border: none; border-top: 1px solid var(--line); margin: 16px 0; }
 
     /* ══ EXPORT MODAL ══ */
     .export-modal-overlay {
@@ -3240,6 +3271,7 @@
     const JOB_CHANGE_KEY = "itjt_jobchange_v1";
     const QUEST_PROGRESS_KEY = "itjt_quest_progress_v1";
     const GUILD_KEY = "itjt_guild_v1";
+    const ACHIEVEMENT_KEY = "itjt_achievements_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -3309,9 +3341,24 @@
       localStorage.setItem("ulong_local_modified", Date.now());
     }
 
+    function loadAchievements() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(ACHIEVEMENT_KEY));
+        return {
+          jobs: (raw?.jobs && typeof raw.jobs === "object") ? raw.jobs : {},
+          learnedDays: Array.isArray(raw?.learnedDays) ? raw.learnedDays : [],
+        };
+      } catch { return { jobs: {}, learnedDays: [] }; }
+    }
+
+    function saveAchievements(data) {
+      try { localStorage.setItem(ACHIEVEMENT_KEY, JSON.stringify(data)); } catch {}
+    }
+
     let links = loadLinks();
     let jobChangeState = loadJobChange();
     let questProgress = loadQuestProgress();
+    let achievements = loadAchievements();
     let questIndex = null;
     let questIndexPromise = null;
     let questFileCache = {};
@@ -3343,6 +3390,14 @@
       talent:      `<svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7v10"/><path d="M11 7v10"/><path d="m15 7 2 10"/></svg>`,
       achievement: _SVG_FILE_BADGE,
     };
+
+    // Achievement category icons (inline SVG, same pattern as TAB_ICONS)
+    const _SVG_ACH_QUEST = `<svg class="ach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`;
+    const _SVG_ACH_MASTERY = `<svg class="ach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+    const _SVG_ACH_JOBCHANGE = `<svg class="ach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>`;
+    const _SVG_ACH_LEARNINGDAYS = `<svg class="ach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/></svg>`;
+
+    const ACH_ICONS = { "quest-completion": _SVG_ACH_QUEST, "skill-mastery": _SVG_ACH_MASTERY, "job-change": _SVG_ACH_JOBCHANGE, "learning-days": _SVG_ACH_LEARNINGDAYS };
 
     function descriptionTextFor(item, lang = currentLang) {
       const desc = item?.description;
@@ -3502,6 +3557,66 @@
       const arr = skills.split(", ");
       const done = arr.filter(s => skillLevel(title, s) >= 1).length;
       return { done, total: arr.length, pct: arr.length ? Math.round(done / arr.length * 100) : 0 };
+    }
+
+    // ── Self-Achievement System ──────────────────
+    const TIER_ORDER = { bronze: 1, silver: 2, gold: 3 };
+
+    function unlockAchievement(category, tier, jobTitle) {
+      if (!tier) return false;
+      const jobKey = jobTitle || "__global__";
+      if (!achievements.jobs[jobKey]) achievements.jobs[jobKey] = {};
+      const existing = achievements.jobs[jobKey][category];
+      if (existing && TIER_ORDER[existing.tier] >= TIER_ORDER[tier]) return false;
+      achievements.jobs[jobKey][category] = { tier, earnedAt: todayKey() };
+      saveAchievements(achievements);
+      return true;
+    }
+
+    function getJobTier(jobTitle) {
+      const row = jobs.find(j => j[1] === jobTitle);
+      return row ? row[8] : 0;
+    }
+
+    function evaluateAchievements(jobTitle) {
+      if (!jobTitle) return;
+      const jobRow = jobs.find(j => j[1] === jobTitle);
+
+      // Skill Mastery
+      if (jobRow) {
+        const { pct, done, total } = getSkillProgress(jobTitle, jobRow[3]);
+        const tier = pct >= 100 ? "gold" : pct >= 50 ? "silver" : pct >= 25 ? "bronze" : null;
+        if (tier) unlockAchievement("skill-mastery", tier, jobTitle);
+        // expose stats for rendering
+        achievements._skillStats = achievements._skillStats || {};
+        achievements._skillStats[jobTitle] = { done, total };
+      }
+
+      // Quest Completion — use getQuestProgress which handles all data sources
+      const qp = getQuestProgress(jobTitle);
+      if (qp && qp.total > 0) {
+        const pct = qp.pct;
+        const tier = pct >= 100 ? "gold" : pct >= 50 ? "silver" : pct >= 25 ? "bronze" : null;
+        if (tier) unlockAchievement("quest-completion", tier, jobTitle);
+        achievements._questStats = achievements._questStats || {};
+        achievements._questStats[jobTitle] = { done: qp.done, total: qp.total };
+      }
+
+      // Job Change milestone
+      if (jobChangeState && jobChangeState.primary === jobTitle) {
+        const tier = getJobTier(jobTitle) >= 3 ? "gold" : getJobTier(jobTitle) >= 2 ? "silver" : "bronze";
+        unlockAchievement("job-change", tier, jobTitle);
+      }
+
+      // Learning Days (global)
+      const days = achievements.learnedDays.length;
+      const ldTier = days >= 100 ? "gold" : days >= 30 ? "silver" : days >= 10 ? "bronze" : null;
+      if (ldTier) unlockAchievement("learning-days", ldTier, null);
+
+      // Invalidate achievement tab cache if it's open
+      detailRenderedTabs["achievement"] = false;
+      const achPane = document.getElementById("detail-content-achievement");
+      if (achPane?.classList.contains("active")) renderDetailAchievementTab(achPane);
     }
 
     function getQuestProgress(jobTitle) {
@@ -4388,9 +4503,16 @@
             saveProgress(progress);
           }
           questProgress.daily[jobTitle] = { date: todayKey(), questId, completedAt };
+          // track unique learning days globally for Learning Days achievement
+          const today = todayKey();
+          if (!achievements.learnedDays.includes(today)) {
+            achievements.learnedDays.push(today);
+            saveAchievements(achievements);
+          }
         }
 
         saveQuestProgress(questProgress);
+        evaluateAchievements(jobTitle);
         detailRenderedTabs["quest"] = false;
         await renderDetailQuestTab(pane);
         refreshCards();
@@ -4558,27 +4680,156 @@
       }
     }
 
+    const ACH_META = {
+      "quest-completion": {
+        name: "Quest Completion",
+        icon: () => ACH_ICONS["quest-completion"],
+        desc: (job) => `Menyelesaikan quest di job ${job}.`,
+        condition: { bronze: "25% quest selesai", silver: "50% quest selesai", gold: "100% quest selesai" },
+        stat: (job) => {
+          const s = achievements._questStats?.[job];
+          return s ? `${s.done}/${s.total} quest` : null;
+        },
+      },
+      "skill-mastery": {
+        name: "Skill Mastery",
+        icon: () => ACH_ICONS["skill-mastery"],
+        desc: (job) => `Mempelajari skill di job ${job}.`,
+        condition: { bronze: "25% skill di-level-up", silver: "50% skill di-level-up", gold: "100% skill di-level-up" },
+        stat: (job) => {
+          const s = achievements._skillStats?.[job];
+          return s ? `${s.done}/${s.total} skill` : null;
+        },
+      },
+      "job-change": {
+        name: "Job Change",
+        icon: () => ACH_ICONS["job-change"],
+        desc: (job) => `Melakukan Job Change ke ${job}.`,
+        condition: { bronze: "Job Change ke Tier 1", silver: "Job Change ke Tier 2", gold: "Job Change ke Tier 3+" },
+        stat: () => null,
+      },
+      "learning-days": {
+        name: "Learning Days",
+        icon: () => ACH_ICONS["learning-days"],
+        desc: () => "Total hari unik menyelesaikan daily quest.",
+        condition: { bronze: "10 hari belajar", silver: "30 hari belajar", gold: "100 hari belajar" },
+        stat: () => `${achievements.learnedDays.length} hari`,
+      },
+    };
+    const ACH_CATEGORIES = ["quest-completion", "skill-mastery", "job-change", "learning-days"];
+
     function renderDetailAchievementTab(pane) {
-      const jobLinks = links[currentDetailJob] || [];
-      const itemsHtml = jobLinks.map((l, i) => `
+      const job = currentDetailJob;
+      const jobAchs = achievements.jobs[job] || {};
+      const globalAchs = achievements.jobs["__global__"] || {};
+
+      function getAch(cat) {
+        return cat === "learning-days" ? globalAchs[cat] : jobAchs[cat];
+      }
+
+      // Badge+Stats view
+      const badgeGrid = ACH_CATEGORIES.map(cat => {
+        const meta = ACH_META[cat];
+        const ach = getAch(cat);
+        const tier = ach?.tier;
+        const chipClass = tier || "empty";
+        const chipLabel = tier ? tier.charAt(0).toUpperCase() + tier.slice(1) : "—";
+        const stat = meta.stat(job);
+        return `<div class="sa-badge-slot${tier ? "" : " empty"}">
+          ${meta.icon()}
+          <span class="sa-tier-chip ${chipClass}">${chipLabel}</span>
+          <span class="sa-badge-label">${meta.name}</span>
+          ${stat ? `<span class="sa-badge-stat">${stat}</span>` : ""}
+        </div>`;
+      }).join("");
+
+      // List view — only earned achievements
+      const earned = [];
+      ACH_CATEGORIES.forEach(cat => {
+        const ach = getAch(cat);
+        if (ach) earned.push({ cat, tier: ach.tier, earnedAt: ach.earnedAt });
+      });
+      earned.sort((a, b) => b.earnedAt.localeCompare(a.earnedAt));
+
+      const listHtml = earned.length === 0
+        ? `<div class="sa-list-empty">Belum ada achievement. Terus belajar!</div>`
+        : earned.map(({ cat, tier, earnedAt }) => {
+            const meta = ACH_META[cat];
+            const cond = meta.condition[tier] || "";
+            return `<div class="sa-item">
+              <div class="sa-item-row" data-sa-cat="${cat}">
+                ${meta.icon()}
+                <span class="sa-item-name">${meta.name}</span>
+                <span class="sa-tier-chip ${tier}">${tier.charAt(0).toUpperCase() + tier.slice(1)}</span>
+                <span class="sa-item-date">${earnedAt}</span>
+              </div>
+              <div class="sa-item-expand">
+                <strong>Kondisi</strong>${cond}
+                <br><strong style="margin-top:6px;display:block">Deskripsi</strong>${meta.desc(job)}
+              </div>
+            </div>`;
+          }).join("");
+
+      // Portfolio links section (unchanged)
+      const jobLinks = links[job] || [];
+      const linksHtml = jobLinks.map((l, i) => `
         <div class="achievement-link-item">
           ${l.label ? `<span class="achievement-link-label" title="${l.label}">${escapeHtml(l.label)}</span>` : ""}
           <a href="${escapeHtml(l.url)}" target="_blank" rel="noopener" title="${escapeHtml(l.url)}">${escapeHtml(l.url)}</a>
-          <button class="btn-del-link" data-job="${escapeHtml(currentDetailJob)}" data-idx="${i}" aria-label="Hapus link">✕</button>
+          <button class="btn-del-link" data-job="${escapeHtml(job)}" data-idx="${i}" aria-label="Hapus link">✕</button>
         </div>`).join("");
-      const emptyNote = jobLinks.length ? "" : `<div class="detail-empty" style="padding:8px 0 16px;text-align:left;font-size:12px">Belum ada achievement link. Tambah di bawah.</div>`;
+      const emptyNote = jobLinks.length ? "" : `<div class="detail-empty" style="padding:8px 0 16px;text-align:left;font-size:12px">Belum ada link. Tambah di bawah.</div>`;
+
       pane.innerHTML = `
         <div class="detail-panel-header">
           <div class="detail-panel-title">🏆 Achievement</div>
-          <div class="detail-panel-desc">Bukti nyata hasil kerjamu — link ke project, portfolio, sertifikat, atau kontribusi yang bisa dilihat orang lain.</div>
+          <div class="detail-panel-desc">Bukti nyata hasil kerjamu — achievement otomatis dan link portfolio.</div>
         </div>
-        <div class="achievement-link-list">${itemsHtml}</div>
-        ${emptyNote}
-        <div class="achievement-link-add" style="margin-top:8px">
-          <input class="achievement-link-input" type="url" placeholder="https://github.com/..." data-job="${escapeHtml(currentDetailJob)}" data-field="url">
-          <input class="achievement-link-input" type="text" placeholder="Label (opsional)" data-job="${escapeHtml(currentDetailJob)}" data-field="label" style="max-width:110px">
-          <button class="btn-add-link" data-job="${escapeHtml(currentDetailJob)}">+ Add</button>
+
+        <div class="sa-section">
+          <div class="sa-section-title">Self-Achievements</div>
+          <div class="sa-toggle">
+            <button class="sa-toggle-btn active" data-sa-view="badge">Badge &amp; Stats</button>
+            <button class="sa-toggle-btn" data-sa-view="list">List</button>
+          </div>
+          <div class="sa-view" data-sa-pane="badge">
+            <div class="sa-badge-grid">${badgeGrid}</div>
+          </div>
+          <div class="sa-view" data-sa-pane="list" style="display:none">
+            <div class="sa-list">${listHtml}</div>
+          </div>
+        </div>
+
+        <hr class="sa-divider">
+
+        <div class="achievement-links">
+          <div class="achievement-links-label" style="font:700 10px 'Inter',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px">Portfolio Links</div>
+          <div class="achievement-link-list">${linksHtml}</div>
+          ${emptyNote}
+          <div class="achievement-link-add" style="margin-top:8px">
+            <input class="achievement-link-input" type="url" placeholder="https://github.com/..." data-job="${escapeHtml(job)}" data-field="url">
+            <input class="achievement-link-input" type="text" placeholder="Label (opsional)" data-job="${escapeHtml(job)}" data-field="label" style="max-width:110px">
+            <button class="btn-add-link" data-job="${escapeHtml(job)}">+ Add</button>
+          </div>
         </div>`;
+
+      // Wire toggle buttons
+      pane.querySelectorAll(".sa-toggle-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          pane.querySelectorAll(".sa-toggle-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const target = btn.dataset.saView;
+          pane.querySelectorAll(".sa-view").forEach(v => { v.style.display = v.dataset.saPane === target ? "" : "none"; });
+        });
+      });
+
+      // Wire list item expand
+      pane.querySelectorAll(".sa-item-row").forEach(row => {
+        row.addEventListener("click", () => {
+          const expand = row.nextElementSibling;
+          if (expand) expand.classList.toggle("open");
+        });
+      });
     }
 
     function closeQuest() {
@@ -4801,6 +5052,7 @@
       const checked = [...document.querySelectorAll("#jobchange-include-list input:checked")].map(cb => cb.value);
       jobChangeState = { primary: _jobchangeTarget, subs: checked };
       saveJobChange(jobChangeState);
+      evaluateAchievements(_jobchangeTarget);
       closeJobChangeModal();
       refreshCards();
     }
@@ -5093,6 +5345,7 @@
         card.querySelector(".card-xp-text").textContent = `${done}/${allSkills.length} skill learned`;
         renderCards(activeFilter);
         renderSidebar();
+        evaluateAchievements(skill.dataset.title);
         // re-roll daily quest immediately if quest tab is open
         if (document.getElementById("detail-overlay")?.classList.contains("open")) {
           const questPane = document.getElementById("detail-content-quest");
