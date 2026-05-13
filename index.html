@@ -1106,7 +1106,7 @@
     }
 
     .quest-phase-title::after {
-      content: ""; flex: 1; height: 1px;
+      content: ""; flex: 1; height: 1px; order: 1;
       background: linear-gradient(90deg, color-mix(in srgb, var(--modal-role, var(--gold)) 40%, transparent), transparent);
     }
 
@@ -1236,22 +1236,21 @@
     .quest-summary-input:focus { background: #10161e; }
 
     /* quest group header (item name + level target + dots) */
-    .quest-item-group-header {
-      display: flex; align-items: center; gap: 8px;
-      padding: 6px 0 8px; flex-wrap: wrap;
+    .quest-phase-meta {
+      display: flex; align-items: center; gap: 6px; flex-shrink: 0; order: 2;
     }
+    .quest-phase-meta strong { font-size: 11px; color: var(--ink); font-weight: 600; }
     .quest-group-kind {
       font: 700 9px 'Inter', sans-serif; letter-spacing: 1px; text-transform: uppercase;
       color: var(--muted); padding: 2px 6px; border-radius: 4px;
       border: 1px solid var(--line); flex-shrink: 0;
     }
-    .quest-item-group-header strong { font-size: 13px; color: var(--ink); }
     .quest-group-target {
       font: 600 10px 'Inter', sans-serif;
       color: color-mix(in srgb, var(--modal-role, var(--gold)) 80%, white);
       flex-shrink: 0;
     }
-    .quest-group-dots { display: flex; gap: 4px; margin-left: auto; }
+    .quest-group-dots { display: flex; gap: 4px; }
     .quest-dot {
       width: 8px; height: 8px; border-radius: 50%;
       border: 1.5px solid color-mix(in srgb, var(--modal-role, var(--gold)) 50%, transparent);
@@ -4332,13 +4331,14 @@
       ]);
 
       // ── MAIN QUEST ──
-      let mainHtml = "";
+      let mainMeta = "";
+      let mainBody = "";
       if (mainQueue.length === 0) {
         // Check if everything is Lv3 (confirmation phase) or nothing activated yet
         const skills = getJobSkills(jobTitle);
         const anyActive = skills.some(s => skillLevel(jobTitle, s) > 0);
         if (anyActive) {
-          mainHtml = `<div class="quest-item done">
+          mainBody = `<div class="quest-item done">
             <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
             <div class="quest-item-content">
               <div class="quest-item-label">All items reached Lv 3</div>
@@ -4346,7 +4346,7 @@
             </div>
           </div>`;
         } else {
-          mainHtml = `<div class="quest-item">
+          mainBody = `<div class="quest-item">
             <div class="quest-checkbox"></div>
             <div class="quest-item-content">
               <div class="quest-item-label">Belum ada item aktif</div>
@@ -4368,12 +4368,7 @@
           `<span class="quest-dot ${i < completedCount ? "done" : ""}"></span>`
         ).join("");
 
-        mainHtml = `<div class="quest-item-group-header">
-          <span class="quest-group-kind">${kindLabel}</span>
-          <strong>${escapeHtml(itemName)}</strong>
-          <span class="quest-group-target">Lv${currentLv} → Lv${targetLv}</span>
-          <span class="quest-group-dots">${progressDots}</span>
-        </div>`;
+        mainMeta = `<span class="quest-phase-meta"><span class="quest-group-kind">${kindLabel}</span><strong>${escapeHtml(itemName)}</strong><span class="quest-group-target">Lv${currentLv} → Lv${targetLv}</span><span class="quest-group-dots">${progressDots}</span></span>`;
 
         // Show next incomplete quest for this item
         let rendered = false;
@@ -4381,13 +4376,13 @@
           const qid = itemQuestId(kind, item.id || item.name, targetLv, i);
           if (!itemQuestCompleted(qid)) {
             const synQuest = makeSyntheticQuest(kind, item, targetLv, i, mainQueue[0].targetEntry);
-            mainHtml += renderSubQuest(synQuest, "main");
+            mainBody += renderSubQuest(synQuest, "main");
             rendered = true;
             break;
           }
         }
         if (!rendered) {
-          mainHtml += `<div class="quest-item done">
+          mainBody += `<div class="quest-item done">
             <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
             <div class="quest-item-content">
               <div class="quest-item-label">Level quests complete — item akan naik level</div>
@@ -4400,9 +4395,11 @@
       const dailyState     = questProgress.daily[jobTitle];
       const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
       let dailyHtml = "";
+      let dailyMeta = "";
+      let dailyBody = "";
 
       if (dailyDoneToday) {
-        dailyHtml = `<div class="quest-item done">
+        dailyBody = `<div class="quest-item done">
           <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
           <div class="quest-item-content">
             <div class="quest-item-label">Daily quest selesai hari ini</div>
@@ -4410,7 +4407,7 @@
           </div>
         </div>`;
       } else if (dailyCandidates.length === 0) {
-        dailyHtml = `<div class="quest-item">
+        dailyBody = `<div class="quest-item">
           <div class="quest-checkbox"></div>
           <div class="quest-item-content">
             <div class="quest-item-label">Semua item sudah aktif</div>
@@ -4431,13 +4428,9 @@
         const picked = pool[Math.floor(Math.random() * pool.length)];
         const introQuest = makeSyntheticIntroQuest(picked.kind, picked.item, picked.targetEntry);
         const kindLabel = picked.kind === "skill" ? "Skill" : picked.kind === "equip" ? "Equipment" : "Talent";
-        dailyHtml = `
-          <div class="quest-item-group-header">
-            <span class="quest-group-kind">${kindLabel}</span>
-            <strong>${escapeHtml(picked.item.name)}</strong>
-            <span class="quest-group-target">Lv0 → Lv1</span>
-          </div>
-          <div id="quest-daily-active">${renderSubQuest(introQuest, "daily")}</div>`;
+        const learnLabel = picked.kind === "skill" ? "Learn new skill" : picked.kind === "equip" ? "Learn new equip" : "Learn new talent";
+        dailyMeta = `<span class="quest-phase-meta"><span class="quest-group-kind">${kindLabel}</span><strong>${escapeHtml(picked.item.name)}</strong><span class="quest-group-target">${learnLabel}</span></span>`;
+        dailyBody = `<div id="quest-daily-active">${renderSubQuest(introQuest, "daily")}</div>`;
       }
 
       pane.innerHTML = `
@@ -4446,12 +4439,12 @@
           <div class="detail-panel-desc">Main quest: selesaikan 3 quest per level untuk tiap skill, equip, dan talent aktifmu. Daily quest: aktifkan satu item baru ke Lv 1 setiap hari.</div>
         </div>
         <div class="quest-phase">
-          <div class="quest-phase-title">Main Quest</div>
-          ${mainHtml}
+          <div class="quest-phase-title">Main Quest${mainMeta}</div>
+          ${mainBody}
         </div>
         <div class="quest-phase">
-          <div class="quest-phase-title">Daily Quest</div>
-          ${dailyHtml}
+          <div class="quest-phase-title">Daily Quest${dailyMeta}</div>
+          ${dailyBody}
         </div>`;
 
       // Index daily candidates by id for fast lookup in click handler
