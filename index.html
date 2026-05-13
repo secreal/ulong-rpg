@@ -3637,6 +3637,10 @@
       return { done, total: items.length, pct: items.length ? Math.round(done / items.length * 100) : 0 };
     }
 
+    let currentDetailJob = null;
+    let currentDetailRole = null;
+    let detailRenderedTabs = {};
+
     // ══════════════════════════════════════════
     // SIDEBAR
     // ══════════════════════════════════════════
@@ -4903,10 +4907,6 @@
     // ══════════════════════════════════════════
     // DETAIL MODAL (tabbed)
     // ══════════════════════════════════════════
-    let currentDetailJob = null;
-    let currentDetailRole = null;
-    let detailRenderedTabs = {};
-
     function openDetailModal(jobTitle, roleColor, activeTab) {
       if (currentDetailJob !== jobTitle) {
         detailRenderedTabs = {};
