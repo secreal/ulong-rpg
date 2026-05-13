@@ -483,6 +483,7 @@
       box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(255,255,255,.02);
       transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
       overflow: hidden;
+      display: flex; flex-direction: column;
     }
 
     .card:hover {
@@ -717,7 +718,7 @@
     .card-corner.bl { bottom: 5px; left: 5px; border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
     .card-corner.br { bottom: 5px; right: 5px; border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
 
-    .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; }
+    .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
     .card-body .meta { flex: 1; }
     .card-bottom { margin-top: auto; }
 
