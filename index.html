@@ -3616,7 +3616,7 @@
                 <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">★ Quest</button>
                 <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip">🛡 Equip</button>
                 <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="talent">✨ Talent</button>
-                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">🏆 Achv</button>
+                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">🏆 Achievement</button>
               </div>
               <div class="card-footer">
                 <div class="card-xp">
@@ -4750,7 +4750,7 @@
 
     // Generate & download
     // Shared helper: generate HTML and return it (used by copy flow and fallback download)
-    function buildExportHTML() {
+    async function buildExportHTML() {
       const prof = loadProfile();
       const snap = loadProgress();
       const snapLinks = loadLinks();
@@ -4760,7 +4760,11 @@
           return skillSnapshotLevel(snap, title, s) > 0;
         })
       );
-      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange) : null };
+      // Load equip/talent catalogs for export (cached after first load)
+      let snapEquip = [], snapTalent = [];
+      try { const d = await loadEquipmentData(); snapEquip = d.equipment || []; } catch {}
+      try { const d = await loadTalentData();    snapTalent = d.talents    || []; } catch {}
+      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange, snapEquip, snapTalent) : null };
     }
 
     function triggerDownload(html) {
@@ -4771,9 +4775,9 @@
       URL.revokeObjectURL(url);
     }
 
-    document.getElementById("export-fallback-dl").addEventListener("click", e => {
+    document.getElementById("export-fallback-dl").addEventListener("click", async e => {
       e.preventDefault();
-      const { html } = buildExportHTML();
+      const { html } = await buildExportHTML();
       if (html) triggerDownload(html);
     });
 
@@ -4794,7 +4798,7 @@
     }
 
     document.getElementById("btn-do-export").addEventListener("click", async () => {
-      const { prof, html } = buildExportHTML();
+      const { prof, html } = await buildExportHTML();
 
       if (!html) {
         alert("Belum ada progress yang bisa di-export. Level up beberapa skill dulu!");
@@ -4882,7 +4886,7 @@
     // ══════════════════════════════════════════
     // HTML GENERATOR
     // ══════════════════════════════════════════
-    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapJobChange) {
+    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapJobChange, snapEquip = [], snapTalent = []) {
       const name   = prof.name   || "Unknown Hero";
       const nick   = prof.nick   || "";
       const github = prof.github || "";
@@ -4927,6 +4931,28 @@
         return jobLinks ? `<div class="porto-section"><div class="porto-label">Links</div>${jobLinks}</div>` : "";
       }
 
+      function buildEquipTalentSection(title) {
+        const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
+        const equips = snapEquip
+          .filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`])
+          .map(e => {
+            const lv = Math.min(3, Number(snap[`equip::${e.id}`]) || 1);
+            const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
+            return `<span class="skill lv${lv}">${escAttr(e.name)}${badge}</span>`;
+          });
+        const talents = snapTalent
+          .filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`])
+          .map(t => {
+            const lv = Math.min(3, Number(snap[`talent::${t.id}`]) || 1);
+            const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
+            return `<span class="skill lv${lv}">${escAttr(t.name)}${badge}</span>`;
+          });
+        const parts = [];
+        if (equips.length) parts.push(`<div class="porto-section"><div class="porto-label">Equipment</div><div class="skill-list">${equips.join("")}</div></div>`);
+        if (talents.length) parts.push(`<div class="porto-section"><div class="porto-label">Talent</div><div class="skill-list">${talents.join("")}</div></div>`);
+        return parts.join("");
+      }
+
       function buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass) {
         const tc = tierColors[tier] || "#6b7280";
         const descEN   = jobDescs_en[title] || desc;
@@ -4952,6 +4978,7 @@
       <h2 class="card-title">${title}</h2>
       <p class="desc" data-id="${desc}" data-en="${descEN}">${descEN}</p>
       <div class="skill-list">${buildSkillBadges(title, skills)}</div>
+      ${buildEquipTalentSection(title)}
       ${buildLinksSection(title)}
       <div class="salary-row">
         <span class="salary-label">Salary</span>
@@ -4996,6 +5023,7 @@
             <div class="sub-card-title">${st}</div>
             <p class="desc" data-id="${sd}" data-en="${sdEN}">${sdEN}</p>
             <div class="skill-list">${buildSkillBadges(st, ss)}</div>
+            ${buildEquipTalentSection(st)}
             ${buildLinksSection(st)}
             <div class="salary-row">
               <span class="salary-label">Salary</span>
