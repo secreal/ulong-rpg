@@ -8,7 +8,8 @@
     "intro": "one daily activation quest",
     "levels": "object with keys 1, 2, 3; each level contains exactly three required main quests",
     "learningStage": "fundamental | dependent; fundamental targets can appear in first rolling daily quests before dependent targets",
-    "prerequisiteTargets": "array of target references required before dependent target introduction; empty for fundamental targets or not-yet-modeled dependencies"
+    "prerequisiteTargets": "array of target references required before dependent target introduction; empty for fundamental targets or not-yet-modeled dependencies",
+    "fundamental": "boolean; true when the target can be learned immediately without prerequisite skill/tool/talent knowledge and should appear earlier in daily quest rotation"
   },
   "targets": [
     {
@@ -148,6 +149,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -287,6 +289,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -426,6 +429,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -565,6 +569,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -704,6 +709,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -843,6 +849,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -982,6 +989,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -1121,6 +1129,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -1260,6 +1269,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -1399,6 +1409,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -1538,6 +1549,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -1677,6 +1689,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -1816,6 +1829,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -1955,6 +1969,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -2094,6 +2109,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -2233,6 +2249,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -2372,6 +2389,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -2511,6 +2529,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -2650,6 +2669,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -2789,6 +2809,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -2928,6 +2949,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -3067,6 +3089,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -3206,6 +3229,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -3345,6 +3369,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -3484,6 +3509,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -3623,6 +3649,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -3762,6 +3789,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -3901,6 +3929,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -4040,6 +4069,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -4179,6 +4209,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -4318,6 +4349,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -4457,6 +4489,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -4596,6 +4629,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -4735,6 +4769,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -4874,6 +4909,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -5013,6 +5049,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -5152,6 +5189,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -5291,6 +5329,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -5430,6 +5469,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -5569,6 +5609,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -5708,6 +5749,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -5847,6 +5889,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -5986,6 +6029,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -6125,6 +6169,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -6264,6 +6309,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -6403,6 +6449,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -6542,6 +6589,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -6681,6 +6729,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -6820,6 +6869,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -6959,6 +7009,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -7098,6 +7149,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -7237,6 +7289,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -7376,6 +7429,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -7515,6 +7569,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -7654,6 +7709,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -7793,6 +7849,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -7932,6 +7989,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -8071,6 +8129,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -8210,6 +8269,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -8349,6 +8409,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -8488,6 +8549,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -8627,6 +8689,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -8766,6 +8829,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -8905,6 +8969,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -9044,6 +9109,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -9183,6 +9249,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -9322,6 +9389,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -9461,6 +9529,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -9600,6 +9669,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -9739,6 +9809,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -9878,6 +9949,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -10017,6 +10089,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -10156,6 +10229,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -10295,6 +10369,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -10434,6 +10509,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -10573,6 +10649,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -10712,6 +10789,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -10851,6 +10929,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -10990,6 +11069,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -11129,6 +11209,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -11268,6 +11349,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -11407,6 +11489,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -11546,6 +11629,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -11685,6 +11769,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -11824,6 +11909,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -11963,6 +12049,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -12102,6 +12189,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -12241,6 +12329,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -12380,6 +12469,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -12519,6 +12609,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -12658,6 +12749,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -12797,6 +12889,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -12936,6 +13029,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -13075,6 +13169,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -13214,6 +13309,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -13353,6 +13449,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -13492,6 +13589,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -13631,6 +13729,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -13770,6 +13869,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -13909,6 +14009,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -14048,6 +14149,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -14187,6 +14289,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -14326,6 +14429,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -14465,6 +14569,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -14604,6 +14709,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -14743,6 +14849,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -14882,6 +14989,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -15021,6 +15129,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -15160,6 +15269,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -15299,6 +15409,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -15438,6 +15549,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -15577,6 +15689,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -15716,6 +15829,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -15855,6 +15969,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -15994,6 +16109,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -16133,6 +16249,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -16272,6 +16389,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -16411,6 +16529,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -16550,6 +16669,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -16689,6 +16809,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -16828,6 +16949,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -16967,6 +17089,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -17106,6 +17229,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -17245,6 +17369,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -17384,6 +17509,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -17523,6 +17649,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -17662,6 +17789,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -17801,6 +17929,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -17940,6 +18069,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -18079,6 +18209,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -18218,6 +18349,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -18357,6 +18489,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -18496,6 +18629,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -18635,6 +18769,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -18774,6 +18909,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -18913,6 +19049,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -19052,6 +19189,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -19191,6 +19329,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -19330,6 +19469,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -19469,6 +19609,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -19608,6 +19749,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -19747,6 +19889,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -19886,6 +20029,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -20025,6 +20169,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -20164,6 +20309,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -20303,6 +20449,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -20442,6 +20589,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -20581,6 +20729,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -20720,6 +20869,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -20859,6 +21009,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -20998,6 +21149,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -21137,6 +21289,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -21276,6 +21429,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -21415,6 +21569,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -21554,6 +21709,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -21693,6 +21849,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -21832,6 +21989,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -21971,6 +22129,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -22110,6 +22269,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -22249,6 +22409,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -22388,6 +22549,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -22527,6 +22689,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -22666,6 +22829,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -22805,6 +22969,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -22944,6 +23109,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -23083,6 +23249,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -23222,6 +23389,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -23361,6 +23529,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -23500,6 +23669,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -23639,6 +23809,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -23778,6 +23949,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -23917,6 +24089,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -24056,6 +24229,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -24195,6 +24369,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -24334,6 +24509,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -24473,6 +24649,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -24612,6 +24789,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -24751,6 +24929,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -24890,6 +25069,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -25029,6 +25209,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -25168,6 +25349,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -25307,6 +25489,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -25446,6 +25629,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -25585,6 +25769,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -25724,6 +25909,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -25863,6 +26049,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     },
     {
@@ -26002,6 +26189,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -26141,6 +26329,7 @@
         ]
       },
       "learningStage": "fundamental",
+      "fundamental": true,
       "prerequisiteTargets": []
     },
     {
@@ -26280,6 +26469,7 @@
         ]
       },
       "learningStage": "dependent",
+      "fundamental": false,
       "prerequisiteTargets": []
     }
   ]
