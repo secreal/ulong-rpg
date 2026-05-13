@@ -4051,22 +4051,7 @@
     }
 
     function renderSkills(title, skills) {
-      const progressedJobs = getProgressedJobs();
-      const allSkills = skills.split(", ");
-      const sharedSkills = allSkills.filter(s => isSharedSkill(s, progressedJobs, title));
-      const uniqueSkills = allSkills.filter(s => !isSharedSkill(s, progressedJobs, title));
-      const hasSplit = sharedSkills.length > 0;
-
-      if (hasSplit) {
-        return `<div class="panel-split skill-list-alpha">
-          <div class="panel-split-unique">${buildSkillAlphaGroupsHtml(title, uniqueSkills)}</div>
-          <div class="panel-split-shared">
-            <div class="panel-split-shared-header">Shared</div>
-            ${buildSkillAlphaGroupsHtml(title, sharedSkills)}
-          </div>
-        </div>`;
-      }
-      return `<div class="skill-list-alpha">${buildSkillAlphaGroupsHtml(title, allSkills)}</div>`;
+      return `<div class="skill-list-alpha">${buildSkillAlphaGroupsHtml(title, skills.split(", "))}</div>`;
     }
 
     function renderAchievementLinks(title) {
@@ -4941,26 +4926,11 @@
     function renderItemPanel(pane, items, kind) {
       if (!items.length) { pane.innerHTML = detailEmptyHtml("📭", `Belum ada ${kind} untuk job ini.`); return; }
       const meta = PANEL_META[kind] || { icon: "📦", title: kind, desc: "" };
-      const progressedJobs = getProgressedJobs();
-      const sharedItems = items.filter(i => isSharedEquip(i, progressedJobs, currentDetailJob));
-      const uniqueItems = items.filter(i => !isSharedEquip(i, progressedJobs, currentDetailJob));
-      const hasSplit = sharedItems.length > 0;
-
-      const groupsHtml = hasSplit
-        ? `<div class="panel-split">
-            <div class="panel-split-unique">${buildAlphaGroupsHtml(uniqueItems, kind)}</div>
-            <div class="panel-split-shared">
-              <div class="panel-split-shared-header">Shared</div>
-              ${buildAlphaGroupsHtml(sharedItems, kind)}
-            </div>
-          </div>`
-        : buildAlphaGroupsHtml(items, kind);
-
       pane.innerHTML = `
         <div class="detail-panel-desc">${meta.desc}</div>
         <input class="detail-panel-search" type="search" placeholder="Cari ${meta.title.toLowerCase()}…" aria-label="Cari">
         <div class="detail-panel-count">${items.length} ${kind} tersedia</div>
-        <div id="detail-${kind}-groups">${groupsHtml}</div>`;
+        <div id="detail-${kind}-groups">${buildAlphaGroupsHtml(items, kind)}</div>`;
 
       pane.querySelector(".detail-panel-search").addEventListener("input", function () {
         const q = this.value.toLowerCase().trim();
