@@ -138,6 +138,78 @@
     /* sync button in header */
     .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
+    .header-profile-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 20px;
+      border: 1px solid var(--line-bright);
+      background: var(--panel);
+      color: var(--ink); cursor: pointer;
+      font: 600 11.5px 'Inter', sans-serif;
+      transition: all .15s ease; max-width: 260px;
+      white-space: nowrap; overflow: hidden;
+    }
+    .header-profile-chip:hover { border-color: var(--gold); color: var(--gold); }
+    .profile-chip-avatar { font-size: 13px; flex-shrink: 0; }
+    .profile-chip-name { overflow: hidden; text-overflow: ellipsis; }
+    .profile-chip-guild {
+      color: var(--muted); font-size: 10.5px; font-weight: 400;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+    .profile-chip-guild:not(:empty)::before { content: "·"; margin-right: 4px; }
+
+    .profile-section-label {
+      font: 700 9.5px 'Inter', sans-serif; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--gold); opacity: .8;
+      margin-bottom: 10px;
+    }
+    .profile-field-group { margin-bottom: 10px; }
+    .profile-label { display: block; font: 600 10.5px 'Inter', sans-serif; color: var(--muted); margin-bottom: 4px; }
+    .profile-input {
+      width: 100%; padding: 8px 10px; border-radius: 7px;
+      border: 1px solid var(--line); background: var(--panel-2);
+      color: var(--ink); font: 400 13px 'Inter', sans-serif;
+      outline: none; transition: border-color .14s ease; box-sizing: border-box;
+    }
+    .profile-input:focus { border-color: var(--line-bright); }
+    .profile-input::placeholder { color: var(--muted); }
+
+    .guild-history-list { display: flex; flex-direction: column; gap: 6px; }
+    .guild-history-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line);
+      font-size: 11.5px; color: var(--muted);
+    }
+    .guild-history-name { flex: 1; color: var(--ink); }
+    .guild-history-period { font-size: 10.5px; flex-shrink: 0; }
+    .guild-history-remove {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); font-size: 15px; line-height: 1; padding: 0 2px;
+      flex-shrink: 0;
+    }
+    .guild-history-remove:hover { color: #e85f5f; }
+
+    .btn-find-guild {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 13px; border-radius: 8px;
+      border: 1px solid var(--line); background: var(--panel);
+      color: var(--muted); font: 600 12px 'Inter', sans-serif; cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-find-guild:hover { border-color: var(--gold); color: var(--gold); }
+    .find-guild-links { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+    .find-guild-link-item {
+      display: flex; flex-direction: column; gap: 3px;
+      padding: 10px 12px; border-radius: 8px;
+      border: 1px solid var(--line); background: var(--panel-2);
+    }
+    .find-guild-link-item a {
+      font: 600 13px 'Inter', sans-serif; color: var(--gold);
+      text-decoration: none; word-break: break-word;
+    }
+    .find-guild-link-item a:hover { text-decoration: underline; }
+    .find-guild-link-sub { font-size: 11px; color: var(--muted); line-height: 1.5; }
+    .find-guild-empty { font-size: 13px; color: var(--muted); margin-top: 14px; text-align: center; }
+
     .btn-sync {
       display: flex; align-items: center; gap: 7px;
       padding: 8px 14px;
@@ -1580,6 +1652,12 @@
         <h1>ulong <span class="logo-rpg">RPG</span><span class="logo-tagline">ur long role playing game</span></h1>
       </div>
       <div class="header-actions">
+        <button class="header-profile-chip" id="btn-profile-chip" title="Edit profil & guild">
+          <span class="profile-chip-avatar">👤</span>
+          <span class="profile-chip-name" id="header-profile-name">Hero</span>
+          <span class="profile-chip-guild" id="header-profile-guild"></span>
+        </button>
+        <button class="btn-find-guild" id="btn-find-guild" title="Cari lowongan kerja">🔍 Find Guild</button>
         <div class="auto-wrapper" id="auto-wrapper">
           <button class="btn-auto" id="btn-auto" title="AI Quest Guide — copy prompt ke AI CLI kamu">
             <span class="btn-auto-icon">⚡</span> AUTO
@@ -1706,6 +1784,69 @@
         <div class="detail-tab-content" data-tab="equip" id="detail-content-equip"></div>
         <div class="detail-tab-content" data-tab="talent" id="detail-content-talent"></div>
         <div class="detail-tab-content" data-tab="achievement" id="detail-content-achievement"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROFILE MODAL ── -->
+  <div class="modal-overlay" id="profile-overlay" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+    <div class="modal" id="profile-modal" style="max-width:480px">
+      <div class="modal-chrome">
+        <div class="modal-eyebrow">👤 Identitas</div>
+        <div class="modal-title" id="profile-modal-title">Profil & Guild</div>
+        <button class="modal-close" id="profile-close" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:20px 22px 24px">
+        <div class="profile-section-label">Profil</div>
+        <div class="profile-field-group">
+          <label class="profile-label">Nama Lengkap</label>
+          <input class="profile-input" type="text" id="profile-input-name" placeholder="Nama kamu" autocomplete="name">
+        </div>
+        <div class="profile-field-group">
+          <label class="profile-label">Nickname / Username</label>
+          <input class="profile-input" type="text" id="profile-input-nick" placeholder="@nick" autocomplete="username">
+        </div>
+        <div class="profile-field-group">
+          <label class="profile-label">GitHub</label>
+          <input class="profile-input" type="text" id="profile-input-github" placeholder="github.com/username">
+        </div>
+        <div class="profile-section-label" style="margin-top:20px">Guild (Tempat Kerja)</div>
+        <div class="profile-field-group">
+          <label class="profile-label">Nama Perusahaan</label>
+          <input class="profile-input" type="text" id="guild-input-company" placeholder="PT Maju Jaya">
+        </div>
+        <div class="profile-field-group">
+          <label class="profile-label">Job Title di Sana</label>
+          <input class="profile-input" type="text" id="guild-input-jobtitle" placeholder="Frontend Developer">
+        </div>
+        <div class="profile-field-group">
+          <label class="profile-label">Mulai Bekerja</label>
+          <input class="profile-input" type="month" id="guild-input-since">
+        </div>
+        <div id="guild-history-section" style="margin-top:14px;display:none">
+          <div class="profile-section-label">History Guild</div>
+          <div id="guild-history-list" class="guild-history-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FIND GUILD MODAL ── -->
+  <div class="modal-overlay" id="find-guild-overlay" role="dialog" aria-modal="true" aria-labelledby="find-guild-title">
+    <div class="modal" id="find-guild-modal" style="max-width:480px">
+      <div class="modal-chrome">
+        <div class="modal-eyebrow">🔍 Cari Lowongan</div>
+        <div class="modal-title" id="find-guild-title">Find Guild</div>
+        <button class="modal-close" id="find-guild-close" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:20px 22px 24px">
+        <div class="profile-field-group">
+          <label class="profile-label">Pilih Job</label>
+          <select class="profile-input" id="find-guild-job-select">
+            <option value="">— pilih job —</option>
+          </select>
+        </div>
+        <div id="find-guild-links" class="find-guild-links"></div>
       </div>
     </div>
   </div>
@@ -2852,6 +2993,7 @@
     const LANG_KEY    = "itjt_lang_v1";
     const JOB_CHANGE_KEY = "itjt_jobchange_v1";
     const QUEST_PROGRESS_KEY = "itjt_quest_progress_v1";
+    const GUILD_KEY = "itjt_guild_v1";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -3895,6 +4037,11 @@
       if (e.key === "Escape") {
         if (document.getElementById("detail-overlay").classList.contains("open")) closeDetailModal();
         else if (document.getElementById("quest-overlay").classList.contains("open")) closeQuest();
+        else if (document.getElementById("profile-overlay").classList.contains("open")) closeProfileEdit();
+        else {
+          const fgOverlay = document.getElementById("find-guild-overlay");
+          if (fgOverlay?.classList.contains("open")) fgOverlay._close?.();
+        }
       }
     });
 
@@ -5190,11 +5337,202 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
     })();
 
     // ══════════════════════════════════════════
+    // PROFILE CHIP + EDIT MODAL
+    // ══════════════════════════════════════════
+    function loadGuild() {
+      try { return JSON.parse(localStorage.getItem(GUILD_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveGuild(data) {
+      localStorage.setItem(GUILD_KEY, JSON.stringify(data));
+    }
+
+    function renderProfileChip() {
+      const prof  = loadProfile();
+      const guild = loadGuild();
+      const name  = prof.nick || prof.name || "Hero";
+      document.getElementById("header-profile-name").textContent = name;
+      document.getElementById("header-profile-guild").textContent =
+        [guild.company, guild.jobTitle].filter(Boolean).join(" · ");
+    }
+
+    function renderGuildHistory() {
+      const guild = loadGuild();
+      const history = guild.history || [];
+      const section = document.getElementById("guild-history-section");
+      const list    = document.getElementById("guild-history-list");
+      if (!history.length) { section.style.display = "none"; return; }
+      section.style.display = "";
+      list.innerHTML = history.map((h, i) =>
+        `<div class="guild-history-item">
+          <span class="guild-history-name">${h.company || "—"}${h.jobTitle ? " · " + h.jobTitle : ""}</span>
+          <span class="guild-history-period">${h.since || ""}${h.until ? " – " + h.until : ""}</span>
+          <button class="guild-history-remove" data-history-index="${i}" title="Hapus" aria-label="Hapus entry">×</button>
+        </div>`
+      ).join("");
+    }
+
+    function openProfileEdit() {
+      const prof  = loadProfile();
+      const guild = loadGuild();
+      document.getElementById("profile-input-name").value   = prof.name   || "";
+      document.getElementById("profile-input-nick").value   = prof.nick   || "";
+      document.getElementById("profile-input-github").value = prof.github || "";
+      document.getElementById("guild-input-company").value  = guild.company  || "";
+      document.getElementById("guild-input-jobtitle").value = guild.jobTitle || "";
+      document.getElementById("guild-input-since").value    = guild.since    || "";
+      renderGuildHistory();
+      document.getElementById("profile-overlay").classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProfileEdit() {
+      document.getElementById("profile-overlay").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // Auto-save: profile fields
+    ["profile-input-name", "profile-input-nick", "profile-input-github"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        saveProfile({
+          name:   document.getElementById("profile-input-name").value.trim(),
+          nick:   document.getElementById("profile-input-nick").value.trim(),
+          github: document.getElementById("profile-input-github").value.trim(),
+        });
+        renderProfileChip();
+      });
+    });
+
+    // Auto-save: guild fields
+    // When company changes and there was a previous company, archive it to history
+    let prevCompany = "";
+    document.getElementById("guild-input-company").addEventListener("focus", function () {
+      prevCompany = this.value.trim();
+    });
+    document.getElementById("guild-input-company").addEventListener("change", function () {
+      const newCompany = this.value.trim();
+      if (prevCompany && prevCompany !== newCompany) {
+        const guild = loadGuild();
+        const history = guild.history || [];
+        history.unshift({
+          company:  prevCompany,
+          jobTitle: guild.jobTitle || "",
+          since:    guild.since    || "",
+          until:    new Date().toISOString().slice(0, 7),
+        });
+        guild.history = history;
+        guild.company  = newCompany;
+        guild.jobTitle = document.getElementById("guild-input-jobtitle").value.trim();
+        guild.since    = document.getElementById("guild-input-since").value;
+        saveGuild(guild);
+        renderProfileChip();
+        renderGuildHistory();
+      }
+      prevCompany = newCompany;
+    });
+
+    ["guild-input-company", "guild-input-jobtitle", "guild-input-since"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        const guild = loadGuild();
+        guild.company  = document.getElementById("guild-input-company").value.trim();
+        guild.jobTitle = document.getElementById("guild-input-jobtitle").value.trim();
+        guild.since    = document.getElementById("guild-input-since").value;
+        saveGuild(guild);
+        renderProfileChip();
+      });
+    });
+
+    // Remove history entry
+    document.getElementById("guild-history-list").addEventListener("click", e => {
+      const btn = e.target.closest(".guild-history-remove");
+      if (!btn) return;
+      const idx = parseInt(btn.dataset.historyIndex, 10);
+      const guild = loadGuild();
+      guild.history = guild.history || [];
+      guild.history.splice(idx, 1);
+      saveGuild(guild);
+      renderGuildHistory();
+    });
+
+    document.getElementById("btn-profile-chip").addEventListener("click", openProfileEdit);
+    document.getElementById("profile-close").addEventListener("click", closeProfileEdit);
+    document.getElementById("profile-overlay").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeProfileEdit();
+    });
+
+    // ══════════════════════════════════════════
+    // FIND GUILD MODAL
+    // ══════════════════════════════════════════
+    (function initFindGuild() {
+      const overlay  = document.getElementById("find-guild-overlay");
+      const select   = document.getElementById("find-guild-job-select");
+      const linksEl  = document.getElementById("find-guild-links");
+
+      // Populate job dropdown from jobs array
+      jobs.forEach(([, title]) => {
+        const opt = document.createElement("option");
+        opt.value = title;
+        opt.textContent = title;
+        select.appendChild(opt);
+      });
+
+      function renderFindGuildLinks(questData) {
+        if (!questData?.phases) {
+          linksEl.innerHTML = `<div class="find-guild-empty">Tidak ada data lowongan untuk job ini.</div>`;
+          return;
+        }
+        const guildPhase = questData.phases.find(p =>
+          p.title === "Find Your Guild" || p.title?.toLowerCase().includes("find")
+        );
+        if (!guildPhase?.items?.length) {
+          linksEl.innerHTML = `<div class="find-guild-empty">Belum ada link lowongan untuk job ini.</div>`;
+          return;
+        }
+        linksEl.innerHTML = guildPhase.items.map(item => `
+          <div class="find-guild-link-item">
+            <a href="${item.ref}" target="_blank" rel="noopener noreferrer">${item.label}</a>
+            ${item.sub ? `<div class="find-guild-link-sub">${item.sub}</div>` : ""}
+          </div>
+        `).join("");
+      }
+
+      select.addEventListener("change", async () => {
+        const jobTitle = select.value;
+        if (!jobTitle) { linksEl.innerHTML = ""; return; }
+        linksEl.innerHTML = `<div class="find-guild-empty">Memuat…</div>`;
+        try {
+          const questData = await loadQuestFile(jobTitle);
+          renderFindGuildLinks(questData);
+        } catch {
+          linksEl.innerHTML = `<div class="find-guild-empty">Gagal memuat data. Coba buka dari server lokal.</div>`;
+        }
+      });
+
+      function openFindGuild() {
+        overlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeFindGuild() {
+        overlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document.getElementById("btn-find-guild").addEventListener("click", openFindGuild);
+      document.getElementById("find-guild-close").addEventListener("click", closeFindGuild);
+      overlay.addEventListener("click", e => { if (e.target === e.currentTarget) closeFindGuild(); });
+
+      // Wire ESC into consolidated keydown handler (referenced via outer function — add to existing handler)
+      overlay._close = closeFindGuild;
+    })();
+
+    // ══════════════════════════════════════════
     // INIT
     // ══════════════════════════════════════════
     renderSidebar();
     renderPyramid();
     renderCards();
+    renderProfileChip();
     loadQuestIndex();
   </script>
 </body>

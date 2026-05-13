@@ -1,13 +1,13 @@
 ---
-date: 2026-05-11
+date: 2026-05-13
 topic: card-actions-rework
 ---
 
-# Card Actions Rework — Quest/Equip/Talent/Achievement/Mission Tabs + Profile Header + Guild
+# Card Actions Rework — Quest/Equip/Talent/Achievement Tabs + Profile Header + Guild
 
 ## Summary
 
-Rework tombol aksi di card job dari satu tombol "Qualification" menjadi 5 tombol terpisah (Quest, Equip, Talent, Achievement, Mission) yang membuka satu modal bertab. Bersamaan, profil user dan guild (tempat kerja) ditampilkan secara permanen di header, dan Find Guild dipindah menjadi satu tombol global.
+Rework tombol aksi di card job dari satu tombol "Qualification" menjadi 4 tombol ikon di body card: Quest, Daily, Equip, Talent, Achievement — masing-masing membuka satu modal bertab dan langsung aktif di tab yang sesuai. Mission diundur ke fase berikutnya. Bersamaan, profil user dan guild (tempat kerja) ditampilkan secara permanen di header, dan Find Guild dipindah menjadi satu tombol global.
 
 ---
 
@@ -52,10 +52,13 @@ Saat ini semua konten pembelajaran (checklist belajar, equipment, achievement, j
 
 **Tombol aksi di card**
 
-- R1. Tombol "📋 Qualification" di card job dihapus dan digantikan oleh 5 tombol: Quest, Equip, Talent, Achievement, Mission
-- R2. Kelima tombol membuka satu modal bertab — tab yang diklik langsung aktif saat modal terbuka
-- R3. Konten tiap tab diload dari file eksternal (bukan hardcoded di index.html) — pemetaan file ke job/tab ditentukan saat planning
-- R4. Tab yang tidak memiliki konten untuk job tersebut tetap bisa diklik tetapi menampilkan pesan kosong (bukan disembunyikan)
+- R1. Tombol "📋 Qualification" di card job dihapus dan footer card hanya menyisakan tombol Job Change
+- R2. Di body card (antara skills dan footer) ditambahkan row ikon kecil: Quest · Daily · Equip · Talent · Achievement
+- R3. Kelima tombol membuka **satu modal bertab** — tab yang diklik langsung aktif saat modal terbuka; user bisa pindah antar tab tanpa menutup modal
+- R4. Mission diundur — tidak termasuk dalam implementasi ini
+- R5. Konten tiap tab diload dari file eksternal (bukan hardcoded di index.html) — pemetaan file ke job/tab ditentukan saat planning
+- R6. Tab yang tidak memiliki konten untuk job tersebut tetap bisa diklik tetapi menampilkan pesan kosong (bukan disembunyikan)
+- R7. Modal Equipment dan Talent hanya menampilkan item yang relevan untuk job yang bersangkutan, difilter berdasarkan field `tags` di `data/equipment.json` dan `data/talents.json`
 
 **Profil di header**
 
@@ -90,8 +93,10 @@ Saat ini semua konten pembelajaran (checklist belajar, equipment, achievement, j
 
 ## Acceptance Examples
 
-- AE1. **Covers R1, R2.** Diberikan card Frontend Developer, ketika user klik tombol Equip, modal terbuka langsung di tab Equip — bukan di tab Quest.
-- AE2. **Covers R4.** Diberikan card yang tidak memiliki konten Achievement, ketika user klik tombol Achievement, modal terbuka di tab Achievement dengan pesan "Belum ada konten" — tab tidak hilang.
+- AE1. **Covers R2, R3.** Diberikan card Frontend Developer, ketika user klik ikon Equip di body card, modal terbuka langsung di tab Equip — bukan di tab Quest.
+- AE2. **Covers R3.** Diberikan modal sudah terbuka di tab Quest, ketika user klik tab Equip di dalam modal, konten berganti tanpa menutup dan membuka ulang modal.
+- AE3. **Covers R6.** Diberikan card yang tidak memiliki konten Achievement, ketika user klik ikon Achievement, modal terbuka di tab Achievement dengan pesan "Belum ada konten" — tab tidak hilang.
+- AE4. **Covers R7.** Diberikan card Data Analyst, tab Equip hanya menampilkan equipment yang memiliki tag "Data Analyst" di `data/equipment.json`.
 - AE3. **Covers R5, R8.** Diberikan user belum mengisi profil, header menampilkan placeholder (misal `[👤 Hero]`) bukan error atau kosong.
 - AE4. **Covers R8, R10.** Diberikan user mengisi guild PT Maju Jaya sebagai Backend Developer, header menampilkan `[👤 ulong | PT Maju Jaya · Backend Developer]`.
 - AE5. **Covers R13, R14, R15.** Diberikan user klik Find Guild di header dan pilih "Data Analyst", modal menampilkan link Glints/Indeed/LinkedIn spesifik untuk Data Analyst dari data yang sudah ada.
@@ -100,7 +105,7 @@ Saat ini semua konten pembelajaran (checklist belajar, equipment, achievement, j
 
 ## Success Criteria
 
-- User dapat langsung navigasi ke Quest, Equip, Talent, Achievement, atau Mission tanpa scroll melalui konten lain
+- User dapat langsung navigasi ke Quest, Daily, Equip, Talent, atau Achievement tanpa scroll melalui konten lain
 - Identitas user (nama/nick + guild) selalu terlihat di header tanpa harus membuka modal Export
 - Find Guild dapat diakses dari mana saja tanpa harus scroll ke card job tertentu
 - Konten per tab dapat diupdate tanpa menyentuh index.html (file eksternal)
@@ -122,8 +127,10 @@ Saat ini semua konten pembelajaran (checklist belajar, equipment, achievement, j
 
 ## Key Decisions
 
-- **5 tombol terpisah, bukan 1 tombol dengan submenu:** Memberi akses langsung ke tab yang diinginkan tanpa step tambahan
-- **Modal bertab, bukan 4 modal terpisah:** Satu modal lebih ringan dari sisi UI dan memudahkan navigasi antar konten
+- **5 ikon di body card, bukan 1 tombol dengan submenu:** Memberi akses langsung ke tab yang diinginkan tanpa step tambahan; Qualification dihapus sepenuhnya
+- **Modal bertab, bukan modal terpisah per kategori:** Satu modal lebih ringan dari sisi UI; user bisa pindah antar tab bebas setelah modal terbuka tanpa klik tombol card lagi
+- **Mission diundur:** Konten Mission belum siap — tab disiapkan strukturnya saja jika memang perlu, tapi tombol di card tidak dimunculkan dulu
+- **Equipment dan Talent difilter per job:** Modal hanya menampilkan item relevan (match tags) — tidak dump semua isi file
 - **Find Guild di header (global), bukan per card:** User sering mencari lowongan lintas job — satu pintu lebih efisien
 - **Talent terpisah dari Equip:** Equip berarti app/executable/system kerja nyata seperti VS Code, Git, DevTools, atau vendor console. Talent berarti framework/library/stack/spesialisasi seperti React, Vue, Svelte, Angular, atau padanan di job lain.
 - **Skills berarti teknik/kegiatan kerja:** Skills di card job tidak boleh menjadi daftar tools atau nama role. Contoh yang benar: routing, debugging, API design, incident response, usability testing. Contoh yang harus pindah kategori: VS Code/Git ke Equip; React/Vue/Docker/Kubernetes/Power BI ke Talent atau Equip tergantung apakah ia framework/stack atau app/system kerja. Contoh yang harus diganti karena nama role/domain terlalu besar: UI, UX, Frontend, Backend.
