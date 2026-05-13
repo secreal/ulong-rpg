@@ -141,23 +141,15 @@
     .header-profile-row { display: flex; align-items: center; justify-content: flex-end; }
 
     .header-profile-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 12px; border-radius: 20px;
-      border: 1px solid var(--line-bright);
-      background: var(--panel);
-      color: var(--ink); cursor: pointer;
-      font: 600 11.5px 'Inter', sans-serif;
-      transition: all .15s ease; max-width: 260px;
-      white-space: nowrap; overflow: hidden;
+      display: inline-flex; align-items: center; gap: 5px;
+      color: var(--muted); cursor: pointer;
+      font: 500 11.5px 'Inter', sans-serif;
+      transition: color .15s ease;
+      background: none; border: none; padding: 0;
     }
-    .header-profile-chip:hover { border-color: var(--gold); color: var(--gold); }
-    .profile-chip-avatar { font-size: 13px; flex-shrink: 0; }
-    .profile-chip-name { overflow: hidden; text-overflow: ellipsis; }
-    .profile-chip-guild {
-      color: var(--muted); font-size: 10.5px; font-weight: 400;
-      overflow: hidden; text-overflow: ellipsis;
-    }
-    .profile-chip-guild:not(:empty)::before { content: "·"; margin-right: 4px; }
+    .header-profile-chip:hover { color: var(--ink); }
+    .profile-chip-avatar { font-size: 12px; flex-shrink: 0; opacity: .7; }
+    .profile-chip-text { white-space: nowrap; }
 
     .profile-section-label {
       font: 700 9.5px 'Inter', sans-serif; letter-spacing: 1.2px;
@@ -198,19 +190,27 @@
       white-space: nowrap;
     }
     .btn-find-guild:hover { border-color: var(--gold); color: var(--gold); }
-    .find-guild-links { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
-    .find-guild-link-item {
-      display: flex; flex-direction: column; gap: 3px;
-      padding: 10px 12px; border-radius: 8px;
+    .find-guild-desc { font-size: 12px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+    .find-guild-job-card {
+      padding: 14px 16px; border-radius: 10px;
       border: 1px solid var(--line); background: var(--panel-2);
+      margin-bottom: 12px;
     }
-    .find-guild-link-item a {
-      font: 600 13px 'Inter', sans-serif; color: var(--gold);
-      text-decoration: none; word-break: break-word;
+    .find-guild-job-card:last-child { margin-bottom: 0; }
+    .find-guild-job-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .find-guild-job-name { font: 700 14px 'Inter', sans-serif; color: var(--ink); }
+    .find-guild-job-group { font: 600 10px 'Inter', sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; padding: 2px 7px; border: 1px solid var(--line); border-radius: 4px; }
+    .find-guild-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .find-guild-link-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border-radius: 6px;
+      border: 1px solid var(--line-bright); background: var(--panel);
+      color: var(--gold); font: 600 12px 'Inter', sans-serif;
+      text-decoration: none; cursor: pointer;
+      transition: border-color .15s ease, background .15s ease;
     }
-    .find-guild-link-item a:hover { text-decoration: underline; }
-    .find-guild-link-sub { font-size: 11px; color: var(--muted); line-height: 1.5; }
-    .find-guild-empty { font-size: 13px; color: var(--muted); margin-top: 14px; text-align: center; }
+    .find-guild-link-btn:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--panel)); }
+    .find-guild-empty { font-size: 13px; color: var(--muted); text-align: center; padding: 24px 0; line-height: 1.6; }
 
     .btn-sync {
       display: flex; align-items: center; gap: 7px;
@@ -717,7 +717,9 @@
     .card-corner.bl { bottom: 5px; left: 5px; border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
     .card-corner.br { bottom: 5px; right: 5px; border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
 
-    .card-body { padding: 16px 18px 18px; }
+    .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; }
+    .card-body .meta { flex: 1; }
+    .card-bottom { margin-top: auto; }
 
     .card-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 
@@ -861,7 +863,7 @@
 
     .card-actions-row {
       display: flex; gap: 4px; flex-wrap: wrap;
-      margin: 8px 0 0;
+      margin: 10px 0 0;
     }
 
     .btn-open-detail {
@@ -1230,6 +1232,54 @@
 
     .quest-summary-input::placeholder { color: rgba(201,209,217,.25); }
     .quest-summary-input:focus { background: #10161e; }
+
+    /* quest group header (item name + level target + dots) */
+    .quest-item-group-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 0 8px; flex-wrap: wrap;
+    }
+    .quest-group-kind {
+      font: 700 9px 'Inter', sans-serif; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--muted); padding: 2px 6px; border-radius: 4px;
+      border: 1px solid var(--line); flex-shrink: 0;
+    }
+    .quest-item-group-header strong { font-size: 13px; color: var(--ink); }
+    .quest-group-target {
+      font: 600 10px 'Inter', sans-serif;
+      color: color-mix(in srgb, var(--modal-role, var(--gold)) 80%, white);
+      flex-shrink: 0;
+    }
+    .quest-group-dots { display: flex; gap: 4px; margin-left: auto; }
+    .quest-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: 1.5px solid color-mix(in srgb, var(--modal-role, var(--gold)) 50%, transparent);
+      background: transparent; transition: background .2s;
+    }
+    .quest-dot.done {
+      background: var(--modal-role, var(--gold));
+      border-color: var(--modal-role, var(--gold));
+    }
+
+    /* daily quest picker */
+    .quest-daily-picker { padding: 4px 0 8px; }
+    .quest-daily-picker-label {
+      font: 600 11px 'Inter', sans-serif; color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .quest-daily-picker-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .quest-daily-pick-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line-bright);
+      background: transparent; color: var(--ink-dim); cursor: pointer;
+      font: 500 11.5px 'Inter', sans-serif;
+      transition: border-color .14s, color .14s, background .14s;
+    }
+    .quest-daily-pick-btn:hover {
+      border-color: var(--modal-role, var(--gold));
+      color: var(--ink);
+      background: color-mix(in srgb, var(--modal-role, var(--gold)) 8%, transparent);
+    }
+    .quest-daily-kind-icon { font-size: 11px; opacity: .7; }
 
     .quest-complete-btn {
       display: block; width: 100%;
@@ -1680,6 +1730,22 @@
 
     #skill-tooltip.visible { opacity: 1; transform: translateY(0); }
 
+    /* ══ SCROLL TO TOP ══ */
+    #btn-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 900;
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--panel-2); border: 1px solid var(--line-bright);
+      color: var(--gold); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.45);
+      opacity: 0; pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease, border-color .15s ease, background .15s ease;
+    }
+    #btn-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    #btn-top:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 10%, var(--panel-2)); }
+    #btn-top svg { width: 22px; height: 22px; }
+
     /* ══ FOOTER ══ */
     footer { position: relative; z-index: 1; padding: 0 32px 40px; max-width: 1400px; margin: 0 auto; }
 
@@ -1824,8 +1890,7 @@
         <div class="header-profile-row">
           <button class="header-profile-chip" id="btn-profile-chip" title="Edit profil & guild">
             <span class="profile-chip-avatar">👤</span>
-            <span class="profile-chip-name" id="header-profile-name">Hero</span>
-            <span class="profile-chip-guild" id="header-profile-guild"></span>
+            <span class="profile-chip-text" id="header-profile-text">Hero</span>
           </button>
         </div>
       </div>
@@ -1868,6 +1933,17 @@
       </section>
     </div>
   </div>
+
+  <button id="btn-top" aria-label="Scroll to top" title="Back to top">
+    <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- diamond body -->
+      <path d="M11 3 L19 11 L11 19 L3 11 Z" stroke="currentColor" stroke-width="1.5" fill="color-mix(in srgb,currentColor 12%,transparent)" stroke-linejoin="round"/>
+      <!-- arrow up inside -->
+      <path d="M11 14 L11 9 M8.5 11.5 L11 9 L13.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- pin stem -->
+      <line x1="11" y1="19" x2="11" y2="22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+    </svg>
+  </button>
 
   <footer>
     <div class="footer-inner">
@@ -2006,20 +2082,14 @@
 
   <!-- ── FIND GUILD MODAL ── -->
   <div class="modal-overlay" id="find-guild-overlay" role="dialog" aria-modal="true" aria-labelledby="find-guild-title">
-    <div class="modal" id="find-guild-modal" style="max-width:480px">
+    <div class="modal" id="find-guild-modal" style="max-width:520px">
       <div class="modal-chrome">
         <div class="modal-eyebrow">🔍 Cari Lowongan</div>
         <div class="modal-title" id="find-guild-title">Find Guild</div>
         <button class="modal-close" id="find-guild-close" aria-label="Tutup">&times;</button>
       </div>
       <div class="modal-body" style="padding:20px 22px 24px">
-        <div class="profile-field-group">
-          <label class="profile-label">Pilih Job</label>
-          <select class="profile-input" id="find-guild-job-select">
-            <option value="">— pilih job —</option>
-          </select>
-        </div>
-        <div id="find-guild-links" class="find-guild-links"></div>
+        <div id="find-guild-body"></div>
       </div>
     </div>
   </div>
@@ -3634,27 +3704,29 @@
                   <span class="meta-label">Skills</span>
                   <div class="skill-list">${renderSkills(title, skills)}</div>
                 </div>
-                <div class="meta-sep"></div>
+              </div>
+              <div class="card-bottom">
+                <div class="meta-sep" style="margin-bottom:10px"></div>
                 <div>
                   <span class="meta-label">${salaryLabel}</span>
                   <strong class="salary">${displaySalary}</strong>
                   ${isEN ? `<small class="salary-note">${UI_STRINGS.en.salaryNote}</small>` : ""}
                 </div>
-              </div>
-              <div class="card-actions-row">
-                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">★ Quest</button>
-                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip">🛡 Equip</button>
-                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="talent">✨ Talent</button>
-                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">🏆 Achievement</button>
-              </div>
-              <div class="card-footer">
-                <div class="card-xp">
-                  <div class="card-xp-bar"><div class="card-xp-fill" style="width:${pct}%"></div></div>
-                  <span class="card-xp-text">${done}/${total} skill learned</span>
+                <div class="card-actions-row">
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">★ Quest</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip">🛡 Equip</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="talent">✨ Talent</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">🏆 Achievement</button>
                 </div>
-                ${tier >= 2 ? `<button class="btn-do-jobchange" data-job="${title}" data-role="${role}" ${unlocked ? "" : "disabled"}>
-                  ⚔ Job Change
-                </button>` : ""}
+                <div class="card-footer">
+                  <div class="card-xp">
+                    <div class="card-xp-bar"><div class="card-xp-fill" style="width:${pct}%"></div></div>
+                    <span class="card-xp-text">${done}/${total} skill learned</span>
+                  </div>
+                  ${tier >= 2 ? `<button class="btn-do-jobchange" data-job="${title}" data-role="${role}" ${unlocked ? "" : "disabled"}>
+                    ⚔ Job Change
+                  </button>` : ""}
+                </div>
               </div>
             </div>
           </article>`;
@@ -3879,11 +3951,12 @@
             ${titleEl}
             <div class="quest-item-sub">${escapeHtml(item.description)}</div>
             ${extraLinks}
-            <div class="quest-summary-wrap">
-              <div class="quest-summary-topbar"><span class="quest-summary-topbar-label">// QUEST LOG — tulis summary setelah selesai</span></div>
-              <textarea class="quest-summary-input" data-quest-id="${escapeHtml(item.id)}" placeholder="Tulis di sini apa yang kamu pelajari..."></textarea>
+            <button class="btn-job-change quest-accept-btn" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">Accept Quest</button>
+            <div class="quest-summary-wrap" style="display:none">
+              <div class="quest-summary-topbar"><span class="quest-summary-topbar-label">// QUEST LOG — write your summary after completing</span></div>
+              <textarea class="quest-summary-input" data-quest-id="${escapeHtml(item.id)}" placeholder="Write what you learned here..."></textarea>
             </div>
-            <button class="btn-job-change quest-complete-btn" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">Complete Quest</button>
+            <button class="btn-job-change quest-complete-btn" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}" style="display:none">Submit Quest</button>
           </div>
         </div>`;
     }
@@ -3932,60 +4005,301 @@
       return `<div class="detail-empty"><div class="detail-empty-icon">${icon}</div>${msg}</div>`;
     }
 
-    async function renderDetailQuestTab(pane) {
-      pane.innerHTML = detailEmptyHtml("⏳", "Memuat quest data…");
-      let questData;
+    // ── Quest model helpers (progress-driven) ──
+
+    function getJobSkills(jobTitle) {
+      const row = jobs.find(([,t]) => t === jobTitle);
+      if (!row) return [];
+      return row[3].split(",").map(s => s.trim()).filter(Boolean);
+    }
+
+    // Build quest-id for a sub-quest within an item
+    function itemQuestId(kind, itemId, level, index) {
+      return `${kind}::${itemId}::lv${level}::${index}`;
+    }
+    function dailyQuestId(kind, itemId) {
+      return `${kind}::${itemId}::intro`;
+    }
+
+    // Whether a specific item sub-quest is completed
+    function itemQuestCompleted(id) {
+      return !!questProgress.completed[id];
+    }
+
+    // How many sub-quests at this level are completed for this item
+    function itemLevelQuestsCompleted(kind, itemId, level, total = 3) {
+      let count = 0;
+      for (let i = 0; i < total; i++) {
+        if (itemQuestCompleted(itemQuestId(kind, itemId, level, i))) count++;
+      }
+      return count;
+    }
+
+    // Get item's quest data for a level from a target-quest entry (Codex schema: levels["1"])
+    function getItemLevelQuests(targetEntry, level) {
+      if (!targetEntry?.levels) return null;
+      const arr = targetEntry.levels[String(level)];
+      return Array.isArray(arr) ? arr : null;
+    }
+
+    function getItemIntroQuest(targetEntry) {
+      return targetEntry?.intro || null;
+    }
+
+    // Build a synthetic quest object for a skill/equip/talent sub-quest
+    function makeSyntheticQuest(kind, item, level, index, targetEntry) {
+      const id = itemQuestId(kind, item.id || item.name, level, index);
+      const authored = getItemLevelQuests(targetEntry, level)?.[index];
+      const desc = item.description
+        ? (typeof item.description === "string" ? item.description : (item.description[currentLang] || item.description.en || ""))
+        : "";
+      return {
+        id,
+        title: authored?.title || `${item.name} — Lv${level} Quest ${index + 1}`,
+        description: authored?.description || desc || `Pelajari dan praktikkan ${item.name} di level ${level}.`,
+        links: authored?.links || [],
+        _kind: kind,
+        _item: item,
+        _level: level,
+        _index: index,
+      };
+    }
+
+    function makeSyntheticIntroQuest(kind, item, targetEntry) {
+      const id = dailyQuestId(kind, item.id || item.name);
+      const authored = getItemIntroQuest(targetEntry);
+      const desc = item.description
+        ? (typeof item.description === "string" ? item.description : (item.description[currentLang] || item.description.en || ""))
+        : "";
+      return {
+        id,
+        title: authored?.title || `Kenali ${item.name}`,
+        description: authored?.description || desc || `Perkenalan pertama dengan ${item.name}.`,
+        links: authored?.links || [],
+        _kind: kind,
+        _item: item,
+        _isIntro: true,
+      };
+    }
+
+    // Build main quest queue for a job: skill→equip→talent items that are Lv>0 and <Lv3
+    async function buildMainQuestQueue(jobTitle) {
+      const queue = [];
+      const [skillQMap, equipQMap, talentQMap] = await Promise.all([
+        loadTargetQuestData("skill"),
+        loadTargetQuestData("equip"),
+        loadTargetQuestData("talent"),
+      ]);
+
+      // Phase 1: skills (Lv>0, <Lv3)
+      const skills = getJobSkills(jobTitle);
+      const activeSkills = skills
+        .map(s => ({ id: `skill-${s.toLowerCase().replace(/\s+/g, "-")}`, name: s, _rawName: s }))
+        .filter(s => { const lv = skillLevel(jobTitle, s._rawName); return lv > 0 && lv < 3; })
+        .sort((a, b) => skillLevel(jobTitle, a._rawName) - skillLevel(jobTitle, b._rawName) || a.name.localeCompare(b.name));
+      activeSkills.forEach(s => queue.push({ kind: "skill", item: s, currentLv: skillLevel(jobTitle, s._rawName), targetEntry: getTargetQuestEntry(skillQMap, s) }));
+
+      // Phase 2: equip (Lv>0, <Lv3)
       try {
-        questData = await loadQuestFile(currentDetailJob);
-      } catch (err) {
-        pane.innerHTML = detailEmptyHtml("⚠️", "Quest data gagal dimuat. Coba dari server (bukan file://).");
-        return;
-      }
-      if (!questData || !isExternalQuestData(questData)) {
-        pane.innerHTML = detailEmptyHtml("📭", "Quest belum tersedia untuk job ini.");
-        return;
-      }
+        const ed = await loadEquipmentData();
+        const equips = (ed.equipment || [])
+          .filter(e => (e.tags || []).includes(jobTitle) && itemLevel("equip", e.id) > 0 && itemLevel("equip", e.id) < 3)
+          .sort((a, b) => itemLevel("equip", a.id) - itemLevel("equip", b.id) || a.name.localeCompare(b.name));
+        equips.forEach(e => queue.push({ kind: "equip", item: e, currentLv: itemLevel("equip", e.id), targetEntry: getTargetQuestEntry(equipQMap, e) }));
+      } catch {}
 
-      const main  = questData.main  || [];
-      const daily = questData.daily || [];
+      // Phase 3: talent (Lv>0, <Lv3)
+      try {
+        const td = await loadTalentData();
+        const talents = (td.talents || [])
+          .filter(t => (t.tags || []).includes(jobTitle) && itemLevel("talent", t.id) > 0 && itemLevel("talent", t.id) < 3)
+          .sort((a, b) => itemLevel("talent", a.id) - itemLevel("talent", b.id) || a.name.localeCompare(b.name));
+        talents.forEach(t => queue.push({ kind: "talent", item: t, currentLv: itemLevel("talent", t.id), targetEntry: getTargetQuestEntry(talentQMap, t) }));
+      } catch {}
 
-      // Main quest — tampilkan 1 quest aktif berikutnya
-      const nextMain = main.find(item => !questCompleted(item.id));
-      const mainHtml = nextMain
-        ? renderCompletableQuest(nextMain, "main")
-        : `<div class="quest-item done">
+      return queue;
+    }
+
+    // Build daily quest candidates: all Lv0 items (skill/equip/talent) for this job
+    async function buildDailyQuestCandidates(jobTitle) {
+      const candidates = [];
+      const [skillQMap, equipQMap, talentQMap] = await Promise.all([
+        loadTargetQuestData("skill"),
+        loadTargetQuestData("equip"),
+        loadTargetQuestData("talent"),
+      ]);
+
+      // Skills at Lv0 but in this job's list (not yet activated)
+      const skills = getJobSkills(jobTitle);
+      skills
+        .filter(s => skillLevel(jobTitle, s) === 0)
+        .forEach(s => {
+          const item = { id: `skill-${s.toLowerCase().replace(/\s+/g, "-")}`, name: s, _rawName: s };
+          candidates.push({ kind: "skill", item, targetEntry: getTargetQuestEntry(skillQMap, item) });
+        });
+
+      try {
+        const ed = await loadEquipmentData();
+        (ed.equipment || [])
+          .filter(e => (e.tags || []).includes(jobTitle) && itemLevel("equip", e.id) === 0)
+          .forEach(e => candidates.push({ kind: "equip", item: e, targetEntry: getTargetQuestEntry(equipQMap, e) }));
+      } catch {}
+
+      try {
+        const td = await loadTalentData();
+        (td.talents || [])
+          .filter(t => (t.tags || []).includes(jobTitle) && itemLevel("talent", t.id) === 0)
+          .forEach(t => candidates.push({ kind: "talent", item: t, targetEntry: getTargetQuestEntry(talentQMap, t) }));
+      } catch {}
+
+      return candidates.sort((a, b) => a.item.name.localeCompare(b.item.name));
+    }
+
+    // Render one completable sub-quest (main or daily)
+    function renderSubQuest(synQuest, type) {
+      const links = synQuest.links || [];
+      const primaryUrl = links[0]?.url || null;
+      const extraLinks = links.slice(1).map(l =>
+        `<a class="quest-item-link" href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label || "↗")}</a>`
+      ).join("");
+      const titleEl = primaryUrl
+        ? `<a class="quest-item-label" href="${escapeHtml(primaryUrl)}" target="_blank" rel="noopener">${escapeHtml(synQuest.title)} ↗</a>`
+        : `<div class="quest-item-label">${escapeHtml(synQuest.title)}</div>`;
+      return `
+        <div class="quest-item" data-quest-id="${escapeHtml(synQuest.id)}" data-quest-type="${type}">
+          <div class="quest-checkbox"></div>
+          <div class="quest-item-content">
+            ${titleEl}
+            <div class="quest-item-sub">${escapeHtml(synQuest.description)}</div>
+            ${extraLinks}
+            <button class="btn-job-change quest-accept-btn" data-quest-id="${escapeHtml(synQuest.id)}" data-quest-type="${type}">Accept Quest</button>
+            <div class="quest-summary-wrap" style="display:none">
+              <div class="quest-summary-topbar"><span class="quest-summary-topbar-label">// QUEST LOG — write your summary after completing</span></div>
+              <textarea class="quest-summary-input" data-quest-id="${escapeHtml(synQuest.id)}" placeholder="Write what you learned here..."></textarea>
+            </div>
+            <button class="btn-job-change quest-complete-btn" data-quest-id="${escapeHtml(synQuest.id)}" data-quest-type="${type}" style="display:none">Submit Quest</button>
+          </div>
+        </div>`;
+    }
+
+    async function renderDetailQuestTab(pane) {
+      pane.innerHTML = detailEmptyHtml("⏳", "Memuat quest…");
+
+      const jobTitle = currentDetailJob;
+
+      // Build main quest queue and daily candidates in parallel
+      const [mainQueue, dailyCandidates] = await Promise.all([
+        buildMainQuestQueue(jobTitle),
+        buildDailyQuestCandidates(jobTitle),
+      ]);
+
+      // ── MAIN QUEST ──
+      let mainHtml = "";
+      if (mainQueue.length === 0) {
+        // Check if everything is Lv3 (confirmation phase) or nothing activated yet
+        const skills = getJobSkills(jobTitle);
+        const anyActive = skills.some(s => skillLevel(jobTitle, s) > 0);
+        if (anyActive) {
+          mainHtml = `<div class="quest-item done">
             <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
             <div class="quest-item-content">
-              <div class="quest-item-label">${main.length ? "All main quests completed" : "Main quest belum tersedia"}</div>
-              <div class="quest-item-sub">${main.length ? "Semua main quest sudah selesai." : "Nantikan quest dari Codex."}</div>
+              <div class="quest-item-label">All items reached Lv 3</div>
+              <div class="quest-item-sub">Semua skill, equip, dan talent sudah di level maksimal. Selamat!</div>
             </div>
           </div>`;
-
-      // Daily quest — 1 per hari
-      const todaysDaily    = getTodaysDailyQuest(questData, currentDetailJob);
-      const dailyState     = questProgress.daily[currentDetailJob];
-      const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
-      const dailyHtml = !todaysDaily
-        ? `<div class="quest-item">
+        } else {
+          mainHtml = `<div class="quest-item">
             <div class="quest-checkbox"></div>
             <div class="quest-item-content">
-              <div class="quest-item-label">Daily quest belum tersedia</div>
+              <div class="quest-item-label">Belum ada item aktif</div>
+              <div class="quest-item-sub">Gunakan Daily Quest untuk mengaktifkan skill, equip, atau talent pertamamu.</div>
             </div>
-          </div>`
-        : dailyDoneToday
-          ? `<div class="quest-item done">
-              <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
-              <div class="quest-item-content">
-                <div class="quest-item-label">Daily quest selesai hari ini</div>
-                <div class="quest-item-sub">Kembali besok untuk daily quest berikutnya.</div>
-              </div>
-            </div>`
-          : renderCompletableQuest(todaysDaily, "daily");
+          </div>`;
+        }
+      } else {
+        // Find the first item with an incomplete level
+        const { kind, item, currentLv } = mainQueue[0];
+        const targetLv = currentLv + 1;
+        const QUESTS_PER_LEVEL = 3;
+        const completedCount = itemLevelQuestsCompleted(kind, item.id || item.name, targetLv);
+        const remaining = QUESTS_PER_LEVEL - completedCount;
+
+        const itemName = item.name;
+        const kindLabel = kind === "skill" ? "Skill" : kind === "equip" ? "Equipment" : "Talent";
+        const progressDots = Array.from({ length: QUESTS_PER_LEVEL }, (_, i) =>
+          `<span class="quest-dot ${i < completedCount ? "done" : ""}"></span>`
+        ).join("");
+
+        mainHtml = `<div class="quest-item-group-header">
+          <span class="quest-group-kind">${kindLabel}</span>
+          <strong>${escapeHtml(itemName)}</strong>
+          <span class="quest-group-target">Lv${currentLv} → Lv${targetLv}</span>
+          <span class="quest-group-dots">${progressDots}</span>
+        </div>`;
+
+        // Show next incomplete quest for this item
+        let rendered = false;
+        for (let i = 0; i < QUESTS_PER_LEVEL; i++) {
+          const qid = itemQuestId(kind, item.id || item.name, targetLv, i);
+          if (!itemQuestCompleted(qid)) {
+            const synQuest = makeSyntheticQuest(kind, item, targetLv, i, mainQueue[0].targetEntry);
+            mainHtml += renderSubQuest(synQuest, "main");
+            rendered = true;
+            break;
+          }
+        }
+        if (!rendered) {
+          mainHtml += `<div class="quest-item done">
+            <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+            <div class="quest-item-content">
+              <div class="quest-item-label">Level quests complete — item akan naik level</div>
+            </div>
+          </div>`;
+        }
+      }
+
+      // ── DAILY QUEST ──
+      const dailyState     = questProgress.daily[jobTitle];
+      const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
+      let dailyHtml = "";
+
+      if (dailyDoneToday) {
+        dailyHtml = `<div class="quest-item done">
+          <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">Daily quest selesai hari ini</div>
+            <div class="quest-item-sub">Kembali besok untuk mengaktifkan item berikutnya.</div>
+          </div>
+        </div>`;
+      } else if (dailyCandidates.length === 0) {
+        dailyHtml = `<div class="quest-item">
+          <div class="quest-checkbox"></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">Semua item sudah aktif</div>
+            <div class="quest-item-sub">Tidak ada item Lv0 tersisa untuk diaktifkan.</div>
+          </div>
+        </div>`;
+      } else {
+        // Show picker: list of Lv0 items player can choose
+        const pickerItems = dailyCandidates.map(({ kind, item, targetEntry }) => {
+          const kindIcon = kind === "skill" ? "◈" : kind === "equip" ? "🛡" : "✨";
+          const hasQuest = targetEntry ? "1" : "0";
+          return `<button class="quest-daily-pick-btn" data-kind="${escapeHtml(kind)}" data-item-id="${escapeHtml(item.id || item.name)}" data-item-name="${escapeHtml(item.name)}" data-has-quest="${hasQuest}">
+            <span class="quest-daily-kind-icon">${kindIcon}</span>
+            <span>${escapeHtml(item.name)}</span>
+          </button>`;
+        }).join("");
+        dailyHtml = `<div class="quest-daily-picker">
+          <div class="quest-daily-picker-label">Pilih item untuk diaktifkan hari ini:</div>
+          <div class="quest-daily-picker-list">${pickerItems}</div>
+        </div>
+        <div id="quest-daily-active" style="display:none"></div>`;
+      }
 
       pane.innerHTML = `
         <div class="detail-panel-header">
           <div class="detail-panel-title">★ Quest</div>
-          <div class="detail-panel-desc">Main quest mengikuti talent yang kamu naikkan — satu quest aktif berantai sampai selesai. Daily quest muncul satu per hari, opsional tapi bikin kamu terus bergerak.</div>
+          <div class="detail-panel-desc">Main quest: selesaikan 3 quest per level untuk tiap skill, equip, dan talent aktifmu. Daily quest: aktifkan satu item baru ke Lv 1 setiap hari.</div>
         </div>
         <div class="quest-phase">
           <div class="quest-phase-title">Main Quest</div>
@@ -3996,30 +4310,102 @@
           ${dailyHtml}
         </div>`;
 
-      // Auto-resize textarea on input
-      pane.querySelectorAll(".quest-summary-input").forEach(ta => {
-        ta.addEventListener("input", () => {
-          ta.style.height = "auto";
-          ta.style.height = ta.scrollHeight + "px";
-        });
-      });
+      // Index daily candidates by id for fast lookup in click handler
+      const dailyCandidateMap = new Map(dailyCandidates.map(c => [c.item.id || c.item.name, c]));
 
-      pane.addEventListener("click", e => {
-        const btn = e.target.closest(".quest-complete-btn");
-        if (!btn) return;
-        const questId = btn.dataset.questId;
-        const type = btn.dataset.questType;
-        const quest = [...(questData.main || []), ...(questData.daily || [])].find(i => i.id === questId);
-        const summaryInput = pane.querySelector(`.quest-summary-input[data-quest-id="${CSS.escape(questId)}"]`);
-        const summary = summaryInput ? summaryInput.value : "";
-        if (!quest || !completeQuest(currentDetailJob, quest, type, summary)) {
-          alert("Summary wajib diisi sebelum quest selesai.");
+      // ── EVENT DELEGATION ──
+      pane.addEventListener("click", async e => {
+        // Daily picker — choose item
+        const pickBtn = e.target.closest(".quest-daily-pick-btn");
+        if (pickBtn) {
+          const kind = pickBtn.dataset.kind;
+          const itemId = pickBtn.dataset.itemId;
+          const itemName = pickBtn.dataset.itemName;
+          // Look up pre-loaded candidate (has targetEntry)
+          const candidate = dailyCandidateMap.get(itemId);
+          let rawItem = candidate?.item || { id: itemId, name: itemName };
+          let targetEntry = candidate?.targetEntry || null;
+          // Fallback: load full item if not in candidate (shouldn't happen)
+          if (!candidate) {
+            try {
+              if (kind === "equip") {
+                const ed = await loadEquipmentData();
+                rawItem = ed.equipment.find(e => e.id === itemId) || rawItem;
+              } else if (kind === "talent") {
+                const td = await loadTalentData();
+                rawItem = td.talents.find(t => t.id === itemId) || rawItem;
+              }
+              const qMap = await loadTargetQuestData(kind);
+              targetEntry = getTargetQuestEntry(qMap, rawItem);
+            } catch {}
+          }
+          const introQuest = makeSyntheticIntroQuest(kind, rawItem, targetEntry);
+          // Hide picker, show quest
+          pane.querySelector(".quest-daily-picker").style.display = "none";
+          const activeEl = pane.querySelector("#quest-daily-active");
+          activeEl.innerHTML = renderSubQuest(introQuest, "daily");
+          activeEl.style.display = "";
           return;
         }
+
+        // Accept quest
+        const acceptBtn = e.target.closest(".quest-accept-btn");
+        if (acceptBtn) {
+          const questItem = acceptBtn.closest(".quest-item");
+          acceptBtn.style.display = "none";
+          const wrap = questItem.querySelector(".quest-summary-wrap");
+          const submitBtn = questItem.querySelector(".quest-complete-btn");
+          wrap.style.display = "";
+          submitBtn.style.display = "";
+          const ta = wrap.querySelector(".quest-summary-input");
+          ta.addEventListener("input", () => { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + "px"; });
+          ta.focus();
+          return;
+        }
+
+        // Submit quest
+        const submitBtn = e.target.closest(".quest-complete-btn");
+        if (!submitBtn) return;
+        const questId  = submitBtn.dataset.questId;
+        const questType = submitBtn.dataset.questType;
+        const summaryInput = pane.querySelector(`.quest-summary-input[data-quest-id="${CSS.escape(questId)}"]`);
+        const summary = summaryInput?.value?.trim() || "";
+        if (!summary) { alert("Summary wajib diisi sebelum quest selesai."); return; }
+
+        // Record completion
+        const completedAt = new Date().toISOString();
+        questProgress.completed[questId] = { id: questId, job: jobTitle, type: questType, summary, completedAt };
+
+        if (questType === "daily") {
+          // Level up the item Lv0 → Lv1
+          const activeEl = pane.querySelector("#quest-daily-active");
+          const pickBtn2 = pane.querySelector(`.quest-daily-pick-btn[data-item-id]`); // may be gone
+          // Find kind+id from questId: "kind::id::intro"
+          const parts = questId.split("::");
+          const kind = parts[0], itemId = parts[1];
+          if (kind === "skill") {
+            // skill level stored as skill::name — find skill name from job
+            const skills = getJobSkills(jobTitle);
+            const skillName = skills.find(s => {
+              const sid = `skill-${s.toLowerCase().replace(/\s+/g, "-")}`;
+              return sid === itemId;
+            });
+            if (skillName) {
+              progress[skillKey(jobTitle, skillName)] = 1;
+              saveProgress(progress);
+            }
+          } else if (kind === "equip" || kind === "talent") {
+            progress[itemKey(kind, itemId)] = 1;
+            saveProgress(progress);
+          }
+          questProgress.daily[jobTitle] = { date: todayKey(), questId, completedAt };
+        }
+
+        saveQuestProgress(questProgress);
         detailRenderedTabs["quest"] = false;
-        renderDetailQuestTab(pane);
+        await renderDetailQuestTab(pane);
         refreshCards();
-      }, { once: false });
+      });
     }
 
     let equipmentData = null;
@@ -4039,6 +4425,36 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       talentData = await res.json();
       return talentData;
+    }
+
+    // Target-quest data: { skill: Map<targetId,entry>, equip: Map<targetId,entry>, talent: Map<targetId,entry> }
+    const targetQuestCache = {};
+    const TARGET_QUEST_FILE = { skill: "skills", equip: "equipment", talent: "talents" };
+
+    async function loadTargetQuestData(kind) {
+      if (targetQuestCache[kind]) return targetQuestCache[kind];
+      const map = new Map();
+      try {
+        const file = TARGET_QUEST_FILE[kind];
+        if (!file) return map;
+        const res = await fetch(`data/target-quests/${file}.json`, { cache: "default" });
+        if (!res.ok) return map;
+        const data = await res.json();
+        for (const entry of (data.targets || [])) {
+          map.set(entry.targetId, entry);
+        }
+      } catch {}
+      targetQuestCache[kind] = map;
+      return map;
+    }
+
+    function getTargetQuestEntry(questMap, item) {
+      if (!questMap) return null;
+      const rawId = item.id || (item._rawName ? `skill-${item._rawName.toLowerCase().replace(/\s+/g, "-")}` : null);
+      if (!rawId) return null;
+      // Skills have id like "skill-version-control"; targetId in skills.json is "version-control"
+      const stripped = rawId.replace(/^skill-/, "");
+      return questMap.get(rawId) || questMap.get(stripped) || null;
     }
 
     function itemKey(kind, id) { return `${kind}::${id}`; }
@@ -4191,6 +4607,19 @@
     document.getElementById("quest-close").addEventListener("click", closeQuest);
 
     document.getElementById("quest-content").addEventListener("click", e => {
+      const acceptBtn = e.target.closest(".quest-accept-btn");
+      if (acceptBtn) {
+        const questItem = acceptBtn.closest(".quest-item");
+        acceptBtn.style.display = "none";
+        const wrap = questItem.querySelector(".quest-summary-wrap");
+        const submitBtn = questItem.querySelector(".quest-complete-btn");
+        wrap.style.display = "";
+        submitBtn.style.display = "";
+        const ta = wrap.querySelector(".quest-summary-input");
+        ta.addEventListener("input", () => { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + "px"; });
+        ta.focus();
+        return;
+      }
       const completeBtn = e.target.closest(".quest-complete-btn");
       if (completeBtn && isExternalQuestData(currentQuestData)) {
         const questId = completeBtn.dataset.questId;
@@ -4970,23 +5399,32 @@
 
       function buildEquipTalentSection(title) {
         const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
-        const equips = snapEquip
-          .filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`])
-          .map(e => {
-            const lv = Math.min(3, Number(snap[`equip::${e.id}`]) || 1);
-            const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
-            return `<span class="skill lv${lv}">${escAttr(e.name)}${badge}</span>`;
+
+        function toAlphaGroups(items, keyFn) {
+          const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name, "id", { sensitivity: "base" }));
+          const groups = {};
+          sorted.forEach(item => {
+            const letter = item.name[0].toUpperCase();
+            if (!groups[letter]) groups[letter] = [];
+            groups[letter].push(item);
           });
-        const talents = snapTalent
-          .filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`])
-          .map(t => {
-            const lv = Math.min(3, Number(snap[`talent::${t.id}`]) || 1);
-            const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
-            return `<span class="skill lv${lv}">${escAttr(t.name)}${badge}</span>`;
-          });
+          return Object.keys(groups).sort().map(letter => {
+            const pills = groups[letter].map(item => {
+              const lv = Math.min(3, Number(keyFn(item)) || 1);
+              const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
+              const tip = escAttr(descriptionTextFor(item));
+              return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}">${escAttr(item.name)}${badge}</span>`;
+            }).join("");
+            return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pills}</div></div>`;
+          }).join("");
+        }
+
+        const equipItems = snapEquip.filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`]);
+        const talentItems = snapTalent.filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`]);
+
         const parts = [];
-        if (equips.length) parts.push(`<div class="porto-section"><div class="porto-label">Equipment</div><div class="skill-list">${equips.join("")}</div></div>`);
-        if (talents.length) parts.push(`<div class="porto-section"><div class="porto-label">Talent</div><div class="skill-list">${talents.join("")}</div></div>`);
+        if (equipItems.length) parts.push(`<div class="porto-section"><div class="porto-label">Equipment</div>${toAlphaGroups(equipItems, e => snap[`equip::${e.id}`])}</div>`);
+        if (talentItems.length) parts.push(`<div class="porto-section"><div class="porto-label">Talent</div>${toAlphaGroups(talentItems, t => snap[`talent::${t.id}`])}</div>`);
         return parts.join("");
       }
 
@@ -5287,7 +5725,11 @@ a{color:inherit}
 .lang-opt+.lang-opt{border-left:1px solid rgba(255,255,255,.12)}
 /* porto */
 .porto-section{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
-.porto-label{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.porto-label{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+/* alpha groups in export */
+.alpha-group{display:flex;align-items:flex-start;gap:6px;margin-bottom:6px}
+.alpha-group-header{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex-shrink:0;border-radius:4px;border:1px solid color-mix(in srgb,var(--role,#f0bb4e) 35%,transparent);background:color-mix(in srgb,var(--role,#f0bb4e) 10%,transparent);font:900 10px system-ui,sans-serif;color:color-mix(in srgb,var(--role,#f0bb4e) 80%,white)}
+.alpha-group-pills{display:flex;flex-wrap:wrap;align-items:center;gap:5px;flex:1}
 .porto-link a{font-size:11px;color:color-mix(in srgb,var(--role) 90%,white);text-decoration:none;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px}
 .porto-link a:hover{text-decoration:underline}
 /* footer */
@@ -5655,9 +6097,9 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
       const prof  = loadProfile();
       const guild = loadGuild();
       const name  = prof.nick || prof.name || "Hero";
-      document.getElementById("header-profile-name").textContent = name;
-      document.getElementById("header-profile-guild").textContent =
-        [guild.company, guild.jobTitle].filter(Boolean).join(" · ");
+      const guildParts = [guild.company, guild.jobTitle].filter(Boolean).join(" · ");
+      const text = guildParts ? `${name} - ${guildParts}` : name;
+      document.getElementById("header-profile-text").textContent = text;
     }
 
     function renderGuildHistory() {
@@ -5768,47 +6210,60 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
     // FIND GUILD MODAL
     // ══════════════════════════════════════════
     (function initFindGuild() {
-      const overlay  = document.getElementById("find-guild-overlay");
-      const select   = document.getElementById("find-guild-job-select");
-      const linksEl  = document.getElementById("find-guild-links");
+      const overlay = document.getElementById("find-guild-overlay");
+      const bodyEl  = document.getElementById("find-guild-body");
 
-      // Populate job dropdown from jobs array
-      jobs.forEach(([, title]) => {
-        const opt = document.createElement("option");
-        opt.value = title;
-        opt.textContent = title;
-        select.appendChild(opt);
-      });
-
-      function renderFindGuildLinks(jobTitle) {
-        const inlineData = jobQuests[jobTitle];
-        const phases = inlineData?.phases;
-        if (!phases) {
-          linksEl.innerHTML = `<div class="find-guild-empty">Belum ada link lowongan untuk job ini.</div>`;
-          return;
-        }
-        const guildPhase = phases.find(p =>
-          p.title === "Find Your Guild" || p.title?.toLowerCase().includes("find")
-        );
-        if (!guildPhase?.items?.length) {
-          linksEl.innerHTML = `<div class="find-guild-empty">Belum ada link lowongan untuk job ini.</div>`;
-          return;
-        }
-        linksEl.innerHTML = guildPhase.items.map(item => `
-          <div class="find-guild-link-item">
-            <a href="${item.ref}" target="_blank" rel="noopener noreferrer">${item.label}</a>
-            ${item.sub ? `<div class="find-guild-link-sub">${item.sub}</div>` : ""}
-          </div>
-        `).join("");
+      // Per group, pick the highest-tier job among all achieved jobs (primary + subs)
+      function getTopJobsPerGroup() {
+        const state = jobChangeState;
+        if (!state) return [];
+        const achieved = new Set();
+        if (state.primary) achieved.add(state.primary);
+        (state.subs || []).forEach(s => achieved.add(s));
+        if (achieved.size === 0) return [];
+        const groupBest = {};
+        jobs.forEach(([group, title,,,,,,,tier]) => {
+          if (!achieved.has(title)) return;
+          if (!groupBest[group] || tier > groupBest[group].tier) {
+            groupBest[group] = { title, tier, group };
+          }
+        });
+        return Object.values(groupBest).sort((a, b) => b.tier - a.tier || a.group.localeCompare(b.group));
       }
 
-      select.addEventListener("change", () => {
-        const jobTitle = select.value;
-        if (!jobTitle) { linksEl.innerHTML = ""; return; }
-        renderFindGuildLinks(jobTitle);
-      });
+      function jobSearchLinks(jobTitle) {
+        const q   = encodeURIComponent(jobTitle);
+        const loc = encodeURIComponent("Indonesia");
+        return [
+          { label: "LinkedIn",  url: `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
+          { label: "Glints",    url: `https://glints.com/id/opportunities/jobs/explore?keyword=${q}&country=ID` },
+          { label: "Jobstreet", url: `https://www.jobstreet.co.id/en/job-search/${q.replace(/%20/g, "-")}-jobs/` },
+          { label: "Kalibrr",  url: `https://www.kalibrr.id/job-board?q=${q}` },
+        ];
+      }
+
+      function renderFindGuildBody() {
+        const topJobs = getTopJobsPerGroup();
+        if (topJobs.length === 0) {
+          bodyEl.innerHTML = `<div class="find-guild-empty">Belum ada Job Change yang dilakukan.<br>Lakukan Job Change terlebih dahulu agar Find Guild bisa merekomendasikan lowongan yang relevan.</div>`;
+          return;
+        }
+        bodyEl.innerHTML = topJobs.map(({ title, group }) => {
+          const links = jobSearchLinks(title).map(l =>
+            `<a class="find-guild-link-btn" href="${l.url}" target="_blank" rel="noopener noreferrer">↗ ${escapeHtml(l.label)}</a>`
+          ).join("");
+          return `<div class="find-guild-job-card">
+            <div class="find-guild-job-header">
+              <span class="find-guild-job-name">${escapeHtml(title)}</span>
+              <span class="find-guild-job-group">${escapeHtml(group)}</span>
+            </div>
+            <div class="find-guild-links">${links}</div>
+          </div>`;
+        }).join("");
+      }
 
       function openFindGuild() {
+        renderFindGuildBody();
         overlay.classList.add("open");
         document.body.style.overflow = "hidden";
       }
@@ -5820,8 +6275,6 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
       document.getElementById("btn-find-guild").addEventListener("click", openFindGuild);
       document.getElementById("find-guild-close").addEventListener("click", closeFindGuild);
       overlay.addEventListener("click", e => { if (e.target === e.currentTarget) closeFindGuild(); });
-
-      // Wire ESC into consolidated keydown handler (referenced via outer function — add to existing handler)
       overlay._close = closeFindGuild;
     })();
 
@@ -5833,7 +6286,15 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
     renderCards();
     renderProfileChip();
     loadQuestIndex();
+
+    // Scroll to top button
+    (function () {
+      const btn = document.getElementById("btn-top");
+      window.addEventListener("scroll", () => {
+        btn.classList.toggle("visible", window.scrollY > 300);
+      }, { passive: true });
+      btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    })();
   </script>
 </body>
 </html>
-

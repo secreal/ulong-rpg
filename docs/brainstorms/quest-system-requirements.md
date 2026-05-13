@@ -1,141 +1,122 @@
 ---
-date: 2026-05-12
+date: 2026-05-13
 topic: quest-system
 ---
 
-# Quest System
+# Quest System — Item-Embedded Quest Model
 
 ## Summary
 
-Quest content will move out of `index.html` into per-job data files. Each job will eventually have chained main quests and optional daily quests, with completion summaries and archive/history behavior, while `IT Novice` main quests stay delegated to Perguruan Ulong.
+Quest tidak lagi terikat ke job, melainkan embedded di tiap item (skill, equip, talent). Setiap item punya 9 quest (3 per level × 3 level) untuk main quest, dan 1 quest pengenalan untuk daily quest. Main quest player dihasilkan dari item yang belum Lv3, diurutkan skill → equip → talent. Daily quest mengaktifkan item baru dari Lv0 ke Lv1 dengan menyelesaikan quest pengenalannya.
+
+**Pembagian kerja:**
+- **Codex** — authoring data quest per item (isi quest, link, schema), migrasi skill dari CSV inline ke struktur data per skill
+- **Claude** — implementasi UI quest tab di modal: rendering quest card, flow Accept → Submit, state progress, daily picker
 
 ---
 
 ## Problem Frame
 
-The current quest content is small, inline, and only covers a couple of jobs. That does not scale to a full RPG progression system where every job needs role-specific learning paths, links, repeatable practice, and completion records. The next phase needs durable quest requirements so data creation can proceed in batches without forcing downstream agents to invent quest behavior or file organization.
-
----
-
-## Actors
-
-- A1. Player: uses ulong RPG to learn job skills, open quests, complete tasks, and write summaries.
-- A2. Quest content author: creates main and daily quest data for each job.
-- A3. UI implementer: later wires the quest button/modal UI to the external quest data without redesign decisions in this brainstorm.
-
----
-
-## Key Flows
-
-- F1. Main quest progression
-  - **Trigger:** Player opens Quest for a job.
-  - **Actors:** A1
-  - **Steps:** Player sees the currently available main quest, opens the linked resource, completes the task, writes a summary, and marks the quest done.
-  - **Outcome:** Completed quest moves to archive/history and the next main quest in that job chain becomes available.
-  - **Covered by:** R1, R2, R3, R4, R6
-
-- F2. Daily quest completion
-  - **Trigger:** Player opens Quest for a job on a new day.
-  - **Actors:** A1
-  - **Steps:** Player receives one available daily quest for that job, opens the linked resource, completes the optional task, writes a summary, and marks it done.
-  - **Outcome:** That daily quest is recorded and the player must wait until the next day for another daily quest.
-  - **Covered by:** R7, R8, R9, R10
-
-- F3. Quest data authoring
-  - **Trigger:** A content batch is assigned through later work.
-  - **Actors:** A2
-  - **Steps:** Author selects the assigned jobs, creates per-job quest files, maps main quests to the job's skills and levels, adds daily quests, and uses internet links as sources.
-  - **Outcome:** The assigned job files are ready for UI integration and validation.
-  - **Covered by:** R11, R12, R13, R14, R15
+Model authored-chain per job tidak skalabel dan tidak mencerminkan progress player nyata. Quest bisa tidak relevan jika item sudah Lv3 atau belum aktif. Dengan quest embedded di item, setiap skill/equip/talent membawa jalur belajarnya sendiri — sehingga quest selalu relevan, authoring bisa dilakukan per item secara independen, dan sistem tidak perlu tahu tentang job untuk menentukan quest apa yang aktif.
 
 ---
 
 ## Requirements
 
-**Quest types and completion**
-- R1. Quest content is split into two types: main quests and daily quests.
-- R2. A main quest is sequential: only the next unfinished quest in a job's main chain should be available until it is completed.
-- R3. Completing any quest requires the player to fill a text summary of what they learned or did.
-- R4. Completed quests must remain accessible through archive/history.
-- R5. Quest archive/history is about completed quest records, not about showing future locked quest content.
+**Struktur quest per item** *(data — Codex)*
 
-**Main quests**
-- R6. Main quests are job-focused self-development quests that progressively help the player raise the job's listed skills from Lv1 to Lv3.
-- R7. Main quest count is skill-driven, not fixed; each job gets as many main quests as needed to cover its skills naturally.
-- R8. One main quest may target one skill or multiple closely related skills when that creates a more realistic learning task.
-- R9. Main quests should progress from fundamentals to applied work, proof/project work, and advanced judgment.
-- R10. `IT Novice` main quests are intentionally skipped because they come from Perguruan Ulong.
+- R1. Setiap skill, equip, dan talent memiliki quest yang embedded langsung di data item tersebut — bukan di file quest per job.
+- R2. Setiap item memiliki tepat 3 quest untuk naik ke Lv1, 3 quest untuk naik ke Lv2, dan 3 quest untuk naik ke Lv3 (total 9 quest per item untuk main progression).
+- R3. Setiap item memiliki tepat 1 quest pengenalan yang digunakan untuk daily quest (quest yang mengaktifkan item dari Lv0 ke Lv1).
+- R4. Quest di setiap level menggambarkan cara belajar atau praktik yang relevan untuk item tersebut di kedalaman level itu — Lv1 untuk dasar, Lv2 untuk praktik terapan, Lv3 untuk mahir/proyek nyata.
+- R5. Setiap quest memiliki: judul singkat, deskripsi tugas, dan satu atau lebih link sumber.
 
-**Daily quests**
-- R11. Daily quests are optional job-specific tasks that add extra practice or value but are not required for main progression.
-- R12. Only one daily quest per job should be completable per day.
-- R13. After a daily quest is completed, the player must wait until the next day for another daily quest for that job.
-- R14. Daily quest pools can be large and expandable; 30-50+ daily quests per job is an acceptable long-term direction.
-- R15. `IT Novice` still needs daily quests even though its main quests are skipped.
+**Skill data migration** *(data — Codex)*
 
-**Quest data organization**
-- R16. Quest data should be external to `index.html`.
-- R17. Quest data should be split per job so clicking Quest for a job can load only that job's file.
-- R18. A quest index should map job titles to their quest files.
-- R19. All job quest files should follow a consistent structure so later UI work can load them predictably.
-- R20. The final scope includes all jobs, but data creation should happen in staged batches.
+- R6. Skill per job saat ini tersimpan sebagai CSV inline di `index.html` — perlu dipindahkan ke struktur data terpisah yang bisa menyimpan quest per skill per level.
+- R7. Hasil migrasi skill harus tetap kompatibel dengan cara `index.html` merender skill list dan skill progress di localStorage (`skill::name`).
 
-**Quest source links**
-- R21. Main and daily quests should include internet links as source material or task destinations.
-- R22. Quest links should lead to material the player can open, study, use, or act on before writing their completion summary.
-- R23. Link quality matters more than filling a fixed number of quests; noisy or weak links should be avoided even if that means fewer quests in an early batch.
+**Main quest — progress-driven** *(UI — Claude)*
 
-**Batching**
-- R24. Later implementation/data work should start with schema/index and a small representative batch before filling every job.
-- R25. After schema/index, a practical first content batch is Job 1 except `IT Novice`, plus `IT Novice` daily quests.
-- R26. Later batches should cover Job 2, then Job 3 and Final jobs, then a review pass.
+- R8. Main quest dihasilkan otomatis dari progress player — tidak ada authored chain di level job.
+- R9. Untuk naik dari Lv-N ke Lv-(N+1), player harus menyelesaikan semua 3 quest di level N tersebut.
+- R10. Quest dalam satu level bisa dikerjakan dalam urutan bebas — tidak harus berurutan.
+- R11. Urutan antar item mengikuti tiga fase: (1) semua skill job yang belum Lv3, (2) semua equip relevan yang belum Lv3, (3) semua talent relevan yang belum Lv3.
+- R12. Dalam satu fase, item dengan level terendah diprioritaskan; item level sama diurutkan alfabetis.
+- R13. Setelah semua item tiga fase mencapai Lv3, main quest masuk fase konfirmasi — menampilkan pencapaian, bukan tugas baru.
+- R14. Menyelesaikan satu quest memerlukan: klik Accept Quest → tulis summary → Submit Quest.
+
+**Daily quest — aktivasi item baru** *(UI — Claude)*
+
+- R15. Daily quest bertugas mengaktifkan satu item dari Lv0 ke Lv1 dengan menyelesaikan 1 quest pengenalannya.
+- R16. Quest pengenalan adalah satu quest khusus per item yang dirancang untuk perkenalan pertama — lebih ringan dari 3 quest Lv1 main progression.
+- R17. Player memilih sendiri item mana yang ingin diaktifkan hari ini dari daftar item Lv0 yang tersedia.
+- R18. Setelah quest pengenalan selesai, item naik ke Lv1 dan otomatis masuk antrian main quest.
+- R19. Hanya satu daily quest per job per hari — setelah selesai, cooldown sampai hari berikutnya.
+- R20. Jika tidak ada item Lv0 tersisa, daily quest menampilkan pesan kosong.
+
+**Scope item per job** *(UI — Claude)*
+
+- R21. Item yang relevan untuk suatu job difilter berdasarkan `tags` yang sudah ada di equipment.json dan talents.json — tidak ada daftar item baru per job.
+- R22. Skill quest hanya muncul di quest tab job yang bersangkutan.
+
+**Fallback** *(UI — Claude)*
+
+- R23. Jika item belum memiliki quest data (field belum diisi Codex), quest card tetap ditampilkan dengan nama item + description yang ada, tanpa link — tidak error.
 
 ---
 
 ## Acceptance Examples
 
-- AE1. **Covers R2, R3, R4.** Given a player has not completed any main quest for Frontend Developer, when they open the Frontend quest panel, only the first main quest is available; after they submit a summary and complete it, that quest appears in history and the second main quest becomes available.
-- AE2. **Covers R7, R8, R9.** Given a job has five listed skills, when quests are authored for that job, the number of main quests may be more or less than nine as long as the sequence reasonably covers all five skills from basic to advanced levels.
-- AE3. **Covers R10, R15.** Given the job is `IT Novice`, when quest data is authored, the main quest list is empty or marked as delegated to Perguruan Ulong, but the daily quest pool still exists.
-- AE4. **Covers R12, R13.** Given a player completes a daily quest for Backend Developer today, when they reopen Backend daily quests on the same date, another daily quest is not completable until the next day.
-- AE5. **Covers R16, R17, R18.** Given the player clicks Quest on Product Owner, the app can resolve Product Owner through the quest index and load only the Product Owner quest file rather than loading all quest content.
+- AE1. **Covers R2, R9, R10.** Diberikan player sedang mengerjakan "API design" Lv1, tiga quest tersedia (boleh dikerjakan urutan apapun). Setelah ketiga selesai dengan summary, item naik ke Lv2 dan tiga quest berikutnya terbuka.
+
+- AE2. **Covers R15, R16, R17, R18.** Diberikan item "Docker" masih Lv0, player buka daily quest dan pilih Docker. Quest pengenalan muncul, player selesaikan dan tulis summary. Docker naik ke Lv1 dan muncul di antrian main quest fase equip.
+
+- AE3. **Covers R11, R12.** Diberikan job Backend Developer, skill "access control" Lv1 dan "API design" Lv0 aktif, main quest aktif adalah "access control" (Lv1 lebih rendah dari Lv3 target, dan skill fase duluan). "API design" Lv0 tidak masuk main quest sampai diaktifkan via daily.
+
+- AE4. **Covers R13.** Diberikan semua skill, equip, talent job sudah Lv3, main quest masuk fase konfirmasi menampilkan daftar pencapaian dengan opsi tulis refleksi.
+
+- AE5. **Covers R23.** Diberikan equip "Vercel" belum ada quest data-nya (Codex belum isi), quest card tetap tampil dengan nama dan description yang ada — tidak blank error.
 
 ---
 
 ## Success Criteria
 
-- Quest requirements let content work proceed job-by-job without touching UI design.
-- Downstream planning does not need to invent main vs daily quest behavior, summary requirements, archive behavior, or per-job data organization.
-- Quest data remains scalable enough for hundreds or thousands of daily quests without making `index.html` heavy.
-- Every non-IT-Novice job can eventually receive a complete main quest chain tied to its skills.
+- Quest selalu relevan — tidak pernah menampilkan quest untuk item yang sudah Lv3 atau belum diaktifkan.
+- Authoring quest (Codex) tidak memerlukan koordinasi antar job — cukup isi data di item yang bersangkutan.
+- Daily quest memberi aksi konkret setiap hari: pilih satu item baru, kenalkan, naik ke Lv1.
+- Claude bisa implementasi UI quest rendering segera setelah schema data disepakati, tanpa menunggu semua quest selesai di-author.
 
 ---
 
 ## Scope Boundaries
 
-- No UI/UX design work is included in this brainstorm.
-- No immediate implementation of quest rendering, modals, archive screens, or daily cooldown logic is required here.
-- No fixed number of main quests per job is required.
-- No requirement to complete all jobs in a single work session.
-- `IT Novice` main quest authoring is out of scope because it uses Perguruan Ulong.
-- Equipment, talent, achievement, mission, and vending content are separate systems.
+- File quest per job (`data/quests/*.json`) dengan authored chain tidak digunakan lagi — diarsipkan setelah migrasi.
+- Perguruan Ulong (IT Novice main quest) tetap di luar sistem ini — IT Novice tidak dapat main quest dari model baru, daily quest tetap berlaku.
+- Sistem tidak menghasilkan quest atau link secara otomatis — semua authored oleh Codex.
+- Mission tab di luar scope.
+- Achievement tidak dipengaruhi perubahan ini.
 
 ---
 
 ## Key Decisions
 
-- Per-job quest files: chosen because quest content can become large and the app should only load the clicked job's quest data.
-- Skill-driven main quest count: chosen because jobs have different skill counts and complexity.
-- `IT Novice` main quest skip: chosen because its main learning path is Perguruan Ulong, while daily quests still belong in ulong RPG.
-- Batch execution: chosen because all-job quest content is large and should be built in reviewable increments.
+- **Quest embedded di item, bukan per job:** Satu item seperti "Git" punya quest yang sama apapun job yang memakainya — tidak perlu duplikasi authoring per job.
+- **3 quest wajib per level:** Tiga quest memberi variasi sudut pandang (teori, praktik, proyek nyata) tanpa terlalu berat. Semua wajib agar level naik bermakna.
+- **1 quest pengenalan per item untuk daily:** Daily quest bukan kursus — cukup satu tugas ringan untuk memperkenalkan item sebelum player komitmen ke 9 quest main progression-nya.
+- **Player pilih sendiri daily quest-nya:** Memberi agency — player tahu mana yang paling relevan untuk konteks kerja mereka hari ini.
+- **Urutan skill → equip → talent:** Skill adalah kompetensi inti, equip adalah alat, talent adalah spesialisasi. Urutan ini mencerminkan prioritas belajar yang logis.
+- **Claude implementasi UI, Codex isi data:** Keduanya bisa berjalan paralel setelah schema disepakati — Claude tidak perlu menunggu semua data selesai, cukup fallback R23 untuk item yang belum diisi.
 
 ---
 
 ## Dependencies / Assumptions
 
-- Job titles and skills in `index.html` are the source of truth for quest targeting until a later refactor moves them elsewhere.
-- Quest source links require internet research during content creation.
-- Existing inline quest data for Frontend Developer and Manual QA may be migrated, replaced, or treated as old seed content during later work.
+- `data/equipment.json` dan `data/talents.json` sudah ada — Codex menambahkan field quest ke struktur yang ada.
+- Skill per job saat ini inline sebagai CSV di `index.html` — Codex memindahkan ke struktur data per skill dengan field quest sebagai prerequisite.
+- Progress item (level) sudah di localStorage dengan key `skill::name`, `equip::id`, `talent::id` — Claude memakai ini sebagai input quest generation tanpa perubahan.
+- Filter equip/talent per job sudah berdasarkan `tags` — Claude ikut filter yang sama untuk scope quest per job.
+- Schema field quest di item (struktur `lv1`, `lv2`, `lv3`, `intro`) disepakati Codex dan Claude sebelum implementasi dimulai.
 
 ---
 
@@ -143,11 +124,10 @@ The current quest content is small, inline, and only covers a couple of jobs. Th
 
 ### Resolve Before Planning
 
-- None.
+- [Affects R2, R3, R6][Codex + Claude] Schema field quest di item perlu disepakati dulu sebelum Codex mulai authoring dan Claude mulai rendering — apakah `quests: { lv1: [...], lv2: [...], lv3: [...], intro: {...} }` atau bentuk lain?
 
 ### Deferred to Planning
 
-- [Affects R18, R19][Technical] Decide the exact JSON schema for quest index and per-job quest files.
-- [Affects R3, R4][Technical] Decide where quest summaries and completion history are stored.
-- [Affects R12, R13][Technical] Decide how daily quest date/cooldown state is represented.
-- [Affects R21, R22][Needs research] Select source links for each quest during content creation batches.
+- [Affects R9, R14][Claude — Technical] State "quest mana yang sudah selesai" per item per level disimpan di mana di localStorage — key format dan struktur ditentukan saat planning Claude.
+- [Affects R17][Claude — UX] Bagaimana player memilih item daily quest — list scrollable, search, atau difilter by kategori.
+- [Affects R7][Codex — Technical] Cara pindahkan skill dari CSV inline ke struktur data per skill tanpa merusak rendering dan localStorage yang sudah ada.
