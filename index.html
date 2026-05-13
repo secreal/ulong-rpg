@@ -3971,6 +3971,10 @@
           : renderCompletableQuest(todaysDaily, "daily");
 
       pane.innerHTML = `
+        <div class="detail-panel-header">
+          <div class="detail-panel-title">★ Quest</div>
+          <div class="detail-panel-desc">Main quest mengikuti talent yang kamu naikkan — satu quest aktif berantai sampai selesai. Daily quest muncul satu per hari, opsional tapi bikin kamu terus bergerak.</div>
+        </div>
         <div class="quest-phase">
           <div class="quest-phase-title">Main Quest</div>
           ${mainHtml}
@@ -4147,6 +4151,10 @@
         </div>`).join("");
       const emptyNote = jobLinks.length ? "" : `<div class="detail-empty" style="padding:8px 0 16px;text-align:left;font-size:12px">Belum ada achievement link. Tambah di bawah.</div>`;
       pane.innerHTML = `
+        <div class="detail-panel-header">
+          <div class="detail-panel-title">🏆 Achievement</div>
+          <div class="detail-panel-desc">Bukti nyata hasil kerjamu — link ke project, portfolio, sertifikat, atau kontribusi yang bisa dilihat orang lain.</div>
+        </div>
         <div class="achievement-link-list">${itemsHtml}</div>
         ${emptyNote}
         <div class="achievement-link-add" style="margin-top:8px">
