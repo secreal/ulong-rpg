@@ -4946,23 +4946,23 @@
       } else {
         const art = ULONG_ARTICLES[nextIdx];
         const url = art.slug ? `https://medium.com/@isecreal/${art.slug}` : null;
-        const linkHtml = url
-          ? `<a class="quest-item-link" href="${url}" target="_blank" rel="noopener">Buka artikel →</a>`
-          : `<span class="quest-item-link" style="opacity:.4">Link belum tersedia</span>`;
+        const titleEl = url
+          ? `<a class="quest-item-label" href="${url}" target="_blank" rel="noopener">Hari ${art.day} — ${escapeHtml(art.title)} ↗</a>`
+          : `<span class="quest-item-label">Hari ${art.day} — ${escapeHtml(art.title)}</span>`;
         questBody = `<div class="quest-item">
           <div class="quest-checkbox"></div>
           <div class="quest-item-content">
             <div class="quest-title-row">
-              <span class="quest-item-label">Hari ${art.day} — ${escapeHtml(art.title)}</span>
-              ${linkHtml}
+              ${titleEl}
+              <button class="btn-job-change quest-accept-btn ulong-accept-btn" data-idx="${nextIdx}">Accept Quest</button>
             </div>
             <div class="quest-item-sub">${art.date} · Baca artikel, jawab di Discord, lalu paste link jawaban di bawah.</div>
-            <div class="quest-summary-wrap" style="">
+            <div class="quest-summary-wrap" style="display:none">
               <input class="quest-summary-input ulong-discord-input" type="url"
                 placeholder="https://discord.com/channels/..."
                 data-idx="${nextIdx}" style="width:100%;margin-top:8px;box-sizing:border-box">
             </div>
-            <button class="quest-complete-btn ulong-submit-btn" data-idx="${nextIdx}" disabled style="margin-top:6px">
+            <button class="btn-job-change quest-complete-btn ulong-submit-btn" data-idx="${nextIdx}" style="display:none;margin-top:6px">
               Tandai Selesai
             </button>
           </div>
@@ -4976,16 +4976,21 @@
           ${questBody}
         </div>`;
 
-      pane.addEventListener("input", e => {
-        const inp = e.target.closest(".ulong-discord-input");
-        if (!inp) return;
-        const btn = pane.querySelector(`.ulong-submit-btn[data-idx="${inp.dataset.idx}"]`);
-        if (btn) btn.disabled = !inp.value.startsWith("https://discord.com/");
-      });
-
       pane.addEventListener("click", e => {
+        // Accept Quest → reveal input
+        const acceptBtn = e.target.closest(".ulong-accept-btn");
+        if (acceptBtn) {
+          acceptBtn.style.display = "none";
+          const questItem = acceptBtn.closest(".quest-item");
+          questItem.querySelector(".quest-summary-wrap").style.display = "";
+          const submitBtn = questItem.querySelector(".ulong-submit-btn");
+          submitBtn.style.display = "";
+          questItem.querySelector(".ulong-discord-input").focus();
+          return;
+        }
+        // Submit
         const btn = e.target.closest(".ulong-submit-btn");
-        if (!btn || btn.disabled) return;
+        if (!btn) return;
         const idx = Number(btn.dataset.idx);
         const inp = pane.querySelector(`.ulong-discord-input[data-idx="${idx}"]`);
         if (!inp || !inp.value.startsWith("https://discord.com/")) return;
@@ -4994,6 +4999,13 @@
         detailRenderedTabs["quest"] = false;
         renderUlongQuestTab(pane);
         refreshCards();
+      });
+
+      pane.addEventListener("input", e => {
+        const inp = e.target.closest(".ulong-discord-input");
+        if (!inp) return;
+        const btn = pane.querySelector(`.ulong-submit-btn[data-idx="${inp.dataset.idx}"]`);
+        if (btn) btn.disabled = !inp.value.startsWith("https://discord.com/");
       });
     }
 
