@@ -1300,6 +1300,10 @@
     .sync-notice { font-size: 11px; color: var(--muted); margin-top: 14px; line-height: 1.55; }
     .sync-notice a { color: var(--gold); opacity: .8; }
 
+    /* detail modal fixed height — no resize between tabs */
+    #detail-modal { min-height: min(82vh, 680px); display: flex; flex-direction: column; }
+    #detail-modal .modal-body { flex: 1; min-height: 0; overflow-y: auto; }
+
     /* ══ DETAIL MODAL TABS ══ */
     .detail-tabs {
       display: flex; gap: 2px;
