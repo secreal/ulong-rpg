@@ -1301,7 +1301,7 @@
     .sync-notice a { color: var(--gold); opacity: .8; }
 
     /* detail modal fixed height — no resize between tabs */
-    #detail-modal { min-height: min(82vh, 680px); display: flex; flex-direction: column; }
+    #detail-modal { height: min(88vh, 720px); display: flex; flex-direction: column; }
     #detail-modal .modal-body { flex: 1; min-height: 0; overflow-y: auto; }
 
     /* ══ DETAIL MODAL TABS ══ */
@@ -1374,8 +1374,13 @@
     }
 
     .alpha-group {
-      display: flex; align-items: center; flex-wrap: wrap;
+      display: flex; align-items: flex-start;
       gap: 6px; margin-bottom: 8px;
+    }
+
+    .alpha-group-pills {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 6px; flex: 1;
     }
 
     .alpha-group-header {
@@ -4022,7 +4027,7 @@
       return Object.keys(groups).sort().map(letter => `
         <div class="alpha-group" data-alpha="${letter}">
           <span class="alpha-group-header">${letter}</span>
-          ${groups[letter].map(i => buildPillHtml(i, kind)).join("")}
+          <div class="alpha-group-pills">${groups[letter].map(i => buildPillHtml(i, kind)).join("")}</div>
         </div>`).join("");
     }
 
