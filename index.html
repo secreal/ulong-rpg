@@ -4292,7 +4292,7 @@
         </div>`;
       } else {
         // Pick one random item — fundamental first, then non-fundamental; within each tier: skill → equip → talent
-        const isFund = c => c.targetEntry?.fundamental === true;
+        const isFund = c => c.targetEntry?.fundamental === true || c.targetEntry?.learningStage === "fundamental";
         const byPhase = (list) => {
           const s = list.filter(c => c.kind === "skill");
           const e = list.filter(c => c.kind === "equip");
