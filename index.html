@@ -6095,13 +6095,13 @@
         <span class="tier-pill" style="border-color:${tc}20;color:${tc}">T${tier}</span>
       </div>
       <h2 class="card-title">${title}</h2>
-      <p class="desc" data-id="${desc}" data-en="${descEN}">${descEN}</p>
+      <p class="desc" data-txt-id="${desc}" data-txt-en="${descEN}">${descEN}</p>
       <div class="skill-list">${buildSkillBadges(title, skills)}</div>
-      ${buildEquipTalentSection(title)}
+      ${tier !== 0 ? buildEquipTalentSection(title) : ""}
       ${buildLinksSection(title)}
       <div class="salary-row">
         <span class="salary-label">Salary</span>
-        <strong class="salary" data-id="${salary}" data-en="${salaryEN}">${salaryEN}</strong>
+        <strong class="salary" data-txt-id="${salary}" data-txt-en="${salaryEN}">${salaryEN}</strong>
         <small class="salary-note" data-hide-on-id>Note: Indonesian rates differ significantly.</small>
       </div>
     </div>`;
@@ -6140,13 +6140,13 @@
               <span class="tier-pill" style="border-color:${stc}20;color:${stc}">T${stier}</span>
             </div>
             <div class="sub-card-title">${st}</div>
-            <p class="desc" data-id="${sd}" data-en="${sdEN}">${sdEN}</p>
+            <p class="desc" data-txt-id="${sd}" data-txt-en="${sdEN}">${sdEN}</p>
             <div class="skill-list">${buildSkillBadges(st, ss)}</div>
-            ${buildEquipTalentSection(st)}
+            ${stier !== 0 ? buildEquipTalentSection(st) : ""}
             ${buildLinksSection(st)}
             <div class="salary-row">
               <span class="salary-label">Salary</span>
-              <strong class="salary" data-id="${ssal}" data-en="${ssalEN}">${ssalEN}</strong>
+              <strong class="salary" data-txt-id="${ssal}" data-txt-en="${ssalEN}">${ssalEN}</strong>
               <small class="salary-note" data-hide-on-id>Note: Indonesian rates differ significantly.</small>
             </div>
           </div>
@@ -6510,11 +6510,12 @@ ${standaloneHTML}
   var cur="en";
   var switcher=document.getElementById("showcase-lang");
   var opts=switcher.querySelectorAll(".lang-opt");
-  var els=document.querySelectorAll("[data-id][data-en]");
   var notes=document.querySelectorAll("[data-hide-on-id]");
   function apply(lang){
     cur=lang;
-    els.forEach(function(el){el.textContent=el.dataset[lang]||el.textContent;});
+    document.querySelectorAll("[data-txt-id][data-txt-en]").forEach(function(el){
+      el.textContent=lang==="id"?el.dataset.txtId:el.dataset.txtEn;
+    });
     notes.forEach(function(n){n.style.display=lang==="en"?"":"none";});
     opts.forEach(function(b){b.classList.toggle("active",b.dataset.lang===lang);});
     document.documentElement.lang=lang;
