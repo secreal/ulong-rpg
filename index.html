@@ -1158,6 +1158,7 @@
     .quest-item.done .quest-checkbox-tick { opacity: 1; }
 
     .quest-item-content { flex: 1; }
+    .quest-title-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
 
     .quest-item-label {
       font-size: 13px; font-weight: 700; color: var(--ink);
@@ -4085,10 +4086,12 @@
         <div class="quest-item" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">
           <div class="quest-checkbox"></div>
           <div class="quest-item-content">
-            ${titleEl}
+            <div class="quest-title-row">
+              ${titleEl}
+              <button class="btn-job-change quest-accept-btn" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">Accept Quest</button>
+            </div>
             <div class="quest-item-sub">${escapeHtml(item.description)}</div>
             ${extraLinks}
-            <button class="btn-job-change quest-accept-btn" data-quest-id="${escapeHtml(item.id)}" data-quest-type="${type}">Accept Quest</button>
             <div class="quest-summary-wrap" style="display:none">
               <div class="quest-summary-topbar"><span class="quest-summary-topbar-label">// QUEST LOG — write your summary after completing</span></div>
               <textarea class="quest-summary-input" data-quest-id="${escapeHtml(item.id)}" placeholder="Write what you learned here..."></textarea>
@@ -4306,10 +4309,12 @@
         <div class="quest-item" data-quest-id="${escapeHtml(synQuest.id)}" data-quest-type="${type}">
           <div class="quest-checkbox"></div>
           <div class="quest-item-content">
-            ${titleEl}
+            <div class="quest-title-row">
+              ${titleEl}
+              <button class="btn-job-change quest-accept-btn" data-quest-id="${escapeHtml(synQuest.id)}" data-quest-type="${type}">Accept Quest</button>
+            </div>
             <div class="quest-item-sub">${escapeHtml(synQuest.description)}</div>
             ${extraLinks}
-            <button class="btn-job-change quest-accept-btn" data-quest-id="${escapeHtml(synQuest.id)}" data-quest-type="${type}">Accept Quest</button>
             <div class="quest-summary-wrap" style="display:none">
               <div class="quest-summary-topbar"><span class="quest-summary-topbar-label">// QUEST LOG — write your summary after completing</span></div>
               <textarea class="quest-summary-input" data-quest-id="${escapeHtml(synQuest.id)}" placeholder="Write what you learned here..."></textarea>
