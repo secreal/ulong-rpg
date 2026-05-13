@@ -11,6 +11,691 @@
   "targets": [
     {
       "kind": "equipment",
+      "targetId": "chrome-devtools",
+      "targetName": "Chrome DevTools",
+      "source": {
+        "type": "equipment",
+        "progressKey": "equip::chrome-devtools"
+      },
+      "intro": {
+        "id": "equipment-chrome-devtools-intro",
+        "title": "Meet Chrome DevTools",
+        "description": "Study an introductory reference for Chrome DevTools, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Chrome DevTools - Overview",
+            "url": "https://developer.chrome.com/docs/devtools"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "equipment-chrome-devtools-lv1-01",
+            "title": "Identify Chrome DevTools Basics",
+            "description": "Read the beginner material for Chrome DevTools, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          },
+          {
+            "id": "equipment-chrome-devtools-lv1-02",
+            "title": "Map a Simple Chrome DevTools Use Case",
+            "description": "Describe a small real-world situation where Chrome DevTools helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          },
+          {
+            "id": "equipment-chrome-devtools-lv1-03",
+            "title": "Avoid a Common Chrome DevTools Mistake",
+            "description": "Find one beginner mistake related to Chrome DevTools, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "equipment-chrome-devtools-lv2-01",
+            "title": "Apply Chrome DevTools in Context",
+            "description": "Use the reference to design a practical workflow for Chrome DevTools, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          },
+          {
+            "id": "equipment-chrome-devtools-lv2-02",
+            "title": "Compare Chrome DevTools Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for Chrome DevTools, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          },
+          {
+            "id": "equipment-chrome-devtools-lv2-03",
+            "title": "Troubleshoot Chrome DevTools",
+            "description": "Create a short troubleshooting checklist for Chrome DevTools, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "equipment-chrome-devtools-lv3-01",
+            "title": "Design a Reusable Chrome DevTools Practice",
+            "description": "Turn Chrome DevTools into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          },
+          {
+            "id": "equipment-chrome-devtools-lv3-02",
+            "title": "Review Chrome DevTools Like a Senior",
+            "description": "Audit a Chrome DevTools decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          },
+          {
+            "id": "equipment-chrome-devtools-lv3-03",
+            "title": "Prove Chrome DevTools Mastery",
+            "description": "Create a small proof-of-understanding artifact for Chrome DevTools, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how browser inspection reveals HTML, CSS, JavaScript, network, and performance behavior.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Chrome DevTools - Overview",
+                "url": "https://developer.chrome.com/docs/devtools"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "equipment",
+      "targetId": "docker",
+      "targetName": "Docker",
+      "source": {
+        "type": "equipment",
+        "progressKey": "equip::docker"
+      },
+      "intro": {
+        "id": "equipment-docker-intro",
+        "title": "Meet Docker",
+        "description": "Study an introductory reference for Docker, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Docker Docs - Get Started",
+            "url": "https://docs.docker.com/get-started/"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "equipment-docker-lv1-01",
+            "title": "Identify Docker Basics",
+            "description": "Read the beginner material for Docker, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-docker-lv1-02",
+            "title": "Map a Simple Docker Use Case",
+            "description": "Describe a small real-world situation where Docker helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-docker-lv1-03",
+            "title": "Avoid a Common Docker Mistake",
+            "description": "Find one beginner mistake related to Docker, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "equipment-docker-lv2-01",
+            "title": "Apply Docker in Context",
+            "description": "Use the reference to design a practical workflow for Docker, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-docker-lv2-02",
+            "title": "Compare Docker Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for Docker, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-docker-lv2-03",
+            "title": "Troubleshoot Docker",
+            "description": "Create a short troubleshooting checklist for Docker, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "equipment-docker-lv3-01",
+            "title": "Design a Reusable Docker Practice",
+            "description": "Turn Docker into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-docker-lv3-02",
+            "title": "Review Docker Like a Senior",
+            "description": "Audit a Docker decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-docker-lv3-03",
+            "title": "Prove Docker Mastery",
+            "description": "Create a small proof-of-understanding artifact for Docker, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how containers make local and server environments more repeatable.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Docker Docs - Get Started",
+                "url": "https://docs.docker.com/get-started/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "equipment",
+      "targetId": "git",
+      "targetName": "Git",
+      "source": {
+        "type": "equipment",
+        "progressKey": "equip::git"
+      },
+      "intro": {
+        "id": "equipment-git-intro",
+        "title": "Meet Git",
+        "description": "Study an introductory reference for Git, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Git Book - Getting Started",
+            "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "equipment-git-lv1-01",
+            "title": "Identify Git Basics",
+            "description": "Read the beginner material for Git, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          },
+          {
+            "id": "equipment-git-lv1-02",
+            "title": "Map a Simple Git Use Case",
+            "description": "Describe a small real-world situation where Git helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          },
+          {
+            "id": "equipment-git-lv1-03",
+            "title": "Avoid a Common Git Mistake",
+            "description": "Find one beginner mistake related to Git, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "equipment-git-lv2-01",
+            "title": "Apply Git in Context",
+            "description": "Use the reference to design a practical workflow for Git, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          },
+          {
+            "id": "equipment-git-lv2-02",
+            "title": "Compare Git Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for Git, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          },
+          {
+            "id": "equipment-git-lv2-03",
+            "title": "Troubleshoot Git",
+            "description": "Create a short troubleshooting checklist for Git, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "equipment-git-lv3-01",
+            "title": "Design a Reusable Git Practice",
+            "description": "Turn Git into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          },
+          {
+            "id": "equipment-git-lv3-02",
+            "title": "Review Git Like a Senior",
+            "description": "Audit a Git decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          },
+          {
+            "id": "equipment-git-lv3-03",
+            "title": "Prove Git Mastery",
+            "description": "Create a small proof-of-understanding artifact for Git, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how Git protects collaboration through history and branching.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Git Book - Getting Started",
+                "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "equipment",
+      "targetId": "github",
+      "targetName": "GitHub",
+      "source": {
+        "type": "equipment",
+        "progressKey": "equip::github"
+      },
+      "intro": {
+        "id": "equipment-github-intro",
+        "title": "Meet GitHub",
+        "description": "Study an introductory reference for GitHub, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "GitHub Docs - Hello World",
+            "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "equipment-github-lv1-01",
+            "title": "Identify GitHub Basics",
+            "description": "Read the beginner material for GitHub, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          },
+          {
+            "id": "equipment-github-lv1-02",
+            "title": "Map a Simple GitHub Use Case",
+            "description": "Describe a small real-world situation where GitHub helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          },
+          {
+            "id": "equipment-github-lv1-03",
+            "title": "Avoid a Common GitHub Mistake",
+            "description": "Find one beginner mistake related to GitHub, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "equipment-github-lv2-01",
+            "title": "Apply GitHub in Context",
+            "description": "Use the reference to design a practical workflow for GitHub, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          },
+          {
+            "id": "equipment-github-lv2-02",
+            "title": "Compare GitHub Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for GitHub, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          },
+          {
+            "id": "equipment-github-lv2-03",
+            "title": "Troubleshoot GitHub",
+            "description": "Create a short troubleshooting checklist for GitHub, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "equipment-github-lv3-01",
+            "title": "Design a Reusable GitHub Practice",
+            "description": "Turn GitHub into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          },
+          {
+            "id": "equipment-github-lv3-02",
+            "title": "Review GitHub Like a Senior",
+            "description": "Audit a GitHub decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          },
+          {
+            "id": "equipment-github-lv3-03",
+            "title": "Prove GitHub Mastery",
+            "description": "Create a small proof-of-understanding artifact for GitHub, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how repository hosting, pull requests, and issues support team workflows.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "GitHub Docs - Hello World",
+                "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "equipment",
+      "targetId": "postman",
+      "targetName": "Postman",
+      "source": {
+        "type": "equipment",
+        "progressKey": "equip::postman"
+      },
+      "intro": {
+        "id": "equipment-postman-intro",
+        "title": "Meet Postman",
+        "description": "Study an introductory reference for Postman, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Postman Learning Center - Send Your First Request",
+            "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "equipment-postman-lv1-01",
+            "title": "Identify Postman Basics",
+            "description": "Read the beginner material for Postman, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-postman-lv1-02",
+            "title": "Map a Simple Postman Use Case",
+            "description": "Describe a small real-world situation where Postman helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-postman-lv1-03",
+            "title": "Avoid a Common Postman Mistake",
+            "description": "Find one beginner mistake related to Postman, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "equipment-postman-lv2-01",
+            "title": "Apply Postman in Context",
+            "description": "Use the reference to design a practical workflow for Postman, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-postman-lv2-02",
+            "title": "Compare Postman Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for Postman, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-postman-lv2-03",
+            "title": "Troubleshoot Postman",
+            "description": "Create a short troubleshooting checklist for Postman, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "equipment-postman-lv3-01",
+            "title": "Design a Reusable Postman Practice",
+            "description": "Turn Postman into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-postman-lv3-02",
+            "title": "Review Postman Like a Senior",
+            "description": "Audit a Postman decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          },
+          {
+            "id": "equipment-postman-lv3-03",
+            "title": "Prove Postman Mastery",
+            "description": "Create a small proof-of-understanding artifact for Postman, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how API requests can be explored before writing application code.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Postman Learning Center - Send Your First Request",
+                "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "equipment",
       "targetId": "visual-studio-code",
       "targetName": "Visual Studio Code",
       "source": {

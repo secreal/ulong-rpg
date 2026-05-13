@@ -11,6 +11,1513 @@
   "targets": [
     {
       "kind": "skill",
+      "targetId": "access-control",
+      "targetName": "access control",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::access control"
+      },
+      "intro": {
+        "id": "skill-access-control-intro",
+        "title": "Meet access control",
+        "description": "Study an introductory reference for access control, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "OWASP - Authorization Cheat Sheet",
+            "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-access-control-lv1-01",
+            "title": "Identify access control Basics",
+            "description": "Read the beginner material for access control, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-access-control-lv1-02",
+            "title": "Map a Simple access control Use Case",
+            "description": "Describe a small real-world situation where access control helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-access-control-lv1-03",
+            "title": "Avoid a Common access control Mistake",
+            "description": "Find one beginner mistake related to access control, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-access-control-lv2-01",
+            "title": "Apply access control in Context",
+            "description": "Use the reference to design a practical workflow for access control, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-access-control-lv2-02",
+            "title": "Compare access control Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for access control, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-access-control-lv2-03",
+            "title": "Troubleshoot access control",
+            "description": "Create a short troubleshooting checklist for access control, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-access-control-lv3-01",
+            "title": "Design a Reusable access control Practice",
+            "description": "Turn access control into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-access-control-lv3-02",
+            "title": "Review access control Like a Senior",
+            "description": "Audit a access control decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-access-control-lv3-03",
+            "title": "Prove access control Mastery",
+            "description": "Create a small proof-of-understanding artifact for access control, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how permissions protect actions and data, not only login screens.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "OWASP - Authorization Cheat Sheet",
+                "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "api-design",
+      "targetName": "API design",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::API design"
+      },
+      "intro": {
+        "id": "skill-api-design-intro",
+        "title": "Meet API design",
+        "description": "Study an introductory reference for API design, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Microsoft REST API Guidelines",
+            "url": "https://github.com/microsoft/api-guidelines"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-api-design-lv1-01",
+            "title": "Identify API design Basics",
+            "description": "Read the beginner material for API design, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-design-lv1-02",
+            "title": "Map a Simple API design Use Case",
+            "description": "Describe a small real-world situation where API design helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-design-lv1-03",
+            "title": "Avoid a Common API design Mistake",
+            "description": "Find one beginner mistake related to API design, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-api-design-lv2-01",
+            "title": "Apply API design in Context",
+            "description": "Use the reference to design a practical workflow for API design, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-design-lv2-02",
+            "title": "Compare API design Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for API design, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-design-lv2-03",
+            "title": "Troubleshoot API design",
+            "description": "Create a short troubleshooting checklist for API design, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-api-design-lv3-01",
+            "title": "Design a Reusable API design Practice",
+            "description": "Turn API design into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-design-lv3-02",
+            "title": "Review API design Like a Senior",
+            "description": "Audit a API design decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-design-lv3-03",
+            "title": "Prove API design Mastery",
+            "description": "Create a small proof-of-understanding artifact for API design, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how API shape affects every client that depends on it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft REST API Guidelines",
+                "url": "https://github.com/microsoft/api-guidelines"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "api-integration",
+      "targetName": "API integration",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::API integration"
+      },
+      "intro": {
+        "id": "skill-api-integration-intro",
+        "title": "Meet API integration",
+        "description": "Study an introductory reference for API integration, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "MDN - Fetch API",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-api-integration-lv1-01",
+            "title": "Identify API integration Basics",
+            "description": "Read the beginner material for API integration, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-integration-lv1-02",
+            "title": "Map a Simple API integration Use Case",
+            "description": "Describe a small real-world situation where API integration helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-integration-lv1-03",
+            "title": "Avoid a Common API integration Mistake",
+            "description": "Find one beginner mistake related to API integration, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-api-integration-lv2-01",
+            "title": "Apply API integration in Context",
+            "description": "Use the reference to design a practical workflow for API integration, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-integration-lv2-02",
+            "title": "Compare API integration Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for API integration, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-integration-lv2-03",
+            "title": "Troubleshoot API integration",
+            "description": "Create a short troubleshooting checklist for API integration, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-api-integration-lv3-01",
+            "title": "Design a Reusable API integration Practice",
+            "description": "Turn API integration into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-integration-lv3-02",
+            "title": "Review API integration Like a Senior",
+            "description": "Audit a API integration decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          },
+          {
+            "id": "skill-api-integration-lv3-03",
+            "title": "Prove API integration Mastery",
+            "description": "Create a small proof-of-understanding artifact for API integration, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how a client asks another system for data and handles the response.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Fetch API",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "background-processing",
+      "targetName": "background processing",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::background processing"
+      },
+      "intro": {
+        "id": "skill-background-processing-intro",
+        "title": "Meet background processing",
+        "description": "Study an introductory reference for background processing, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Celery - Introduction",
+            "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-background-processing-lv1-01",
+            "title": "Identify background processing Basics",
+            "description": "Read the beginner material for background processing, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-background-processing-lv1-02",
+            "title": "Map a Simple background processing Use Case",
+            "description": "Describe a small real-world situation where background processing helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-background-processing-lv1-03",
+            "title": "Avoid a Common background processing Mistake",
+            "description": "Find one beginner mistake related to background processing, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-background-processing-lv2-01",
+            "title": "Apply background processing in Context",
+            "description": "Use the reference to design a practical workflow for background processing, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-background-processing-lv2-02",
+            "title": "Compare background processing Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for background processing, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-background-processing-lv2-03",
+            "title": "Troubleshoot background processing",
+            "description": "Create a short troubleshooting checklist for background processing, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-background-processing-lv3-01",
+            "title": "Design a Reusable background processing Practice",
+            "description": "Turn background processing into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-background-processing-lv3-02",
+            "title": "Review background processing Like a Senior",
+            "description": "Audit a background processing decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          },
+          {
+            "id": "skill-background-processing-lv3-03",
+            "title": "Prove background processing Mastery",
+            "description": "Create a small proof-of-understanding artifact for background processing, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show why some work belongs outside the request-response path.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Celery - Introduction",
+                "url": "https://docs.celeryq.dev/en/stable/getting-started/introduction.html"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "browser-interaction",
+      "targetName": "browser interaction",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::browser interaction"
+      },
+      "intro": {
+        "id": "skill-browser-interaction-intro",
+        "title": "Meet browser interaction",
+        "description": "Study an introductory reference for browser interaction, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "MDN - Document Object Model",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-browser-interaction-lv1-01",
+            "title": "Identify browser interaction Basics",
+            "description": "Read the beginner material for browser interaction, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          },
+          {
+            "id": "skill-browser-interaction-lv1-02",
+            "title": "Map a Simple browser interaction Use Case",
+            "description": "Describe a small real-world situation where browser interaction helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          },
+          {
+            "id": "skill-browser-interaction-lv1-03",
+            "title": "Avoid a Common browser interaction Mistake",
+            "description": "Find one beginner mistake related to browser interaction, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-browser-interaction-lv2-01",
+            "title": "Apply browser interaction in Context",
+            "description": "Use the reference to design a practical workflow for browser interaction, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          },
+          {
+            "id": "skill-browser-interaction-lv2-02",
+            "title": "Compare browser interaction Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for browser interaction, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          },
+          {
+            "id": "skill-browser-interaction-lv2-03",
+            "title": "Troubleshoot browser interaction",
+            "description": "Create a short troubleshooting checklist for browser interaction, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-browser-interaction-lv3-01",
+            "title": "Design a Reusable browser interaction Practice",
+            "description": "Turn browser interaction into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          },
+          {
+            "id": "skill-browser-interaction-lv3-02",
+            "title": "Review browser interaction Like a Senior",
+            "description": "Audit a browser interaction decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          },
+          {
+            "id": "skill-browser-interaction-lv3-03",
+            "title": "Prove browser interaction Mastery",
+            "description": "Create a small proof-of-understanding artifact for browser interaction, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how user actions connect to changes in the page.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Document Object Model",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "data-modeling",
+      "targetName": "data modeling",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::data modeling"
+      },
+      "intro": {
+        "id": "skill-data-modeling-intro",
+        "title": "Meet data modeling",
+        "description": "Study an introductory reference for data modeling, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Vertabelo - Data Modeling Basics",
+            "url": "https://vertabelo.com/blog/data-modeling-basics/"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-data-modeling-lv1-01",
+            "title": "Identify data modeling Basics",
+            "description": "Read the beginner material for data modeling, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-modeling-lv1-02",
+            "title": "Map a Simple data modeling Use Case",
+            "description": "Describe a small real-world situation where data modeling helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-modeling-lv1-03",
+            "title": "Avoid a Common data modeling Mistake",
+            "description": "Find one beginner mistake related to data modeling, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-data-modeling-lv2-01",
+            "title": "Apply data modeling in Context",
+            "description": "Use the reference to design a practical workflow for data modeling, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-modeling-lv2-02",
+            "title": "Compare data modeling Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for data modeling, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-modeling-lv2-03",
+            "title": "Troubleshoot data modeling",
+            "description": "Create a short troubleshooting checklist for data modeling, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-data-modeling-lv3-01",
+            "title": "Design a Reusable data modeling Practice",
+            "description": "Turn data modeling into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-modeling-lv3-02",
+            "title": "Review data modeling Like a Senior",
+            "description": "Audit a data modeling decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-modeling-lv3-03",
+            "title": "Prove data modeling Mastery",
+            "description": "Create a small proof-of-understanding artifact for data modeling, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how clear entities and relationships prevent confusing application data.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Vertabelo - Data Modeling Basics",
+                "url": "https://vertabelo.com/blog/data-modeling-basics/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "data-querying",
+      "targetName": "data querying",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::data querying"
+      },
+      "intro": {
+        "id": "skill-data-querying-intro",
+        "title": "Meet data querying",
+        "description": "Study an introductory reference for data querying, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "SQLBolt - Interactive SQL Lessons",
+            "url": "https://sqlbolt.com/"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-data-querying-lv1-01",
+            "title": "Identify data querying Basics",
+            "description": "Read the beginner material for data querying, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-querying-lv1-02",
+            "title": "Map a Simple data querying Use Case",
+            "description": "Describe a small real-world situation where data querying helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-querying-lv1-03",
+            "title": "Avoid a Common data querying Mistake",
+            "description": "Find one beginner mistake related to data querying, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-data-querying-lv2-01",
+            "title": "Apply data querying in Context",
+            "description": "Use the reference to design a practical workflow for data querying, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-querying-lv2-02",
+            "title": "Compare data querying Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for data querying, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-querying-lv2-03",
+            "title": "Troubleshoot data querying",
+            "description": "Create a short troubleshooting checklist for data querying, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-data-querying-lv3-01",
+            "title": "Design a Reusable data querying Practice",
+            "description": "Turn data querying into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-querying-lv3-02",
+            "title": "Review data querying Like a Senior",
+            "description": "Audit a data querying decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          },
+          {
+            "id": "skill-data-querying-lv3-03",
+            "title": "Prove data querying Mastery",
+            "description": "Create a small proof-of-understanding artifact for data querying, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show that you can ask a precise question and retrieve the matching data.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "SQLBolt - Interactive SQL Lessons",
+                "url": "https://sqlbolt.com/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "problem-solving",
+      "targetName": "Problem solving",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::Problem solving"
+      },
+      "intro": {
+        "id": "skill-problem-solving-intro",
+        "title": "Meet Problem solving",
+        "description": "Study an introductory reference for Problem solving, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "freeCodeCamp - Problem Solving",
+            "url": "https://www.freecodecamp.org/news/problem-solving/"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-problem-solving-lv1-01",
+            "title": "Identify Problem solving Basics",
+            "description": "Read the beginner material for Problem solving, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          },
+          {
+            "id": "skill-problem-solving-lv1-02",
+            "title": "Map a Simple Problem solving Use Case",
+            "description": "Describe a small real-world situation where Problem solving helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          },
+          {
+            "id": "skill-problem-solving-lv1-03",
+            "title": "Avoid a Common Problem solving Mistake",
+            "description": "Find one beginner mistake related to Problem solving, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-problem-solving-lv2-01",
+            "title": "Apply Problem solving in Context",
+            "description": "Use the reference to design a practical workflow for Problem solving, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          },
+          {
+            "id": "skill-problem-solving-lv2-02",
+            "title": "Compare Problem solving Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for Problem solving, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          },
+          {
+            "id": "skill-problem-solving-lv2-03",
+            "title": "Troubleshoot Problem solving",
+            "description": "Create a short troubleshooting checklist for Problem solving, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-problem-solving-lv3-01",
+            "title": "Design a Reusable Problem solving Practice",
+            "description": "Turn Problem solving into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          },
+          {
+            "id": "skill-problem-solving-lv3-02",
+            "title": "Review Problem solving Like a Senior",
+            "description": "Audit a Problem solving decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          },
+          {
+            "id": "skill-problem-solving-lv3-03",
+            "title": "Prove Problem solving Mastery",
+            "description": "Create a small proof-of-understanding artifact for Problem solving, such as notes, a checklist, a mini demo, or a before-and-after explanation. Focus on breaking vague problems into smaller testable steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "freeCodeCamp - Problem Solving",
+                "url": "https://www.freecodecamp.org/news/problem-solving/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "responsive-layout",
+      "targetName": "responsive layout",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::responsive layout"
+      },
+      "intro": {
+        "id": "skill-responsive-layout-intro",
+        "title": "Meet responsive layout",
+        "description": "Study an introductory reference for responsive layout, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "MDN - Responsive Design",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-responsive-layout-lv1-01",
+            "title": "Identify responsive layout Basics",
+            "description": "Read the beginner material for responsive layout, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          },
+          {
+            "id": "skill-responsive-layout-lv1-02",
+            "title": "Map a Simple responsive layout Use Case",
+            "description": "Describe a small real-world situation where responsive layout helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          },
+          {
+            "id": "skill-responsive-layout-lv1-03",
+            "title": "Avoid a Common responsive layout Mistake",
+            "description": "Find one beginner mistake related to responsive layout, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-responsive-layout-lv2-01",
+            "title": "Apply responsive layout in Context",
+            "description": "Use the reference to design a practical workflow for responsive layout, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          },
+          {
+            "id": "skill-responsive-layout-lv2-02",
+            "title": "Compare responsive layout Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for responsive layout, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          },
+          {
+            "id": "skill-responsive-layout-lv2-03",
+            "title": "Troubleshoot responsive layout",
+            "description": "Create a short troubleshooting checklist for responsive layout, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-responsive-layout-lv3-01",
+            "title": "Design a Reusable responsive layout Practice",
+            "description": "Turn responsive layout into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          },
+          {
+            "id": "skill-responsive-layout-lv3-02",
+            "title": "Review responsive layout Like a Senior",
+            "description": "Audit a responsive layout decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          },
+          {
+            "id": "skill-responsive-layout-lv3-03",
+            "title": "Prove responsive layout Mastery",
+            "description": "Create a small proof-of-understanding artifact for responsive layout, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show that the same content remains usable on desktop, tablet, and phone widths.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - Responsive Design",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "semantic-markup",
+      "targetName": "Semantic markup",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::Semantic markup"
+      },
+      "intro": {
+        "id": "skill-semantic-markup-intro",
+        "title": "Meet Semantic markup",
+        "description": "Study an introductory reference for Semantic markup, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "MDN - HTML Elements Reference",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-semantic-markup-lv1-01",
+            "title": "Identify Semantic markup Basics",
+            "description": "Read the beginner material for Semantic markup, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          },
+          {
+            "id": "skill-semantic-markup-lv1-02",
+            "title": "Map a Simple Semantic markup Use Case",
+            "description": "Describe a small real-world situation where Semantic markup helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          },
+          {
+            "id": "skill-semantic-markup-lv1-03",
+            "title": "Avoid a Common Semantic markup Mistake",
+            "description": "Find one beginner mistake related to Semantic markup, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-semantic-markup-lv2-01",
+            "title": "Apply Semantic markup in Context",
+            "description": "Use the reference to design a practical workflow for Semantic markup, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          },
+          {
+            "id": "skill-semantic-markup-lv2-02",
+            "title": "Compare Semantic markup Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for Semantic markup, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          },
+          {
+            "id": "skill-semantic-markup-lv2-03",
+            "title": "Troubleshoot Semantic markup",
+            "description": "Create a short troubleshooting checklist for Semantic markup, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-semantic-markup-lv3-01",
+            "title": "Design a Reusable Semantic markup Practice",
+            "description": "Turn Semantic markup into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          },
+          {
+            "id": "skill-semantic-markup-lv3-02",
+            "title": "Review Semantic markup Like a Senior",
+            "description": "Audit a Semantic markup decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          },
+          {
+            "id": "skill-semantic-markup-lv3-03",
+            "title": "Prove Semantic markup Mastery",
+            "description": "Create a small proof-of-understanding artifact for Semantic markup, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show that structure and meaning come before styling.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML Elements Reference",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
+      "targetId": "troubleshooting",
+      "targetName": "troubleshooting",
+      "source": {
+        "type": "skill",
+        "progressKey": "skill::troubleshooting"
+      },
+      "intro": {
+        "id": "skill-troubleshooting-intro",
+        "title": "Meet troubleshooting",
+        "description": "Study an introductory reference for troubleshooting, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Microsoft Learn - Troubleshooting",
+            "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "skill-troubleshooting-lv1-01",
+            "title": "Identify troubleshooting Basics",
+            "description": "Read the beginner material for troubleshooting, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          },
+          {
+            "id": "skill-troubleshooting-lv1-02",
+            "title": "Map a Simple troubleshooting Use Case",
+            "description": "Describe a small real-world situation where troubleshooting helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          },
+          {
+            "id": "skill-troubleshooting-lv1-03",
+            "title": "Avoid a Common troubleshooting Mistake",
+            "description": "Find one beginner mistake related to troubleshooting, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "skill-troubleshooting-lv2-01",
+            "title": "Apply troubleshooting in Context",
+            "description": "Use the reference to design a practical workflow for troubleshooting, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          },
+          {
+            "id": "skill-troubleshooting-lv2-02",
+            "title": "Compare troubleshooting Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for troubleshooting, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          },
+          {
+            "id": "skill-troubleshooting-lv2-03",
+            "title": "Troubleshoot troubleshooting",
+            "description": "Create a short troubleshooting checklist for troubleshooting, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "skill-troubleshooting-lv3-01",
+            "title": "Design a Reusable troubleshooting Practice",
+            "description": "Turn troubleshooting into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          },
+          {
+            "id": "skill-troubleshooting-lv3-02",
+            "title": "Review troubleshooting Like a Senior",
+            "description": "Audit a troubleshooting decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          },
+          {
+            "id": "skill-troubleshooting-lv3-03",
+            "title": "Prove troubleshooting Mastery",
+            "description": "Create a small proof-of-understanding artifact for troubleshooting, such as notes, a checklist, a mini demo, or a before-and-after explanation. Focus on evidence gathering before changing settings or code.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Microsoft Learn - Troubleshooting",
+                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skill",
       "targetId": "version-control",
       "targetName": "version control",
       "source": {

@@ -11,6 +11,417 @@
   "targets": [
     {
       "kind": "talent",
+      "targetId": "html-css",
+      "targetName": "HTML & CSS",
+      "source": {
+        "type": "talent",
+        "progressKey": "talent::html-css"
+      },
+      "intro": {
+        "id": "talent-html-css-intro",
+        "title": "Meet HTML & CSS",
+        "description": "Study an introductory reference for HTML & CSS, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "MDN - HTML and CSS",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "talent-html-css-lv1-01",
+            "title": "Identify HTML & CSS Basics",
+            "description": "Read the beginner material for HTML & CSS, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          },
+          {
+            "id": "talent-html-css-lv1-02",
+            "title": "Map a Simple HTML & CSS Use Case",
+            "description": "Describe a small real-world situation where HTML & CSS helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          },
+          {
+            "id": "talent-html-css-lv1-03",
+            "title": "Avoid a Common HTML & CSS Mistake",
+            "description": "Find one beginner mistake related to HTML & CSS, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "talent-html-css-lv2-01",
+            "title": "Apply HTML & CSS in Context",
+            "description": "Use the reference to design a practical workflow for HTML & CSS, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          },
+          {
+            "id": "talent-html-css-lv2-02",
+            "title": "Compare HTML & CSS Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for HTML & CSS, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          },
+          {
+            "id": "talent-html-css-lv2-03",
+            "title": "Troubleshoot HTML & CSS",
+            "description": "Create a short troubleshooting checklist for HTML & CSS, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "talent-html-css-lv3-01",
+            "title": "Design a Reusable HTML & CSS Practice",
+            "description": "Turn HTML & CSS into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          },
+          {
+            "id": "talent-html-css-lv3-02",
+            "title": "Review HTML & CSS Like a Senior",
+            "description": "Audit a HTML & CSS decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          },
+          {
+            "id": "talent-html-css-lv3-03",
+            "title": "Prove HTML & CSS Mastery",
+            "description": "Create a small proof-of-understanding artifact for HTML & CSS, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how document structure and styling combine into usable web pages.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTML and CSS",
+                "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "talent",
+      "targetId": "javascript",
+      "targetName": "JavaScript",
+      "source": {
+        "type": "talent",
+        "progressKey": "talent::javascript"
+      },
+      "intro": {
+        "id": "talent-javascript-intro",
+        "title": "Meet JavaScript",
+        "description": "Study an introductory reference for JavaScript, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "MDN - JavaScript Guide",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "talent-javascript-lv1-01",
+            "title": "Identify JavaScript Basics",
+            "description": "Read the beginner material for JavaScript, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          },
+          {
+            "id": "talent-javascript-lv1-02",
+            "title": "Map a Simple JavaScript Use Case",
+            "description": "Describe a small real-world situation where JavaScript helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          },
+          {
+            "id": "talent-javascript-lv1-03",
+            "title": "Avoid a Common JavaScript Mistake",
+            "description": "Find one beginner mistake related to JavaScript, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "talent-javascript-lv2-01",
+            "title": "Apply JavaScript in Context",
+            "description": "Use the reference to design a practical workflow for JavaScript, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          },
+          {
+            "id": "talent-javascript-lv2-02",
+            "title": "Compare JavaScript Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for JavaScript, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          },
+          {
+            "id": "talent-javascript-lv2-03",
+            "title": "Troubleshoot JavaScript",
+            "description": "Create a short troubleshooting checklist for JavaScript, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "talent-javascript-lv3-01",
+            "title": "Design a Reusable JavaScript Practice",
+            "description": "Turn JavaScript into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          },
+          {
+            "id": "talent-javascript-lv3-02",
+            "title": "Review JavaScript Like a Senior",
+            "description": "Audit a JavaScript decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          },
+          {
+            "id": "talent-javascript-lv3-03",
+            "title": "Prove JavaScript Mastery",
+            "description": "Create a small proof-of-understanding artifact for JavaScript, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how JavaScript controls data, behavior, and browser interaction.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - JavaScript Guide",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "talent",
+      "targetId": "nodejs",
+      "targetName": "Node.js",
+      "source": {
+        "type": "talent",
+        "progressKey": "talent::nodejs"
+      },
+      "intro": {
+        "id": "talent-nodejs-intro",
+        "title": "Meet Node.js",
+        "description": "Study an introductory reference for Node.js, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "Node.js Learn",
+            "url": "https://nodejs.org/en/learn"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "talent-nodejs-lv1-01",
+            "title": "Identify Node.js Basics",
+            "description": "Read the beginner material for Node.js, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          },
+          {
+            "id": "talent-nodejs-lv1-02",
+            "title": "Map a Simple Node.js Use Case",
+            "description": "Describe a small real-world situation where Node.js helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          },
+          {
+            "id": "talent-nodejs-lv1-03",
+            "title": "Avoid a Common Node.js Mistake",
+            "description": "Find one beginner mistake related to Node.js, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "talent-nodejs-lv2-01",
+            "title": "Apply Node.js in Context",
+            "description": "Use the reference to design a practical workflow for Node.js, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          },
+          {
+            "id": "talent-nodejs-lv2-02",
+            "title": "Compare Node.js Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for Node.js, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          },
+          {
+            "id": "talent-nodejs-lv2-03",
+            "title": "Troubleshoot Node.js",
+            "description": "Create a short troubleshooting checklist for Node.js, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "talent-nodejs-lv3-01",
+            "title": "Design a Reusable Node.js Practice",
+            "description": "Turn Node.js into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          },
+          {
+            "id": "talent-nodejs-lv3-02",
+            "title": "Review Node.js Like a Senior",
+            "description": "Audit a Node.js decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          },
+          {
+            "id": "talent-nodejs-lv3-03",
+            "title": "Prove Node.js Mastery",
+            "description": "Create a small proof-of-understanding artifact for Node.js, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how JavaScript can run server-side tools and services.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "Node.js Learn",
+                "url": "https://nodejs.org/en/learn"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "talent",
       "targetId": "react",
       "targetName": "React",
       "source": {
@@ -140,6 +551,280 @@
               {
                 "label": "React - API Reference",
                 "url": "https://react.dev/reference/react"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "talent",
+      "targetId": "rest-api",
+      "targetName": "REST API",
+      "source": {
+        "type": "talent",
+        "progressKey": "talent::rest-api"
+      },
+      "intro": {
+        "id": "talent-rest-api-intro",
+        "title": "Meet REST API",
+        "description": "Study an introductory reference for REST API, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "MDN - HTTP Overview",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "talent-rest-api-lv1-01",
+            "title": "Identify REST API Basics",
+            "description": "Read the beginner material for REST API, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          },
+          {
+            "id": "talent-rest-api-lv1-02",
+            "title": "Map a Simple REST API Use Case",
+            "description": "Describe a small real-world situation where REST API helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          },
+          {
+            "id": "talent-rest-api-lv1-03",
+            "title": "Avoid a Common REST API Mistake",
+            "description": "Find one beginner mistake related to REST API, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "talent-rest-api-lv2-01",
+            "title": "Apply REST API in Context",
+            "description": "Use the reference to design a practical workflow for REST API, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          },
+          {
+            "id": "talent-rest-api-lv2-02",
+            "title": "Compare REST API Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for REST API, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          },
+          {
+            "id": "talent-rest-api-lv2-03",
+            "title": "Troubleshoot REST API",
+            "description": "Create a short troubleshooting checklist for REST API, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "talent-rest-api-lv3-01",
+            "title": "Design a Reusable REST API Practice",
+            "description": "Turn REST API into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          },
+          {
+            "id": "talent-rest-api-lv3-02",
+            "title": "Review REST API Like a Senior",
+            "description": "Audit a REST API decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          },
+          {
+            "id": "talent-rest-api-lv3-03",
+            "title": "Prove REST API Mastery",
+            "description": "Create a small proof-of-understanding artifact for REST API, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how HTTP resources, methods, and responses shape API behavior.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "MDN - HTTP Overview",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "talent",
+      "targetId": "typescript",
+      "targetName": "TypeScript",
+      "source": {
+        "type": "talent",
+        "progressKey": "talent::typescript"
+      },
+      "intro": {
+        "id": "talent-typescript-intro",
+        "title": "Meet TypeScript",
+        "description": "Study an introductory reference for TypeScript, then summarize what it is, when it is used, and one small practical action a beginner can try.",
+        "summaryRequired": true,
+        "links": [
+          {
+            "label": "TypeScript Handbook",
+            "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+          }
+        ]
+      },
+      "levels": {
+        "1": [
+          {
+            "id": "talent-typescript-lv1-01",
+            "title": "Identify TypeScript Basics",
+            "description": "Read the beginner material for TypeScript, then explain the core terms a new teammate must understand before using it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          },
+          {
+            "id": "talent-typescript-lv1-02",
+            "title": "Map a Simple TypeScript Use Case",
+            "description": "Describe a small real-world situation where TypeScript helps, including the input, action, and expected result.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          },
+          {
+            "id": "talent-typescript-lv1-03",
+            "title": "Avoid a Common TypeScript Mistake",
+            "description": "Find one beginner mistake related to TypeScript, then summarize how to notice it and how to avoid it.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "talent-typescript-lv2-01",
+            "title": "Apply TypeScript in Context",
+            "description": "Use the reference to design a practical workflow for TypeScript, then explain why each step is needed.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          },
+          {
+            "id": "talent-typescript-lv2-02",
+            "title": "Compare TypeScript Tradeoffs",
+            "description": "Write a comparison between a simple approach and a more structured approach for TypeScript, including when each is appropriate.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          },
+          {
+            "id": "talent-typescript-lv2-03",
+            "title": "Troubleshoot TypeScript",
+            "description": "Create a short troubleshooting checklist for TypeScript, focusing on symptoms, likely causes, and safe next steps.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "talent-typescript-lv3-01",
+            "title": "Design a Reusable TypeScript Practice",
+            "description": "Turn TypeScript into a repeatable practice that another teammate could follow, including review points and quality checks.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          },
+          {
+            "id": "talent-typescript-lv3-02",
+            "title": "Review TypeScript Like a Senior",
+            "description": "Audit a TypeScript decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+              }
+            ]
+          },
+          {
+            "id": "talent-typescript-lv3-03",
+            "title": "Prove TypeScript Mastery",
+            "description": "Create a small proof-of-understanding artifact for TypeScript, such as notes, a checklist, a mini demo, or a before-and-after explanation. Show how types make JavaScript projects easier to understand and maintain.",
+            "summaryRequired": true,
+            "links": [
+              {
+                "label": "TypeScript Handbook",
+                "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
               }
             ]
           }
