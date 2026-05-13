@@ -1207,6 +1207,30 @@
     }
     .detail-empty-icon { font-size: 28px; margin-bottom: 8px; }
 
+    /* ══ DETAIL ITEM GRID (equip / talent) ══ */
+    .detail-item-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .detail-item-card {
+      padding: 10px 12px; border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+    }
+    .detail-item-name {
+      font: 700 12px 'Inter', sans-serif; color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .detail-item-category {
+      font: 400 10px 'Inter', sans-serif; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .5px;
+      margin-bottom: 4px;
+    }
+    .detail-item-desc {
+      font: 400 11px 'Inter', sans-serif; color: var(--muted);
+      line-height: 1.5;
+    }
+
     /* ══ ACHIEVEMENT LINKS ══ */
     .achievement-links { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
     .achievement-links-label {
@@ -3312,7 +3336,6 @@
                   ⚔ Job Change
                 </button>` : ""}
               </div>
-              ${renderAchievementLinks(title)}
             </div>
           </article>`;
       }).join("");
@@ -3676,6 +3699,76 @@
         renderDetailDailyTab(pane);
         refreshCards();
       }, { once: false });
+    }
+
+    let equipmentData = null;
+    let talentData = null;
+
+    async function loadEquipmentData() {
+      if (equipmentData) return equipmentData;
+      const res = await fetch("data/equipment.json", { cache: "default" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      equipmentData = await res.json();
+      return equipmentData;
+    }
+
+    async function loadTalentData() {
+      if (talentData) return talentData;
+      const res = await fetch("data/talents.json", { cache: "default" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      talentData = await res.json();
+      return talentData;
+    }
+
+    function renderItemGrid(items, labelKey) {
+      if (!items.length) return detailEmptyHtml("📭", `Belum ada ${labelKey} untuk job ini.`);
+      return `<div class="detail-item-grid">${items.map(item => `
+        <div class="detail-item-card">
+          <div class="detail-item-name">${escapeHtml(item.name)}</div>
+          <div class="detail-item-category">${escapeHtml(item.category || "")}</div>
+          ${item.description ? `<div class="detail-item-desc">${escapeHtml(item.description)}</div>` : ""}
+        </div>`).join("")}</div>`;
+    }
+
+    async function renderDetailEquipTab(pane) {
+      pane.innerHTML = detailEmptyHtml("⏳", "Memuat equipment data…");
+      try {
+        const data = await loadEquipmentData();
+        const items = (data.equipment || []).filter(e => (e.tags || []).includes(currentDetailJob));
+        pane.innerHTML = renderItemGrid(items, "equipment");
+      } catch (err) {
+        pane.innerHTML = detailEmptyHtml("⚠️", "Equipment data tidak tersedia. Coba dari server (bukan file://).");
+      }
+    }
+
+    async function renderDetailTalentTab(pane) {
+      pane.innerHTML = detailEmptyHtml("⏳", "Memuat talent data…");
+      try {
+        const data = await loadTalentData();
+        const items = (data.talents || []).filter(t => (t.tags || []).includes(currentDetailJob));
+        pane.innerHTML = renderItemGrid(items, "talent");
+      } catch (err) {
+        pane.innerHTML = detailEmptyHtml("⚠️", "Talent data tidak tersedia. Coba dari server (bukan file://).");
+      }
+    }
+
+    function renderDetailAchievementTab(pane) {
+      const jobLinks = links[currentDetailJob] || [];
+      const itemsHtml = jobLinks.map((l, i) => `
+        <div class="achievement-link-item">
+          ${l.label ? `<span class="achievement-link-label" title="${l.label}">${escapeHtml(l.label)}</span>` : ""}
+          <a href="${escapeHtml(l.url)}" target="_blank" rel="noopener" title="${escapeHtml(l.url)}">${escapeHtml(l.url)}</a>
+          <button class="btn-del-link" data-job="${escapeHtml(currentDetailJob)}" data-idx="${i}" aria-label="Hapus link">✕</button>
+        </div>`).join("");
+      const emptyNote = jobLinks.length ? "" : `<div class="detail-empty" style="padding:8px 0 16px;text-align:left;font-size:12px">Belum ada achievement link. Tambah di bawah.</div>`;
+      pane.innerHTML = `
+        <div class="achievement-link-list">${itemsHtml}</div>
+        ${emptyNote}
+        <div class="achievement-link-add" style="margin-top:8px">
+          <input class="achievement-link-input" type="url" placeholder="https://github.com/..." data-job="${escapeHtml(currentDetailJob)}" data-field="url">
+          <input class="achievement-link-input" type="text" placeholder="Label (opsional)" data-job="${escapeHtml(currentDetailJob)}" data-field="label" style="max-width:110px">
+          <button class="btn-add-link" data-job="${escapeHtml(currentDetailJob)}">+ Add</button>
+        </div>`;
     }
 
     function closeQuest() {
@@ -4202,8 +4295,7 @@
     // ══════════════════════════════════════════
     // ACHIEVEMENT LINKS
     // ══════════════════════════════════════════
-    document.getElementById("jobs").addEventListener("click", e => {
-      // Add link
+    function handleAchievementLinkClick(e) {
       const addBtn = e.target.closest(".btn-add-link");
       if (addBtn) {
         const job = addBtn.dataset.job;
@@ -4216,13 +4308,11 @@
         links[job].push({ url, label: labelInput.value.trim() });
         saveLinks(links);
         urlInput.value = ""; labelInput.value = "";
-        // re-render just this card's achievement section
-        const card = addBtn.closest(".card");
-        card.querySelector(".achievement-links").outerHTML = renderAchievementLinks(job);
+        const pane = document.getElementById("detail-content-achievement");
+        if (pane) { detailRenderedTabs["achievement"] = false; renderDetailAchievementTab(pane); }
         return;
       }
 
-      // Delete link
       const delBtn = e.target.closest(".btn-del-link");
       if (delBtn) {
         const job = delBtn.dataset.job;
@@ -4231,11 +4321,14 @@
         links[job].splice(idx, 1);
         if (!links[job].length) delete links[job];
         saveLinks(links);
-        const card = delBtn.closest(".card");
-        card.querySelector(".achievement-links").outerHTML = renderAchievementLinks(job);
+        const pane = document.getElementById("detail-content-achievement");
+        if (pane) { detailRenderedTabs["achievement"] = false; renderDetailAchievementTab(pane); }
         return;
       }
-    });
+    }
+
+    document.getElementById("detail-modal").addEventListener("click", handleAchievementLinkClick);
+    document.getElementById("jobs").addEventListener("click", handleAchievementLinkClick);
 
     // ══════════════════════════════════════════
     // EXPORT MODAL
