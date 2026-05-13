@@ -2405,7 +2405,7 @@
     // ══════════════════════════════════════════
     // [group, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass]
     const jobs = [
-      ["Base",      "IT Novice",           "Fresh graduate yang masuk training ground dan belajar dasar dunia IT.",            "Problem Solving, Data Querying, Version Control, Troubleshooting", "Rp4–8 juta",     "#f2c35b","#5a3d2d","book",          0, "", ""],
+      ["Base",      "IT Novice",           "Fresh graduate yang masuk training ground dan belajar dasar dunia IT.",            "", "Rp4–8 juta",     "#f2c35b","#5a3d2d","book",          0, "", ""],
       ["Software",  "Frontend Developer",  "Archer UI yang menembakkan komponen, layout, dan interaksi ke browser.",          "Semantic Markup, Responsive Layout, Browser Interaction, API Integration, Version Control", "Rp6–25 juta",    "#69a8f5","#355071","brush",         1, "--head-rx:40% 40% 38% 38%;--hair-rx:60% 40% 35% 35%;--hair-w:54px;--hair-h:26px;--arm-l-rot:25deg;--arm-r-rot:-10deg", ""],
       ["Software",  "Backend Developer",   "Mage server yang menjaga API, business logic, database, dan autentikasi.",        "API Design, Data Modeling, Access Control, Background Processing, Version Control", "Rp7–30 juta",    "#b889f4","#3e3159","wand",          1, "--head-rx:35% 45% 40% 40%;--hair-rx:40% 60% 25% 25%;--hair-w:50px;--hair-h:30px;--body-w:56px;--arm-l-rot:10deg;--arm-r-rot:-25deg", ""],
       ["Software",  "Mobile Developer",    "Petualang app yang membawa produk ke Android dan iOS.",                           "Mobile Screen Building, Device Integration, Offline Handling, App Release, Version Control", "Rp7–30 juta",    "#80c86a","#314d36","stylus",        1, "--head-rx:45% 40% 38% 42%;--hair-rx:50% 50% 40% 30%;--hair-h:25px;--arm-l-rot:20deg;--arm-r-rot:-20deg", ""],
@@ -3636,9 +3636,9 @@
     let questFileCache = {};
     let currentQuestData = null;
 
-    // Skill progress is shared by skill name across jobs.
-    function skillKey(title, skill) { return `skill::${skill}`; }
-    function legacySkillKey(title, skill) { return `${title}::${skill}`; }
+    // Skill progress is per-job.
+    function skillKey(title, skill) { return `skill::${title}::${skill}`; }
+    function legacySkillKey(title, skill) { return `skill::${skill}`; }
 
     // quest item key: item id
     function questKey(itemId) { return `quest::${itemId}`; }
