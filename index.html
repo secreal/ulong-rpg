@@ -6868,12 +6868,18 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
       const overlay = document.getElementById("find-guild-overlay");
       const bodyEl  = document.getElementById("find-guild-body");
 
-      // Jobs where player has at least 1 skill learned, tier > 0 (exclude IT Novice/Base), sorted tier desc then alpha
+      // Jobs where player has at least 1 skill learned, sorted tier desc then alpha
+      // IT Novice (tier 0) included if Perguruan Ulong has any progress
       function getAchievedJobs() {
-        return jobs
+        const regular = jobs
           .filter(([, title,, skillsStr,,,,, tier]) => tier > 0 && jobHasProgress(title, skillsStr))
-          .map(([group, title,,,,,,,tier]) => ({ group, title, tier }))
+          .map(([group, title,,,,,,,tier]) => ({ group, title, tier, searchQuery: title }))
           .sort((a, b) => b.tier - a.tier || a.title.localeCompare(b.title));
+        const novice = jobs.find(([,,,,,,,,tier]) => tier === 0);
+        if (novice && Object.keys(ulongProgress).length > 0) {
+          regular.push({ group: novice[0], title: novice[1], tier: 0, searchQuery: "junior" });
+        }
+        return regular;
       }
 
       const GUILD_SITES = [
@@ -6882,8 +6888,8 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
         { label: "LinkedIn", favicon: "linkedin.com",      url: (q, loc) => `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
       ];
 
-      function jobSearchLinks(jobTitle) {
-        const q   = encodeURIComponent(jobTitle);
+      function jobSearchLinks(searchQuery) {
+        const q   = encodeURIComponent(searchQuery);
         const loc = encodeURIComponent("Indonesia");
         return GUILD_SITES.map(s => ({ label: s.label, favicon: s.favicon, url: s.url(q, loc) }));
       }
@@ -6894,8 +6900,8 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
           bodyEl.innerHTML = `<div class="find-guild-empty">Belum ada skill yang dipelajari.<br>Mulai belajar skill untuk melihat rekomendasi lowongan yang relevan.</div>`;
           return;
         }
-        bodyEl.innerHTML = topJobs.map(({ title, group }) => {
-          const links = jobSearchLinks(title).map(l =>
+        bodyEl.innerHTML = topJobs.map(({ title, group, searchQuery }) => {
+          const links = jobSearchLinks(searchQuery).map(l =>
             `<a class="find-guild-link-btn" href="${l.url}" target="_blank" rel="noopener noreferrer"><img class="find-guild-favicon" src="https://www.google.com/s2/favicons?domain=${l.favicon}&sz=16" width="14" height="14" alt="" loading="lazy">${escapeHtml(l.label)}</a>`
           ).join("");
           return `<div class="find-guild-job-card">
