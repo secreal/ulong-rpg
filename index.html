@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ulong RPG</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23fff5c2'/%3E%3Cstop offset='45%25' stop-color='%23f0bb4e'/%3E%3Cstop offset='100%25' stop-color='%23c8922a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='%230d1117'/%3E%3Ctext x='2' y='16' font-family='Georgia,serif' font-weight='900' font-size='14' fill='url(%23g)'%3EU%3C/text%3E%3Cline x1='9' y1='22' x2='16' y2='4' stroke='url(%23g)' stroke-width='1.5' stroke-linecap='round' opacity='0.65'/%3E%3Ctext x='30' y='15' text-anchor='end' font-family='Georgia,serif' font-weight='700' font-size='11' fill='url(%23g)' opacity='0.85'%3ERPG%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 8 116 96'%3E%3Crect x='0' y='0' width='116' height='138' fill='%230d1117'/%3E%3Cellipse cx='59' cy='82' rx='35' ry='32' fill='%237a6220' opacity='0.45'/%3E%3Crect x='19' y='65' width='18' height='44' rx='9' fill='%23f0c18e' stroke='%236a3d2b' stroke-width='3' transform='rotate(18 19 65)'/%3E%3Crect x='79' y='65' width='18' height='44' rx='9' fill='%23f0c18e' stroke='%236a3d2b' stroke-width='3' transform='rotate(-18 97 65)'/%3E%3Crect x='32' y='54' width='54' height='52' rx='12' fill='%23f2c35b' stroke='%231f2634' stroke-width='4'/%3E%3Crect x='38' y='16' width='42' height='38' rx='19' fill='%23f0c18e' stroke='%236a3d2b' stroke-width='3'/%3E%3Crect x='33' y='7' width='52' height='28' rx='26' fill='%235a3d2d' stroke='%2333202a' stroke-width='3'/%3E%3Crect x='49' y='28' width='20' height='9' rx='4' fill='%235a3d2d' stroke='%2333202a' stroke-width='2'/%3E%3Ccircle cx='50' cy='32' r='3.5' fill='%231a0f00'/%3E%3Ccircle cx='68' cy='32' r='3.5' fill='%231a0f00'/%3E%3Cpath d='M50 40 Q59 46 68 40' stroke='%231a0f00' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Crect x='76' y='58' width='22' height='16' rx='2' fill='%23f0d070' stroke='%23c8922a' stroke-width='1.5'/%3E%3Crect x='76' y='58' width='4' height='16' rx='2' fill='%23c8922a'/%3E%3C/svg%3E">
   <script src="https://apis.google.com/js/api.js" async defer></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
@@ -4903,47 +4903,79 @@
     }
 
     function renderUlongQuestTab(pane) {
-      const months = [
+      const doneCount = Object.keys(ulongProgress).length;
+
+      // Find next incomplete quest
+      const nextIdx = ULONG_ARTICLES.findIndex((_, i) => !ulongProgress[i]);
+      const allDone = nextIdx === -1;
+
+      // Progress dots (one per 10 days, max 13)
+      const dots = Array.from({ length: 13 }, (_, i) => {
+        const from = i * 10, to = Math.min(from + 10, 123);
+        const segDone = Array.from({ length: to - from }, (__, j) => ulongProgress[from + j]).every(Boolean);
+        return `<span class="quest-dot ${segDone ? "done" : ""}"></span>`;
+      }).join("");
+
+      // Month label for current quest
+      const MONTHS = [
         { label: "September 2022", start: 0,   end: 30  },
         { label: "Oktober 2022",   start: 30,  end: 61  },
         { label: "November 2022",  start: 61,  end: 91  },
         { label: "Desember 2022",  start: 91,  end: 122 },
         { label: "Januari 2023",   start: 122, end: 123 },
       ];
-      const done = Object.keys(ulongProgress).length;
-      let html = `<div class="detail-panel-header"><span class="detail-panel-title">Perguruan Ulong</span><span class="detail-panel-count">${done} / 123 hari selesai</span></div>`;
-      months.forEach(({ label, start, end }) => {
-        const count = end - start;
-        html += `<div class="ulong-month-header">${label} <span class="ulong-month-count">· ${count} hari</span></div>`;
-        for (let i = start; i < end; i++) {
-          const art = ULONG_ARTICLES[i];
-          const saved = ulongProgress[i];
-          const url = art.slug ? `https://medium.com/@isecreal/${art.slug}` : null;
-          if (saved) {
-            html += `<div class="ulong-quest-item done" data-idx="${i}">
-              <div class="ulong-quest-meta"><span class="ulong-day-badge">Hari ${art.day}</span><span class="ulong-quest-date">${art.date}</span></div>
-              <div class="ulong-quest-row">
-                ${url ? `<a class="ulong-quest-title" href="${url}" target="_blank" rel="noopener">${escapeHtml(art.title)}</a>` : `<span class="ulong-quest-title">${escapeHtml(art.title)}</span>`}
-                <span class="ulong-done-stamp">✓ ${saved.completedAt}</span>
-              </div>
-            </div>`;
-          } else {
-            html += `<div class="ulong-quest-item" data-idx="${i}">
-              <div class="ulong-quest-meta"><span class="ulong-day-badge">Hari ${art.day}</span><span class="ulong-quest-date">${art.date}</span></div>
-              <div class="ulong-quest-row">
-                ${url ? `<a class="ulong-quest-title" href="${url}" target="_blank" rel="noopener">${escapeHtml(art.title)}</a>` : `<span class="ulong-quest-title ulong-no-link">${escapeHtml(art.title)}</span>`}
-              </div>
-              <div class="ulong-submit-row">
-                <input class="ulong-discord-input" type="url" placeholder="https://discord.com/channels/..." data-idx="${i}">
-                <button class="ulong-submit-btn" data-idx="${i}" disabled>Selesai</button>
-              </div>
-            </div>`;
-          }
-        }
-      });
-      pane.innerHTML = html;
+      const monthLabel = allDone ? "Januari 2023" :
+        (MONTHS.find(m => nextIdx >= m.start && nextIdx < m.end)?.label ?? "");
 
-      // Enable button when input valid
+      const meta = `<span class="quest-phase-meta">
+        <span class="quest-group-kind">Perguruan Ulong</span>
+        <strong>${monthLabel}</strong>
+        <span class="quest-group-target">${doneCount} / 123 hari</span>
+        <span class="quest-group-dots">${dots}</span>
+      </span>`;
+
+      let questBody;
+      if (allDone) {
+        questBody = `<div class="quest-item done">
+          <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">Perguruan Ulong selesai!</div>
+            <div class="quest-item-sub">Semua 123 hari sudah diselesaikan. Selamat, kamu lulus!</div>
+          </div>
+        </div>`;
+      } else {
+        const art = ULONG_ARTICLES[nextIdx];
+        const url = art.slug ? `https://medium.com/@isecreal/${art.slug}` : null;
+        const linkHtml = url
+          ? `<a class="quest-item-link" href="${url}" target="_blank" rel="noopener">Buka artikel →</a>`
+          : `<span class="quest-item-link" style="opacity:.4">Link belum tersedia</span>`;
+        questBody = `<div class="quest-item">
+          <div class="quest-checkbox"></div>
+          <div class="quest-item-content">
+            <div class="quest-title-row">
+              <span class="quest-item-label">Hari ${art.day} — ${escapeHtml(art.title)}</span>
+              ${linkHtml}
+            </div>
+            <div class="quest-item-sub">${art.date} · Baca artikel, jawab di Discord, lalu paste link jawaban di bawah.</div>
+            <div class="quest-summary-wrap" style="">
+              <input class="quest-summary-input ulong-discord-input" type="url"
+                placeholder="https://discord.com/channels/..."
+                data-idx="${nextIdx}" style="width:100%;margin-top:8px;box-sizing:border-box">
+            </div>
+            <button class="quest-complete-btn ulong-submit-btn" data-idx="${nextIdx}" disabled style="margin-top:6px">
+              Tandai Selesai
+            </button>
+          </div>
+        </div>`;
+      }
+
+      pane.innerHTML = `
+        <div class="detail-panel-desc">Baca artikel Perguruan Ulong hari ini, jawab di Discord, lalu paste link jawaban untuk menandai selesai.</div>
+        <div class="quest-phase">
+          <div class="quest-phase-title">Main Quest${meta}</div>
+          ${questBody}
+        </div>`;
+
       pane.addEventListener("input", e => {
         const inp = e.target.closest(".ulong-discord-input");
         if (!inp) return;
@@ -4951,7 +4983,6 @@
         if (btn) btn.disabled = !inp.value.startsWith("https://discord.com/");
       });
 
-      // Submit handler
       pane.addEventListener("click", e => {
         const btn = e.target.closest(".ulong-submit-btn");
         if (!btn || btn.disabled) return;
@@ -6135,6 +6166,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${name} — ulong RPG Showcase</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 8 116 96'%3E%3Crect x='0' y='0' width='116' height='138' fill='%230d1117'/%3E%3Cellipse cx='59' cy='82' rx='35' ry='32' fill='%237a6220' opacity='0.45'/%3E%3Crect x='19' y='65' width='18' height='44' rx='9' fill='%23f0c18e' stroke='%236a3d2b' stroke-width='3' transform='rotate(18 19 65)'/%3E%3Crect x='79' y='65' width='18' height='44' rx='9' fill='%23f0c18e' stroke='%236a3d2b' stroke-width='3' transform='rotate(-18 97 65)'/%3E%3Crect x='32' y='54' width='54' height='52' rx='12' fill='%23f2c35b' stroke='%231f2634' stroke-width='4'/%3E%3Crect x='38' y='16' width='42' height='38' rx='19' fill='%23f0c18e' stroke='%236a3d2b' stroke-width='3'/%3E%3Crect x='33' y='7' width='52' height='28' rx='26' fill='%235a3d2d' stroke='%2333202a' stroke-width='3'/%3E%3Crect x='49' y='28' width='20' height='9' rx='4' fill='%235a3d2d' stroke='%2333202a' stroke-width='2'/%3E%3Ccircle cx='50' cy='32' r='3.5' fill='%231a0f00'/%3E%3Ccircle cx='68' cy='32' r='3.5' fill='%231a0f00'/%3E%3Cpath d='M50 40 Q59 46 68 40' stroke='%231a0f00' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Crect x='76' y='58' width='22' height='16' rx='2' fill='%23f0d070' stroke='%23c8922a' stroke-width='1.5'/%3E%3Crect x='76' y='58' width='4' height='16' rx='2' fill='%23c8922a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&display=swap" rel="stylesheet">
@@ -6418,7 +6450,7 @@ a{color:inherit}
 <span style="top:94%;left:85%;transform:rotate(11deg);font-size:20px">📦</span>
 </div>
 <div class="showcase-header">
-  <div class="showcase-logo">ulong <span class="logo-rpg">RPG</span><span class="showcase-logo-tagline">ur long role playing game</span></div>
+  <div class="showcase-logo">ulong <span class="logo-rpg">RPG</span><span class="showcase-logo-tagline">MMORPG Edition</span></div>
   <div class="showcase-name" style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px">${name}</div>
   ${nick ? `<div class="showcase-nick">${nick}</div>` : ""}
   ${guildHTML}
