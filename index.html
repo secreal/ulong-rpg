@@ -6203,18 +6203,13 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
       const overlay = document.getElementById("find-guild-overlay");
       const bodyEl  = document.getElementById("find-guild-body");
 
-      // All achieved jobs (primary + subs), sorted tier desc then alpha
+      // All jobs where player has at least 1 skill learned, sorted tier desc then alpha
       function getAchievedJobs() {
-        const state = jobChangeState;
-        if (!state) return [];
-        const achieved = new Set();
-        if (state.primary) achieved.add(state.primary);
-        (state.subs || []).forEach(s => achieved.add(s));
-        if (achieved.size === 0) return [];
-        return jobs
-          .filter(([, title]) => achieved.has(title))
+        const result = jobs
+          .filter(([, title,, skillsStr]) => jobHasProgress(title, skillsStr))
           .map(([group, title,,,,,,,tier]) => ({ group, title, tier }))
           .sort((a, b) => b.tier - a.tier || a.title.localeCompare(b.title));
+        return result;
       }
 
       function jobSearchLinks(jobTitle) {
@@ -6230,7 +6225,7 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
       function renderFindGuildBody() {
         const topJobs = getAchievedJobs();
         if (topJobs.length === 0) {
-          bodyEl.innerHTML = `<div class="find-guild-empty">Belum ada Job Change yang dilakukan.<br>Lakukan Job Change terlebih dahulu agar Find Guild bisa merekomendasikan lowongan yang relevan.</div>`;
+          bodyEl.innerHTML = `<div class="find-guild-empty">Belum ada skill yang dipelajari.<br>Mulai belajar skill untuk melihat rekomendasi lowongan yang relevan.</div>`;
           return;
         }
         bodyEl.innerHTML = topJobs.map(({ title, group }) => {
