@@ -210,6 +210,7 @@
       transition: border-color .15s ease, background .15s ease;
     }
     .find-guild-link-btn:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--panel)); }
+    .find-guild-favicon { border-radius: 2px; flex-shrink: 0; vertical-align: middle; margin-right: 4px; }
     .find-guild-empty { font-size: 13px; color: var(--muted); text-align: center; padding: 24px 0; line-height: 1.6; }
 
     .btn-sync {
@@ -6501,23 +6502,24 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
       const overlay = document.getElementById("find-guild-overlay");
       const bodyEl  = document.getElementById("find-guild-body");
 
-      // All jobs where player has at least 1 skill learned, sorted tier desc then alpha
+      // Jobs where player has at least 1 skill learned, tier > 0 (exclude IT Novice/Base), sorted tier desc then alpha
       function getAchievedJobs() {
-        const result = jobs
-          .filter(([, title,, skillsStr]) => jobHasProgress(title, skillsStr))
+        return jobs
+          .filter(([, title,, skillsStr,,,,, tier]) => tier > 0 && jobHasProgress(title, skillsStr))
           .map(([group, title,,,,,,,tier]) => ({ group, title, tier }))
           .sort((a, b) => b.tier - a.tier || a.title.localeCompare(b.title));
-        return result;
       }
+
+      const GUILD_SITES = [
+        { label: "Glints",   favicon: "glints.com",        url: (q, loc) => `https://glints.com/id/opportunities/jobs/explore?keyword=${q}&country=ID` },
+        { label: "Indeed",   favicon: "id.indeed.com",     url: (q, loc) => `https://id.indeed.com/jobs?q=${q}&l=Indonesia` },
+        { label: "LinkedIn", favicon: "linkedin.com",      url: (q, loc) => `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
+      ];
 
       function jobSearchLinks(jobTitle) {
         const q   = encodeURIComponent(jobTitle);
         const loc = encodeURIComponent("Indonesia");
-        return [
-          { label: "Glints",   url: `https://glints.com/id/opportunities/jobs/explore?keyword=${q}&country=ID` },
-          { label: "Indeed",   url: `https://id.indeed.com/jobs?q=${q}&l=Indonesia` },
-          { label: "LinkedIn", url: `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${loc}` },
-        ];
+        return GUILD_SITES.map(s => ({ label: s.label, favicon: s.favicon, url: s.url(q, loc) }));
       }
 
       function renderFindGuildBody() {
@@ -6528,7 +6530,7 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
         }
         bodyEl.innerHTML = topJobs.map(({ title, group }) => {
           const links = jobSearchLinks(title).map(l =>
-            `<a class="find-guild-link-btn" href="${l.url}" target="_blank" rel="noopener noreferrer">↗ ${escapeHtml(l.label)}</a>`
+            `<a class="find-guild-link-btn" href="${l.url}" target="_blank" rel="noopener noreferrer"><img class="find-guild-favicon" src="https://www.google.com/s2/favicons?domain=${l.favicon}&sz=16" width="14" height="14" alt="" loading="lazy">${escapeHtml(l.label)}</a>`
           ).join("");
           return `<div class="find-guild-job-card">
             <div class="find-guild-job-header">
