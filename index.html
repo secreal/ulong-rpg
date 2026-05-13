@@ -1552,6 +1552,31 @@
       letter-spacing: 0;
     }
 
+    /* ══ SHARED SPLIT PANEL ══ */
+    .panel-split {
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .panel-split-unique { flex: 1; min-width: 0; }
+    .panel-split-shared {
+      width: 42%; flex-shrink: 0;
+      border-left: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 20%, transparent);
+      padding-left: 12px;
+    }
+    .panel-split-shared-header {
+      font: 700 10px 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: color-mix(in srgb, var(--modal-role, var(--gold)) 60%, transparent);
+      margin-bottom: 8px;
+    }
+    .skill-list-alpha { display: block; }
+    @media (max-width: 480px) {
+      .panel-split { flex-direction: column; }
+      .panel-split-shared { width: 100%; border-left: none; padding-left: 0;
+        border-top: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 20%, transparent);
+        padding-top: 10px; margin-top: 4px; }
+    }
+
     /* ══ DETAIL ITEM GRID (equip / talent) ══ */
     .detail-item-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -3998,18 +4023,50 @@
 
     const LV_LABELS = ["", "Lv 1", "Lv 2", "Lv 3"];
 
+    function buildSkillPillHtml(title, s) {
+      const tip = skillDescriptionFor(s, currentLang);
+      const lv = skillLevel(title, s);
+      const lvClass = lv > 0 ? `lv${lv}` : "";
+      return `<span class="skill ${lvClass}" tabindex="0" data-tip="${tip}" data-title="${title}" data-skill="${s}">
+        <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
+          <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        ${s}<span class="skill-lv-badge">${lv > 0 ? LV_LABELS[lv] : ""}</span>
+      </span>`;
+    }
+
+    function buildSkillAlphaGroupsHtml(title, skillNames) {
+      const sorted = [...skillNames].sort((a, b) => a.localeCompare(b, "id", { sensitivity: "base" }));
+      const groups = {};
+      sorted.forEach(s => {
+        const letter = s[0].toUpperCase();
+        if (!groups[letter]) groups[letter] = [];
+        groups[letter].push(s);
+      });
+      return Object.keys(groups).sort().map(letter => `
+        <div class="alpha-group" data-alpha="${letter}">
+          <span class="alpha-group-header">${letter}</span>
+          <div class="alpha-group-pills">${groups[letter].map(s => buildSkillPillHtml(title, s)).join("")}</div>
+        </div>`).join("");
+    }
+
     function renderSkills(title, skills) {
-      return skills.split(", ").map(s => {
-        const tip = skillDescriptionFor(s, currentLang);
-        const lv = skillLevel(title, s);
-        const lvClass = lv > 0 ? `lv${lv}` : "";
-        return `<span class="skill ${lvClass}" tabindex="0" data-tip="${tip}" data-title="${title}" data-skill="${s}">
-          <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
-            <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          ${s}<span class="skill-lv-badge">${lv > 0 ? LV_LABELS[lv] : ""}</span>
-        </span>`;
-      }).join("");
+      const progressedJobs = getProgressedJobs();
+      const allSkills = skills.split(", ");
+      const sharedSkills = allSkills.filter(s => isSharedSkill(s, progressedJobs));
+      const uniqueSkills = allSkills.filter(s => !isSharedSkill(s, progressedJobs));
+      const hasSplit = sharedSkills.length > 0;
+
+      if (hasSplit) {
+        return `<div class="panel-split skill-list-alpha">
+          <div class="panel-split-unique">${buildSkillAlphaGroupsHtml(title, uniqueSkills)}</div>
+          <div class="panel-split-shared">
+            <div class="panel-split-shared-header">Shared</div>
+            ${buildSkillAlphaGroupsHtml(title, sharedSkills)}
+          </div>
+        </div>`;
+      }
+      return `<div class="skill-list-alpha">${buildSkillAlphaGroupsHtml(title, allSkills)}</div>`;
     }
 
     function renderAchievementLinks(title) {
@@ -4079,7 +4136,7 @@
               <div class="meta">
                 <div>
                   <span class="meta-label">Skills</span>
-                  <div class="skill-list">${renderSkills(title, skills)}</div>
+                  ${renderSkills(title, skills)}
                 </div>
               </div>
               <div class="card-bottom">
@@ -4884,11 +4941,26 @@
     function renderItemPanel(pane, items, kind) {
       if (!items.length) { pane.innerHTML = detailEmptyHtml("📭", `Belum ada ${kind} untuk job ini.`); return; }
       const meta = PANEL_META[kind] || { icon: "📦", title: kind, desc: "" };
+      const progressedJobs = getProgressedJobs();
+      const sharedItems = items.filter(i => isSharedEquip(i, progressedJobs));
+      const uniqueItems = items.filter(i => !isSharedEquip(i, progressedJobs));
+      const hasSplit = sharedItems.length > 0;
+
+      const groupsHtml = hasSplit
+        ? `<div class="panel-split">
+            <div class="panel-split-unique">${buildAlphaGroupsHtml(uniqueItems, kind)}</div>
+            <div class="panel-split-shared">
+              <div class="panel-split-shared-header">Shared</div>
+              ${buildAlphaGroupsHtml(sharedItems, kind)}
+            </div>
+          </div>`
+        : buildAlphaGroupsHtml(items, kind);
+
       pane.innerHTML = `
         <div class="detail-panel-desc">${meta.desc}</div>
         <input class="detail-panel-search" type="search" placeholder="Cari ${meta.title.toLowerCase()}…" aria-label="Cari">
         <div class="detail-panel-count">${items.length} ${kind} tersedia</div>
-        <div id="detail-${kind}-groups">${buildAlphaGroupsHtml(items, kind)}</div>`;
+        <div id="detail-${kind}-groups">${groupsHtml}</div>`;
 
       pane.querySelector(".detail-panel-search").addEventListener("input", function () {
         const q = this.value.toLowerCase().trim();
@@ -5373,6 +5445,20 @@
 
     function jobHasProgress(title, skillsStr) {
       return skillsStr.split(", ").some(s => skillLevel(title, s) >= 1);
+    }
+
+    function getProgressedJobs() {
+      return jobs
+        .filter(j => jobHasProgress(j[1], j[3]))
+        .map(j => ({ title: j[1], skillsStr: j[3] }));
+    }
+
+    function isSharedEquip(item, progressedJobs) {
+      return item.tags.filter(t => progressedJobs.some(j => j.title === t)).length >= 2;
+    }
+
+    function isSharedSkill(skillName, progressedJobs) {
+      return progressedJobs.filter(j => j.skillsStr.split(", ").includes(skillName)).length >= 2;
     }
 
     // ══════════════════════════════════════════
