@@ -876,7 +876,7 @@
       display: flex; gap: 4px; flex-wrap: wrap;
       margin: 10px 0 0;
     }
-    .btn-full-row { flex: 1 1 100%; }
+    .btn-full-row { width: 100%; }
 
     .btn-open-detail {
       display: inline-flex; align-items: center; gap: 4px;
@@ -4149,7 +4149,7 @@
                 <div class="card-actions-row">
                   ${tier === 0 ? `
                   <button class="btn-open-detail btn-full-row" data-job="${title}" data-role="${role}" data-tab="quest">${TAB_ICONS.quest} Perguruan Ulong</button>
-                  <button class="btn-open-detail btn-full-row" data-job="${title}" data-role="${role}" data-tab="achievement">${TAB_ICONS.achievement} Achievement</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">${TAB_ICONS.achievement} Achievement</button>
                   ` : `
                   <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">${TAB_ICONS.quest} Quest</button>
                   <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip">${TAB_ICONS.equip} Equip</button>
