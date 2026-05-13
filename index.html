@@ -136,7 +136,9 @@
     }
 
     /* sync button in header */
-    .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .header-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .header-actions-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .header-profile-row { display: flex; align-items: center; justify-content: flex-end; }
 
     .header-profile-chip {
       display: inline-flex; align-items: center; gap: 6px;
@@ -1782,11 +1784,7 @@
         <h1>ulong <span class="logo-rpg">RPG</span><span class="logo-tagline">ur long role playing game</span></h1>
       </div>
       <div class="header-actions">
-        <button class="header-profile-chip" id="btn-profile-chip" title="Edit profil & guild">
-          <span class="profile-chip-avatar">👤</span>
-          <span class="profile-chip-name" id="header-profile-name">Hero</span>
-          <span class="profile-chip-guild" id="header-profile-guild"></span>
-        </button>
+        <div class="header-actions-row">
         <button class="btn-find-guild" id="btn-find-guild" title="Cari lowongan kerja">🔍 Find Guild</button>
         <div class="auto-wrapper" id="auto-wrapper">
           <button class="btn-auto" id="btn-auto" title="AI Quest Guide — copy prompt ke AI CLI kamu">
@@ -1822,6 +1820,14 @@
           </svg>
           <span id="sync-label">Sync Progress</span>
         </button>
+        </div>
+        <div class="header-profile-row">
+          <button class="header-profile-chip" id="btn-profile-chip" title="Edit profil & guild">
+            <span class="profile-chip-avatar">👤</span>
+            <span class="profile-chip-name" id="header-profile-name">Hero</span>
+            <span class="profile-chip-guild" id="header-profile-guild"></span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
