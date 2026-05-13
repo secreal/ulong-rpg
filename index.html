@@ -1279,6 +1279,39 @@
     }
     .detail-empty-icon { font-size: 28px; margin-bottom: 8px; }
 
+    /* ══ DETAIL ITEM PANEL (equip / talent) ══ */
+    .detail-panel-header {
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 25%, transparent);
+      background: color-mix(in srgb, var(--modal-role, var(--gold)) 5%, transparent);
+    }
+    .detail-panel-title {
+      font: 700 10px 'Inter', sans-serif;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--modal-role, var(--gold));
+      margin-bottom: 4px;
+    }
+    .detail-panel-desc {
+      font: 400 12px 'Inter', sans-serif;
+      color: var(--muted); line-height: 1.6;
+    }
+    .detail-panel-search {
+      width: 100%; box-sizing: border-box;
+      padding: 7px 11px; margin-bottom: 12px;
+      border-radius: 7px; border: 1px solid var(--line);
+      background: var(--panel-2); color: var(--ink);
+      font: 400 12px 'Inter', sans-serif; outline: none;
+      transition: border-color .14s;
+    }
+    .detail-panel-search:focus { border-color: var(--modal-role, var(--gold)); }
+    .detail-panel-search::placeholder { color: var(--muted); }
+    .detail-panel-count {
+      font: 400 10.5px 'Inter', sans-serif;
+      color: var(--muted); margin-bottom: 8px;
+    }
+
     /* ══ DETAIL ITEM GRID (equip / talent) ══ */
     .detail-item-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -3867,19 +3900,61 @@
       saveProgress(progress);
     }
 
-    function renderItemPills(items, kind) {
-      if (!items.length) return detailEmptyHtml("📭", `Belum ada ${kind} untuk job ini.`);
-      return `<div class="skill-list">${items.map(item => {
-        const lv = itemLevel(kind, item.id);
+    const PANEL_META = {
+      equip: {
+        icon: "🛡",
+        title: "Equipment",
+        desc: "Tools, aplikasi, dan platform yang aktif kamu pakai dalam kerja harian — editor, CLI, dashboard, dan sistem operasional nyata.",
+      },
+      talent: {
+        icon: "✨",
+        title: "Talent",
+        desc: "Framework, library, stack, dan spesialisasi teknis yang kamu kuasai — bukan tools, tapi ilmu yang membentuk cara kamu membangun.",
+      },
+    };
+
+    function buildItemPillsHtml(items, kind) {
+      return items.map(item => {
+        const lv  = itemLevel(kind, item.id);
         const lvClass = lv > 0 ? `lv${lv}` : "";
         const tip = item.description || item.name;
-        return `<span class="skill ${lvClass}" tabindex="0" data-item-kind="${kind}" data-item-id="${escapeHtml(item.id)}" data-tip="${escapeHtml(tip)}">
+        return `<span class="skill ${lvClass}" tabindex="0"
+          data-item-kind="${kind}" data-item-id="${escapeHtml(item.id)}"
+          data-item-name="${escapeHtml(item.name.toLowerCase())}"
+          data-tip="${escapeHtml(tip)}">
           <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
             <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           ${escapeHtml(item.name)}<span class="skill-lv-badge">${lv > 0 ? LV_LABELS[lv] : ""}</span>
         </span>`;
-      }).join("")}</div>`;
+      }).join("");
+    }
+
+    function renderItemPanel(pane, items, kind) {
+      if (!items.length) { pane.innerHTML = detailEmptyHtml("📭", `Belum ada ${kind} untuk job ini.`); return; }
+      const meta = PANEL_META[kind] || { icon: "📦", title: kind, desc: "" };
+      pane.innerHTML = `
+        <div class="detail-panel-header">
+          <div class="detail-panel-title">${meta.icon} ${meta.title}</div>
+          <div class="detail-panel-desc">${meta.desc}</div>
+        </div>
+        <input class="detail-panel-search" type="search" placeholder="Cari ${meta.title.toLowerCase()}…" aria-label="Cari">
+        <div class="detail-panel-count">${items.length} ${kind} tersedia</div>
+        <div class="skill-list" id="detail-${kind}-pills">${buildItemPillsHtml(items, kind)}</div>`;
+
+      // Search filter
+      pane.querySelector(".detail-panel-search").addEventListener("input", function () {
+        const q = this.value.toLowerCase().trim();
+        const pills = pane.querySelectorAll(`.skill[data-item-kind="${kind}"]`);
+        let visible = 0;
+        pills.forEach(p => {
+          const match = !q || p.dataset.itemName.includes(q);
+          p.style.display = match ? "" : "none";
+          if (match) visible++;
+        });
+        pane.querySelector(".detail-panel-count").textContent =
+          q ? `${visible} dari ${items.length} ${kind}` : `${items.length} ${kind} tersedia`;
+      });
     }
 
     async function renderDetailEquipTab(pane) {
@@ -3887,7 +3962,7 @@
       try {
         const data = await loadEquipmentData();
         const items = (data.equipment || []).filter(e => (e.tags || []).includes(currentDetailJob));
-        pane.innerHTML = renderItemPills(items, "equip");
+        renderItemPanel(pane, items, "equip");
       } catch (err) {
         pane.innerHTML = detailEmptyHtml("⚠️", "Equipment data tidak tersedia. Coba dari server (bukan file://).");
       }
@@ -3898,7 +3973,7 @@
       try {
         const data = await loadTalentData();
         const items = (data.talents || []).filter(t => (t.tags || []).includes(currentDetailJob));
-        pane.innerHTML = renderItemPills(items, "talent");
+        renderItemPanel(pane, items, "talent");
       } catch (err) {
         pane.innerHTML = detailEmptyHtml("⚠️", "Talent data tidak tersedia. Coba dari server (bukan file://).");
       }
