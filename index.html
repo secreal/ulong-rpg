@@ -1369,6 +1369,17 @@
       color: var(--muted); margin-bottom: 8px;
     }
 
+    .alpha-group { margin-bottom: 14px; }
+
+    .alpha-group-header {
+      font: 900 13px 'Inter', sans-serif;
+      color: color-mix(in srgb, var(--modal-role, var(--gold)) 70%, transparent);
+      letter-spacing: 1px;
+      padding: 4px 0 6px;
+      border-bottom: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 18%, transparent);
+      margin-bottom: 8px;
+    }
+
     /* ══ DETAIL ITEM GRID (equip / talent) ══ */
     .detail-item-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -3976,21 +3987,34 @@
       },
     };
 
-    function buildItemPillsHtml(items, kind) {
-      return items.map(item => {
-        const lv  = itemLevel(kind, item.id);
-        const lvClass = lv > 0 ? `lv${lv}` : "";
-        const tip = item.description || item.name;
-        return `<span class="skill ${lvClass}" tabindex="0"
-          data-item-kind="${kind}" data-item-id="${escapeHtml(item.id)}"
-          data-item-name="${escapeHtml(item.name.toLowerCase())}"
-          data-tip="${escapeHtml(tip)}">
-          <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
-            <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          ${escapeHtml(item.name)}<span class="skill-lv-badge">${lv > 0 ? LV_LABELS[lv] : ""}</span>
-        </span>`;
-      }).join("");
+    function buildPillHtml(item, kind) {
+      const lv = itemLevel(kind, item.id);
+      const lvClass = lv > 0 ? `lv${lv}` : "";
+      const tip = item.description || item.name;
+      return `<span class="skill ${lvClass}" tabindex="0"
+        data-item-kind="${kind}" data-item-id="${escapeHtml(item.id)}"
+        data-item-name="${escapeHtml(item.name.toLowerCase())}"
+        data-tip="${escapeHtml(tip)}">
+        <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
+          <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        ${escapeHtml(item.name)}<span class="skill-lv-badge">${lv > 0 ? LV_LABELS[lv] : ""}</span>
+      </span>`;
+    }
+
+    function buildAlphaGroupsHtml(items, kind) {
+      const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name, "id", { sensitivity: "base" }));
+      const groups = {};
+      sorted.forEach(item => {
+        const letter = item.name[0].toUpperCase();
+        if (!groups[letter]) groups[letter] = [];
+        groups[letter].push(item);
+      });
+      return Object.keys(groups).sort().map(letter => `
+        <div class="alpha-group" data-alpha="${letter}">
+          <div class="alpha-group-header">${letter}</div>
+          <div class="skill-list">${groups[letter].map(i => buildPillHtml(i, kind)).join("")}</div>
+        </div>`).join("");
     }
 
     function renderItemPanel(pane, items, kind) {
@@ -4003,17 +4027,20 @@
         </div>
         <input class="detail-panel-search" type="search" placeholder="Cari ${meta.title.toLowerCase()}…" aria-label="Cari">
         <div class="detail-panel-count">${items.length} ${kind} tersedia</div>
-        <div class="skill-list" id="detail-${kind}-pills">${buildItemPillsHtml(items, kind)}</div>`;
+        <div id="detail-${kind}-groups">${buildAlphaGroupsHtml(items, kind)}</div>`;
 
-      // Search filter
       pane.querySelector(".detail-panel-search").addEventListener("input", function () {
         const q = this.value.toLowerCase().trim();
-        const pills = pane.querySelectorAll(`.skill[data-item-kind="${kind}"]`);
         let visible = 0;
-        pills.forEach(p => {
-          const match = !q || p.dataset.itemName.includes(q);
-          p.style.display = match ? "" : "none";
-          if (match) visible++;
+        pane.querySelectorAll(".alpha-group").forEach(group => {
+          let groupVisible = 0;
+          group.querySelectorAll(`.skill[data-item-kind="${kind}"]`).forEach(p => {
+            const match = !q || p.dataset.itemName.includes(q);
+            p.style.display = match ? "" : "none";
+            if (match) groupVisible++;
+          });
+          group.style.display = groupVisible ? "" : "none";
+          visible += groupVisible;
         });
         pane.querySelector(".detail-panel-count").textContent =
           q ? `${visible} dari ${items.length} ${kind}` : `${items.length} ${kind} tersedia`;
