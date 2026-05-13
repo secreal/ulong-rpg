@@ -1773,14 +1773,12 @@
       </div>
       <div class="detail-tabs" role="tablist">
         <button class="detail-tab-btn active" data-tab="quest" role="tab">★ Quest</button>
-        <button class="detail-tab-btn" data-tab="daily" role="tab">🗓 Daily</button>
         <button class="detail-tab-btn" data-tab="equip" role="tab">🛡 Equip</button>
         <button class="detail-tab-btn" data-tab="talent" role="tab">✨ Talent</button>
         <button class="detail-tab-btn" data-tab="achievement" role="tab">🏆 Achievement</button>
       </div>
       <div class="modal-body">
         <div class="detail-tab-content active" data-tab="quest" id="detail-content-quest"></div>
-        <div class="detail-tab-content" data-tab="daily" id="detail-content-daily"></div>
         <div class="detail-tab-content" data-tab="equip" id="detail-content-equip"></div>
         <div class="detail-tab-content" data-tab="talent" id="detail-content-talent"></div>
         <div class="detail-tab-content" data-tab="achievement" id="detail-content-achievement"></div>
@@ -3464,7 +3462,6 @@
               </div>
               <div class="card-actions-row">
                 <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">★ Quest</button>
-                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="daily">🗓 Daily</button>
                 <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip">🛡 Equip</button>
                 <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="talent">✨ Talent</button>
                 <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">🏆 Achv</button>
@@ -3760,21 +3757,51 @@
         pane.innerHTML = detailEmptyHtml("📭", "Quest belum tersedia untuk job ini.");
         return;
       }
+
+      // Main quest — tampilkan 1 quest aktif berikutnya
       const main = questData.main || [];
       const nextMain = main.find(item => !questCompleted(item.id));
-      let html;
-      if (nextMain) {
-        html = renderCompletableQuest(nextMain, "main");
-      } else {
-        html = `<div class="quest-item done">
-          <div class="quest-checkpoint"><span class="quest-checkbox-tick">✓</span></div>
-          <div class="quest-item-content">
-            <div class="quest-item-label">${main.length ? "All main quests completed" : "No main quest chain"}</div>
-            <div class="quest-item-sub">${main.length ? "Semua main quest sudah selesai." : "Main quest untuk job ini belum tersedia."}</div>
-          </div>
+      const mainHtml = nextMain
+        ? renderCompletableQuest(nextMain, "main")
+        : `<div class="quest-item done">
+            <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+            <div class="quest-item-content">
+              <div class="quest-item-label">${main.length ? "All main quests completed" : "Main quest belum tersedia"}</div>
+              <div class="quest-item-sub">${main.length ? "Semua main quest sudah selesai." : "Nantikan quest dari Codex."}</div>
+            </div>
+          </div>`;
+
+      // Daily quest — 1 per hari
+      const todaysDaily = getTodaysDailyQuest(questData, currentDetailJob);
+      const dailyState  = questProgress.daily[currentDetailJob];
+      const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
+      const dailyHtml = !todaysDaily
+        ? `<div class="quest-item">
+            <div class="quest-checkbox"></div>
+            <div class="quest-item-content">
+              <div class="quest-item-label">Daily quest belum tersedia</div>
+            </div>
+          </div>`
+        : dailyDoneToday
+          ? `<div class="quest-item done">
+              <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+              <div class="quest-item-content">
+                <div class="quest-item-label">Daily quest selesai hari ini</div>
+                <div class="quest-item-sub">Kembali besok untuk daily quest berikutnya.</div>
+              </div>
+            </div>`
+          : renderCompletableQuest(todaysDaily, "daily");
+
+      pane.innerHTML = `
+        <div class="quest-phase">
+          <div class="quest-phase-title"><span class="quest-phase-num">★</span>Main Quest</div>
+          ${mainHtml}
+        </div>
+        <div class="quest-phase">
+          <div class="quest-phase-title"><span class="quest-phase-num">🗓</span>Daily Quest</div>
+          ${dailyHtml}
         </div>`;
-      }
-      pane.innerHTML = `<div class="quest-phase">${html}</div>`;
+
       pane.addEventListener("click", e => {
         const btn = e.target.closest(".quest-complete-btn");
         if (!btn) return;
@@ -3789,56 +3816,6 @@
         }
         detailRenderedTabs["quest"] = false;
         renderDetailQuestTab(pane);
-        refreshCards();
-      }, { once: false });
-    }
-
-    async function renderDetailDailyTab(pane) {
-      pane.innerHTML = detailEmptyHtml("⏳", "Memuat quest data…");
-      let questData;
-      try {
-        questData = await loadQuestFile(currentDetailJob);
-      } catch (err) {
-        pane.innerHTML = detailEmptyHtml("⚠️", "Quest data gagal dimuat. Coba dari server (bukan file://).");
-        return;
-      }
-      if (!questData || !isExternalQuestData(questData)) {
-        pane.innerHTML = detailEmptyHtml("📭", "Daily quest belum tersedia untuk job ini.");
-        return;
-      }
-      const todaysDaily = getTodaysDailyQuest(questData, currentDetailJob);
-      const dailyState = questProgress.daily[currentDetailJob];
-      const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
-
-      let html;
-      if (!todaysDaily) {
-        html = detailEmptyHtml("📭", "Daily quest untuk job ini belum tersedia.");
-      } else if (dailyDoneToday) {
-        html = `<div class="quest-item done">
-          <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
-          <div class="quest-item-content">
-            <div class="quest-item-label">Daily quest completed today</div>
-            <div class="quest-item-sub">Daily quest berikutnya tersedia besok.</div>
-          </div>
-        </div>`;
-      } else {
-        html = renderCompletableQuest(todaysDaily, "daily");
-      }
-      pane.innerHTML = `<div class="quest-phase">${html}</div>`;
-      pane.addEventListener("click", e => {
-        const btn = e.target.closest(".quest-complete-btn");
-        if (!btn) return;
-        const questId = btn.dataset.questId;
-        const type = btn.dataset.questType;
-        const quest = [...(questData.main || []), ...(questData.daily || [])].find(i => i.id === questId);
-        const summaryInput = pane.querySelector(`.quest-summary-input[data-quest-id="${CSS.escape(questId)}"]`);
-        const summary = summaryInput ? summaryInput.value : "";
-        if (!quest || !completeQuest(currentDetailJob, quest, type, summary)) {
-          alert("Summary wajib diisi sebelum quest selesai.");
-          return;
-        }
-        detailRenderedTabs["daily"] = false;
-        renderDetailDailyTab(pane);
         refreshCards();
       }, { once: false });
     }
@@ -3862,14 +3839,36 @@
       return talentData;
     }
 
-    function renderItemGrid(items, labelKey) {
-      if (!items.length) return detailEmptyHtml("📭", `Belum ada ${labelKey} untuk job ini.`);
-      return `<div class="detail-item-grid">${items.map(item => `
-        <div class="detail-item-card">
-          <div class="detail-item-name">${escapeHtml(item.name)}</div>
-          <div class="detail-item-category">${escapeHtml(item.category || "")}</div>
-          ${item.description ? `<div class="detail-item-desc">${escapeHtml(item.description)}</div>` : ""}
-        </div>`).join("")}</div>`;
+    function itemKey(kind, id) { return `${kind}::${id}`; }
+
+    function itemLevel(kind, id) {
+      const v = progress[itemKey(kind, id)];
+      if (!v) return 0;
+      if (v === true) return 1;
+      return Number(v) || 0;
+    }
+
+    function toggleItem(kind, id) {
+      const k = itemKey(kind, id);
+      const cur = itemLevel(kind, id);
+      if (cur >= 3) delete progress[k];
+      else progress[k] = cur + 1;
+      saveProgress(progress);
+    }
+
+    function renderItemPills(items, kind) {
+      if (!items.length) return detailEmptyHtml("📭", `Belum ada ${kind} untuk job ini.`);
+      return `<div class="skill-list">${items.map(item => {
+        const lv = itemLevel(kind, item.id);
+        const lvClass = lv > 0 ? `lv${lv}` : "";
+        const tip = item.description || item.name;
+        return `<span class="skill ${lvClass}" tabindex="0" data-item-kind="${kind}" data-item-id="${escapeHtml(item.id)}" data-tip="${escapeHtml(tip)}">
+          <svg class="skill-check-icon" viewBox="0 0 10 10" fill="none">
+            <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ${escapeHtml(item.name)}<span class="skill-lv-badge">${lv > 0 ? LV_LABELS[lv] : ""}</span>
+        </span>`;
+      }).join("")}</div>`;
     }
 
     async function renderDetailEquipTab(pane) {
@@ -3877,7 +3876,7 @@
       try {
         const data = await loadEquipmentData();
         const items = (data.equipment || []).filter(e => (e.tags || []).includes(currentDetailJob));
-        pane.innerHTML = renderItemGrid(items, "equipment");
+        pane.innerHTML = renderItemPills(items, "equip");
       } catch (err) {
         pane.innerHTML = detailEmptyHtml("⚠️", "Equipment data tidak tersedia. Coba dari server (bukan file://).");
       }
@@ -3888,7 +3887,7 @@
       try {
         const data = await loadTalentData();
         const items = (data.talents || []).filter(t => (t.tags || []).includes(currentDetailJob));
-        pane.innerHTML = renderItemGrid(items, "talent");
+        pane.innerHTML = renderItemPills(items, "talent");
       } catch (err) {
         pane.innerHTML = detailEmptyHtml("⚠️", "Talent data tidak tersedia. Coba dari server (bukan file://).");
       }
@@ -4014,7 +4013,6 @@
       const pane = document.getElementById(`detail-content-${tab}`);
       if (!pane) return;
       if (tab === "quest") { await renderDetailQuestTab(pane); return; }
-      if (tab === "daily") { await renderDetailDailyTab(pane); return; }
       if (tab === "equip") { await renderDetailEquipTab(pane); return; }
       if (tab === "talent") { await renderDetailTalentTab(pane); return; }
       if (tab === "achievement") { renderDetailAchievementTab(pane); return; }
@@ -4027,9 +4025,19 @@
 
     document.getElementById("detail-modal").addEventListener("click", e => {
       const tabBtn = e.target.closest(".detail-tab-btn");
-      if (tabBtn) {
-        activateDetailTab(tabBtn.dataset.tab);
-        return;
+      if (tabBtn) { activateDetailTab(tabBtn.dataset.tab); return; }
+
+      // Equip / Talent pill level-up
+      const pill = e.target.closest(".skill[data-item-kind]");
+      if (pill) {
+        const kind = pill.dataset.itemKind;
+        const id   = pill.dataset.itemId;
+        toggleItem(kind, id);
+        const lv = itemLevel(kind, id);
+        pill.classList.remove("lv1","lv2","lv3");
+        if (lv > 0) pill.classList.add(`lv${lv}`);
+        const badge = pill.querySelector(".skill-lv-badge");
+        if (badge) badge.textContent = lv > 0 ? LV_LABELS[lv] : "";
       }
     });
 
@@ -5186,7 +5194,9 @@ ${standaloneHTML}
     function showTip(el) {
       const text = el.dataset.tip;
       if (!text) return;
-      const lv = skillLevel(el.dataset.title, el.dataset.skill);
+      const lv = el.dataset.itemKind
+        ? itemLevel(el.dataset.itemKind, el.dataset.itemId)
+        : skillLevel(el.dataset.title, el.dataset.skill);
       const lvHint = lv === 0 ? " [Click to level up →]" : lv < 3 ? ` [Lv ${lv} — click to upgrade]` : " [Lv 3 MASTERED — click to reset]";
       tip.textContent = text + lvHint;
       tip.classList.add("visible");
