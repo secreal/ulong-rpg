@@ -3725,9 +3725,9 @@
     }
 
     function renderCompletableQuest(item, type) {
-      const sources = item.sources || [];
-      const primaryUrl = sources[0]?.url || item.ref || null;
-      const extraLinks = sources.slice(1).map(s =>
+      const links = item.links || (item.sources || []).map(s => ({ label: s.label, url: s.url }));
+      const primaryUrl = links[0]?.url || item.ref || null;
+      const extraLinks = links.slice(1).map(s =>
         `<a class="quest-item-link" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.label || "↗")}</a>`
       ).join("");
       const dailyClass = type === "daily" ? " quest-daily-title" : "";
@@ -5588,12 +5588,14 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
         select.appendChild(opt);
       });
 
-      function renderFindGuildLinks(questData) {
-        if (!questData?.phases) {
-          linksEl.innerHTML = `<div class="find-guild-empty">Tidak ada data lowongan untuk job ini.</div>`;
+      function renderFindGuildLinks(jobTitle) {
+        const inlineData = jobQuests[jobTitle];
+        const phases = inlineData?.phases;
+        if (!phases) {
+          linksEl.innerHTML = `<div class="find-guild-empty">Belum ada link lowongan untuk job ini.</div>`;
           return;
         }
-        const guildPhase = questData.phases.find(p =>
+        const guildPhase = phases.find(p =>
           p.title === "Find Your Guild" || p.title?.toLowerCase().includes("find")
         );
         if (!guildPhase?.items?.length) {
@@ -5608,16 +5610,10 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
         `).join("");
       }
 
-      select.addEventListener("change", async () => {
+      select.addEventListener("change", () => {
         const jobTitle = select.value;
         if (!jobTitle) { linksEl.innerHTML = ""; return; }
-        linksEl.innerHTML = `<div class="find-guild-empty">Memuat…</div>`;
-        try {
-          const questData = await loadQuestFile(jobTitle);
-          renderFindGuildLinks(questData);
-        } catch {
-          linksEl.innerHTML = `<div class="find-guild-empty">Gagal memuat data. Coba buka dari server lokal.</div>`;
-        }
+        renderFindGuildLinks(jobTitle);
       });
 
       function openFindGuild() {
