@@ -1427,7 +1427,7 @@
     }
     .detail-panel-desc {
       font: 400 12px 'Inter', sans-serif;
-      color: var(--muted); line-height: 1.6;
+      color: var(--muted); line-height: 1.6; margin-bottom: 14px;
     }
     .detail-panel-search {
       width: 100%; box-sizing: border-box;
@@ -4439,6 +4439,7 @@
       }
 
       pane.innerHTML = `
+        <div class="detail-panel-desc">Main quest: selesaikan 3 quest per level untuk tiap skill, equip, dan talent aktifmu. Daily quest: aktifkan satu item baru ke Lv 1 setiap hari.</div>
         <div class="quest-phase">
           <div class="quest-phase-title">Main Quest${mainMeta}</div>
           ${mainBody}
@@ -4631,6 +4632,7 @@
       if (!items.length) { pane.innerHTML = detailEmptyHtml("📭", `Belum ada ${kind} untuk job ini.`); return; }
       const meta = PANEL_META[kind] || { icon: "📦", title: kind, desc: "" };
       pane.innerHTML = `
+        <div class="detail-panel-desc">${meta.desc}</div>
         <input class="detail-panel-search" type="search" placeholder="Cari ${meta.title.toLowerCase()}…" aria-label="Cari">
         <div class="detail-panel-count">${items.length} ${kind} tersedia</div>
         <div id="detail-${kind}-groups">${buildAlphaGroupsHtml(items, kind)}</div>`;
@@ -4776,8 +4778,7 @@
       const emptyNote = jobLinks.length ? "" : `<div class="detail-empty" style="padding:8px 0 16px;text-align:left;font-size:12px">Belum ada link. Tambah di bawah.</div>`;
 
       pane.innerHTML = `
-
-
+        <div class="detail-panel-desc">Bukti nyata hasil kerjamu — achievement otomatis dan link portfolio.</div>
         <div class="sa-section">
           <div class="sa-section-title">Self-Achievements</div>
           <div class="sa-toggle">
