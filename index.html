@@ -3263,6 +3263,12 @@
       }[ch]));
     }
 
+    function descriptionTextFor(item, lang = currentLang) {
+      const desc = item?.description;
+      if (!desc || typeof desc === "string") return desc || item?.name || "";
+      return desc[lang] || desc.en || desc.id || item?.name || "";
+    }
+
     function todayKey(date = new Date()) {
       const y = date.getFullYear();
       const m = String(date.getMonth() + 1).padStart(2, "0");
@@ -4068,7 +4074,7 @@
     function buildPillHtml(item, kind) {
       const lv = itemLevel(kind, item.id);
       const lvClass = lv > 0 ? `lv${lv}` : "";
-      const tip = item.description || item.name;
+      const tip = descriptionTextFor(item);
       return `<span class="skill ${lvClass}" tabindex="0"
         data-item-kind="${kind}" data-item-id="${escapeHtml(item.id)}"
         data-item-name="${escapeHtml(item.name.toLowerCase())}"
@@ -5830,3 +5836,4 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
   </script>
 </body>
 </html>
+

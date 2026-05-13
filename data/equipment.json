@@ -1,13 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-11",
+  "updatedAt": "2026-05-13",
   "schema": {
     "id": "stable kebab-case id",
     "name": "display name",
     "category": "editor | version-control | terminal | design | api | database | cloud | devops | qa | data | security | network | support | product | collaboration | operating-system | observability | ai",
     "kind": "software | platform | cli | service | device | suite",
     "aliases": "alternate names or related product names",
-    "description": "short non-UI explanation of what this equip is used for",
+    "description": {
+      "en": "short non-UI explanation of what this equip is used for",
+      "id": "penjelasan singkat non-UI tentang fungsi equipment ini"
+    },
     "tags": "job titles that can equip this item"
   },
   "equipment": [
@@ -16,108 +19,390 @@
       "name": "Visual Studio Code",
       "category": "editor",
       "kind": "software",
-      "aliases": ["VS Code", "Code"],
-      "description": "Code editor used for writing, navigating, debugging, and managing project files.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "CTO"]
+      "aliases": [
+        "VS Code",
+        "Code"
+      ],
+      "description": {
+        "en": "Code editor used for writing, navigating, debugging, and managing project files.",
+        "id": "Visual Studio Code adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer",
+        "Technical Support",
+        "Application Support",
+        "CTO"
+      ]
     },
     {
       "id": "git",
       "name": "Git",
       "category": "version-control",
       "kind": "cli",
-      "aliases": ["git cli"],
-      "description": "Version control tool for tracking file changes, branching work, and collaborating safely.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+      "aliases": [
+        "git cli"
+      ],
+      "description": {
+        "en": "Version control tool for tracking file changes, branching work, and collaborating safely.",
+        "id": "Git adalah alat command-line yang dipakai untuk mengelola riwayat perubahan kode, branch, review, dan kolaborasi repository."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "github",
       "name": "GitHub",
       "category": "version-control",
       "kind": "platform",
-      "aliases": ["GitHub Actions", "GitHub Issues", "GitHub Projects"],
-      "description": "Repository hosting and collaboration platform for code review, issues, releases, and automation.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Product Owner", "Project Manager", "Product Manager", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+      "aliases": [
+        "GitHub Actions",
+        "GitHub Issues",
+        "GitHub Projects"
+      ],
+      "description": {
+        "en": "Repository hosting and collaboration platform for code review, issues, releases, and automation.",
+        "id": "GitHub adalah platform yang dipakai untuk mengelola riwayat perubahan kode, branch, review, dan kolaborasi repository."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "gitlab",
       "name": "GitLab",
       "category": "version-control",
       "kind": "platform",
-      "aliases": ["GitLab CI/CD"],
-      "description": "Repository and DevSecOps platform for source control, merge requests, CI/CD, and deployments.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "Engineering Manager", "CTO"]
+      "aliases": [
+        "GitLab CI/CD"
+      ],
+      "description": {
+        "en": "Repository and DevSecOps platform for source control, merge requests, CI/CD, and deployments.",
+        "id": "GitLab adalah platform yang dipakai untuk mengelola riwayat perubahan kode, branch, review, dan kolaborasi repository."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Data Engineer",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "bitbucket",
       "name": "Bitbucket",
       "category": "version-control",
       "kind": "platform",
-      "aliases": ["Bitbucket Pipelines"],
-      "description": "Repository hosting platform often used with Jira and CI pipelines.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "SRE", "AppSec Engineer", "Engineering Manager", "CTO"]
+      "aliases": [
+        "Bitbucket Pipelines"
+      ],
+      "description": {
+        "en": "Repository hosting platform often used with Jira and CI pipelines.",
+        "id": "Bitbucket adalah platform yang dipakai untuk mengelola riwayat perubahan kode, branch, review, dan kolaborasi repository."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "DevOps Engineer",
+        "SRE",
+        "AppSec Engineer",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "windows-terminal",
       "name": "Windows Terminal",
       "category": "terminal",
       "kind": "software",
-      "aliases": ["PowerShell Terminal"],
-      "description": "Terminal application for running command-line tools and scripts on Windows.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "QA Automation", "Data Engineer", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support"]
+      "aliases": [
+        "PowerShell Terminal"
+      ],
+      "description": {
+        "en": "Terminal application for running command-line tools and scripts on Windows.",
+        "id": "Windows Terminal adalah software yang dipakai untuk menjalankan perintah, script, otomasi, dan troubleshooting lewat command line."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "QA Automation",
+        "Data Engineer",
+        "AI Engineer",
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "powershell",
       "name": "PowerShell",
       "category": "terminal",
       "kind": "cli",
-      "aliases": ["pwsh", "Windows PowerShell"],
-      "description": "Command shell and scripting language for automation, administration, and troubleshooting.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "GRC Specialist", "AppSec Engineer", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "pwsh",
+        "Windows PowerShell"
+      ],
+      "description": {
+        "en": "Command shell and scripting language for automation, administration, and troubleshooting.",
+        "id": "PowerShell adalah alat command-line yang dipakai untuk menjalankan perintah, script, otomasi, dan troubleshooting lewat command line."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "bash",
       "name": "Bash",
       "category": "terminal",
       "kind": "cli",
-      "aliases": ["GNU Bash", "shell"],
-      "description": "Unix shell used for command-line work, scripting, servers, containers, and automation.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "QA Automation", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support"]
+      "aliases": [
+        "GNU Bash",
+        "shell"
+      ],
+      "description": {
+        "en": "Unix shell used for command-line work, scripting, servers, containers, and automation.",
+        "id": "Bash adalah alat command-line yang dipakai untuk menjalankan perintah, script, otomasi, dan troubleshooting lewat command line."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "QA Automation",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "linux",
       "name": "Linux",
       "category": "operating-system",
       "kind": "software",
-      "aliases": ["Ubuntu", "Debian", "RHEL", "CentOS", "Rocky Linux"],
-      "description": "Server and workstation operating system used for hosting, scripting, security, and infrastructure work.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "QA Automation", "Performance Tester", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "CTO", "CISO"]
+      "aliases": [
+        "Ubuntu",
+        "Debian",
+        "RHEL",
+        "CentOS",
+        "Rocky Linux"
+      ],
+      "description": {
+        "en": "Server and workstation operating system used for hosting, scripting, security, and infrastructure work.",
+        "id": "Linux adalah software yang dipakai untuk mengoperasikan, mengelola, dan troubleshooting komputer, server, atau lingkungan kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "QA Automation",
+        "Performance Tester",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer",
+        "Technical Support",
+        "Application Support",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "windows",
       "name": "Windows",
       "category": "operating-system",
       "kind": "software",
-      "aliases": ["Windows 10", "Windows 11"],
-      "description": "Desktop operating system commonly supported in corporate IT environments.",
-      "tags": ["IT Novice", "Manual QA", "System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "Windows 10",
+        "Windows 11"
+      ],
+      "description": {
+        "en": "Desktop operating system commonly supported in corporate IT environments.",
+        "id": "Windows adalah software yang dipakai untuk mengoperasikan, mengelola, dan troubleshooting komputer, server, atau lingkungan kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Manual QA",
+        "System Administrator",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "macos",
       "name": "macOS",
       "category": "operating-system",
       "kind": "software",
-      "aliases": ["Mac"],
-      "description": "Apple desktop operating system used for design, mobile development, and general engineering work.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support"]
+      "aliases": [
+        "Mac"
+      ],
+      "description": {
+        "en": "Apple desktop operating system used for design, mobile development, and general engineering work.",
+        "id": "macOS adalah software yang dipakai untuk mengoperasikan, mengelola, dan troubleshooting komputer, server, atau lingkungan kerja."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Helpdesk",
+        "Technical Support"
+      ]
     },
     {
       "id": "intellij-idea",
       "name": "IntelliJ IDEA",
       "category": "editor",
       "kind": "software",
-      "aliases": ["IntelliJ"],
-      "description": "JetBrains IDE commonly used for Java, Kotlin, backend services, and enterprise applications.",
-      "tags": ["Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support", "CTO"]
+      "aliases": [
+        "IntelliJ"
+      ],
+      "description": {
+        "en": "JetBrains IDE commonly used for Java, Kotlin, backend services, and enterprise applications.",
+        "id": "IntelliJ IDEA adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Application Support",
+        "CTO"
+      ]
     },
     {
       "id": "webstorm",
@@ -125,8 +410,16 @@
       "category": "editor",
       "kind": "software",
       "aliases": [],
-      "description": "JetBrains IDE focused on JavaScript, TypeScript, frontend, and Node.js development.",
-      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead"]
+      "description": {
+        "en": "JetBrains IDE focused on JavaScript, TypeScript, frontend, and Node.js development.",
+        "id": "WebStorm adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead"
+      ]
     },
     {
       "id": "pycharm",
@@ -134,8 +427,21 @@
       "category": "editor",
       "kind": "software",
       "aliases": [],
-      "description": "JetBrains IDE for Python development, data scripts, APIs, and automation.",
-      "tags": ["Backend Developer", "QA Automation", "Data Analyst", "Data Engineer", "Data Scientist", "AI Engineer", "SRE", "Security Engineer", "Pentester"]
+      "description": {
+        "en": "JetBrains IDE for Python development, data scripts, APIs, and automation.",
+        "id": "PyCharm adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Backend Developer",
+        "QA Automation",
+        "Data Analyst",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "SRE",
+        "Security Engineer",
+        "Pentester"
+      ]
     },
     {
       "id": "android-studio",
@@ -143,8 +449,17 @@
       "category": "editor",
       "kind": "software",
       "aliases": [],
-      "description": "Official IDE for building, debugging, profiling, and releasing Android applications.",
-      "tags": ["Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation"]
+      "description": {
+        "en": "Official IDE for building, debugging, profiling, and releasing Android applications.",
+        "id": "Android Studio adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation"
+      ]
     },
     {
       "id": "xcode",
@@ -152,17 +467,44 @@
       "category": "editor",
       "kind": "software",
       "aliases": [],
-      "description": "Apple IDE for building, debugging, signing, and releasing iOS and macOS applications.",
-      "tags": ["Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation"]
+      "description": {
+        "en": "Apple IDE for building, debugging, signing, and releasing iOS and macOS applications.",
+        "id": "Xcode adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation"
+      ]
     },
     {
       "id": "chrome-devtools",
       "name": "Chrome DevTools",
       "category": "editor",
       "kind": "software",
-      "aliases": ["Browser DevTools"],
-      "description": "Browser debugging tools for inspecting HTML, CSS, JavaScript, network calls, storage, and performance.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Technical Support", "Application Support", "AppSec Engineer"]
+      "aliases": [
+        "Browser DevTools"
+      ],
+      "description": {
+        "en": "Browser debugging tools for inspecting HTML, CSS, JavaScript, network calls, storage, and performance.",
+        "id": "Chrome DevTools adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "Technical Support",
+        "Application Support",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "postman",
@@ -170,8 +512,26 @@
       "category": "api",
       "kind": "software",
       "aliases": [],
-      "description": "API client and collaboration tool for sending requests, testing endpoints, and documenting APIs.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Engineer", "AI Engineer", "Technical Support", "Application Support", "AppSec Engineer"]
+      "description": {
+        "en": "API client and collaboration tool for sending requests, testing endpoints, and documenting APIs.",
+        "id": "Postman adalah software yang dipakai untuk menguji, membaca, mendokumentasikan, dan mengelola integrasi API."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "Data Engineer",
+        "AI Engineer",
+        "Technical Support",
+        "Application Support",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "insomnia",
@@ -179,44 +539,108 @@
       "category": "api",
       "kind": "software",
       "aliases": [],
-      "description": "API client for REST, GraphQL, and request collections.",
-      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "QA Automation", "Technical Support", "Application Support", "AppSec Engineer"]
+      "description": {
+        "en": "API client for REST, GraphQL, and request collections.",
+        "id": "Insomnia adalah software yang dipakai untuk menguji, membaca, mendokumentasikan, dan mengelola integrasi API."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "QA Automation",
+        "Technical Support",
+        "Application Support",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "swagger-ui",
       "name": "Swagger UI",
       "category": "api",
       "kind": "software",
-      "aliases": ["OpenAPI UI"],
-      "description": "Interactive API documentation viewer generated from OpenAPI specifications.",
-      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Business Analyst", "Product Owner", "Technical Support", "Application Support", "AppSec Engineer"]
+      "aliases": [
+        "OpenAPI UI"
+      ],
+      "description": {
+        "en": "Interactive API documentation viewer generated from OpenAPI specifications.",
+        "id": "Swagger UI adalah software yang dipakai untuk menguji, membaca, mendokumentasikan, dan mengelola integrasi API."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Business Analyst",
+        "Product Owner",
+        "Technical Support",
+        "Application Support",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "figma",
       "name": "Figma",
       "category": "design",
       "kind": "platform",
-      "aliases": ["FigJam"],
-      "description": "Collaborative design platform for UI layouts, prototypes, design systems, and handoff.",
-      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Engineering Manager", "CTO"]
+      "aliases": [
+        "FigJam"
+      ],
+      "description": {
+        "en": "Collaborative design platform for UI layouts, prototypes, design systems, and handoff.",
+        "id": "Figma adalah platform yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "adobe-photoshop",
       "name": "Adobe Photoshop",
       "category": "design",
       "kind": "software",
-      "aliases": ["Photoshop"],
-      "description": "Image editing software used for raster graphics, assets, screenshots, and visual adjustments.",
-      "tags": ["Frontend Developer", "UI Designer", "Product Designer"]
+      "aliases": [
+        "Photoshop"
+      ],
+      "description": {
+        "en": "Image editing software used for raster graphics, assets, screenshots, and visual adjustments.",
+        "id": "Adobe Photoshop adalah software yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "Frontend Developer",
+        "UI Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "adobe-illustrator",
       "name": "Adobe Illustrator",
       "category": "design",
       "kind": "software",
-      "aliases": ["Illustrator"],
-      "description": "Vector design software used for icons, illustrations, logos, and scalable artwork.",
-      "tags": ["UI Designer", "Product Designer"]
+      "aliases": [
+        "Illustrator"
+      ],
+      "description": {
+        "en": "Vector design software used for icons, illustrations, logos, and scalable artwork.",
+        "id": "Adobe Illustrator adalah software yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "UI Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "miro",
@@ -224,26 +648,108 @@
       "category": "collaboration",
       "kind": "platform",
       "aliases": [],
-      "description": "Online whiteboard for workshops, mapping flows, prioritization, and team collaboration.",
-      "tags": ["Tech Lead", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Online whiteboard for workshops, mapping flows, prioritization, and team collaboration.",
+        "id": "Miro adalah platform yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "Tech Lead",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "draw-io",
       "name": "draw.io",
       "category": "collaboration",
       "kind": "software",
-      "aliases": ["diagrams.net"],
-      "description": "Diagramming tool for architecture, flowcharts, network diagrams, and process maps.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Tech Lead", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Product Designer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "diagrams.net"
+      ],
+      "description": {
+        "en": "Diagramming tool for architecture, flowcharts, network diagrams, and process maps.",
+        "id": "draw.io adalah software yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "jira",
       "name": "Jira",
       "category": "product",
       "kind": "platform",
-      "aliases": ["Jira Software"],
-      "description": "Issue and project tracking platform used for backlogs, sprint work, bugs, and delivery visibility.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "Jira Software"
+      ],
+      "description": {
+        "en": "Issue and project tracking platform used for backlogs, sprint work, bugs, and delivery visibility.",
+        "id": "Jira adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "confluence",
@@ -251,8 +757,40 @@
       "category": "collaboration",
       "kind": "platform",
       "aliases": [],
-      "description": "Team documentation platform for requirements, runbooks, meeting notes, decisions, and knowledge bases.",
-      "tags": ["IT Novice", "Tech Lead", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Team documentation platform for requirements, runbooks, meeting notes, decisions, and knowledge bases.",
+        "id": "Confluence adalah platform yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Tech Lead",
+        "Manual QA",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "AI Engineer",
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "notion",
@@ -260,8 +798,26 @@
       "category": "collaboration",
       "kind": "platform",
       "aliases": [],
-      "description": "Workspace for docs, databases, planning, notes, and lightweight knowledge management.",
-      "tags": ["IT Novice", "Tech Lead", "Data Analyst", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Workspace for docs, databases, planning, notes, and lightweight knowledge management.",
+        "id": "Notion adalah platform yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Tech Lead",
+        "Data Analyst",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Helpdesk",
+        "Technical Support",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "slack",
@@ -269,53 +825,201 @@
       "category": "collaboration",
       "kind": "platform",
       "aliases": [],
-      "description": "Team messaging platform used for coordination, support channels, alerts, and incident communication.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "GRC Specialist", "AppSec Engineer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Team messaging platform used for coordination, support channels, alerts, and incident communication.",
+        "id": "Slack adalah platform yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "microsoft-teams",
       "name": "Microsoft Teams",
       "category": "collaboration",
       "kind": "platform",
-      "aliases": ["Teams"],
-      "description": "Microsoft collaboration platform for chat, meetings, calls, files, and operational communication.",
-      "tags": ["IT Novice", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO", "GRC Specialist"]
+      "aliases": [
+        "Teams"
+      ],
+      "description": {
+        "en": "Microsoft collaboration platform for chat, meetings, calls, files, and operational communication.",
+        "id": "Microsoft Teams adalah platform yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO",
+        "GRC Specialist"
+      ]
     },
     {
       "id": "google-workspace",
       "name": "Google Workspace",
       "category": "collaboration",
       "kind": "suite",
-      "aliases": ["Google Docs", "Google Sheets", "Google Slides", "Google Drive"],
-      "description": "Office and collaboration suite for documents, spreadsheets, slides, storage, and shared work.",
-      "tags": ["IT Novice", "Data Analyst", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO", "GRC Specialist"]
+      "aliases": [
+        "Google Docs",
+        "Google Sheets",
+        "Google Slides",
+        "Google Drive"
+      ],
+      "description": {
+        "en": "Office and collaboration suite for documents, spreadsheets, slides, storage, and shared work.",
+        "id": "Google Workspace adalah paket software yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Data Analyst",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO",
+        "GRC Specialist"
+      ]
     },
     {
       "id": "microsoft-365",
       "name": "Microsoft 365",
       "category": "collaboration",
       "kind": "suite",
-      "aliases": ["Excel", "Word", "PowerPoint", "OneDrive", "SharePoint"],
-      "description": "Microsoft office and collaboration suite used for documents, spreadsheets, presentations, email, and file sharing.",
-      "tags": ["IT Novice", "Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO", "GRC Specialist"]
+      "aliases": [
+        "Excel",
+        "Word",
+        "PowerPoint",
+        "OneDrive",
+        "SharePoint"
+      ],
+      "description": {
+        "en": "Microsoft office and collaboration suite used for documents, spreadsheets, presentations, email, and file sharing.",
+        "id": "Microsoft 365 adalah paket software yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Data Analyst",
+        "BI Developer",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO",
+        "GRC Specialist"
+      ]
     },
     {
       "id": "excel",
       "name": "Microsoft Excel",
       "category": "data",
       "kind": "software",
-      "aliases": ["Excel"],
-      "description": "Spreadsheet tool for analysis, reporting, reconciliation, formulas, pivot tables, and operational tracking.",
-      "tags": ["IT Novice", "Manual QA", "Data Analyst", "BI Developer", "Database Admin", "GRC Specialist", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CISO"]
+      "aliases": [
+        "Excel"
+      ],
+      "description": {
+        "en": "Spreadsheet tool for analysis, reporting, reconciliation, formulas, pivot tables, and operational tracking.",
+        "id": "Microsoft Excel adalah software yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "IT Novice",
+        "Manual QA",
+        "Data Analyst",
+        "BI Developer",
+        "Database Admin",
+        "GRC Specialist",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CISO"
+      ]
     },
     {
       "id": "google-sheets",
       "name": "Google Sheets",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Sheets"],
-      "description": "Collaborative spreadsheet tool for lightweight analysis, tracking, and reporting.",
-      "tags": ["IT Novice", "Manual QA", "Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "Sheets"
+      ],
+      "description": {
+        "en": "Collaborative spreadsheet tool for lightweight analysis, tracking, and reporting.",
+        "id": "Google Sheets adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "IT Novice",
+        "Manual QA",
+        "Data Analyst",
+        "BI Developer",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UX Designer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "mysql-workbench",
@@ -323,8 +1027,20 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "Database client and modeling tool for MySQL administration, queries, and schema inspection.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Database client and modeling tool for MySQL administration, queries, and schema inspection.",
+        "id": "MySQL Workbench adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "pgadmin",
@@ -332,8 +1048,20 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "PostgreSQL administration and query tool for inspecting databases, users, backups, and schemas.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "PostgreSQL administration and query tool for inspecting databases, users, backups, and schemas.",
+        "id": "pgAdmin adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "dbeaver",
@@ -341,8 +1069,23 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "Universal database client used to query and inspect many database engines from one interface.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Universal database client used to query and inspect many database engines from one interface.",
+        "id": "DBeaver adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "heidisql",
@@ -350,8 +1093,22 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "Lightweight database client commonly used for MySQL, MariaDB, PostgreSQL, SQL Server, and quick database inspection.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Lightweight database client commonly used for MySQL, MariaDB, PostgreSQL, SQL Server, and quick database inspection.",
+        "id": "HeidiSQL adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "phpmyadmin",
@@ -359,8 +1116,21 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "Web-based MySQL and MariaDB administration tool often found in PHP hosting, legacy apps, and shared server environments.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "Database Admin", "Helpdesk", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Web-based MySQL and MariaDB administration tool often found in PHP hosting, legacy apps, and shared server environments.",
+        "id": "phpMyAdmin adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Data Analyst",
+        "Database Admin",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "datagrip",
@@ -368,17 +1138,42 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "JetBrains database IDE for SQL writing, schema navigation, and multi-database work.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "JetBrains database IDE for SQL writing, schema navigation, and multi-database work.",
+        "id": "DataGrip adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "sql-server-management-studio",
       "name": "SQL Server Management Studio",
       "category": "database",
       "kind": "software",
-      "aliases": ["SSMS"],
-      "description": "Microsoft SQL Server administration and query tool.",
-      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "aliases": [
+        "SSMS"
+      ],
+      "description": {
+        "en": "Microsoft SQL Server administration and query tool.",
+        "id": "SQL Server Management Studio adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "mongodb-compass",
@@ -386,8 +1181,18 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "MongoDB GUI for exploring collections, documents, indexes, and query behavior.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "MongoDB GUI for exploring collections, documents, indexes, and query behavior.",
+        "id": "MongoDB Compass adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "redis-insight",
@@ -395,53 +1200,155 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "Redis GUI for inspecting keys, memory usage, streams, and cached data.",
-      "tags": ["Backend Developer", "Fullstack Developer", "DevOps Engineer", "Database Admin", "SRE", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Redis GUI for inspecting keys, memory usage, streams, and cached data.",
+        "id": "Redis Insight adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "docker",
       "name": "Docker",
       "category": "devops",
       "kind": "software",
-      "aliases": ["Docker Desktop", "Docker Engine"],
-      "description": "Container platform for packaging and running applications with consistent environments.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "AppSec Engineer", "Technical Support", "Application Support", "CTO"]
+      "aliases": [
+        "Docker Desktop",
+        "Docker Engine"
+      ],
+      "description": {
+        "en": "Container platform for packaging and running applications with consistent environments.",
+        "id": "Docker adalah software yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Performance Tester",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer",
+        "Technical Support",
+        "Application Support",
+        "CTO"
+      ]
     },
     {
       "id": "xampp",
       "name": "XAMPP",
       "category": "devops",
       "kind": "software",
-      "aliases": ["Apache Friends XAMPP"],
-      "description": "Local development bundle with Apache, MariaDB, PHP, and Perl, often used for PHP learning, legacy projects, and quick local web servers.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+      "aliases": [
+        "Apache Friends XAMPP"
+      ],
+      "description": {
+        "en": "Local development bundle with Apache, MariaDB, PHP, and Perl, often used for PHP learning, legacy projects, and quick local web servers.",
+        "id": "XAMPP adalah software yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "kubernetes",
       "name": "Kubernetes",
       "category": "devops",
       "kind": "platform",
-      "aliases": ["K8s"],
-      "description": "Container orchestration platform for deploying, scaling, and operating containerized systems.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "K8s"
+      ],
+      "description": {
+        "en": "Container orchestration platform for deploying, scaling, and operating containerized systems.",
+        "id": "Kubernetes adalah platform yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Performance Tester",
+        "Data Engineer",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "helm",
       "name": "Helm",
       "category": "devops",
       "kind": "cli",
-      "aliases": ["Helm charts"],
-      "description": "Package manager for Kubernetes applications and deployment templates.",
-      "tags": ["Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Application Support"]
+      "aliases": [
+        "Helm charts"
+      ],
+      "description": {
+        "en": "Package manager for Kubernetes applications and deployment templates.",
+        "id": "Helm adalah alat command-line yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "Application Support"
+      ]
     },
     {
       "id": "terraform",
       "name": "Terraform",
       "category": "devops",
       "kind": "cli",
-      "aliases": ["OpenTofu"],
-      "description": "Infrastructure as code tool for provisioning cloud and platform resources from declarative configuration.",
-      "tags": ["Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "OpenTofu"
+      ],
+      "description": {
+        "en": "Infrastructure as code tool for provisioning cloud and platform resources from declarative configuration.",
+        "id": "Terraform adalah alat command-line yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "ansible",
@@ -449,8 +1356,20 @@
       "category": "devops",
       "kind": "cli",
       "aliases": [],
-      "description": "Automation tool for configuration management, server provisioning, and operational runbooks.",
-      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support"]
+      "description": {
+        "en": "Automation tool for configuration management, server provisioning, and operational runbooks.",
+        "id": "Ansible adalah alat command-line yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "Application Support"
+      ]
     },
     {
       "id": "jenkins",
@@ -458,8 +1377,22 @@
       "category": "devops",
       "kind": "platform",
       "aliases": [],
-      "description": "Automation server commonly used for CI/CD pipelines, builds, tests, and deployments.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "Data Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Application Support"]
+      "description": {
+        "en": "Automation server commonly used for CI/CD pipelines, builds, tests, and deployments.",
+        "id": "Jenkins adalah platform yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Performance Tester",
+        "Data Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Application Support"
+      ]
     },
     {
       "id": "github-actions",
@@ -467,71 +1400,260 @@
       "category": "devops",
       "kind": "platform",
       "aliases": [],
-      "description": "GitHub-native automation system for CI/CD workflows, tests, builds, releases, and scheduled jobs.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Data Engineer", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "AppSec Engineer", "CTO"]
+      "description": {
+        "en": "GitHub-native automation system for CI/CD workflows, tests, builds, releases, and scheduled jobs.",
+        "id": "GitHub Actions adalah platform yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Data Engineer",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "AppSec Engineer",
+        "CTO"
+      ]
     },
     {
       "id": "azure-devops",
       "name": "Azure DevOps",
       "category": "devops",
       "kind": "platform",
-      "aliases": ["Azure Boards", "Azure Pipelines", "Azure Repos"],
-      "description": "Microsoft platform for work tracking, repositories, CI/CD pipelines, artifacts, and test plans.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "Data Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Business Analyst", "Product Owner", "Project Manager", "Engineering Manager", "CTO"]
+      "aliases": [
+        "Azure Boards",
+        "Azure Pipelines",
+        "Azure Repos"
+      ],
+      "description": {
+        "en": "Microsoft platform for work tracking, repositories, CI/CD pipelines, artifacts, and test plans.",
+        "id": "Azure DevOps adalah platform yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "Data Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "aws",
       "name": "Amazon Web Services",
       "category": "cloud",
       "kind": "platform",
-      "aliases": ["AWS", "EC2", "S3", "IAM", "RDS", "Lambda", "CloudWatch"],
-      "description": "Cloud platform for compute, storage, networking, identity, databases, serverless, monitoring, and managed services.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "AWS",
+        "EC2",
+        "S3",
+        "IAM",
+        "RDS",
+        "Lambda",
+        "CloudWatch"
+      ],
+      "description": {
+        "en": "Cloud platform for compute, storage, networking, identity, databases, serverless, monitoring, and managed services.",
+        "id": "Amazon Web Services adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Performance Tester",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "microsoft-azure",
       "name": "Microsoft Azure",
       "category": "cloud",
       "kind": "platform",
-      "aliases": ["Azure", "Azure VM", "Azure SQL", "Azure Monitor", "Microsoft Entra ID"],
-      "description": "Microsoft cloud platform for compute, identity, databases, networking, security, and enterprise workloads.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Engineer", "Data Scientist", "AI Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "Azure",
+        "Azure VM",
+        "Azure SQL",
+        "Azure Monitor",
+        "Microsoft Entra ID"
+      ],
+      "description": {
+        "en": "Microsoft cloud platform for compute, identity, databases, networking, security, and enterprise workloads.",
+        "id": "Microsoft Azure adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "google-cloud",
       "name": "Google Cloud",
       "category": "cloud",
       "kind": "platform",
-      "aliases": ["GCP", "Compute Engine", "Cloud Storage", "BigQuery", "Cloud Run"],
-      "description": "Google cloud platform for compute, storage, analytics, AI, networking, and managed services.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "AppSec Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "GCP",
+        "Compute Engine",
+        "Cloud Storage",
+        "BigQuery",
+        "Cloud Run"
+      ],
+      "description": {
+        "en": "Google cloud platform for compute, storage, analytics, AI, networking, and managed services.",
+        "id": "Google Cloud adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "cloudflare",
       "name": "Cloudflare",
       "category": "cloud",
       "kind": "platform",
-      "aliases": ["Cloudflare Workers", "Cloudflare Pages", "Cloudflare DNS", "Cloudflare WAF"],
-      "description": "Edge, DNS, security, CDN, worker, and web application protection platform.",
-      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "Application Support", "CTO", "CISO"]
+      "aliases": [
+        "Cloudflare Workers",
+        "Cloudflare Pages",
+        "Cloudflare DNS",
+        "Cloudflare WAF"
+      ],
+      "description": {
+        "en": "Edge, DNS, security, CDN, worker, and web application protection platform.",
+        "id": "Cloudflare adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "Application Support",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "firebase",
       "name": "Firebase",
       "category": "cloud",
       "kind": "platform",
-      "aliases": ["Firestore", "Firebase Auth", "Firebase Hosting", "Firebase Crashlytics"],
-      "description": "App development platform for hosting, authentication, realtime databases, notifications, and crash reporting.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Technical Support", "Application Support"]
+      "aliases": [
+        "Firestore",
+        "Firebase Auth",
+        "Firebase Hosting",
+        "Firebase Crashlytics"
+      ],
+      "description": {
+        "en": "App development platform for hosting, authentication, realtime databases, notifications, and crash reporting.",
+        "id": "Firebase adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "supabase",
       "name": "Supabase",
       "category": "cloud",
       "kind": "platform",
-      "aliases": ["Supabase Auth", "Supabase Database", "Supabase Storage"],
-      "description": "Backend-as-a-service platform built around PostgreSQL, auth, storage, and edge functions.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Data Analyst", "Technical Support", "Application Support"]
+      "aliases": [
+        "Supabase Auth",
+        "Supabase Database",
+        "Supabase Storage"
+      ],
+      "description": {
+        "en": "Backend-as-a-service platform built around PostgreSQL, auth, storage, and edge functions.",
+        "id": "Supabase adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Data Analyst",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "vercel",
@@ -539,8 +1661,21 @@
       "category": "cloud",
       "kind": "platform",
       "aliases": [],
-      "description": "Frontend and fullstack deployment platform commonly used for web apps, previews, and edge functions.",
-      "tags": ["Frontend Developer", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "SRE", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Frontend and fullstack deployment platform commonly used for web apps, previews, and edge functions.",
+        "id": "Vercel adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "DevOps Engineer",
+        "SRE",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "netlify",
@@ -548,8 +1683,18 @@
       "category": "cloud",
       "kind": "platform",
       "aliases": [],
-      "description": "Web deployment platform for static sites, functions, forms, previews, and frontend workflows.",
-      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "Technical Support"]
+      "description": {
+        "en": "Web deployment platform for static sites, functions, forms, previews, and frontend workflows.",
+        "id": "Netlify adalah platform yang dipakai untuk mengelola layanan cloud seperti compute, storage, jaringan, identity, deployment, dan monitoring."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "DevOps Engineer",
+        "Technical Support"
+      ]
     },
     {
       "id": "playwright",
@@ -557,17 +1702,38 @@
       "category": "qa",
       "kind": "software",
       "aliases": [],
-      "description": "Browser automation framework for end-to-end tests, UI checks, screenshots, and browser workflows.",
-      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Performance Tester", "AppSec Engineer"]
+      "description": {
+        "en": "Browser automation framework for end-to-end tests, UI checks, screenshots, and browser workflows.",
+        "id": "Playwright adalah software yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "selenium",
       "name": "Selenium",
       "category": "qa",
       "kind": "software",
-      "aliases": ["Selenium WebDriver"],
-      "description": "Browser automation framework used for web UI testing across browsers.",
-      "tags": ["Manual QA", "QA Automation", "Performance Tester", "AppSec Engineer"]
+      "aliases": [
+        "Selenium WebDriver"
+      ],
+      "description": {
+        "en": "Browser automation framework used for web UI testing across browsers.",
+        "id": "Selenium adalah software yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "cypress",
@@ -575,8 +1741,17 @@
       "category": "qa",
       "kind": "software",
       "aliases": [],
-      "description": "Frontend test automation framework for web application integration and end-to-end tests.",
-      "tags": ["Frontend Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation"]
+      "description": {
+        "en": "Frontend test automation framework for web application integration and end-to-end tests.",
+        "id": "Cypress adalah software yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation"
+      ]
     },
     {
       "id": "testlink",
@@ -584,8 +1759,15 @@
       "category": "qa",
       "kind": "platform",
       "aliases": [],
-      "description": "Test management tool for organizing test cases, test plans, and manual execution records.",
-      "tags": ["Manual QA", "QA Automation", "Project Manager"]
+      "description": {
+        "en": "Test management tool for organizing test cases, test plans, and manual execution records.",
+        "id": "TestLink adalah platform yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Manual QA",
+        "QA Automation",
+        "Project Manager"
+      ]
     },
     {
       "id": "testrail",
@@ -593,8 +1775,17 @@
       "category": "qa",
       "kind": "platform",
       "aliases": [],
-      "description": "Test case management platform for manual and automated QA planning, runs, and reporting.",
-      "tags": ["Manual QA", "QA Automation", "Performance Tester", "Project Manager", "Product Owner"]
+      "description": {
+        "en": "Test case management platform for manual and automated QA planning, runs, and reporting.",
+        "id": "TestRail adalah platform yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "Project Manager",
+        "Product Owner"
+      ]
     },
     {
       "id": "browserstack",
@@ -602,26 +1793,63 @@
       "category": "qa",
       "kind": "platform",
       "aliases": [],
-      "description": "Cloud testing platform for real browsers, devices, cross-browser checks, and mobile app testing.",
-      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "Manual QA", "QA Automation", "Performance Tester", "Technical Support"]
+      "description": {
+        "en": "Cloud testing platform for real browsers, devices, cross-browser checks, and mobile app testing.",
+        "id": "BrowserStack adalah platform yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "QA Automation",
+        "Performance Tester",
+        "Technical Support"
+      ]
     },
     {
       "id": "jmeter",
       "name": "Apache JMeter",
       "category": "qa",
       "kind": "software",
-      "aliases": ["JMeter"],
-      "description": "Load testing tool for simulating traffic and measuring system behavior under stress.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "DevOps Engineer", "SRE"]
+      "aliases": [
+        "JMeter"
+      ],
+      "description": {
+        "en": "Load testing tool for simulating traffic and measuring system behavior under stress.",
+        "id": "Apache JMeter adalah software yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Performance Tester",
+        "DevOps Engineer",
+        "SRE"
+      ]
     },
     {
       "id": "k6",
       "name": "Grafana k6",
       "category": "qa",
       "kind": "cli",
-      "aliases": ["k6"],
-      "description": "Developer-oriented load testing tool for scripted performance tests and CI integration.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Performance Tester", "DevOps Engineer", "SRE"]
+      "aliases": [
+        "k6"
+      ],
+      "description": {
+        "en": "Developer-oriented load testing tool for scripted performance tests and CI integration.",
+        "id": "Grafana k6 adalah alat command-line yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Performance Tester",
+        "DevOps Engineer",
+        "SRE"
+      ]
     },
     {
       "id": "gatling",
@@ -629,8 +1857,16 @@
       "category": "qa",
       "kind": "software",
       "aliases": [],
-      "description": "Performance testing tool for simulating high traffic and analyzing web application load behavior.",
-      "tags": ["Performance Tester", "Backend Developer", "DevOps Engineer", "SRE"]
+      "description": {
+        "en": "Performance testing tool for simulating high traffic and analyzing web application load behavior.",
+        "id": "Gatling adalah software yang dipakai untuk menjalankan pengujian, test case, otomasi QA, validasi browser, atau pengukuran performa."
+      },
+      "tags": [
+        "Performance Tester",
+        "Backend Developer",
+        "DevOps Engineer",
+        "SRE"
+      ]
     },
     {
       "id": "tableau",
@@ -638,35 +1874,81 @@
       "category": "data",
       "kind": "platform",
       "aliases": [],
-      "description": "Business intelligence and visualization platform for dashboards and analytical reporting.",
-      "tags": ["Data Analyst", "BI Developer", "Data Scientist", "Business Analyst", "Product Manager", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Business intelligence and visualization platform for dashboards and analytical reporting.",
+        "id": "Tableau adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Scientist",
+        "Business Analyst",
+        "Product Manager",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "power-bi",
       "name": "Power BI",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Microsoft Power BI"],
-      "description": "Microsoft BI platform for data modeling, dashboards, reports, and business analytics.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Business Analyst", "Product Owner", "Product Manager", "Engineering Manager", "CISO"]
+      "aliases": [
+        "Microsoft Power BI"
+      ],
+      "description": {
+        "en": "Microsoft BI platform for data modeling, dashboards, reports, and business analytics.",
+        "id": "Power BI adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "Engineering Manager",
+        "CISO"
+      ]
     },
     {
       "id": "looker-studio",
       "name": "Looker Studio",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Google Data Studio"],
-      "description": "Google reporting tool for dashboards and visualizations connected to multiple data sources.",
-      "tags": ["Data Analyst", "BI Developer", "Business Analyst", "Product Manager"]
+      "aliases": [
+        "Google Data Studio"
+      ],
+      "description": {
+        "en": "Google reporting tool for dashboards and visualizations connected to multiple data sources.",
+        "id": "Looker Studio adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Business Analyst",
+        "Product Manager"
+      ]
     },
     {
       "id": "looker",
       "name": "Looker",
       "category": "data",
       "kind": "platform",
-      "aliases": ["LookML"],
-      "description": "BI and semantic modeling platform for governed metrics, dashboards, and analytics workflows.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Product Manager", "Engineering Manager"]
+      "aliases": [
+        "LookML"
+      ],
+      "description": {
+        "en": "BI and semantic modeling platform for governed metrics, dashboards, and analytics workflows.",
+        "id": "Looker adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Product Manager",
+        "Engineering Manager"
+      ]
     },
     {
       "id": "metabase",
@@ -674,44 +1956,101 @@
       "category": "data",
       "kind": "platform",
       "aliases": [],
-      "description": "Open-source BI tool for dashboards, SQL questions, and internal analytics.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Backend Developer", "Product Manager", "Application Support"]
+      "description": {
+        "en": "Open-source BI tool for dashboards, SQL questions, and internal analytics.",
+        "id": "Metabase adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Backend Developer",
+        "Product Manager",
+        "Application Support"
+      ]
     },
     {
       "id": "apache-airflow",
       "name": "Apache Airflow",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Airflow"],
-      "description": "Workflow orchestration platform for scheduling and monitoring data pipelines.",
-      "tags": ["Data Engineer", "Data Scientist", "AI Engineer", "DevOps Engineer", "SRE"]
+      "aliases": [
+        "Airflow"
+      ],
+      "description": {
+        "en": "Workflow orchestration platform for scheduling and monitoring data pipelines.",
+        "id": "Apache Airflow adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "DevOps Engineer",
+        "SRE"
+      ]
     },
     {
       "id": "dbt",
       "name": "dbt",
       "category": "data",
       "kind": "cli",
-      "aliases": ["dbt Core", "dbt Cloud"],
-      "description": "Analytics engineering tool for transforming warehouse data with SQL models, tests, and documentation.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist"]
+      "aliases": [
+        "dbt Core",
+        "dbt Cloud"
+      ],
+      "description": {
+        "en": "Analytics engineering tool for transforming warehouse data with SQL models, tests, and documentation.",
+        "id": "dbt adalah alat command-line yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist"
+      ]
     },
     {
       "id": "apache-spark",
       "name": "Apache Spark",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Spark", "PySpark"],
-      "description": "Distributed data processing engine for large-scale batch, streaming, and machine learning workloads.",
-      "tags": ["Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer"]
+      "aliases": [
+        "Spark",
+        "PySpark"
+      ],
+      "description": {
+        "en": "Distributed data processing engine for large-scale batch, streaming, and machine learning workloads.",
+        "id": "Apache Spark adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer"
+      ]
     },
     {
       "id": "databricks",
       "name": "Databricks",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Lakehouse", "Delta Lake"],
-      "description": "Lakehouse platform for data engineering, analytics, machine learning, notebooks, and managed Spark.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "CTO"]
+      "aliases": [
+        "Lakehouse",
+        "Delta Lake"
+      ],
+      "description": {
+        "en": "Lakehouse platform for data engineering, analytics, machine learning, notebooks, and managed Spark.",
+        "id": "Databricks adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer",
+        "CTO"
+      ]
     },
     {
       "id": "snowflake",
@@ -719,44 +2058,103 @@
       "category": "data",
       "kind": "platform",
       "aliases": [],
-      "description": "Cloud data platform for warehousing, analytics, data sharing, and scalable SQL workloads.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "Database Admin", "GRC Specialist", "CTO"]
+      "description": {
+        "en": "Cloud data platform for warehousing, analytics, data sharing, and scalable SQL workloads.",
+        "id": "Snowflake adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "Database Admin",
+        "GRC Specialist",
+        "CTO"
+      ]
     },
     {
       "id": "bigquery",
       "name": "BigQuery",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Google BigQuery"],
-      "description": "Google Cloud data warehouse for large-scale SQL analytics and managed data processing.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Cloud Engineer", "Database Admin"]
+      "aliases": [
+        "Google BigQuery"
+      ],
+      "description": {
+        "en": "Google Cloud data warehouse for large-scale SQL analytics and managed data processing.",
+        "id": "BigQuery adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Cloud Engineer",
+        "Database Admin"
+      ]
     },
     {
       "id": "jupyter",
       "name": "Jupyter Notebook",
       "category": "data",
       "kind": "software",
-      "aliases": ["JupyterLab", "Notebook"],
-      "description": "Interactive notebook environment for Python analysis, experiments, documentation, and visualization.",
-      "tags": ["Data Analyst", "BI Developer", "Data Engineer", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester"]
+      "aliases": [
+        "JupyterLab",
+        "Notebook"
+      ],
+      "description": {
+        "en": "Interactive notebook environment for Python analysis, experiments, documentation, and visualization.",
+        "id": "Jupyter Notebook adalah software yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Security Engineer",
+        "Pentester"
+      ]
     },
     {
       "id": "google-colab",
       "name": "Google Colab",
       "category": "data",
       "kind": "platform",
-      "aliases": ["Colab"],
-      "description": "Hosted notebook environment for Python experiments, data analysis, and machine learning.",
-      "tags": ["Data Analyst", "Data Scientist", "AI Engineer"]
+      "aliases": [
+        "Colab"
+      ],
+      "description": {
+        "en": "Hosted notebook environment for Python experiments, data analysis, and machine learning.",
+        "id": "Google Colab adalah platform yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "Data Scientist",
+        "AI Engineer"
+      ]
     },
     {
       "id": "anaconda",
       "name": "Anaconda",
       "category": "data",
       "kind": "software",
-      "aliases": ["Conda"],
-      "description": "Python distribution and environment manager commonly used for data science and analytics.",
-      "tags": ["Data Analyst", "Data Engineer", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester"]
+      "aliases": [
+        "Conda"
+      ],
+      "description": {
+        "en": "Python distribution and environment manager commonly used for data science and analytics.",
+        "id": "Anaconda adalah software yang dipakai untuk mengolah, menganalisis, memodelkan, memvisualisasikan, atau menjalankan pipeline data."
+      },
+      "tags": [
+        "Data Analyst",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer",
+        "Security Engineer",
+        "Pentester"
+      ]
     },
     {
       "id": "mlflow",
@@ -764,26 +2162,59 @@
       "category": "ai",
       "kind": "platform",
       "aliases": [],
-      "description": "Machine learning lifecycle platform for experiment tracking, model packaging, and model registry workflows.",
-      "tags": ["Data Scientist", "AI Engineer", "Data Engineer", "SRE"]
+      "description": {
+        "en": "Machine learning lifecycle platform for experiment tracking, model packaging, and model registry workflows.",
+        "id": "MLflow adalah platform yang dipakai untuk membangun, menguji, menjalankan, atau mengintegrasikan workflow AI dan machine learning."
+      },
+      "tags": [
+        "Data Scientist",
+        "AI Engineer",
+        "Data Engineer",
+        "SRE"
+      ]
     },
     {
       "id": "hugging-face",
       "name": "Hugging Face",
       "category": "ai",
       "kind": "platform",
-      "aliases": ["Transformers", "Hugging Face Hub"],
-      "description": "AI platform and model hub for using, sharing, fine-tuning, and deploying machine learning models.",
-      "tags": ["Data Scientist", "AI Engineer", "AppSec Engineer", "CTO"]
+      "aliases": [
+        "Transformers",
+        "Hugging Face Hub"
+      ],
+      "description": {
+        "en": "AI platform and model hub for using, sharing, fine-tuning, and deploying machine learning models.",
+        "id": "Hugging Face adalah platform yang dipakai untuk membangun, menguji, menjalankan, atau mengintegrasikan workflow AI dan machine learning."
+      },
+      "tags": [
+        "Data Scientist",
+        "AI Engineer",
+        "AppSec Engineer",
+        "CTO"
+      ]
     },
     {
       "id": "openai-api",
       "name": "OpenAI API",
       "category": "ai",
       "kind": "service",
-      "aliases": ["OpenAI Platform"],
-      "description": "API platform for building applications with language, vision, audio, and agentic AI models.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Data Scientist", "AI Engineer", "Product Manager", "CTO", "CISO"]
+      "aliases": [
+        "OpenAI Platform"
+      ],
+      "description": {
+        "en": "API platform for building applications with language, vision, audio, and agentic AI models.",
+        "id": "OpenAI API adalah layanan yang dipakai untuk membangun, menguji, menjalankan, atau mengintegrasikan workflow AI dan machine learning."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Data Scientist",
+        "AI Engineer",
+        "Product Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "langchain",
@@ -791,8 +2222,17 @@
       "category": "ai",
       "kind": "software",
       "aliases": [],
-      "description": "Framework and ecosystem for building LLM applications, RAG flows, tool use, and agent workflows.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Scientist", "AI Engineer", "CTO"]
+      "description": {
+        "en": "Framework and ecosystem for building LLM applications, RAG flows, tool use, and agent workflows.",
+        "id": "LangChain adalah software yang dipakai untuk membangun, menguji, menjalankan, atau mengintegrasikan workflow AI dan machine learning."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Scientist",
+        "AI Engineer",
+        "CTO"
+      ]
     },
     {
       "id": "llamaindex",
@@ -800,8 +2240,16 @@
       "category": "ai",
       "kind": "software",
       "aliases": [],
-      "description": "Framework for connecting data sources to LLM applications, especially retrieval and RAG workflows.",
-      "tags": ["Backend Developer", "Data Engineer", "Data Scientist", "AI Engineer"]
+      "description": {
+        "en": "Framework for connecting data sources to LLM applications, especially retrieval and RAG workflows.",
+        "id": "LlamaIndex adalah software yang dipakai untuk membangun, menguji, menjalankan, atau mengintegrasikan workflow AI dan machine learning."
+      },
+      "tags": [
+        "Backend Developer",
+        "Data Engineer",
+        "Data Scientist",
+        "AI Engineer"
+      ]
     },
     {
       "id": "ollama",
@@ -809,8 +2257,18 @@
       "category": "ai",
       "kind": "software",
       "aliases": [],
-      "description": "Local model runner for experimenting with and serving open language models on a workstation or server.",
-      "tags": ["Backend Developer", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester", "CTO"]
+      "description": {
+        "en": "Local model runner for experimenting with and serving open language models on a workstation or server.",
+        "id": "Ollama adalah software yang dipakai untuk membangun, menguji, menjalankan, atau mengintegrasikan workflow AI dan machine learning."
+      },
+      "tags": [
+        "Backend Developer",
+        "Data Scientist",
+        "AI Engineer",
+        "Security Engineer",
+        "Pentester",
+        "CTO"
+      ]
     },
     {
       "id": "wireshark",
@@ -818,17 +2276,41 @@
       "category": "network",
       "kind": "software",
       "aliases": [],
-      "description": "Packet analysis tool for inspecting network traffic and troubleshooting protocols.",
-      "tags": ["IT Novice", "Network Engineer", "System Administrator", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "Technical Support"]
+      "description": {
+        "en": "Packet analysis tool for inspecting network traffic and troubleshooting protocols.",
+        "id": "Wireshark adalah software yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "IT Novice",
+        "Network Engineer",
+        "System Administrator",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "Technical Support"
+      ]
     },
     {
       "id": "cisco-ios",
       "name": "Cisco IOS",
       "category": "network",
       "kind": "platform",
-      "aliases": ["Cisco CLI", "Cisco Catalyst"],
-      "description": "Cisco network operating system and command interface for routing, switching, and network configuration.",
-      "tags": ["Network Engineer", "System Administrator", "Cloud Engineer", "Security Engineer", "Technical Support"]
+      "aliases": [
+        "Cisco CLI",
+        "Cisco Catalyst"
+      ],
+      "description": {
+        "en": "Cisco network operating system and command interface for routing, switching, and network configuration.",
+        "id": "Cisco IOS adalah platform yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "System Administrator",
+        "Cloud Engineer",
+        "Security Engineer",
+        "Technical Support"
+      ]
     },
     {
       "id": "cisco-packet-tracer",
@@ -836,8 +2318,16 @@
       "category": "network",
       "kind": "software",
       "aliases": [],
-      "description": "Network simulation tool for learning and testing Cisco-style routing and switching scenarios.",
-      "tags": ["IT Novice", "Network Engineer", "Helpdesk", "Technical Support"]
+      "description": {
+        "en": "Network simulation tool for learning and testing Cisco-style routing and switching scenarios.",
+        "id": "Cisco Packet Tracer adalah software yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "IT Novice",
+        "Network Engineer",
+        "Helpdesk",
+        "Technical Support"
+      ]
     },
     {
       "id": "gns3",
@@ -845,8 +2335,15 @@
       "category": "network",
       "kind": "software",
       "aliases": [],
-      "description": "Network emulator for building realistic multi-vendor lab topologies.",
-      "tags": ["Network Engineer", "Security Engineer", "Pentester"]
+      "description": {
+        "en": "Network emulator for building realistic multi-vendor lab topologies.",
+        "id": "GNS3 adalah software yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "Security Engineer",
+        "Pentester"
+      ]
     },
     {
       "id": "eve-ng",
@@ -854,53 +2351,116 @@
       "category": "network",
       "kind": "software",
       "aliases": [],
-      "description": "Network emulation platform for advanced lab environments and multi-vendor infrastructure testing.",
-      "tags": ["Network Engineer", "Security Engineer", "Pentester"]
+      "description": {
+        "en": "Network emulation platform for advanced lab environments and multi-vendor infrastructure testing.",
+        "id": "EVE-NG adalah software yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "Security Engineer",
+        "Pentester"
+      ]
     },
     {
       "id": "mikrotik-routeros",
       "name": "MikroTik RouterOS",
       "category": "network",
       "kind": "platform",
-      "aliases": ["WinBox", "RouterOS"],
-      "description": "Router and network operating system used for routing, firewalling, VPN, and small-to-mid network management.",
-      "tags": ["Network Engineer", "System Administrator", "Security Engineer", "Technical Support"]
+      "aliases": [
+        "WinBox",
+        "RouterOS"
+      ],
+      "description": {
+        "en": "Router and network operating system used for routing, firewalling, VPN, and small-to-mid network management.",
+        "id": "MikroTik RouterOS adalah platform yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "System Administrator",
+        "Security Engineer",
+        "Technical Support"
+      ]
     },
     {
       "id": "fortigate",
       "name": "FortiGate",
       "category": "network",
       "kind": "platform",
-      "aliases": ["Fortinet FortiGate", "FortiOS"],
-      "description": "Firewall and security gateway platform used for network protection, VPN, filtering, and traffic control.",
-      "tags": ["Network Engineer", "System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Technical Support", "CISO"]
+      "aliases": [
+        "Fortinet FortiGate",
+        "FortiOS"
+      ],
+      "description": {
+        "en": "Firewall and security gateway platform used for network protection, VPN, filtering, and traffic control.",
+        "id": "FortiGate adalah platform yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "System Administrator",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Technical Support",
+        "CISO"
+      ]
     },
     {
       "id": "palo-alto-ngfw",
       "name": "Palo Alto Networks NGFW",
       "category": "network",
       "kind": "platform",
-      "aliases": ["PAN-OS", "Palo Alto firewall"],
-      "description": "Enterprise next-generation firewall platform for network security policy, inspection, and threat prevention.",
-      "tags": ["Network Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "CISO"]
+      "aliases": [
+        "PAN-OS",
+        "Palo Alto firewall"
+      ],
+      "description": {
+        "en": "Enterprise next-generation firewall platform for network security policy, inspection, and threat prevention.",
+        "id": "Palo Alto Networks NGFW adalah platform yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "CISO"
+      ]
     },
     {
       "id": "juniper-junos",
       "name": "Juniper Junos",
       "category": "network",
       "kind": "platform",
-      "aliases": ["Junos OS"],
-      "description": "Juniper network operating system used for routing, switching, security, and service provider networks.",
-      "tags": ["Network Engineer", "Security Engineer"]
+      "aliases": [
+        "Junos OS"
+      ],
+      "description": {
+        "en": "Juniper network operating system used for routing, switching, security, and service provider networks.",
+        "id": "Juniper Junos adalah platform yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "Security Engineer"
+      ]
     },
     {
       "id": "ubiquiti-unifi",
       "name": "Ubiquiti UniFi",
       "category": "network",
       "kind": "platform",
-      "aliases": ["UniFi Controller", "UniFi Network"],
-      "description": "Network management platform for access points, switches, gateways, and small-to-mid office networks.",
-      "tags": ["Network Engineer", "System Administrator", "Helpdesk", "Technical Support"]
+      "aliases": [
+        "UniFi Controller",
+        "UniFi Network"
+      ],
+      "description": {
+        "en": "Network management platform for access points, switches, gateways, and small-to-mid office networks.",
+        "id": "Ubiquiti UniFi adalah platform yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "Network Engineer",
+        "System Administrator",
+        "Helpdesk",
+        "Technical Support"
+      ]
     },
     {
       "id": "putty",
@@ -908,8 +2468,25 @@
       "category": "terminal",
       "kind": "software",
       "aliases": [],
-      "description": "SSH and serial client often used to access servers, routers, switches, and appliances.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Pentester", "Helpdesk", "Technical Support", "Application Support"]
+      "description": {
+        "en": "SSH and serial client often used to access servers, routers, switches, and appliances.",
+        "id": "PuTTY adalah software yang dipakai untuk menjalankan perintah, script, otomasi, dan troubleshooting lewat command line."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "openvpn",
@@ -917,26 +2494,74 @@
       "category": "network",
       "kind": "software",
       "aliases": [],
-      "description": "VPN software used to securely connect users or systems to private networks.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Helpdesk", "Technical Support", "Application Support"]
+      "description": {
+        "en": "VPN software used to securely connect users or systems to private networks.",
+        "id": "OpenVPN adalah software yang dipakai untuk mengonfigurasi, memantau, menguji, dan troubleshooting jaringan atau perangkat network."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "active-directory",
       "name": "Active Directory",
       "category": "support",
       "kind": "platform",
-      "aliases": ["AD DS", "Microsoft Active Directory"],
-      "description": "Microsoft directory service for users, groups, computers, domains, and access policies.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support", "CISO"]
+      "aliases": [
+        "AD DS",
+        "Microsoft Active Directory"
+      ],
+      "description": {
+        "en": "Microsoft directory service for users, groups, computers, domains, and access policies.",
+        "id": "Active Directory adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "CISO"
+      ]
     },
     {
       "id": "microsoft-entra-id",
       "name": "Microsoft Entra ID",
       "category": "support",
       "kind": "platform",
-      "aliases": ["Azure AD", "Entra ID"],
-      "description": "Cloud identity and access management platform for users, groups, SSO, MFA, and conditional access.",
-      "tags": ["System Administrator", "Cloud Engineer", "DevOps Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support", "CISO"]
+      "aliases": [
+        "Azure AD",
+        "Entra ID"
+      ],
+      "description": {
+        "en": "Cloud identity and access management platform for users, groups, SSO, MFA, and conditional access.",
+        "id": "Microsoft Entra ID adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "CISO"
+      ]
     },
     {
       "id": "okta",
@@ -944,26 +2569,63 @@
       "category": "support",
       "kind": "platform",
       "aliases": [],
-      "description": "Identity platform for SSO, MFA, user lifecycle, and application access management.",
-      "tags": ["System Administrator", "Cloud Engineer", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support", "CISO"]
+      "description": {
+        "en": "Identity platform for SSO, MFA, user lifecycle, and application access management.",
+        "id": "Okta adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "Cloud Engineer",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "CISO"
+      ]
     },
     {
       "id": "jamf",
       "name": "Jamf",
       "category": "support",
       "kind": "platform",
-      "aliases": ["Jamf Pro"],
-      "description": "Apple device management platform for macOS and iOS fleet administration.",
-      "tags": ["System Administrator", "Security Engineer", "Helpdesk", "Technical Support"]
+      "aliases": [
+        "Jamf Pro"
+      ],
+      "description": {
+        "en": "Apple device management platform for macOS and iOS fleet administration.",
+        "id": "Jamf adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "Security Engineer",
+        "Helpdesk",
+        "Technical Support"
+      ]
     },
     {
       "id": "microsoft-intune",
       "name": "Microsoft Intune",
       "category": "support",
       "kind": "platform",
-      "aliases": ["Intune", "Endpoint Manager"],
-      "description": "Endpoint and mobile device management platform for policy, application deployment, and device compliance.",
-      "tags": ["System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+      "aliases": [
+        "Intune",
+        "Endpoint Manager"
+      ],
+      "description": {
+        "en": "Endpoint and mobile device management platform for policy, application deployment, and device compliance.",
+        "id": "Microsoft Intune adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "CISO"
+      ]
     },
     {
       "id": "anydesk",
@@ -971,8 +2633,16 @@
       "category": "support",
       "kind": "software",
       "aliases": [],
-      "description": "Remote desktop support tool for assisting users and troubleshooting machines.",
-      "tags": ["IT Novice", "Helpdesk", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Remote desktop support tool for assisting users and troubleshooting machines.",
+        "id": "AnyDesk adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "teamviewer",
@@ -980,17 +2650,50 @@
       "category": "support",
       "kind": "software",
       "aliases": [],
-      "description": "Remote access and support tool for user assistance, device troubleshooting, and remote control.",
-      "tags": ["IT Novice", "System Administrator", "Helpdesk", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Remote access and support tool for user assistance, device troubleshooting, and remote control.",
+        "id": "TeamViewer adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "jira-service-management",
       "name": "Jira Service Management",
       "category": "support",
       "kind": "platform",
-      "aliases": ["JSM"],
-      "description": "IT service management platform for service desks, requests, incidents, changes, assets, and SLAs.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Business Analyst", "Project Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "JSM"
+      ],
+      "description": {
+        "en": "IT service management platform for service desks, requests, incidents, changes, assets, and SLAs.",
+        "id": "Jira Service Management adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Business Analyst",
+        "Project Manager",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "servicenow",
@@ -998,8 +2701,29 @@
       "category": "support",
       "kind": "platform",
       "aliases": [],
-      "description": "Enterprise workflow and ITSM platform for incidents, requests, changes, CMDB, assets, and service operations.",
-      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Business Analyst", "Project Manager", "Helpdesk", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Enterprise workflow and ITSM platform for incidents, requests, changes, CMDB, assets, and service operations.",
+        "id": "ServiceNow adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Business Analyst",
+        "Project Manager",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "zendesk",
@@ -1007,8 +2731,17 @@
       "category": "support",
       "kind": "platform",
       "aliases": [],
-      "description": "Customer support and ticketing platform for handling support requests and knowledge base workflows.",
-      "tags": ["Helpdesk", "Technical Support", "Application Support", "Product Owner", "Product Manager"]
+      "description": {
+        "en": "Customer support and ticketing platform for handling support requests and knowledge base workflows.",
+        "id": "Zendesk adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Product Owner",
+        "Product Manager"
+      ]
     },
     {
       "id": "freshservice",
@@ -1016,17 +2749,53 @@
       "category": "support",
       "kind": "platform",
       "aliases": [],
-      "description": "ITSM service desk platform for incidents, service requests, changes, assets, and automation.",
-      "tags": ["IT Novice", "System Administrator", "Helpdesk", "Technical Support", "Application Support", "Project Manager"]
+      "description": {
+        "en": "ITSM service desk platform for incidents, service requests, changes, assets, and automation.",
+        "id": "Freshservice adalah platform yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support",
+        "Project Manager"
+      ]
     },
     {
       "id": "grafana",
       "name": "Grafana",
       "category": "observability",
       "kind": "platform",
-      "aliases": ["Grafana Cloud"],
-      "description": "Observability and dashboard platform for metrics, logs, traces, alerts, and operational views.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Data Analyst", "BI Developer", "Data Engineer", "AI Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Technical Support", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "Grafana Cloud"
+      ],
+      "description": {
+        "en": "Observability and dashboard platform for metrics, logs, traces, alerts, and operational views.",
+        "id": "Grafana adalah platform yang dipakai untuk memantau kesehatan sistem lewat log, metric, trace, dashboard, dan alert."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Performance Tester",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "AI Engineer",
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "prometheus",
@@ -1034,17 +2803,53 @@
       "category": "observability",
       "kind": "platform",
       "aliases": [],
-      "description": "Metrics collection and alerting system commonly used for infrastructure and application monitoring.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Application Support"]
+      "description": {
+        "en": "Metrics collection and alerting system commonly used for infrastructure and application monitoring.",
+        "id": "Prometheus adalah platform yang dipakai untuk memantau kesehatan sistem lewat log, metric, trace, dashboard, dan alert."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Performance Tester",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "Application Support"
+      ]
     },
     {
       "id": "datadog",
       "name": "Datadog",
       "category": "observability",
       "kind": "platform",
-      "aliases": ["Datadog APM", "Datadog Logs", "Datadog Cloud SIEM"],
-      "description": "Observability and security monitoring platform for metrics, logs, traces, alerts, APM, and cloud environments.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Application Support", "Engineering Manager", "CTO", "CISO"]
+      "aliases": [
+        "Datadog APM",
+        "Datadog Logs",
+        "Datadog Cloud SIEM"
+      ],
+      "description": {
+        "en": "Observability and security monitoring platform for metrics, logs, traces, alerts, APM, and cloud environments.",
+        "id": "Datadog adalah platform yang dipakai untuk memantau kesehatan sistem lewat log, metric, trace, dashboard, dan alert."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Performance Tester",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Application Support",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "new-relic",
@@ -1052,8 +2857,23 @@
       "category": "observability",
       "kind": "platform",
       "aliases": [],
-      "description": "Application performance monitoring and observability platform for services, traces, logs, and user experience.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Performance Tester", "Cloud Engineer", "DevOps Engineer", "SRE", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Application performance monitoring and observability platform for services, traces, logs, and user experience.",
+        "id": "New Relic adalah platform yang dipakai untuk memantau kesehatan sistem lewat log, metric, trace, dashboard, dan alert."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Performance Tester",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "sentry",
@@ -1061,44 +2881,118 @@
       "category": "observability",
       "kind": "platform",
       "aliases": [],
-      "description": "Application error monitoring platform for exceptions, releases, stack traces, and performance issues.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "SRE", "Technical Support", "Application Support", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Application error monitoring platform for exceptions, releases, stack traces, and performance issues.",
+        "id": "Sentry adalah platform yang dipakai untuk memantau kesehatan sistem lewat log, metric, trace, dashboard, dan alert."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "SRE",
+        "Technical Support",
+        "Application Support",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "elastic-stack",
       "name": "Elastic Stack",
       "category": "observability",
       "kind": "platform",
-      "aliases": ["Elasticsearch", "Logstash", "Kibana", "ELK"],
-      "description": "Search, logging, analytics, and visualization stack used for observability and security investigations.",
-      "tags": ["Backend Developer", "Data Engineer", "System Administrator", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "SOC Analyst", "Security Engineer", "Technical Support", "Application Support"]
+      "aliases": [
+        "Elasticsearch",
+        "Logstash",
+        "Kibana",
+        "ELK"
+      ],
+      "description": {
+        "en": "Search, logging, analytics, and visualization stack used for observability and security investigations.",
+        "id": "Elastic Stack adalah platform yang dipakai untuk memantau kesehatan sistem lewat log, metric, trace, dashboard, dan alert."
+      },
+      "tags": [
+        "Backend Developer",
+        "Data Engineer",
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "splunk",
       "name": "Splunk",
       "category": "security",
       "kind": "platform",
-      "aliases": ["Splunk Enterprise", "Splunk Enterprise Security"],
-      "description": "Log analytics and SIEM platform used for search, monitoring, security detection, and incident investigation.",
-      "tags": ["System Administrator", "Network Engineer", "DevOps Engineer", "SRE", "SOC Analyst", "Security Engineer", "GRC Specialist", "Technical Support", "Application Support", "CISO"]
+      "aliases": [
+        "Splunk Enterprise",
+        "Splunk Enterprise Security"
+      ],
+      "description": {
+        "en": "Log analytics and SIEM platform used for search, monitoring, security detection, and incident investigation.",
+        "id": "Splunk adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "System Administrator",
+        "Network Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Technical Support",
+        "Application Support",
+        "CISO"
+      ]
     },
     {
       "id": "microsoft-sentinel",
       "name": "Microsoft Sentinel",
       "category": "security",
       "kind": "platform",
-      "aliases": ["Azure Sentinel"],
-      "description": "Microsoft cloud SIEM and SOAR platform for collecting, detecting, investigating, and responding to threats.",
-      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "Cloud Engineer", "SRE", "CISO"]
+      "aliases": [
+        "Azure Sentinel"
+      ],
+      "description": {
+        "en": "Microsoft cloud SIEM and SOAR platform for collecting, detecting, investigating, and responding to threats.",
+        "id": "Microsoft Sentinel adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Cloud Engineer",
+        "SRE",
+        "CISO"
+      ]
     },
     {
       "id": "ibm-qradar",
       "name": "IBM QRadar",
       "category": "security",
       "kind": "platform",
-      "aliases": ["QRadar SIEM"],
-      "description": "SIEM platform used for security event correlation, detection, investigation, and compliance reporting.",
-      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "CISO"]
+      "aliases": [
+        "QRadar SIEM"
+      ],
+      "description": {
+        "en": "SIEM platform used for security event correlation, detection, investigation, and compliance reporting.",
+        "id": "IBM QRadar adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "CISO"
+      ]
     },
     {
       "id": "wazuh",
@@ -1106,35 +3000,84 @@
       "category": "security",
       "kind": "platform",
       "aliases": [],
-      "description": "Open-source security monitoring platform for endpoint telemetry, threat detection, vulnerability detection, and compliance.",
-      "tags": ["SOC Analyst", "Security Engineer", "System Administrator", "GRC Specialist", "CISO"]
+      "description": {
+        "en": "Open-source security monitoring platform for endpoint telemetry, threat detection, vulnerability detection, and compliance.",
+        "id": "Wazuh adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "SOC Analyst",
+        "Security Engineer",
+        "System Administrator",
+        "GRC Specialist",
+        "CISO"
+      ]
     },
     {
       "id": "crowdstrike-falcon",
       "name": "CrowdStrike Falcon",
       "category": "security",
       "kind": "platform",
-      "aliases": ["Falcon EDR"],
-      "description": "Endpoint detection and response platform for threat prevention, investigation, and endpoint telemetry.",
-      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+      "aliases": [
+        "Falcon EDR"
+      ],
+      "description": {
+        "en": "Endpoint detection and response platform for threat prevention, investigation, and endpoint telemetry.",
+        "id": "CrowdStrike Falcon adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "CISO"
+      ]
     },
     {
       "id": "microsoft-defender",
       "name": "Microsoft Defender",
       "category": "security",
       "kind": "platform",
-      "aliases": ["Defender for Endpoint", "Defender XDR"],
-      "description": "Microsoft security platform for endpoint protection, XDR, identity, cloud, and threat response.",
-      "tags": ["System Administrator", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+      "aliases": [
+        "Defender for Endpoint",
+        "Defender XDR"
+      ],
+      "description": {
+        "en": "Microsoft security platform for endpoint protection, XDR, identity, cloud, and threat response.",
+        "id": "Microsoft Defender adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "System Administrator",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "CISO"
+      ]
     },
     {
       "id": "nessus",
       "name": "Nessus",
       "category": "security",
       "kind": "software",
-      "aliases": ["Tenable Nessus"],
-      "description": "Vulnerability scanner used to identify known security weaknesses in systems and networks.",
-      "tags": ["System Administrator", "Network Engineer", "SOC Analyst", "Security Engineer", "Pentester", "GRC Specialist", "AppSec Engineer", "CISO"]
+      "aliases": [
+        "Tenable Nessus"
+      ],
+      "description": {
+        "en": "Vulnerability scanner used to identify known security weaknesses in systems and networks.",
+        "id": "Nessus adalah software yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "System Administrator",
+        "Network Engineer",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "CISO"
+      ]
     },
     {
       "id": "qualys",
@@ -1142,8 +3085,17 @@
       "category": "security",
       "kind": "platform",
       "aliases": [],
-      "description": "Cloud security and vulnerability management platform for scanning, asset visibility, and compliance.",
-      "tags": ["SOC Analyst", "Security Engineer", "GRC Specialist", "AppSec Engineer", "CISO"]
+      "description": {
+        "en": "Cloud security and vulnerability management platform for scanning, asset visibility, and compliance.",
+        "id": "Qualys adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "AppSec Engineer",
+        "CISO"
+      ]
     },
     {
       "id": "burp-suite",
@@ -1151,35 +3103,73 @@
       "category": "security",
       "kind": "software",
       "aliases": [],
-      "description": "Web application security testing suite for intercepting, scanning, and validating vulnerabilities.",
-      "tags": ["QA Automation", "Security Engineer", "Pentester", "AppSec Engineer"]
+      "description": {
+        "en": "Web application security testing suite for intercepting, scanning, and validating vulnerabilities.",
+        "id": "Burp Suite adalah software yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "QA Automation",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "owasp-zap",
       "name": "OWASP ZAP",
       "category": "security",
       "kind": "software",
-      "aliases": ["ZAP"],
-      "description": "Open-source web application security scanner and intercepting proxy.",
-      "tags": ["QA Automation", "Security Engineer", "Pentester", "AppSec Engineer"]
+      "aliases": [
+        "ZAP"
+      ],
+      "description": {
+        "en": "Open-source web application security scanner and intercepting proxy.",
+        "id": "OWASP ZAP adalah software yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "QA Automation",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "nmap",
       "name": "Nmap",
       "category": "security",
       "kind": "cli",
-      "aliases": ["Zenmap"],
-      "description": "Network scanning tool for discovering hosts, ports, services, and exposed attack surface.",
-      "tags": ["IT Novice", "Network Engineer", "SOC Analyst", "Security Engineer", "Pentester", "Technical Support"]
+      "aliases": [
+        "Zenmap"
+      ],
+      "description": {
+        "en": "Network scanning tool for discovering hosts, ports, services, and exposed attack surface.",
+        "id": "Nmap adalah alat command-line yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "IT Novice",
+        "Network Engineer",
+        "SOC Analyst",
+        "Security Engineer",
+        "Pentester",
+        "Technical Support"
+      ]
     },
     {
       "id": "metasploit",
       "name": "Metasploit",
       "category": "security",
       "kind": "software",
-      "aliases": ["Metasploit Framework"],
-      "description": "Penetration testing framework used for exploit validation, payload testing, and security research labs.",
-      "tags": ["Security Engineer", "Pentester"]
+      "aliases": [
+        "Metasploit Framework"
+      ],
+      "description": {
+        "en": "Penetration testing framework used for exploit validation, payload testing, and security research labs.",
+        "id": "Metasploit adalah software yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "Security Engineer",
+        "Pentester"
+      ]
     },
     {
       "id": "kali-linux",
@@ -1187,26 +3177,62 @@
       "category": "security",
       "kind": "software",
       "aliases": [],
-      "description": "Linux distribution bundled with penetration testing and security assessment tools.",
-      "tags": ["Security Engineer", "Pentester", "AppSec Engineer"]
+      "description": {
+        "en": "Linux distribution bundled with penetration testing and security assessment tools.",
+        "id": "Kali Linux adalah software yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "hashicorp-vault",
       "name": "HashiCorp Vault",
       "category": "security",
       "kind": "platform",
-      "aliases": ["Vault"],
-      "description": "Secrets management platform for storing, rotating, and controlling access to credentials and tokens.",
-      "tags": ["Backend Developer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "CISO"]
+      "aliases": [
+        "Vault"
+      ],
+      "description": {
+        "en": "Secrets management platform for storing, rotating, and controlling access to credentials and tokens.",
+        "id": "HashiCorp Vault adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "Backend Developer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "CISO"
+      ]
     },
     {
       "id": "sonarqube",
       "name": "SonarQube",
       "category": "security",
       "kind": "platform",
-      "aliases": ["SonarCloud"],
-      "description": "Code quality and static analysis platform for detecting bugs, vulnerabilities, and maintainability issues.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Security Engineer", "AppSec Engineer", "Engineering Manager", "CTO"]
+      "aliases": [
+        "SonarCloud"
+      ],
+      "description": {
+        "en": "Code quality and static analysis platform for detecting bugs, vulnerabilities, and maintainability issues.",
+        "id": "SonarQube adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Security Engineer",
+        "AppSec Engineer",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "snyk",
@@ -1214,8 +3240,22 @@
       "category": "security",
       "kind": "platform",
       "aliases": [],
-      "description": "Developer security platform for dependency scanning, container scanning, IaC scanning, and vulnerability remediation.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Cloud Engineer", "DevOps Engineer", "Security Engineer", "AppSec Engineer", "CISO"]
+      "description": {
+        "en": "Developer security platform for dependency scanning, container scanning, IaC scanning, and vulnerability remediation.",
+        "id": "Snyk adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Security Engineer",
+        "AppSec Engineer",
+        "CISO"
+      ]
     },
     {
       "id": "semgrep",
@@ -1223,8 +3263,18 @@
       "category": "security",
       "kind": "software",
       "aliases": [],
-      "description": "Static analysis tool for finding security, correctness, and custom code pattern issues.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Security Engineer", "Pentester", "AppSec Engineer"]
+      "description": {
+        "en": "Static analysis tool for finding security, correctness, and custom code pattern issues.",
+        "id": "Semgrep adalah software yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Security Engineer",
+        "Pentester",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "owasp-dependency-check",
@@ -1232,8 +3282,18 @@
       "category": "security",
       "kind": "software",
       "aliases": [],
-      "description": "Software composition analysis tool for identifying known vulnerable dependencies.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Security Engineer", "AppSec Engineer"]
+      "description": {
+        "en": "Software composition analysis tool for identifying known vulnerable dependencies.",
+        "id": "OWASP Dependency-Check adalah software yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Security Engineer",
+        "AppSec Engineer"
+      ]
     },
     {
       "id": "drata",
@@ -1241,8 +3301,17 @@
       "category": "security",
       "kind": "platform",
       "aliases": [],
-      "description": "Compliance automation platform for collecting evidence and managing security compliance programs.",
-      "tags": ["GRC Specialist", "Security Engineer", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Compliance automation platform for collecting evidence and managing security compliance programs.",
+        "id": "Drata adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "GRC Specialist",
+        "Security Engineer",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "vanta",
@@ -1250,17 +3319,40 @@
       "category": "security",
       "kind": "platform",
       "aliases": [],
-      "description": "Trust management and compliance automation platform for security frameworks and audit evidence.",
-      "tags": ["GRC Specialist", "Security Engineer", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Trust management and compliance automation platform for security frameworks and audit evidence.",
+        "id": "Vanta adalah platform yang dipakai untuk mendeteksi, menganalisis, menguji, dan mengurangi risiko keamanan sistem atau aplikasi."
+      },
+      "tags": [
+        "GRC Specialist",
+        "Security Engineer",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "service-desktop-hardware-kit",
       "name": "Desktop Support Toolkit",
       "category": "support",
       "kind": "device",
-      "aliases": ["Screwdriver kit", "USB boot drive", "LAN tester", "adapter kit"],
-      "description": "Physical support kit for workstation troubleshooting, cabling checks, boot repair, and device setup.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Helpdesk", "Technical Support"]
+      "aliases": [
+        "Screwdriver kit",
+        "USB boot drive",
+        "LAN tester",
+        "adapter kit"
+      ],
+      "description": {
+        "en": "Physical support kit for workstation troubleshooting, cabling checks, boot repair, and device setup.",
+        "id": "Desktop Support Toolkit adalah perangkat yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "Helpdesk",
+        "Technical Support"
+      ]
     },
     {
       "id": "rufus",
@@ -1268,8 +3360,16 @@
       "category": "support",
       "kind": "software",
       "aliases": [],
-      "description": "Tool for creating bootable USB drives used in OS installation and recovery work.",
-      "tags": ["IT Novice", "System Administrator", "Helpdesk", "Technical Support"]
+      "description": {
+        "en": "Tool for creating bootable USB drives used in OS installation and recovery work.",
+        "id": "Rufus adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Helpdesk",
+        "Technical Support"
+      ]
     },
     {
       "id": "obsidian",
@@ -1277,17 +3377,57 @@
       "category": "collaboration",
       "kind": "software",
       "aliases": [],
-      "description": "Markdown note-taking tool used for personal knowledge bases, troubleshooting notes, and research.",
-      "tags": ["IT Novice", "Tech Lead", "Data Scientist", "AI Engineer", "Security Engineer", "Pentester", "GRC Specialist", "Business Analyst", "Product Manager", "UX Designer", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Markdown note-taking tool used for personal knowledge bases, troubleshooting notes, and research.",
+        "id": "Obsidian adalah software yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "IT Novice",
+        "Tech Lead",
+        "Data Scientist",
+        "AI Engineer",
+        "Security Engineer",
+        "Pentester",
+        "GRC Specialist",
+        "Business Analyst",
+        "Product Manager",
+        "UX Designer",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     },
     {
       "id": "notepad-plus-plus",
       "name": "Notepad++",
       "category": "editor",
       "kind": "software",
-      "aliases": ["Notepad Plus Plus", "N++"],
-      "description": "Lightweight Windows text editor used for quick config edits, scripts, logs, SQL snippets, and legacy support work.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Data Analyst", "BI Developer", "System Administrator", "Network Engineer", "Database Admin", "SOC Analyst", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "Notepad Plus Plus",
+        "N++"
+      ],
+      "description": {
+        "en": "Lightweight Windows text editor used for quick config edits, scripts, logs, SQL snippets, and legacy support work.",
+        "id": "Notepad++ adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Data Analyst",
+        "BI Developer",
+        "System Administrator",
+        "Network Engineer",
+        "Database Admin",
+        "SOC Analyst",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "linear",
@@ -1295,8 +3435,28 @@
       "category": "product",
       "kind": "platform",
       "aliases": [],
-      "description": "Issue tracking and product development platform for roadmaps, cycles, projects, and engineering execution.",
-      "tags": ["Frontend Developer", "Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "Manual QA", "QA Automation", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UI Designer", "UX Designer", "Product Designer", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Issue tracking and product development platform for roadmaps, cycles, projects, and engineering execution.",
+        "id": "Linear adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Manual QA",
+        "QA Automation",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "aha",
@@ -1304,8 +3464,17 @@
       "category": "product",
       "kind": "platform",
       "aliases": [],
-      "description": "Product management platform for strategy, roadmaps, ideas, releases, and portfolio planning.",
-      "tags": ["Product Owner", "Project Manager", "Product Manager", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Product management platform for strategy, roadmaps, ideas, releases, and portfolio planning.",
+        "id": "Aha! adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "productboard",
@@ -1313,17 +3482,39 @@
       "category": "product",
       "kind": "platform",
       "aliases": [],
-      "description": "Product management platform for feedback, prioritization, roadmaps, and product discovery.",
-      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager"]
+      "description": {
+        "en": "Product management platform for feedback, prioritization, roadmaps, and product discovery.",
+        "id": "Productboard adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer",
+        "Engineering Manager"
+      ]
     },
     {
       "id": "jira-product-discovery",
       "name": "Jira Product Discovery",
       "category": "product",
       "kind": "platform",
-      "aliases": ["JPD"],
-      "description": "Atlassian product discovery tool for ideas, prioritization, roadmaps, and product decision tracking.",
-      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager"]
+      "aliases": [
+        "JPD"
+      ],
+      "description": {
+        "en": "Atlassian product discovery tool for ideas, prioritization, roadmaps, and product decision tracking.",
+        "id": "Jira Product Discovery adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer",
+        "Engineering Manager"
+      ]
     },
     {
       "id": "hotjar",
@@ -1331,8 +3522,16 @@
       "category": "product",
       "kind": "platform",
       "aliases": [],
-      "description": "Product experience analytics tool for heatmaps, recordings, surveys, and user behavior signals.",
-      "tags": ["Product Manager", "UX Designer", "Product Designer", "UI Designer"]
+      "description": {
+        "en": "Product experience analytics tool for heatmaps, recordings, surveys, and user behavior signals.",
+        "id": "Hotjar adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Product Manager",
+        "UX Designer",
+        "Product Designer",
+        "UI Designer"
+      ]
     },
     {
       "id": "maze",
@@ -1340,8 +3539,16 @@
       "category": "design",
       "kind": "platform",
       "aliases": [],
-      "description": "User research and usability testing platform for validating prototypes, flows, and product decisions.",
-      "tags": ["UX Designer", "Product Designer", "Product Manager", "Business Analyst"]
+      "description": {
+        "en": "User research and usability testing platform for validating prototypes, flows, and product decisions.",
+        "id": "Maze adalah platform yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "UX Designer",
+        "Product Designer",
+        "Product Manager",
+        "Business Analyst"
+      ]
     },
     {
       "id": "dovetail",
@@ -1349,8 +3556,16 @@
       "category": "design",
       "kind": "platform",
       "aliases": [],
-      "description": "User research repository and synthesis platform for interviews, notes, tags, and insights.",
-      "tags": ["UX Designer", "Product Designer", "Product Manager", "Business Analyst"]
+      "description": {
+        "en": "User research repository and synthesis platform for interviews, notes, tags, and insights.",
+        "id": "Dovetail adalah platform yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "UX Designer",
+        "Product Designer",
+        "Product Manager",
+        "Business Analyst"
+      ]
     },
     {
       "id": "amplitude",
@@ -1358,8 +3573,22 @@
       "category": "product",
       "kind": "platform",
       "aliases": [],
-      "description": "Product analytics platform for funnels, cohorts, retention, experimentation, and behavior analysis.",
-      "tags": ["Data Analyst", "BI Developer", "Data Scientist", "Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Product analytics platform for funnels, cohorts, retention, experimentation, and behavior analysis.",
+        "id": "Amplitude adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Data Scientist",
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "mixpanel",
@@ -1367,26 +3596,65 @@
       "category": "product",
       "kind": "platform",
       "aliases": [],
-      "description": "Product analytics platform for event tracking, funnels, retention, and user behavior insights.",
-      "tags": ["Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer"]
+      "description": {
+        "en": "Product analytics platform for event tracking, funnels, retention, and user behavior insights.",
+        "id": "Mixpanel adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Data Analyst",
+        "BI Developer",
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "google-analytics",
       "name": "Google Analytics",
       "category": "product",
       "kind": "platform",
-      "aliases": ["GA4"],
-      "description": "Web and app analytics platform for traffic, acquisition, engagement, events, and conversion reporting.",
-      "tags": ["Frontend Developer", "Data Analyst", "BI Developer", "Business Analyst", "Product Owner", "Product Manager", "UX Designer", "Product Designer"]
+      "aliases": [
+        "GA4"
+      ],
+      "description": {
+        "en": "Web and app analytics platform for traffic, acquisition, engagement, events, and conversion reporting.",
+        "id": "Google Analytics adalah platform yang dipakai untuk mengelola requirement, backlog, roadmap, riset, delivery, dan koordinasi stakeholder."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "navicat",
       "name": "Navicat",
       "category": "database",
       "kind": "software",
-      "aliases": ["Navicat Premium"],
-      "description": "Commercial database client for managing, querying, transferring, and modeling multiple database engines.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "aliases": [
+        "Navicat Premium"
+      ],
+      "description": {
+        "en": "Commercial database client for managing, querying, transferring, and modeling multiple database engines.",
+        "id": "Navicat adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "adminer",
@@ -1394,8 +3662,19 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "Single-file web database administration tool often used as a lightweight alternative to phpMyAdmin.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Data Analyst", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Single-file web database administration tool often used as a lightweight alternative to phpMyAdmin.",
+        "id": "Adminer adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "tableplus",
@@ -1403,35 +3682,85 @@
       "category": "database",
       "kind": "software",
       "aliases": [],
-      "description": "Modern database client for querying and managing multiple relational and NoSQL databases.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Modern database client for querying and managing multiple relational and NoSQL databases.",
+        "id": "TablePlus adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "oracle-sql-developer",
       "name": "Oracle SQL Developer",
       "category": "database",
       "kind": "software",
-      "aliases": ["SQL Developer"],
-      "description": "Oracle database IDE for SQL writing, schema browsing, PL/SQL work, and database administration.",
-      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Technical Support", "Application Support"]
+      "aliases": [
+        "SQL Developer"
+      ],
+      "description": {
+        "en": "Oracle database IDE for SQL writing, schema browsing, PL/SQL work, and database administration.",
+        "id": "Oracle SQL Developer adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "toad",
       "name": "Toad",
       "category": "database",
       "kind": "software",
-      "aliases": ["Toad for Oracle", "Toad for SQL Server"],
-      "description": "Database development and administration tool often found in enterprise Oracle and SQL Server environments.",
-      "tags": ["Backend Developer", "Data Analyst", "BI Developer", "Data Engineer", "Database Admin", "Application Support"]
+      "aliases": [
+        "Toad for Oracle",
+        "Toad for SQL Server"
+      ],
+      "description": {
+        "en": "Database development and administration tool often found in enterprise Oracle and SQL Server environments.",
+        "id": "Toad adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Data Analyst",
+        "BI Developer",
+        "Data Engineer",
+        "Database Admin",
+        "Application Support"
+      ]
     },
     {
       "id": "sequel-ace",
       "name": "Sequel Ace",
       "category": "database",
       "kind": "software",
-      "aliases": ["Sequel Pro"],
-      "description": "macOS database client for MySQL and MariaDB administration and queries.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Analyst", "Database Admin", "Technical Support", "Application Support"]
+      "aliases": [
+        "Sequel Pro"
+      ],
+      "description": {
+        "en": "macOS database client for MySQL and MariaDB administration and queries.",
+        "id": "Sequel Ace adalah software yang dipakai untuk membaca, menulis, mengelola, dan memeriksa data atau schema database."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "Database Admin",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "laragon",
@@ -1439,17 +3768,40 @@
       "category": "devops",
       "kind": "software",
       "aliases": [],
-      "description": "Windows local development environment commonly used for PHP, Laravel, Apache/Nginx, MySQL, and quick web stacks.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Windows local development environment commonly used for PHP, Laravel, Apache/Nginx, MySQL, and quick web stacks.",
+        "id": "Laragon adalah software yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "wampserver",
       "name": "WampServer",
       "category": "devops",
       "kind": "software",
-      "aliases": ["WAMP"],
-      "description": "Windows local web development bundle for Apache, PHP, and MySQL/MariaDB.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+      "aliases": [
+        "WAMP"
+      ],
+      "description": {
+        "en": "Windows local web development bundle for Apache, PHP, and MySQL/MariaDB.",
+        "id": "WampServer adalah software yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "mamp",
@@ -1457,26 +3809,64 @@
       "category": "devops",
       "kind": "software",
       "aliases": [],
-      "description": "Local web development bundle for macOS and Windows with Apache/Nginx, PHP, and MySQL.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Manual QA", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Local web development bundle for macOS and Windows with Apache/Nginx, PHP, and MySQL.",
+        "id": "MAMP adalah software yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Manual QA",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "composer",
       "name": "Composer",
       "category": "devops",
       "kind": "cli",
-      "aliases": ["PHP Composer"],
-      "description": "PHP dependency manager used to install libraries, manage autoloading, and maintain PHP project packages.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "DevOps Engineer", "Application Support"]
+      "aliases": [
+        "PHP Composer"
+      ],
+      "description": {
+        "en": "PHP dependency manager used to install libraries, manage autoloading, and maintain PHP project packages.",
+        "id": "Composer adalah alat command-line yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "DevOps Engineer",
+        "Application Support"
+      ]
     },
     {
       "id": "filezilla",
       "name": "FileZilla",
       "category": "support",
       "kind": "software",
-      "aliases": ["FTP client"],
-      "description": "FTP, FTPS, and SFTP client used to transfer files to servers and hosting environments.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "System Administrator", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "FTP client"
+      ],
+      "description": {
+        "en": "FTP, FTPS, and SFTP client used to transfer files to servers and hosting environments.",
+        "id": "FileZilla adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "System Administrator",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "winscp",
@@ -1484,8 +3874,22 @@
       "category": "support",
       "kind": "software",
       "aliases": [],
-      "description": "Windows SFTP, SCP, FTP, and file transfer client often used for server maintenance and support.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Helpdesk", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Windows SFTP, SCP, FTP, and file transfer client often used for server maintenance and support.",
+        "id": "WinSCP adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "mobaxterm",
@@ -1493,8 +3897,22 @@
       "category": "terminal",
       "kind": "software",
       "aliases": [],
-      "description": "Windows terminal and remote access toolbox with SSH, SFTP, X11, RDP, serial, and network utilities.",
-      "tags": ["System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Windows terminal and remote access toolbox with SSH, SFTP, X11, RDP, serial, and network utilities.",
+        "id": "MobaXterm adalah software yang dipakai untuk menjalankan perintah, script, otomasi, dan troubleshooting lewat command line."
+      },
+      "tags": [
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "Pentester",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "mremoteng",
@@ -1502,26 +3920,64 @@
       "category": "support",
       "kind": "software",
       "aliases": [],
-      "description": "Remote connection manager for organizing RDP, SSH, VNC, and other administrative sessions.",
-      "tags": ["System Administrator", "Network Engineer", "Database Admin", "SRE", "Helpdesk", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Remote connection manager for organizing RDP, SSH, VNC, and other administrative sessions.",
+        "id": "mRemoteNG adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "Network Engineer",
+        "Database Admin",
+        "SRE",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "remote-desktop",
       "name": "Remote Desktop",
       "category": "support",
       "kind": "software",
-      "aliases": ["RDP", "Microsoft Remote Desktop"],
-      "description": "Remote access protocol and client used to connect to Windows desktops and servers.",
-      "tags": ["IT Novice", "System Administrator", "Database Admin", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "RDP",
+        "Microsoft Remote Desktop"
+      ],
+      "description": {
+        "en": "Remote access protocol and client used to connect to Windows desktops and servers.",
+        "id": "Remote Desktop adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Database Admin",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "vnc-viewer",
       "name": "VNC Viewer",
       "category": "support",
       "kind": "software",
-      "aliases": ["RealVNC", "TightVNC", "UltraVNC"],
-      "description": "Remote desktop viewer used to access and support machines through VNC.",
-      "tags": ["IT Novice", "System Administrator", "Network Engineer", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "RealVNC",
+        "TightVNC",
+        "UltraVNC"
+      ],
+      "description": {
+        "en": "Remote desktop viewer used to access and support machines through VNC.",
+        "id": "VNC Viewer adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Network Engineer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "sublime-text",
@@ -1529,35 +3985,91 @@
       "category": "editor",
       "kind": "software",
       "aliases": [],
-      "description": "Fast lightweight code and text editor used for scripts, web files, configs, and general development.",
-      "tags": ["IT Novice", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Data Analyst", "System Administrator", "Network Engineer", "Security Engineer", "Pentester", "Technical Support", "Application Support"]
+      "description": {
+        "en": "Fast lightweight code and text editor used for scripts, web files, configs, and general development.",
+        "id": "Sublime Text adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "IT Novice",
+        "Frontend Developer",
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Analyst",
+        "System Administrator",
+        "Network Engineer",
+        "Security Engineer",
+        "Pentester",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "vim",
       "name": "Vim",
       "category": "editor",
       "kind": "software",
-      "aliases": ["Vi"],
-      "description": "Terminal text editor commonly used for editing files directly on servers and Unix-like systems.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Data Engineer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "Database Admin", "SRE", "Security Engineer", "Pentester", "Technical Support", "Application Support"]
+      "aliases": [
+        "Vi"
+      ],
+      "description": {
+        "en": "Terminal text editor commonly used for editing files directly on servers and Unix-like systems.",
+        "id": "Vim adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Data Engineer",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Database Admin",
+        "SRE",
+        "Security Engineer",
+        "Pentester",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "eclipse",
       "name": "Eclipse IDE",
       "category": "editor",
       "kind": "software",
-      "aliases": ["Eclipse"],
-      "description": "Long-running IDE commonly found in Java, enterprise, Android legacy, and plugin-based development environments.",
-      "tags": ["Backend Developer", "Mobile Developer", "Fullstack Developer", "Tech Lead", "QA Automation", "Application Support"]
+      "aliases": [
+        "Eclipse"
+      ],
+      "description": {
+        "en": "Long-running IDE commonly found in Java, enterprise, Android legacy, and plugin-based development environments.",
+        "id": "Eclipse IDE adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Backend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "QA Automation",
+        "Application Support"
+      ]
     },
     {
       "id": "netbeans",
       "name": "NetBeans",
       "category": "editor",
       "kind": "software",
-      "aliases": ["Apache NetBeans"],
-      "description": "IDE used for Java, PHP, and enterprise application development, especially in older stacks.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+      "aliases": [
+        "Apache NetBeans"
+      ],
+      "description": {
+        "en": "IDE used for Java, PHP, and enterprise application development, especially in older stacks.",
+        "id": "NetBeans adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Application Support"
+      ]
     },
     {
       "id": "phpstorm",
@@ -1565,71 +4077,161 @@
       "category": "editor",
       "kind": "software",
       "aliases": [],
-      "description": "JetBrains IDE for PHP, web development, debugging, refactoring, and framework-heavy PHP projects.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+      "description": {
+        "en": "JetBrains IDE for PHP, web development, debugging, refactoring, and framework-heavy PHP projects.",
+        "id": "PhpStorm adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Application Support"
+      ]
     },
     {
       "id": "rider",
       "name": "Rider",
       "category": "editor",
       "kind": "software",
-      "aliases": ["JetBrains Rider"],
-      "description": "JetBrains IDE for .NET, C#, ASP.NET, game, and enterprise application development.",
-      "tags": ["Backend Developer", "Fullstack Developer", "Tech Lead", "Application Support"]
+      "aliases": [
+        "JetBrains Rider"
+      ],
+      "description": {
+        "en": "JetBrains IDE for .NET, C#, ASP.NET, game, and enterprise application development.",
+        "id": "Rider adalah software yang dipakai untuk menulis, membaca, debugging, dan mengelola file proyek."
+      },
+      "tags": [
+        "Backend Developer",
+        "Fullstack Developer",
+        "Tech Lead",
+        "Application Support"
+      ]
     },
     {
       "id": "rsat",
       "name": "RSAT",
       "category": "support",
       "kind": "software",
-      "aliases": ["Remote Server Administration Tools"],
-      "description": "Microsoft Windows admin tools for managing Active Directory, DNS, DHCP, Group Policy, and Windows Server roles.",
-      "tags": ["System Administrator", "Network Engineer", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support"]
+      "aliases": [
+        "Remote Server Administration Tools"
+      ],
+      "description": {
+        "en": "Microsoft Windows admin tools for managing Active Directory, DNS, DHCP, Group Policy, and Windows Server roles.",
+        "id": "RSAT adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "Network Engineer",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support"
+      ]
     },
     {
       "id": "event-viewer",
       "name": "Event Viewer",
       "category": "support",
       "kind": "software",
-      "aliases": ["Windows Event Viewer"],
-      "description": "Windows log viewer for investigating system, application, security, and operational events.",
-      "tags": ["IT Novice", "System Administrator", "SOC Analyst", "Security Engineer", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "Windows Event Viewer"
+      ],
+      "description": {
+        "en": "Windows log viewer for investigating system, application, security, and operational events.",
+        "id": "Event Viewer adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "SOC Analyst",
+        "Security Engineer",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "group-policy-management-console",
       "name": "Group Policy Management Console",
       "category": "support",
       "kind": "software",
-      "aliases": ["GPMC", "Group Policy"],
-      "description": "Windows administration console for managing domain group policies and workstation/server configuration rules.",
-      "tags": ["System Administrator", "Security Engineer", "GRC Specialist", "Helpdesk", "Technical Support", "CISO"]
+      "aliases": [
+        "GPMC",
+        "Group Policy"
+      ],
+      "description": {
+        "en": "Windows administration console for managing domain group policies and workstation/server configuration rules.",
+        "id": "Group Policy Management Console adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "System Administrator",
+        "Security Engineer",
+        "GRC Specialist",
+        "Helpdesk",
+        "Technical Support",
+        "CISO"
+      ]
     },
     {
       "id": "task-scheduler",
       "name": "Task Scheduler",
       "category": "support",
       "kind": "software",
-      "aliases": ["Windows Task Scheduler"],
-      "description": "Windows scheduling tool for recurring scripts, maintenance jobs, and operational automation.",
-      "tags": ["IT Novice", "System Administrator", "Database Admin", "Helpdesk", "Technical Support", "Application Support"]
+      "aliases": [
+        "Windows Task Scheduler"
+      ],
+      "description": {
+        "en": "Windows scheduling tool for recurring scripts, maintenance jobs, and operational automation.",
+        "id": "Task Scheduler adalah software yang dipakai untuk menangani tiket, remote support, dokumentasi, komunikasi pengguna, dan operasional layanan IT."
+      },
+      "tags": [
+        "IT Novice",
+        "System Administrator",
+        "Database Admin",
+        "Helpdesk",
+        "Technical Support",
+        "Application Support"
+      ]
     },
     {
       "id": "argocd",
       "name": "Argo CD",
       "category": "devops",
       "kind": "platform",
-      "aliases": ["ArgoCD"],
-      "description": "GitOps continuous delivery platform for deploying and syncing Kubernetes applications.",
-      "tags": ["Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "AppSec Engineer", "CTO"]
+      "aliases": [
+        "ArgoCD"
+      ],
+      "description": {
+        "en": "GitOps continuous delivery platform for deploying and syncing Kubernetes applications.",
+        "id": "Argo CD adalah platform yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "AppSec Engineer",
+        "CTO"
+      ]
     },
     {
       "id": "flux",
       "name": "Flux",
       "category": "devops",
       "kind": "platform",
-      "aliases": ["Flux CD"],
-      "description": "GitOps toolkit for Kubernetes deployment automation and cluster state reconciliation.",
-      "tags": ["Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer"]
+      "aliases": [
+        "Flux CD"
+      ],
+      "description": {
+        "en": "GitOps toolkit for Kubernetes deployment automation and cluster state reconciliation.",
+        "id": "Flux adalah platform yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer"
+      ]
     },
     {
       "id": "pulumi",
@@ -1637,17 +4239,38 @@
       "category": "devops",
       "kind": "cli",
       "aliases": [],
-      "description": "Infrastructure as code tool that lets teams define cloud resources using general-purpose programming languages.",
-      "tags": ["Backend Developer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "CTO"]
+      "description": {
+        "en": "Infrastructure as code tool that lets teams define cloud resources using general-purpose programming languages.",
+        "id": "Pulumi adalah alat command-line yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Backend Developer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "CTO"
+      ]
     },
     {
       "id": "packer",
       "name": "Packer",
       "category": "devops",
       "kind": "cli",
-      "aliases": ["HashiCorp Packer"],
-      "description": "Image building tool for creating machine images across cloud, VM, and container environments.",
-      "tags": ["System Administrator", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer"]
+      "aliases": [
+        "HashiCorp Packer"
+      ],
+      "description": {
+        "en": "Image building tool for creating machine images across cloud, VM, and container environments.",
+        "id": "Packer adalah alat command-line yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer"
+      ]
     },
     {
       "id": "vagrant",
@@ -1655,8 +4278,23 @@
       "category": "devops",
       "kind": "software",
       "aliases": [],
-      "description": "Local virtual machine environment tool used for repeatable development and infrastructure labs.",
-      "tags": ["IT Novice", "Backend Developer", "Fullstack Developer", "QA Automation", "System Administrator", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Pentester", "Application Support"]
+      "description": {
+        "en": "Local virtual machine environment tool used for repeatable development and infrastructure labs.",
+        "id": "Vagrant adalah software yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "IT Novice",
+        "Backend Developer",
+        "Fullstack Developer",
+        "QA Automation",
+        "System Administrator",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "Pentester",
+        "Application Support"
+      ]
     },
     {
       "id": "rancher",
@@ -1664,8 +4302,18 @@
       "category": "devops",
       "kind": "platform",
       "aliases": [],
-      "description": "Kubernetes management platform for clusters, access, workloads, policies, and operations.",
-      "tags": ["Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "Engineering Manager", "CTO"]
+      "description": {
+        "en": "Kubernetes management platform for clusters, access, workloads, policies, and operations.",
+        "id": "Rancher adalah platform yang dipakai untuk membangun otomasi, pipeline, deployment, konfigurasi, dan operasi sistem."
+      },
+      "tags": [
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "Engineering Manager",
+        "CTO"
+      ]
     },
     {
       "id": "zeplin",
@@ -1673,8 +4321,18 @@
       "category": "design",
       "kind": "platform",
       "aliases": [],
-      "description": "Design handoff platform for specs, assets, style guides, and collaboration between designers and developers.",
-      "tags": ["Frontend Developer", "Mobile Developer", "Fullstack Developer", "UI Designer", "UX Designer", "Product Designer"]
+      "description": {
+        "en": "Design handoff platform for specs, assets, style guides, and collaboration between designers and developers.",
+        "id": "Zeplin adalah platform yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Mobile Developer",
+        "Fullstack Developer",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "sketch",
@@ -1682,17 +4340,38 @@
       "category": "design",
       "kind": "software",
       "aliases": [],
-      "description": "macOS design tool historically popular for UI design, symbols, and design system work.",
-      "tags": ["Frontend Developer", "Mobile Developer", "UI Designer", "UX Designer", "Product Designer"]
+      "description": {
+        "en": "macOS design tool historically popular for UI design, symbols, and design system work.",
+        "id": "Sketch adalah software yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "Frontend Developer",
+        "Mobile Developer",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "axure-rp",
       "name": "Axure RP",
       "category": "design",
       "kind": "software",
-      "aliases": ["Axure"],
-      "description": "Prototyping and wireframing tool used for complex interactive flows and enterprise UX specs.",
-      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer"]
+      "aliases": [
+        "Axure"
+      ],
+      "description": {
+        "en": "Prototyping and wireframing tool used for complex interactive flows and enterprise UX specs.",
+        "id": "Axure RP adalah software yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "balsamiq",
@@ -1700,8 +4379,18 @@
       "category": "design",
       "kind": "software",
       "aliases": [],
-      "description": "Low-fidelity wireframing tool for quick sketches of screens, flows, and interface ideas.",
-      "tags": ["Business Analyst", "Product Owner", "Product Manager", "UI Designer", "UX Designer", "Product Designer"]
+      "description": {
+        "en": "Low-fidelity wireframing tool for quick sketches of screens, flows, and interface ideas.",
+        "id": "Balsamiq adalah software yang dipakai untuk membuat desain, aset visual, diagram, prototype, atau handoff produk."
+      },
+      "tags": [
+        "Business Analyst",
+        "Product Owner",
+        "Product Manager",
+        "UI Designer",
+        "UX Designer",
+        "Product Designer"
+      ]
     },
     {
       "id": "lucidchart",
@@ -1709,8 +4398,29 @@
       "category": "collaboration",
       "kind": "platform",
       "aliases": [],
-      "description": "Diagramming platform for flowcharts, architecture diagrams, process maps, and technical documentation.",
-      "tags": ["Tech Lead", "Business Analyst", "Product Owner", "Project Manager", "Product Manager", "UX Designer", "Product Designer", "System Administrator", "Network Engineer", "Cloud Engineer", "DevOps Engineer", "SRE", "Security Engineer", "GRC Specialist", "Engineering Manager", "CTO", "CISO"]
+      "description": {
+        "en": "Diagramming platform for flowcharts, architecture diagrams, process maps, and technical documentation.",
+        "id": "Lucidchart adalah platform yang dipakai untuk kolaborasi tim, dokumentasi, komunikasi, meeting, file sharing, dan koordinasi kerja."
+      },
+      "tags": [
+        "Tech Lead",
+        "Business Analyst",
+        "Product Owner",
+        "Project Manager",
+        "Product Manager",
+        "UX Designer",
+        "Product Designer",
+        "System Administrator",
+        "Network Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "SRE",
+        "Security Engineer",
+        "GRC Specialist",
+        "Engineering Manager",
+        "CTO",
+        "CISO"
+      ]
     }
   ]
 }
