@@ -785,6 +785,30 @@
       box-shadow: 0 0 14px color-mix(in srgb, var(--role) 25%, transparent);
     }
 
+    .card-actions-row {
+      display: flex; gap: 4px; flex-wrap: wrap;
+      margin: 8px 0 0;
+    }
+
+    .btn-open-detail {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 8px; border-radius: 6px;
+      border: 1px solid color-mix(in srgb, var(--role) 40%, transparent);
+      background: color-mix(in srgb, var(--role) 8%, transparent);
+      color: color-mix(in srgb, var(--role) 85%, white);
+      font: 600 10px 'Inter', sans-serif;
+      cursor: pointer; white-space: nowrap;
+      letter-spacing: .3px;
+      transition: all .16s ease;
+      flex: 1; justify-content: center;
+    }
+
+    .btn-open-detail:hover {
+      background: color-mix(in srgb, var(--role) 18%, transparent);
+      border-color: var(--role);
+      box-shadow: 0 0 10px color-mix(in srgb, var(--role) 20%, transparent);
+    }
+
     .btn-do-jobchange {
       display: inline-flex; align-items: center; gap: 5px;
       padding: 5px 11px; border-radius: 6px;
@@ -3210,6 +3234,13 @@
                   <strong class="salary">${displaySalary}</strong>
                   ${isEN ? `<small class="salary-note">${UI_STRINGS.en.salaryNote}</small>` : ""}
                 </div>
+              </div>
+              <div class="card-actions-row">
+                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">★ Quest</button>
+                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="daily">🗓 Daily</button>
+                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="equip">🛡 Equip</button>
+                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="talent">✨ Talent</button>
+                <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">🏆 Achv</button>
               </div>
               <div class="card-footer">
                 <div class="card-xp">
