@@ -1369,15 +1369,17 @@
       color: var(--muted); margin-bottom: 8px;
     }
 
-    .alpha-group { margin-bottom: 14px; }
+    .alpha-group {
+      display: flex; align-items: baseline; flex-wrap: wrap;
+      gap: 6px; margin-bottom: 8px;
+    }
 
     .alpha-group-header {
-      font: 900 13px 'Inter', sans-serif;
-      color: color-mix(in srgb, var(--modal-role, var(--gold)) 70%, transparent);
-      letter-spacing: 1px;
-      padding: 4px 0 6px;
-      border-bottom: 1px solid color-mix(in srgb, var(--modal-role, var(--gold)) 18%, transparent);
-      margin-bottom: 8px;
+      font: 900 12px 'Inter', sans-serif;
+      color: color-mix(in srgb, var(--modal-role, var(--gold)) 80%, transparent);
+      letter-spacing: .5px;
+      flex-shrink: 0;
+      padding-right: 2px;
     }
 
     /* ══ DETAIL ITEM GRID (equip / talent) ══ */
@@ -4012,8 +4014,8 @@
       });
       return Object.keys(groups).sort().map(letter => `
         <div class="alpha-group" data-alpha="${letter}">
-          <div class="alpha-group-header">${letter}</div>
-          <div class="skill-list">${groups[letter].map(i => buildPillHtml(i, kind)).join("")}</div>
+          <span class="alpha-group-header">${letter} »</span>
+          ${groups[letter].map(i => buildPillHtml(i, kind)).join("")}
         </div>`).join("");
     }
 
