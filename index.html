@@ -4053,8 +4053,8 @@
     function renderSkills(title, skills) {
       const progressedJobs = getProgressedJobs();
       const allSkills = skills.split(", ");
-      const sharedSkills = allSkills.filter(s => isSharedSkill(s, progressedJobs));
-      const uniqueSkills = allSkills.filter(s => !isSharedSkill(s, progressedJobs));
+      const sharedSkills = allSkills.filter(s => isSharedSkill(s, progressedJobs, title));
+      const uniqueSkills = allSkills.filter(s => !isSharedSkill(s, progressedJobs, title));
       const hasSplit = sharedSkills.length > 0;
 
       if (hasSplit) {
@@ -4942,8 +4942,8 @@
       if (!items.length) { pane.innerHTML = detailEmptyHtml("📭", `Belum ada ${kind} untuk job ini.`); return; }
       const meta = PANEL_META[kind] || { icon: "📦", title: kind, desc: "" };
       const progressedJobs = getProgressedJobs();
-      const sharedItems = items.filter(i => isSharedEquip(i, progressedJobs));
-      const uniqueItems = items.filter(i => !isSharedEquip(i, progressedJobs));
+      const sharedItems = items.filter(i => isSharedEquip(i, progressedJobs, currentDetailJob));
+      const uniqueItems = items.filter(i => !isSharedEquip(i, progressedJobs, currentDetailJob));
       const hasSplit = sharedItems.length > 0;
 
       const groupsHtml = hasSplit
@@ -5453,12 +5453,16 @@
         .map(j => ({ title: j[1], skillsStr: j[3] }));
     }
 
-    function isSharedEquip(item, progressedJobs) {
-      return item.tags.filter(t => progressedJobs.some(j => j.title === t)).length >= 2;
+    function isSharedEquip(item, progressedJobs, currentJob) {
+      // shared: item muncul di currentJob DAN minimal 1 job ber-progress lain
+      const otherProgressedJobs = progressedJobs.filter(j => j.title !== currentJob);
+      return otherProgressedJobs.some(j => item.tags.includes(j.title));
     }
 
-    function isSharedSkill(skillName, progressedJobs) {
-      return progressedJobs.filter(j => j.skillsStr.split(", ").includes(skillName)).length >= 2;
+    function isSharedSkill(skillName, progressedJobs, currentJob) {
+      // shared: skill muncul di currentJob DAN minimal 1 job ber-progress lain
+      const otherProgressedJobs = progressedJobs.filter(j => j.title !== currentJob);
+      return otherProgressedJobs.some(j => j.skillsStr.split(", ").includes(skillName));
     }
 
     // ══════════════════════════════════════════
