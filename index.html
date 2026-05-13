@@ -3576,6 +3576,108 @@
       }).join("");
     }
 
+    // ── DETAIL TAB RENDERERS ──
+
+    function detailEmptyHtml(icon, msg) {
+      return `<div class="detail-empty"><div class="detail-empty-icon">${icon}</div>${msg}</div>`;
+    }
+
+    async function renderDetailQuestTab(pane) {
+      pane.innerHTML = detailEmptyHtml("⏳", "Memuat quest data…");
+      let questData;
+      try {
+        questData = await loadQuestFile(currentDetailJob);
+      } catch (err) {
+        pane.innerHTML = detailEmptyHtml("⚠️", "Quest data gagal dimuat. Coba dari server (bukan file://).");
+        return;
+      }
+      if (!questData || !isExternalQuestData(questData)) {
+        pane.innerHTML = detailEmptyHtml("📭", "Quest belum tersedia untuk job ini.");
+        return;
+      }
+      const main = questData.main || [];
+      const nextMain = main.find(item => !questCompleted(item.id));
+      let html;
+      if (nextMain) {
+        html = renderCompletableQuest(nextMain, "main");
+      } else {
+        html = `<div class="quest-item done">
+          <div class="quest-checkpoint"><span class="quest-checkbox-tick">✓</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">${main.length ? "All main quests completed" : "No main quest chain"}</div>
+            <div class="quest-item-sub">${main.length ? "Semua main quest sudah selesai." : "Main quest untuk job ini belum tersedia."}</div>
+          </div>
+        </div>`;
+      }
+      pane.innerHTML = `<div class="quest-phase">${html}</div>`;
+      pane.addEventListener("click", e => {
+        const btn = e.target.closest(".quest-complete-btn");
+        if (!btn) return;
+        const questId = btn.dataset.questId;
+        const type = btn.dataset.questType;
+        const quest = [...(questData.main || []), ...(questData.daily || [])].find(i => i.id === questId);
+        const summaryInput = pane.querySelector(`.quest-summary-input[data-quest-id="${CSS.escape(questId)}"]`);
+        const summary = summaryInput ? summaryInput.value : "";
+        if (!quest || !completeQuest(currentDetailJob, quest, type, summary)) {
+          alert("Summary wajib diisi sebelum quest selesai.");
+          return;
+        }
+        detailRenderedTabs["quest"] = false;
+        renderDetailQuestTab(pane);
+        refreshCards();
+      }, { once: false });
+    }
+
+    async function renderDetailDailyTab(pane) {
+      pane.innerHTML = detailEmptyHtml("⏳", "Memuat quest data…");
+      let questData;
+      try {
+        questData = await loadQuestFile(currentDetailJob);
+      } catch (err) {
+        pane.innerHTML = detailEmptyHtml("⚠️", "Quest data gagal dimuat. Coba dari server (bukan file://).");
+        return;
+      }
+      if (!questData || !isExternalQuestData(questData)) {
+        pane.innerHTML = detailEmptyHtml("📭", "Daily quest belum tersedia untuk job ini.");
+        return;
+      }
+      const todaysDaily = getTodaysDailyQuest(questData, currentDetailJob);
+      const dailyState = questProgress.daily[currentDetailJob];
+      const dailyDoneToday = !!dailyState && dailyState.date === todayKey();
+
+      let html;
+      if (!todaysDaily) {
+        html = detailEmptyHtml("📭", "Daily quest untuk job ini belum tersedia.");
+      } else if (dailyDoneToday) {
+        html = `<div class="quest-item done">
+          <div class="quest-checkbox"><span class="quest-checkbox-tick">✓</span></div>
+          <div class="quest-item-content">
+            <div class="quest-item-label">Daily quest completed today</div>
+            <div class="quest-item-sub">Daily quest berikutnya tersedia besok.</div>
+          </div>
+        </div>`;
+      } else {
+        html = renderCompletableQuest(todaysDaily, "daily");
+      }
+      pane.innerHTML = `<div class="quest-phase">${html}</div>`;
+      pane.addEventListener("click", e => {
+        const btn = e.target.closest(".quest-complete-btn");
+        if (!btn) return;
+        const questId = btn.dataset.questId;
+        const type = btn.dataset.questType;
+        const quest = [...(questData.main || []), ...(questData.daily || [])].find(i => i.id === questId);
+        const summaryInput = pane.querySelector(`.quest-summary-input[data-quest-id="${CSS.escape(questId)}"]`);
+        const summary = summaryInput ? summaryInput.value : "";
+        if (!quest || !completeQuest(currentDetailJob, quest, type, summary)) {
+          alert("Summary wajib diisi sebelum quest selesai.");
+          return;
+        }
+        detailRenderedTabs["daily"] = false;
+        renderDetailDailyTab(pane);
+        refreshCards();
+      }, { once: false });
+    }
+
     function closeQuest() {
       document.getElementById("quest-overlay").classList.remove("open");
       document.body.style.overflow = "";
