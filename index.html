@@ -1008,6 +1008,13 @@
       border-bottom: 1px solid var(--line);
       background: linear-gradient(180deg, #111827, rgba(17,24,39,.96));
       backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .modal-chrome-deco {
+      position: absolute; right: 56px; top: 50%; transform: translateY(-50%);
+      display: flex; align-items: flex-end; gap: 10px;
+      opacity: .07; pointer-events: none; user-select: none;
     }
 
     .modal-eyebrow {
@@ -1885,6 +1892,36 @@
         <div class="modal-eyebrow">📖 Job Detail</div>
         <div class="modal-title"><span class="modal-title-color" id="detail-job-name"></span></div>
         <button class="modal-close" id="detail-close" aria-label="Tutup">&times;</button>
+        <!-- IT/gaming decoration: monitor + keyboard -->
+        <div class="modal-chrome-deco" aria-hidden="true">
+          <svg width="56" height="48" viewBox="0 0 56 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <!-- keyboard base -->
+            <rect x="2" y="34" width="52" height="12" rx="2"/>
+            <!-- keyboard keys row 1 -->
+            <rect x="5" y="36" width="5" height="3" rx="1" fill="#111827"/>
+            <rect x="12" y="36" width="5" height="3" rx="1" fill="#111827"/>
+            <rect x="19" y="36" width="5" height="3" rx="1" fill="#111827"/>
+            <rect x="26" y="36" width="5" height="3" rx="1" fill="#111827"/>
+            <rect x="33" y="36" width="5" height="3" rx="1" fill="#111827"/>
+            <rect x="40" y="36" width="5" height="3" rx="1" fill="#111827"/>
+            <!-- keyboard keys row 2 (spacebar) -->
+            <rect x="8" y="41" width="28" height="3" rx="1" fill="#111827"/>
+            <rect x="38" y="41" width="7" height="3" rx="1" fill="#111827"/>
+            <!-- monitor stand -->
+            <rect x="25" y="28" width="6" height="6" rx="1"/>
+            <rect x="20" y="33" width="16" height="2" rx="1"/>
+            <!-- monitor body -->
+            <rect x="4" y="2" width="48" height="28" rx="3"/>
+            <!-- monitor screen -->
+            <rect x="7" y="5" width="42" height="22" rx="1" fill="#111827"/>
+            <!-- screen glow lines -->
+            <rect x="10" y="9" width="20" height="1.5" rx="0.5" fill="#1e3a5f"/>
+            <rect x="10" y="13" width="30" height="1.5" rx="0.5" fill="#1e3a5f"/>
+            <rect x="10" y="17" width="15" height="1.5" rx="0.5" fill="#1e3a5f"/>
+            <!-- cursor blink -->
+            <rect x="10" y="21" width="3" height="3" rx="0.5" fill="#2a4a7f"/>
+          </svg>
+        </div>
       </div>
       <div class="detail-tabs" role="tablist">
         <button class="detail-tab-btn active" data-tab="quest" role="tab">★ Quest</button>
