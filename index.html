@@ -5086,6 +5086,14 @@
         card.querySelector(".card-xp-text").textContent = `${done}/${allSkills.length} skill learned`;
         renderCards(activeFilter);
         renderSidebar();
+        // re-roll daily quest immediately if quest tab is open
+        if (document.getElementById("detail-overlay")?.classList.contains("open")) {
+          const questPane = document.getElementById("detail-content-quest");
+          if (questPane?.classList.contains("active")) {
+            detailRenderedTabs["quest"] = false;
+            renderDetailQuestTab(questPane);
+          }
+        }
         return;
       }
 
