@@ -6147,10 +6147,16 @@
         return jobLinks ? `<div class="porto-section"><div class="porto-label">Links</div>${jobLinks}</div>` : "";
       }
 
+      // Map job title → role color (for shared pill shadows)
+      const jobColorMap = Object.fromEntries(jobs.map(j => [j[1], j[5]]));
+
+      // Track which items have already appeared in an earlier card (for "show once" rule)
+      const shownSharedItems = new Set();
+
       function buildEquipTalentSection(title) {
         const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
 
-        // Jobs that have any equip/talent unlocked (for shared detection)
+        // Jobs that have any equip/talent unlocked
         const progressedTitles = new Set(
           filteredJobs.filter(j => {
             const t = j[1];
@@ -6159,9 +6165,18 @@
           }).map(j => j[1])
         );
 
-        function isExportShared(item, currentTitle) {
-          // shared: unlocked AND appears in at least 1 other progressed job
-          return [...progressedTitles].filter(t => t !== currentTitle && (item.tags || []).includes(t)).length >= 1;
+        // Returns list of OTHER progressed jobs that also have this item
+        function sharedJobs(item, currentTitle) {
+          return [...progressedTitles].filter(t => t !== currentTitle && (item.tags || []).includes(t));
+        }
+
+        // Build box-shadow from shared job colors (layered)
+        function sharedShadow(sjobs) {
+          return sjobs.map((t, i) => {
+            const c = jobColorMap[t] || "#888";
+            const offset = (i + 1) * 3;
+            return `${offset}px ${offset}px 0 0 ${c}`;
+          }).join(", ");
         }
 
         function toAlphaGroups(items, keyFn, currentTitle) {
@@ -6173,41 +6188,41 @@
             groups[letter].push(item);
           });
           return Object.keys(groups).sort().map(letter => {
-            const groupItems = groups[letter];
-            const unique = groupItems.filter(i => !isExportShared(i, currentTitle));
-            const shared = groupItems.filter(i => isExportShared(i, currentTitle));
-            const makePill = item => {
+            const pills = groups[letter].map(item => {
               const lv = Math.min(3, Number(keyFn(item)) || 1);
               const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
               const tip = escAttr(descriptionTextFor(item, currentLang));
-              return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}">${escAttr(item.name)}${badge}</span>`;
-            };
-            const pillsHtml = (unique.length > 0 && shared.length > 0)
-              ? unique.map(makePill).join("") + `<span class="alpha-group-spacer"></span>` + shared.map(makePill).join("")
-              : [...unique, ...shared].map(makePill).join("");
-            return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pillsHtml}</div></div>`;
+              const sjobs = sharedJobs(item, currentTitle);
+              const isShared = sjobs.length > 0;
+              const shownKey = `${item.id}`;
+
+              // Shared item already shown in earlier card — skip
+              if (isShared && shownSharedItems.has(shownKey)) return "";
+
+              let style = "";
+              if (isShared) {
+                shownSharedItems.add(shownKey);
+                style = ` style="box-shadow:${sharedShadow(sjobs)};position:relative"`;
+              }
+              return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}"${style}>${escAttr(item.name)}${badge}</span>`;
+            }).join("");
+            if (!pills) return "";
+            return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pills}</div></div>`;
           }).join("");
         }
 
         const equipItems = snapEquip.filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`]);
         const talentItems = snapTalent.filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`]);
 
-        const hasEquipShared = equipItems.some(i => isExportShared(i, title));
-        const hasTalentShared = talentItems.some(i => isExportShared(i, title));
-
         const parts = [];
-        if (equipItems.length) parts.push(`<div class="porto-section">
-          <div class="porto-label-row">
-            <span class="porto-label">Equipment</span>
-            ${hasEquipShared ? `<span class="porto-label-shared">Shared</span>` : ""}
-          </div>
-          ${toAlphaGroups(equipItems, e => snap[`equip::${e.id}`], title)}</div>`);
-        if (talentItems.length) parts.push(`<div class="porto-section">
-          <div class="porto-label-row">
-            <span class="porto-label">Talent</span>
-            ${hasTalentShared ? `<span class="porto-label-shared">Shared</span>` : ""}
-          </div>
-          ${toAlphaGroups(talentItems, t => snap[`talent::${t.id}`], title)}</div>`);
+        if (equipItems.length) {
+          const html = toAlphaGroups(equipItems, e => snap[`equip::${e.id}`], title);
+          if (html) parts.push(`<div class="porto-section"><div class="porto-label">Equipment</div>${html}</div>`);
+        }
+        if (talentItems.length) {
+          const html = toAlphaGroups(talentItems, t => snap[`talent::${t.id}`], title);
+          if (html) parts.push(`<div class="porto-section"><div class="porto-label">Talent</div>${html}</div>`);
+        }
         return parts.join("");
       }
 
