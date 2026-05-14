@@ -6150,6 +6150,7 @@
       function buildEquipTalentSection(title) {
         const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
 
+        // Jobs that have any equip/talent unlocked (for shared detection)
         const progressedTitles = new Set(
           filteredJobs.filter(j => {
             const t = j[1];
@@ -6159,56 +6160,55 @@
         );
 
         function isExportShared(item, currentTitle) {
+          // shared: unlocked AND appears in at least 1 other progressed job
           return [...progressedTitles].filter(t => t !== currentTitle && (item.tags || []).includes(t)).length >= 1;
         }
 
-        function makePill(item, keyFn) {
-          const lv = Math.min(3, Number(keyFn(item)) || 1);
-          const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
-          const tip = escAttr(descriptionTextFor(item, currentLang));
-          return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}">${escAttr(item.name)}${badge}</span>`;
+        function toAlphaGroups(items, keyFn, currentTitle) {
+          const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name, "id", { sensitivity: "base" }));
+          const groups = {};
+          sorted.forEach(item => {
+            const letter = item.name[0].toUpperCase();
+            if (!groups[letter]) groups[letter] = [];
+            groups[letter].push(item);
+          });
+          return Object.keys(groups).sort().map(letter => {
+            const groupItems = groups[letter];
+            const unique = groupItems.filter(i => !isExportShared(i, currentTitle));
+            const shared = groupItems.filter(i => isExportShared(i, currentTitle));
+            const makePill = item => {
+              const lv = Math.min(3, Number(keyFn(item)) || 1);
+              const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
+              const tip = escAttr(descriptionTextFor(item, currentLang));
+              return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}">${escAttr(item.name)}${badge}</span>`;
+            };
+            const pillsHtml = (unique.length > 0 && shared.length > 0)
+              ? unique.map(makePill).join("") + `<span class="alpha-group-spacer"></span>` + shared.map(makePill).join("")
+              : [...unique, ...shared].map(makePill).join("");
+            return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pillsHtml}</div></div>`;
+          }).join("");
         }
 
         const equipItems = snapEquip.filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`]);
         const talentItems = snapTalent.filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`]);
 
-        if (!equipItems.length && !talentItems.length) return "";
+        const hasEquipShared = equipItems.some(i => isExportShared(i, title));
+        const hasTalentShared = talentItems.some(i => isExportShared(i, title));
 
-        // Collect all letters across equip + talent
-        const allItems = [
-          ...equipItems.map(i => ({ item: i, kind: "equip", keyFn: e => snap[`equip::${e.id}`] })),
-          ...talentItems.map(i => ({ item: i, kind: "talent", keyFn: t => snap[`talent::${t.id}`] })),
-        ];
-        const allLetters = [...new Set(allItems.map(({ item }) => item.name[0].toUpperCase()))].sort();
-
-        const hasShared = allItems.some(({ item }) => isExportShared(item, title));
-
-        const headerRow = `<div class="et-grid-row et-grid-header">
-          <span class="et-col-alpha"></span>
-          <span class="et-col-label">Equipment</span>
-          <span class="et-col-label">Talent</span>
-          ${hasShared ? `<span class="et-col-label">Shared</span>` : ""}
-        </div>`;
-
-        const rows = allLetters.map(letter => {
-          const eUnique = equipItems.filter(i => i.name[0].toUpperCase() === letter && !isExportShared(i, title));
-          const tUnique = talentItems.filter(i => i.name[0].toUpperCase() === letter && !isExportShared(i, title));
-          const eShared = equipItems.filter(i => i.name[0].toUpperCase() === letter && isExportShared(i, title));
-          const tShared = talentItems.filter(i => i.name[0].toUpperCase() === letter && isExportShared(i, title));
-          if (!eUnique.length && !tUnique.length && !eShared.length && !tShared.length) return "";
-          const sharedPills = [
-            ...eShared.map(i => makePill(i, e => snap[`equip::${e.id}`])),
-            ...tShared.map(i => makePill(i, t => snap[`talent::${t.id}`])),
-          ].join("");
-          return `<div class="et-grid-row">
-            <span class="alpha-group-header et-col-alpha">${letter}</span>
-            <div class="et-col-pills">${eUnique.map(i => makePill(i, e => snap[`equip::${e.id}`])).join("")}</div>
-            <div class="et-col-pills">${tUnique.map(i => makePill(i, t => snap[`talent::${t.id}`])).join("")}</div>
-            ${hasShared ? `<div class="et-col-pills">${sharedPills}</div>` : ""}
-          </div>`;
-        }).join("");
-
-        return `<div class="porto-section"><div class="et-grid${hasShared ? "" : " no-shared"}">${headerRow}${rows}</div></div>`;
+        const parts = [];
+        if (equipItems.length) parts.push(`<div class="porto-section">
+          <div class="porto-label-row">
+            <span class="porto-label">Equipment</span>
+            ${hasEquipShared ? `<span class="porto-label-shared">Shared</span>` : ""}
+          </div>
+          ${toAlphaGroups(equipItems, e => snap[`equip::${e.id}`], title)}</div>`);
+        if (talentItems.length) parts.push(`<div class="porto-section">
+          <div class="porto-label-row">
+            <span class="porto-label">Talent</span>
+            ${hasTalentShared ? `<span class="porto-label-shared">Shared</span>` : ""}
+          </div>
+          ${toAlphaGroups(talentItems, t => snap[`talent::${t.id}`], title)}</div>`);
+        return parts.join("");
       }
 
       function buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass) {
@@ -6522,15 +6522,6 @@ a{color:inherit}
 .porto-label-row{display:flex;justify-content:space-between;margin-bottom:6px}
 .porto-label-row .porto-label{margin-bottom:0}
 .porto-label-shared{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
-/* equipment+talent 4-col grid */
-.et-grid{width:100%}
-.et-grid-row{display:grid;grid-template-columns:26px 1fr 1fr 1fr;gap:6px 8px;align-items:start;margin-bottom:6px}
-.et-grid.no-shared .et-grid-row{grid-template-columns:26px 1fr 1fr}
-.et-grid-row.et-grid-header{margin-bottom:2px}
-.et-col-alpha{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex-shrink:0;border-radius:4px;border:1px solid color-mix(in srgb,var(--role,#f0bb4e) 35%,transparent);background:color-mix(in srgb,var(--role,#f0bb4e) 10%,transparent);font:900 10px system-ui,sans-serif;color:color-mix(in srgb,var(--role,#f0bb4e) 80%,white)}
-.et-grid-header .et-col-alpha{border:none;background:none}
-.et-col-label{font:700 9px system-ui,sans-serif;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);padding-top:4px}
-.et-col-pills{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
 /* alpha groups in export */
 .alpha-group-spacer{flex:1}
 .alpha-group{display:flex;align-items:flex-start;gap:6px;margin-bottom:6px}
