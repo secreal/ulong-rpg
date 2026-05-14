@@ -6181,19 +6181,23 @@
           }).join(", ");
         }
 
+        const subTitleSet = new Set(subTitles);
+
         function buildPill(item, keyFn, currentTitle, kind = "equip") {
           const lv = Math.min(3, Number(keyFn(item)) || 1);
           const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
           const tip = escAttr(descriptionTextFor(item, currentLang));
-          const sjobs = sharedJobs(item, currentTitle);
+          // For anchor cards: exclude sub-job titles from sharedJobs — only count jobs outside the anchor group
+          const rawShared = sharedJobs(item, currentTitle);
+          const sjobs = subTitleSet.size > 0
+            ? rawShared.filter(t => !subTitleSet.has(t))
+            : rawShared;
           const isShared = sjobs.length > 0;
           const shownKey = `${item.id}`;
-          if (isShared && shownSharedItems.has(shownKey)) return "";
+          if (shownSharedItems.has(shownKey)) return "";
+          shownSharedItems.add(shownKey);
           let style = "";
-          if (isShared) {
-            shownSharedItems.add(shownKey);
-            style = ` style="box-shadow:${sharedShadow(sjobs)};position:relative"`;
-          }
+          if (isShared) style = ` style="box-shadow:${sharedShadow(sjobs)};position:relative"`;
           const kindClass = kind === "talent" ? " pill-talent" : "";
           return `<span class="skill lv${lv}${kindClass}" tabindex="0" data-tip="${tip}"${style}>${escAttr(item.name)}${badge}</span>`;
         }
