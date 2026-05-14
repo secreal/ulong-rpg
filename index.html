@@ -6137,8 +6137,9 @@
           const lv = skillSnapshotLevel(snap, title, s);
           const lvClass = lv > 0 ? `lv${lv}` : "";
           const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
-          const tip = skillDescriptionFor(s, "en");
-          return `<span class="skill ${lvClass}" tabindex="0" data-tip="${escAttr(tip)}" data-lv="${lv}">${s}${badge}</span>`;
+          const tipEn = escAttr(skillDescriptionFor(s, "en"));
+          const tipId = escAttr(skillDescriptionFor(s, "id"));
+          return `<span class="skill ${lvClass}" tabindex="0" data-tip="${tipEn}" data-tip-en="${tipEn}" data-tip-id="${tipId}" data-lv="${lv}">${s}${badge}</span>`;
         }).join("");
       }
 
@@ -6719,6 +6720,9 @@ ${standaloneHTML}
     cur=lang;
     document.querySelectorAll("[data-txt-id][data-txt-en]").forEach(function(el){
       el.textContent=lang==="id"?el.dataset.txtId:el.dataset.txtEn;
+    });
+    document.querySelectorAll("[data-tip-en][data-tip-id]").forEach(function(el){
+      el.dataset.tip=lang==="id"?el.dataset.tipId:el.dataset.tipEn;
     });
     notes.forEach(function(n){n.style.display=lang==="en"?"":"none";});
     opts.forEach(function(b){b.classList.toggle("active",b.dataset.lang===lang);});
