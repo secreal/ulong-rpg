@@ -5903,11 +5903,11 @@
       const snapLinks = loadLinks();
       const snapJobChange = loadJobChange();
       const snapGuild = loadGuild();
-      const filtered = jobs.filter(([, title,, skills]) =>
-        skills.split(", ").some(s => {
-          return skillSnapshotLevel(snap, title, s) > 0;
-        })
-      );
+      const snapUlong = JSON.parse(localStorage.getItem(ULONG_PROGRESS_KEY) || "{}");
+      const filtered = jobs.filter(([, title,, skills, ,,,, tier]) => {
+        if (tier === 0) return Object.keys(snapUlong).length > 0;
+        return skills.split(", ").filter(Boolean).some(s => skillSnapshotLevel(snap, title, s) > 0);
+      });
       // Load equip/talent catalogs for export (cached after first load)
       let snapEquip = [], snapTalent = [];
       try { const d = await loadEquipmentData(); snapEquip = d.equipment || []; } catch {}
