@@ -4931,12 +4931,11 @@
       const meta = PANEL_META[kind] || { icon: "📦", title: kind, desc: "" };
       const progressedJobs = getProgressedJobs();
       const sharedItems = items.filter(i => itemLevel(kind, i.id) > 0 && isSharedEquip(i, progressedJobs, currentDetailJob));
-      const uniqueItems = items.filter(i => !sharedItems.includes(i));
       const hasSplit = sharedItems.length > 0;
 
       const groupsHtml = hasSplit
         ? `<div class="panel-split">
-            <div class="panel-split-unique">${buildAlphaGroupsHtml(uniqueItems, kind)}</div>
+            <div class="panel-split-unique">${buildAlphaGroupsHtml(items, kind)}</div>
             <div class="panel-split-shared">
               <div class="panel-split-shared-header">Shared</div>
               ${buildAlphaGroupsHtml(sharedItems, kind)}
