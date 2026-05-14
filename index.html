@@ -6243,12 +6243,10 @@
           const ePills = (equipByLetter[letter] || []).map(e => buildPill(e, e => snap[`equip::${e.id}`], title, "equip")).join("");
           const tPills = (talentByLetter[letter] || []).map(t => buildPill(t, t => snap[`talent::${t.id}`], title, "talent")).join("");
           if (!ePills && !tPills) return "";
-          let pillsHtml;
-          if (ePills && tPills) {
-            pillsHtml = ePills + `<span class="alpha-group-spacer"></span>` + tPills;
-          } else {
-            pillsHtml = ePills || tPills;
-          }
+          // Talent always right-aligned via spacer; if only talent, spacer pushes it right
+          const pillsHtml = tPills
+            ? ePills + `<span class="alpha-group-spacer"></span>` + tPills
+            : ePills;
           return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pillsHtml}</div></div>`;
         }).join("");
 
