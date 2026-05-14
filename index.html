@@ -1570,6 +1570,7 @@
       color: color-mix(in srgb, var(--modal-role, var(--gold)) 60%, transparent);
       margin-bottom: 8px;
     }
+    .alpha-group-spacer { flex: 1; }
     .skill-list-alpha { display: block; }
     @media (max-width: 480px) {
       .panel-split { flex-direction: column; }
@@ -4911,7 +4912,7 @@
       </span>`;
     }
 
-    function buildAlphaGroupsHtml(items, kind) {
+    function buildAlphaGroupsHtml(items, kind, sharedSet) {
       const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name, "id", { sensitivity: "base" }));
       const groups = {};
       sorted.forEach(item => {
@@ -4919,11 +4920,28 @@
         if (!groups[letter]) groups[letter] = [];
         groups[letter].push(item);
       });
-      return Object.keys(groups).sort().map(letter => `
+      return Object.keys(groups).sort().map(letter => {
+        const groupItems = groups[letter];
+        let pillsHtml;
+        if (sharedSet && sharedSet.size > 0) {
+          const unique = groupItems.filter(i => !sharedSet.has(i.id));
+          const shared = groupItems.filter(i => sharedSet.has(i.id));
+          if (shared.length > 0) {
+            pillsHtml = unique.map(i => buildPillHtml(i, kind)).join("")
+              + `<span class="alpha-group-spacer"></span>`
+              + shared.map(i => buildPillHtml(i, kind)).join("");
+          } else {
+            pillsHtml = groupItems.map(i => buildPillHtml(i, kind)).join("");
+          }
+        } else {
+          pillsHtml = groupItems.map(i => buildPillHtml(i, kind)).join("");
+        }
+        return `
         <div class="alpha-group" data-alpha="${letter}">
           <span class="alpha-group-header">${letter}</span>
-          <div class="alpha-group-pills">${groups[letter].map(i => buildPillHtml(i, kind)).join("")}</div>
-        </div>`).join("");
+          <div class="alpha-group-pills">${pillsHtml}</div>
+        </div>`;
+      }).join("");
     }
 
     function renderItemPanel(pane, items, kind) {
@@ -4931,17 +4949,10 @@
       const meta = PANEL_META[kind] || { icon: "📦", title: kind, desc: "" };
       const progressedJobs = getProgressedJobs();
       const sharedItems = items.filter(i => itemLevel(kind, i.id) > 0 && isSharedEquip(i, progressedJobs, currentDetailJob));
+      const sharedSet = new Set(sharedItems.map(i => i.id));
       const hasSplit = sharedItems.length > 0;
 
-      const groupsHtml = hasSplit
-        ? `<div class="panel-split">
-            <div class="panel-split-unique">${buildAlphaGroupsHtml(items, kind)}</div>
-            <div class="panel-split-shared">
-              <div class="panel-split-shared-header">Shared</div>
-              ${buildAlphaGroupsHtml(sharedItems, kind)}
-            </div>
-          </div>`
-        : buildAlphaGroupsHtml(items, kind);
+      const groupsHtml = buildAlphaGroupsHtml(items, kind, hasSplit ? sharedSet : null);
 
       pane.innerHTML = `
         <div class="detail-panel-desc">${meta.desc}</div>
