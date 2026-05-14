@@ -4935,10 +4935,13 @@
         if (sharedSet && sharedSet.size > 0) {
           const unique = groupItems.filter(i => !sharedSet.has(i.id));
           const shared = groupItems.filter(i => sharedSet.has(i.id));
-          if (shared.length > 0) {
+          if (shared.length > 0 && unique.length > 0) {
             pillsHtml = unique.map(i => buildPillHtml(i, kind)).join("")
               + `<span class="alpha-group-spacer"></span>`
               + shared.map(i => buildPillHtml(i, kind)).join("");
+          } else if (shared.length > 0) {
+            // semua item di huruf ini shared — tampil di kiri saja tanpa spacer
+            pillsHtml = shared.map(i => buildPillHtml(i, kind)).join("");
           } else {
             pillsHtml = groupItems.map(i => buildPillHtml(i, kind)).join("");
           }
@@ -6179,8 +6182,9 @@
               const tip = escAttr(descriptionTextFor(item, currentLang));
               return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}">${escAttr(item.name)}${badge}</span>`;
             };
-            const pillsHtml = unique.map(makePill).join("")
-              + (shared.length ? `<span class="alpha-group-spacer"></span>` + shared.map(makePill).join("") : "");
+            const pillsHtml = (unique.length > 0 && shared.length > 0)
+              ? unique.map(makePill).join("") + `<span class="alpha-group-spacer"></span>` + shared.map(makePill).join("")
+              : [...unique, ...shared].map(makePill).join("");
             return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pillsHtml}</div></div>`;
           }).join("");
         }
