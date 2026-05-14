@@ -6255,8 +6255,8 @@
         const hasEquip = equipItems.length > 0;
         const hasTalent = talentItems.length > 0;
         const labelRow = (hasEquip || hasTalent) ? `<div class="porto-label-row">
-          ${hasEquip ? `<span class="porto-label">Equipment</span>` : `<span></span>`}
-          ${hasTalent ? `<span class="porto-label">Talent</span>` : ""}
+          ${hasEquip ? `<span class="porto-label" data-txt-en="Equipment" data-txt-id="Peralatan">Equipment</span>` : `<span></span>`}
+          ${hasTalent ? `<span class="porto-label" data-txt-en="Talent" data-txt-id="Keahlian">Talent</span>` : ""}
         </div>` : "";
 
         return `<div class="porto-section">${labelRow}${groupsHtml}</div>`;
