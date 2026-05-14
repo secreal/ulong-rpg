@@ -2122,7 +2122,7 @@
   <footer>
     <div class="footer-inner">
       <p class="footer-text">Karakter dibuat sebagai ilustrasi CSS original dengan nuansa MMORPG retro. Angka salary adalah kisaran kasar bulanan di Indonesia, perlu disesuaikan dengan kota, industri, seniority, dan model kerja.</p>
-      <p class="footer-text" style="margin-top:8px;opacity:.5;">© secreal 2026</p>
+      <p class="footer-text" style="margin-top:8px;opacity:.5;">© secreal 2026 · <span id="footer-last-push"></span></p>
       <div class="footer-gems"><span></span><span></span><span></span></div>
     </div>
   </footer>
@@ -3413,6 +3413,7 @@
     const GUILD_KEY = "itjt_guild_v1";
     const ACHIEVEMENT_KEY = "itjt_achievements_v1";
     const ULONG_PROGRESS_KEY = "itjt_ulong_progress_v1";
+    const LAST_PUSH = "14 Mei 2026";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -5426,6 +5427,7 @@
         if (lv > 0) pill.classList.add(`lv${lv}`);
         const badge = pill.querySelector(".skill-lv-badge");
         if (badge) badge.textContent = lv > 0 ? LV_LABELS[lv] : "";
+        refreshCards();
       }
     });
 
@@ -6214,16 +6216,13 @@
         const equipItems = snapEquip.filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`]);
         const talentItems = snapTalent.filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`]);
 
-        const parts = [];
-        if (equipItems.length) {
-          const html = toAlphaGroups(equipItems, e => snap[`equip::${e.id}`], title);
-          if (html) parts.push(`<div class="porto-section"><div class="porto-label">Equipment</div>${html}</div>`);
-        }
-        if (talentItems.length) {
-          const html = toAlphaGroups(talentItems, t => snap[`talent::${t.id}`], title);
-          if (html) parts.push(`<div class="porto-section"><div class="porto-label">Talent</div>${html}</div>`);
-        }
-        return parts.join("");
+        const equipHtml = equipItems.length ? toAlphaGroups(equipItems, e => snap[`equip::${e.id}`], title) : "";
+        const talentHtml = talentItems.length ? toAlphaGroups(talentItems, t => snap[`talent::${t.id}`], title) : "";
+        if (!equipHtml && !talentHtml) return "";
+        return `<div class="porto-section porto-et-row">
+          ${equipHtml ? `<div class="porto-et-col"><div class="porto-label">Equipment</div>${equipHtml}</div>` : ""}
+          ${talentHtml ? `<div class="porto-et-col"><div class="porto-label">Talent</div>${talentHtml}</div>` : ""}
+        </div>`;
       }
 
       function buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass) {
@@ -6359,7 +6358,8 @@ a{color:inherit}
 /* header */
 .showcase-header{padding:32px 24px 24px;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--line);margin-bottom:32px}
 .showcase-name{font-size:28px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px}
-.showcase-nick{color:var(--gold);font-size:13px;font-weight:700;margin-bottom:8px}
+.showcase-nick{color:var(--gold);font-size:13px;font-weight:700;margin-bottom:4px}
+.showcase-exported{font-size:11px;color:var(--ink-dim);margin-bottom:8px;letter-spacing:.02em}
 .guild-section{margin:8px 0 10px;display:flex;flex-direction:column;gap:5px}
 .guild-row{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-dim);flex-wrap:wrap}
 .guild-row.current{color:var(--ink)}
@@ -6533,6 +6533,8 @@ a{color:inherit}
 .lang-opt+.lang-opt{border-left:1px solid rgba(255,255,255,.12)}
 /* porto */
 .porto-section{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.porto-et-row{display:flex;gap:16px;align-items:flex-start}
+.porto-et-col{flex:1;min-width:0}
 .porto-label{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .porto-label-row{display:flex;justify-content:space-between;margin-bottom:6px}
 .porto-label-row .porto-label{margin-bottom:0}
@@ -6644,6 +6646,7 @@ a{color:inherit}
   </div>
   <div class="showcase-name" style="font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px">${name}</div>
   ${nick ? `<div class="showcase-nick">${nick}</div>` : ""}
+  <div class="showcase-exported">Last exported: ${new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</div>
   ${guildHTML}
   <div class="showcase-meta">
     ${github ? `<a href="https://github.com/${github}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;opacity:.8"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>github.com/${github}</a> · ` : ""}
@@ -7113,6 +7116,7 @@ Please open the ulong RPG website, check the available quests for my jobs, find 
     renderPyramid();
     renderCards();
     renderProfileChip();
+    document.getElementById("footer-last-push").textContent = "Last push: " + LAST_PUSH;
     loadQuestIndex();
 
     // Scroll to top button
