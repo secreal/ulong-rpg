@@ -6181,36 +6181,20 @@
           }).join(", ");
         }
 
-        function toAlphaGroups(items, keyFn, currentTitle) {
-          const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name, "id", { sensitivity: "base" }));
-          const groups = {};
-          sorted.forEach(item => {
-            const letter = item.name[0].toUpperCase();
-            if (!groups[letter]) groups[letter] = [];
-            groups[letter].push(item);
-          });
-          return Object.keys(groups).sort().map(letter => {
-            const pills = groups[letter].map(item => {
-              const lv = Math.min(3, Number(keyFn(item)) || 1);
-              const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
-              const tip = escAttr(descriptionTextFor(item, currentLang));
-              const sjobs = sharedJobs(item, currentTitle);
-              const isShared = sjobs.length > 0;
-              const shownKey = `${item.id}`;
-
-              // Shared item already shown in earlier card — skip
-              if (isShared && shownSharedItems.has(shownKey)) return "";
-
-              let style = "";
-              if (isShared) {
-                shownSharedItems.add(shownKey);
-                style = ` style="box-shadow:${sharedShadow(sjobs)};position:relative"`;
-              }
-              return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}"${style}>${escAttr(item.name)}${badge}</span>`;
-            }).join("");
-            if (!pills) return "";
-            return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pills}</div></div>`;
-          }).join("");
+        function buildPill(item, keyFn, currentTitle) {
+          const lv = Math.min(3, Number(keyFn(item)) || 1);
+          const badge = lv > 0 ? `<span class="skill-lv-badge">${LV[lv]}</span>` : "";
+          const tip = escAttr(descriptionTextFor(item, currentLang));
+          const sjobs = sharedJobs(item, currentTitle);
+          const isShared = sjobs.length > 0;
+          const shownKey = `${item.id}`;
+          if (isShared && shownSharedItems.has(shownKey)) return "";
+          let style = "";
+          if (isShared) {
+            shownSharedItems.add(shownKey);
+            style = ` style="box-shadow:${sharedShadow(sjobs)};position:relative"`;
+          }
+          return `<span class="skill lv${lv}" tabindex="0" data-tip="${tip}"${style}>${escAttr(item.name)}${badge}</span>`;
         }
 
         // Own items (tagged directly to this job)
@@ -6229,7 +6213,6 @@
               subTalentCounts.set(t.id, (subTalentCounts.get(t.id) || 0) + 1);
             });
           });
-          // Shared = appears in 2+ sub-jobs and not already in own equip/talent list
           const ownEquipIds = new Set(equipItems.map(e => e.id));
           const ownTalentIds = new Set(talentItems.map(t => t.id));
           snapEquip.filter(e => (subEquipCounts.get(e.id) || 0) >= 2 && !ownEquipIds.has(e.id))
@@ -6238,13 +6221,48 @@
             .forEach(t => talentItems.push(t));
         }
 
-        const equipHtml = equipItems.length ? toAlphaGroups(equipItems, e => snap[`equip::${e.id}`], title) : "";
-        const talentHtml = talentItems.length ? toAlphaGroups(talentItems, t => snap[`talent::${t.id}`], title) : "";
-        if (!equipHtml && !talentHtml) return "";
-        return `<div class="porto-section porto-et-row">
-          ${equipHtml ? `<div class="porto-et-col"><div class="porto-label">Equipment</div>${equipHtml}</div>` : ""}
-          ${talentHtml ? `<div class="porto-et-col"><div class="porto-label">Talent</div>${talentHtml}</div>` : ""}
-        </div>`;
+        if (!equipItems.length && !talentItems.length) return "";
+
+        // Build combined alpha groups: Equipment pills left, Talent pills right (spacer between)
+        const allLetters = new Set([
+          ...equipItems.map(e => e.name[0].toUpperCase()),
+          ...talentItems.map(t => t.name[0].toUpperCase()),
+        ]);
+        const sortItem = (a, b) => a.name.localeCompare(b.name, "id", { sensitivity: "base" });
+        const equipByLetter = {};
+        [...equipItems].sort(sortItem).forEach(e => {
+          const l = e.name[0].toUpperCase();
+          (equipByLetter[l] = equipByLetter[l] || []).push(e);
+        });
+        const talentByLetter = {};
+        [...talentItems].sort(sortItem).forEach(t => {
+          const l = t.name[0].toUpperCase();
+          (talentByLetter[l] = talentByLetter[l] || []).push(t);
+        });
+
+        const groupsHtml = [...allLetters].sort().map(letter => {
+          const ePills = (equipByLetter[letter] || []).map(e => buildPill(e, e => snap[`equip::${e.id}`], title)).join("");
+          const tPills = (talentByLetter[letter] || []).map(t => buildPill(t, t => snap[`talent::${t.id}`], title)).join("");
+          if (!ePills && !tPills) return "";
+          let pillsHtml;
+          if (ePills && tPills) {
+            pillsHtml = ePills + `<span class="alpha-group-spacer"></span>` + tPills;
+          } else {
+            pillsHtml = ePills || tPills;
+          }
+          return `<div class="alpha-group"><span class="alpha-group-header">${letter}</span><div class="alpha-group-pills">${pillsHtml}</div></div>`;
+        }).join("");
+
+        if (!groupsHtml) return "";
+
+        const hasEquip = equipItems.length > 0;
+        const hasTalent = talentItems.length > 0;
+        const labelRow = (hasEquip || hasTalent) ? `<div class="porto-label-row">
+          ${hasEquip ? `<span class="porto-label">Equipment</span>` : `<span></span>`}
+          ${hasTalent ? `<span class="porto-label">Talent</span>` : ""}
+        </div>` : "";
+
+        return `<div class="porto-section">${labelRow}${groupsHtml}</div>`;
       }
 
       function buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass, equipTalentOverride = null) {
