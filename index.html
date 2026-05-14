@@ -4051,7 +4051,9 @@
     }
 
     function renderSkills(title, skills) {
-      return `<div class="skill-list-alpha">${buildSkillAlphaGroupsHtml(title, skills.split(", "))}</div>`;
+      const list = skills ? skills.split(", ").filter(Boolean) : [];
+      if (!list.length) return "";
+      return `<div class="skill-list-alpha">${buildSkillAlphaGroupsHtml(title, list)}</div>`;
     }
 
     function renderAchievementLinks(title) {
