@@ -6202,24 +6202,18 @@
         let equipItems = snapEquip.filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`]);
         let talentItems = snapTalent.filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`]);
 
-        // For anchor cards: also collect shared items from sub-jobs (items appearing in 2+ sub-jobs)
+        // For anchor cards: collect all unlocked items from sub-jobs
         if (subTitles.length > 0) {
-          const subEquipCounts = new Map();
-          const subTalentCounts = new Map();
-          subTitles.forEach(st => {
-            snapEquip.filter(e => (e.tags || []).includes(st) && snap[`equip::${e.id}`]).forEach(e => {
-              subEquipCounts.set(e.id, (subEquipCounts.get(e.id) || 0) + 1);
-            });
-            snapTalent.filter(t => (t.tags || []).includes(st) && snap[`talent::${t.id}`]).forEach(t => {
-              subTalentCounts.set(t.id, (subTalentCounts.get(t.id) || 0) + 1);
-            });
-          });
           const ownEquipIds = new Set(equipItems.map(e => e.id));
           const ownTalentIds = new Set(talentItems.map(t => t.id));
-          snapEquip.filter(e => (subEquipCounts.get(e.id) || 0) >= 2 && !ownEquipIds.has(e.id))
-            .forEach(e => equipItems.push(e));
-          snapTalent.filter(t => (subTalentCounts.get(t.id) || 0) >= 2 && !ownTalentIds.has(t.id))
-            .forEach(t => talentItems.push(t));
+          const seenEquip = new Set(ownEquipIds);
+          const seenTalent = new Set(ownTalentIds);
+          subTitles.forEach(st => {
+            snapEquip.filter(e => (e.tags || []).includes(st) && snap[`equip::${e.id}`] && !seenEquip.has(e.id))
+              .forEach(e => { seenEquip.add(e.id); equipItems.push(e); });
+            snapTalent.filter(t => (t.tags || []).includes(st) && snap[`talent::${t.id}`] && !seenTalent.has(t.id))
+              .forEach(t => { seenTalent.add(t.id); talentItems.push(t); });
+          });
         }
 
         if (!equipItems.length && !talentItems.length) return "";
