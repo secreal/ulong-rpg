@@ -877,6 +877,7 @@
       margin: 10px 0 0;
     }
     .btn-full-row { width: 100%; flex-basis: 100%; }
+    .card-actions-col { flex-direction: column; }
 
     .btn-open-detail {
       display: inline-flex; align-items: center; gap: 4px;
@@ -4133,9 +4134,9 @@
                   <strong class="salary">${displaySalary}</strong>
                   ${isEN ? `<small class="salary-note">${UI_STRINGS.en.salaryNote}</small>` : ""}
                 </div>
-                <div class="card-actions-row">
+                <div class="card-actions-row${tier === 0 ? " card-actions-col" : ""}">
                   ${tier === 0 ? `
-                  <button class="btn-open-detail btn-full-row" data-job="${title}" data-role="${role}" data-tab="quest">${TAB_ICONS.quest} Perguruan Ulong</button>
+                  <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">${TAB_ICONS.quest} Perguruan Ulong</button>
                   <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="achievement">${TAB_ICONS.achievement} Achievement</button>
                   ` : `
                   <button class="btn-open-detail" data-job="${title}" data-role="${role}" data-tab="quest">${TAB_ICONS.quest} Quest</button>
