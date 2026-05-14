@@ -6155,7 +6155,7 @@
       // Track which items have already appeared in an earlier card (for "show once" rule)
       const shownSharedItems = new Set();
 
-      function buildEquipTalentSection(title) {
+      function buildEquipTalentSection(title, subTitles = []) {
         const LV = ["", "Lv 1", "Lv 2", "Lv 3"];
 
         // Jobs that have any equip/talent unlocked
@@ -6213,8 +6213,30 @@
           }).join("");
         }
 
-        const equipItems = snapEquip.filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`]);
-        const talentItems = snapTalent.filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`]);
+        // Own items (tagged directly to this job)
+        let equipItems = snapEquip.filter(e => (e.tags || []).includes(title) && snap[`equip::${e.id}`]);
+        let talentItems = snapTalent.filter(t => (t.tags || []).includes(title) && snap[`talent::${t.id}`]);
+
+        // For anchor cards: also collect shared items from sub-jobs (items appearing in 2+ sub-jobs)
+        if (subTitles.length > 0) {
+          const subEquipCounts = new Map();
+          const subTalentCounts = new Map();
+          subTitles.forEach(st => {
+            snapEquip.filter(e => (e.tags || []).includes(st) && snap[`equip::${e.id}`]).forEach(e => {
+              subEquipCounts.set(e.id, (subEquipCounts.get(e.id) || 0) + 1);
+            });
+            snapTalent.filter(t => (t.tags || []).includes(st) && snap[`talent::${t.id}`]).forEach(t => {
+              subTalentCounts.set(t.id, (subTalentCounts.get(t.id) || 0) + 1);
+            });
+          });
+          // Shared = appears in 2+ sub-jobs and not already in own equip/talent list
+          const ownEquipIds = new Set(equipItems.map(e => e.id));
+          const ownTalentIds = new Set(talentItems.map(t => t.id));
+          snapEquip.filter(e => (subEquipCounts.get(e.id) || 0) >= 2 && !ownEquipIds.has(e.id))
+            .forEach(e => equipItems.push(e));
+          snapTalent.filter(t => (subTalentCounts.get(t.id) || 0) >= 2 && !ownTalentIds.has(t.id))
+            .forEach(t => talentItems.push(t));
+        }
 
         const equipHtml = equipItems.length ? toAlphaGroups(equipItems, e => snap[`equip::${e.id}`], title) : "";
         const talentHtml = talentItems.length ? toAlphaGroups(talentItems, t => snap[`talent::${t.id}`], title) : "";
@@ -6225,7 +6247,7 @@
         </div>`;
       }
 
-      function buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass) {
+      function buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass, equipTalentOverride = null) {
         const tc = tierColors[tier] || "#6b7280";
         const descEN   = jobDescs_en[title] || desc;
         const salaryEN = salaries_en[title] || salary;
@@ -6250,7 +6272,7 @@
       <h2 class="card-title">${title}</h2>
       <p class="desc" data-txt-id="${desc}" data-txt-en="${descEN}">${descEN}</p>
       <div class="skill-list">${buildSkillBadges(title, skills)}</div>
-      ${tier !== 0 ? buildEquipTalentSection(title) : ""}
+      ${tier !== 0 ? (equipTalentOverride !== null ? equipTalentOverride : buildEquipTalentSection(title)) : ""}
       ${buildLinksSection(title)}
       <div class="salary-row">
         <span class="salary-label">Salary</span>
@@ -6270,6 +6292,10 @@
           const subJobsData = (validJobChange.subs || [])
             .map(subTitle => filteredJobs.find(([,t]) => t === subTitle))
             .filter(Boolean);
+
+          // Build anchor equip/talent first (collects shared sub-job items) so shownSharedItems is populated before sub-cards
+          const subTitles = subJobsData.map(j => j[1]);
+          const anchorEquipTalent = tier !== 0 ? buildEquipTalentSection(title, subTitles) : "";
 
           const subsHTML = subJobsData.map(([sg, st, sd, ss, ssal, srole, shair, stool, stier, scs, sacc]) => {
             const stc = tierColors[stier] || "#6b7280";
@@ -6311,7 +6337,7 @@
           anchorHTML = `
   <article class="card anchor-card${hasSubs ? " has-subs" : ""}" style="--role:${role};--hair:${hair};${charStyle}" data-panel="anchor-panel-0">
     <div class="anchor-badge">⚓ Active Identity</div>
-    ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass)}
+    ${buildCardInner(grp, title, desc, skills, salary, role, hair, tool, tier, charStyle, accClass, anchorEquipTalent)}
     ${hasSubs ? `<div class="anchor-expand-hint">▼ ${subJobsData.length} sub-skill${subJobsData.length > 1 ? "s" : ""} — click to expand</div>` : ""}
   </article>
   <div class="anchor-panel" id="anchor-panel-0" hidden>
