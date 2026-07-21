@@ -5967,12 +5967,98 @@
       return `# ${displayName} - ulong RPG Showcase\n\nView the live showcase: [${github}.github.io/ulong](${liveUrl})\n`;
     }
 
-    function triggerDownload(html) {
-      const blob = new Blob([html], { type: "text/html" });
+    async function getRepositoryReadmeState(github, fetchImpl = fetch) {
+      const unknownState = { repository: "unknown", branch: "main", readmePath: "README.md" };
+      let repoResponse;
+
+      try {
+        repoResponse = await fetchImpl(`https://api.github.com/repos/${github}/ulong`);
+      } catch {
+        return unknownState;
+      }
+
+      if (repoResponse.status === 404) {
+        return { repository: "new", branch: "main", readmePath: null };
+      }
+      if (!repoResponse.ok) return unknownState;
+
+      let repository;
+      try {
+        repository = await repoResponse.json();
+      } catch {
+        return unknownState;
+      }
+
+      const branch = repository.default_branch || "main";
+      if (repository.size === 0) {
+        return { repository: "empty", branch, readmePath: null };
+      }
+
+      try {
+        const readmeResponse = await fetchImpl(`https://api.github.com/repos/${github}/ulong/readme`);
+        if (readmeResponse.status === 404) {
+          return { repository: "existing", branch, readmePath: null };
+        }
+        if (!readmeResponse.ok) {
+          return { repository: "existing", branch, readmePath: "README.md" };
+        }
+
+        const readme = await readmeResponse.json();
+        return {
+          repository: "existing",
+          branch,
+          readmePath: typeof readme.path === "string" && readme.path ? readme.path : "README.md",
+        };
+      } catch {
+        return { repository: "existing", branch, readmePath: "README.md" };
+      }
+    }
+
+    function getReadmeAction(github, branch, readmePath) {
+      const repoUrl = `https://github.com/${github}/ulong`;
+      const encodedBranch = encodeURIComponent(branch);
+      if (!readmePath) {
+        return { label: "Copy README & Create", url: `${repoUrl}/new/${encodedBranch}` };
+      }
+
+      const encodedPath = readmePath.split("/").map(encodeURIComponent).join("/");
+      return { label: "Copy README & Edit", url: `${repoUrl}/edit/${encodedBranch}/${encodedPath}` };
+    }
+
+    function createReadmeActionHandler(readmeContent, readmeButton, clipboard, download) {
+      let pending = false;
+
+      return async () => {
+        if (pending) return false;
+        pending = true;
+
+        try {
+          if (clipboard?.writeText) {
+            try {
+              await clipboard.writeText(readmeContent);
+              readmeButton.textContent = "✓ README Copied";
+              return true;
+            } catch { /* denied — fall back to a file download */ }
+          }
+
+          download(readmeContent, "README.md", "text/markdown");
+          return false;
+        } finally {
+          pending = false;
+        }
+      };
+    }
+
+    function triggerContentDownload(content, filename, type) {
+      const blob = new Blob([content], { type });
       const url  = URL.createObjectURL(blob);
       const a    = document.createElement("a");
-      a.href = url; a.download = "index.html"; a.click();
-      URL.revokeObjectURL(url);
+      a.href = url; a.download = filename; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 0);
+    }
+
+    function triggerDownload(html) {
+      triggerContentDownload(html, "index.html", "text/html");
     }
 
     document.getElementById("export-fallback-dl").addEventListener("click", async e => {
@@ -5981,15 +6067,11 @@
       if (html) triggerDownload(html);
     });
 
-    function makeStep(num, label, sub, btnText, btnHref, btnClass, isDone, isActive, downloadName = "") {
+    function makeStep(num, label, sub, btnText, btnHref, btnClass, isDone, isActive) {
       const state = isDone ? "done" : isActive ? "active" : "";
       const icon  = isDone ? "✓" : num;
-      const actionAttrs = downloadName
-        ? ` download="${downloadName}"`
-        : ` target="_blank" rel="noopener"`;
-      const actionSuffix = downloadName ? "" : " ↗";
       const btnHtml = btnText && btnHref
-        ? `<a class="export-step-btn${btnClass ? " " + btnClass : ""}" href="${btnHref}"${actionAttrs}>${btnText}${actionSuffix}</a>`
+        ? `<a class="export-step-btn${btnClass ? " " + btnClass : ""}" href="${btnHref}" target="_blank" rel="noopener">${btnText} ↗</a>`
         : "";
       return `<div class="export-step${state ? " " + state : ""}">
         <div class="export-step-num">${icon}</div>
@@ -6039,32 +6121,37 @@
       }
 
       // Detect repo state then build steps
-      let repoExists = false, repoEmpty = false, branch = "main";
-      try {
-        const res = await fetch(`https://api.github.com/repos/${prof.github}/ulong`);
-        if (res.ok) {
-          const d = await res.json();
-          repoExists = true;
-          repoEmpty  = d.size === 0;
-          branch     = d.default_branch || "main";
-        }
-      } catch { /* offline — assume not found */ }
+      const repositoryState = await getRepositoryReadmeState(prof.github);
+      if (repositoryState.repository === "unknown") {
+        notice.className = "export-repo-notice not-found show";
+        notice.textContent = "Status repository GitHub tidak bisa diperiksa. Coba ekspor lagi.";
+        guide.innerHTML = "";
+        guide.classList.remove("show");
+        fallbackWrap.style.display = copied ? "none" : "block";
+        return;
+      }
+
+      const repoExists = repositoryState.repository === "existing" || repositoryState.repository === "empty";
+      const repoEmpty  = repositoryState.repository === "empty";
+      const branch     = repositoryState.branch;
 
       const createRepoUrl  = `https://github.com/new?name=ulong&visibility=public`;
       const newFileUrl     = `https://github.com/${prof.github}/ulong/new/${branch}`;
       const editFileUrl    = `https://github.com/${prof.github}/ulong/edit/${branch}/index.html`;
       const pagesUrl       = `https://github.com/${prof.github}/ulong/settings/pages`;
       const liveUrl        = `https://${prof.github}.github.io/ulong/`;
-      const readmeDownloadUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(generateShowcaseREADME(prof))}`;
+      const readmeContent  = generateShowcaseREADME(prof);
+      const readmeAction   = getReadmeAction(prof.github, branch, repositoryState.readmePath);
+      const readmeStepSub  = `Klik untuk copy isi README dan buka GitHub. Paste lalu commit sebagai <code>README.md</code>; link menuju <code>${prof.github}.github.io/ulong</code>.`;
 
       let steps = "";
       if (!repoExists) {
         // Step 1: create repo
-        steps += makeStep(1, `Buat repo <strong>ulong</strong> di GitHub`, `Centang "Add a README file" agar repo langsung punya branch main`, "Buat repo ulong", createRepoUrl, "", false, true);
+        steps += makeStep(1, `Buat repo <strong>ulong</strong> di GitHub`, `Buat repo public kosong; langkah berikutnya akan menginisialisasi isinya.`, "Buat repo ulong", createRepoUrl, "", false, true);
         // Step 2: copy & create index.html (HTML sudah di-copy di atas)
         steps += makeStep(2, `Buat file <code>index.html</code> di repo`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub.`, "Buka Create New File", newFileUrl, "", false, false);
         // Step 3: repository README with a direct link to the live showcase
-        steps += makeStep(3, `Ganti <code>README.md</code> di root repo`, `Download lalu upload file ini. Link-nya otomatis menuju <code>${prof.github}.github.io/ulong</code>.`, "Download README.md", readmeDownloadUrl, "", false, false, "README.md");
+        steps += makeStep(3, `Tambahkan <code>README.md</code> di root repo`, readmeStepSub, readmeAction.label, readmeAction.url, "export-readme-action", false, false);
         // Step 4: pages
         steps += makeStep(4, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
         // Step 5: live
@@ -6073,7 +6160,7 @@
         // Repo ada tapi kosong (belum ada commit)
         steps += makeStep(1, `Repo <strong>${prof.github}/ulong</strong> ditemukan ✓`, `Tapi masih kosong — belum ada branch/commit`, null, null, "", true, false);
         steps += makeStep(2, `Buat file <code>index.html</code>`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub, lalu commit.`, "Buka Create New File", newFileUrl, "", false, true);
-        steps += makeStep(3, `Tambahkan <code>README.md</code> di root repo`, `Download lalu upload file ini. Link-nya otomatis menuju <code>${prof.github}.github.io/ulong</code>.`, "Download README.md", readmeDownloadUrl, "", false, false, "README.md");
+        steps += makeStep(3, `Tambahkan <code>README.md</code> di root repo`, readmeStepSub, readmeAction.label, readmeAction.url, "export-readme-action", false, false);
         steps += makeStep(4, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
         steps += makeStep(5, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
         window.open(newFileUrl, "_blank", "noopener");
@@ -6081,7 +6168,7 @@
         // Repo ada dan punya file — update mode
         steps += makeStep(1, `Repo <strong>${prof.github}/ulong</strong> ditemukan ✓`, null, null, null, "", true, false);
         steps += makeStep(2, `Update <code>index.html</code>`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub, lalu commit.`, "Buka Edit index.html", editFileUrl, "", false, true);
-        steps += makeStep(3, `Update <code>README.md</code> di root repo`, `Download lalu upload file ini. Link-nya otomatis menuju <code>${prof.github}.github.io/ulong</code>.`, "Download README.md", readmeDownloadUrl, "", false, false, "README.md");
+        steps += makeStep(3, `Update <code>README.md</code> di root repo`, readmeStepSub, readmeAction.label, readmeAction.url, "export-readme-action", false, false);
         steps += makeStep(4, `Aktifkan GitHub Pages <em style="opacity:.6">(jika belum)</em>`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
         steps += makeStep(5, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
         window.open(editFileUrl, "_blank", "noopener");
@@ -6089,6 +6176,15 @@
 
       guide.innerHTML = steps;
       guide.classList.add("show");
+      const readmeButton = guide.querySelector(".export-readme-action");
+      if (readmeButton) {
+        readmeButton.addEventListener("click", createReadmeActionHandler(
+          readmeContent,
+          readmeButton,
+          navigator.clipboard,
+          triggerContentDownload,
+        ));
+      }
       fallbackWrap.style.display = copied ? "none" : "block";
     });
 
