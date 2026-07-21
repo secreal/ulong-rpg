@@ -53,6 +53,8 @@ Sources:
 
 ### 1. Quest Data Health Dashboard
 
+**Status:** Implemented on `main`.
+
 Create a repo-side data health report for `data/target-quests/*.json`: duplicated source labels, suspicious generic links, missing bilingual description fields, missing `fundamental`, invalid level counts, broken URLs, and target names that no longer match progress keys.
 
 Warrant: `data/target-quests` has 553 targets and 5.530 quests; repeated link labels are extremely concentrated. That is a maintainability risk before it is a UI problem.
@@ -60,6 +62,8 @@ Warrant: `data/target-quests` has 553 targets and 5.530 quests; repeated link la
 Why it matters: The game is becoming data-driven. If the data quality is not visible, future content work will silently drift.
 
 ### 2. Fundamental Dependency Graph
+
+**Status:** Selected for the next autonomous implementation.
 
 Upgrade `fundamental: true/false` from a simple daily sorting flag into a lightweight dependency graph: each non-fundamental target can list prerequisite target ids, while fundamentals stay dependency-free.
 
@@ -117,14 +121,14 @@ Why it matters: It reduces collaboration friction between agents and prevents fu
 
 ## Best Next Brainstorm Candidate
 
-The strongest next `ce-brainstorm` topic is **Quest Data Health Dashboard**.
+The strongest next `ce-brainstorm` topic is **Fundamental Dependency Graph**.
 
-**Status:** Selected for implementation on 2026-07-22 through the autonomous LFG pipeline. The implementation scope is data/logic only; UI remains Claude-owned.
+**Status:** Selected for implementation on 2026-07-22 through the autonomous LFG pipeline. The implementation scope is data contracts, dependency authoring, validation, and handoff documentation; UI remains Claude-owned.
 
-Reason: It compounds every future content batch. Before adding more quests, equipment, talents, or dependency rules, the project needs a way to see whether the data is becoming better or just bigger.
+Reason: The health dashboard is now implemented. The next compounding move is to turn the existing but empty `prerequisiteTargets` arrays into a trustworthy learning-path contract before Claude consumes them for daily-quest eligibility.
 
 Suggested prompt:
 
 ```text
-$ce-brainstorm Quest Data Health Dashboard untuk ulong RPG. Fokusnya bukan UI dulu, tapi data checks/report apa saja yang harus ada untuk menjaga kualitas data target quest, equipment, talent, dan skill.
+$ce-brainstorm Fundamental Dependency Graph untuk ulong RPG. Fokus pada kontrak referensi lintas skill/equipment/talent, aturan eligibility, authoring seluruh dependency, dan validasi graph; UI tetap di luar scope.
 ```

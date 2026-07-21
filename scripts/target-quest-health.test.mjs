@@ -56,7 +56,7 @@ function createFixture() {
   fixtureRoots.add(rootDir);
   fs.writeFileSync(
     path.join(rootDir, "index.html"),
-    'const jobs = [\n      ["group", "Job", "Description", "Version Control"]\n    ];\n',
+    'const jobs = [\n      ["group", "Frontend Developer", "Description", "Version Control"]\n    ];\n',
     "utf8",
   );
 
@@ -65,6 +65,7 @@ function createFixture() {
       id: "git",
       name: "Git",
       description: { en: "Version control tool.", id: "Alat version control." },
+      tags: ["Frontend Developer"],
     }],
   });
   writeJson(path.join(rootDir, "data", "talents.json"), {
@@ -72,6 +73,7 @@ function createFixture() {
       id: "html-css",
       name: "HTML & CSS",
       description: { en: "Web foundations.", id: "Dasar web." },
+      tags: ["Frontend Developer"],
     }],
   });
   writeJson(path.join(rootDir, "data", "target-quests", "index.json"), {
@@ -117,9 +119,43 @@ test("healthy fixture reports deterministic catalog totals", () => {
     errors: 0,
     warnings: 0,
   });
+  assert.deepEqual(first.dependencies, {
+    edges: 0,
+    maxDepth: 0,
+    withoutPrerequisites: [],
+  });
+  assert.equal(first.version, 2);
   assert.equal(formatHealthReport(first, "json"), formatHealthReport(second, "json"));
   assert.match(formatHealthReport(first, "markdown"), /\| \*\*Total\*\* \| \*\*3\*\* \| \*\*30\*\*/);
   assert.match(formatHealthReport(first, "text"), /Targets: 3 \| Quests: 30/);
+});
+
+test("cross-kind dependencies appear consistently in every report format", () => {
+  const rootDir = createFixture();
+  const equipmentPath = path.join(rootDir, "data", "target-quests", "equipment.json");
+  const talentPath = path.join(rootDir, "data", "target-quests", "talents.json");
+  const equipment = JSON.parse(fs.readFileSync(equipmentPath, "utf8"));
+  const talents = JSON.parse(fs.readFileSync(talentPath, "utf8"));
+
+  equipment.targets[0].fundamental = false;
+  equipment.targets[0].learningStage = "dependent";
+  equipment.targets[0].prerequisiteTargets = ["skill:version-control"];
+  talents.targets[0].fundamental = false;
+  talents.targets[0].learningStage = "dependent";
+  talents.targets[0].prerequisiteTargets = ["equipment:git"];
+  writeJson(equipmentPath, equipment);
+  writeJson(talentPath, talents);
+
+  const report = analyzeTargetQuestHealth(rootDir);
+
+  assert.deepEqual(report.dependencies, {
+    edges: 2,
+    maxDepth: 2,
+    withoutPrerequisites: [],
+  });
+  assert.match(formatHealthReport(report, "text"), /Dependencies: 2 edges \| Max depth: 2 \| Missing: 0/);
+  assert.match(formatHealthReport(report, "markdown"), /\| Edges \| Maximum depth \| Missing prerequisites \|/);
+  assert.match(formatHealthReport(report, "json"), /"maxDepth": 2/);
 });
 
 test("invalid fixture emits stable structural, identity, localization, and source findings", () => {
@@ -185,6 +221,14 @@ test("missing and malformed declared files become findings", () => {
   const ruleIds = report.findings.map(finding => finding.ruleId);
   assert.ok(ruleIds.includes("missing-file"));
   assert.ok(ruleIds.includes("invalid-json"));
+  assert.equal(ruleIds.filter(ruleId => ruleId === "dependency-analysis-incomplete").length, 1);
+  assert.deepEqual(report.dependencies, {
+    edges: null,
+    maxDepth: null,
+    withoutPrerequisites: null,
+  });
+  assert.equal(ruleIds.includes("unresolved-prerequisite"), false);
+  assert.equal(ruleIds.includes("unrooted-dependent"), false);
 });
 
 test("CLI validates arguments and writes requested output", () => {

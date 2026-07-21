@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { analyzeTargetQuestGraph } from "./target-quest-graph.mjs";
+
 const KINDS = ["skill", "equipment", "talent"];
 const LEVELS = ["1", "2", "3"];
 const SEVERITY_ORDER = { error: 0, warning: 1 };
@@ -281,6 +283,7 @@ function analyzeTarget({
   seenQuestIds,
   sourceUsage,
   metrics,
+  graphTargets,
   addFinding,
 }) {
   const location = `${fileLocation}:targets[${targetIndex}]`;
@@ -324,20 +327,15 @@ function analyzeTarget({
       { actual: target.learningStage, expected: expectedStage },
     );
   }
-  if (!Array.isArray(target.prerequisiteTargets)) {
-    addFinding("prerequisite-targets-shape", "error", location, "prerequisiteTargets must be an array.");
-  }
-  if (target.fundamental === true && Array.isArray(target.prerequisiteTargets) && target.prerequisiteTargets.length > 0) {
-    addFinding(
-      "fundamental-has-prerequisites",
-      "warning",
-      location,
-      "Fundamental target declares prerequisite targets.",
-      { prerequisiteTargets: [...target.prerequisiteTargets].sort() },
-    );
-  }
-
   validateTargetIdentity({ kind, target, location, canonicalSkills, equipment, talents, addFinding });
+
+  graphTargets.push({
+    kind,
+    targetId: target.targetId,
+    fundamental: target.fundamental,
+    prerequisiteTargets: target.prerequisiteTargets,
+    location,
+  });
 
   analyzeQuest({
     quest: target.intro,
@@ -443,11 +441,14 @@ export function analyzeTargetQuestHealth(rootDir, overrides = {}) {
   const seenTargets = new Set();
   const seenQuestIds = new Map();
   const sourceUsage = new Map();
+  const graphTargets = [];
   const seenIndexKinds = new Set();
   const seenAvailableKinds = new Set();
+  let dependencyAnalysisComplete = true;
 
   const indexPath = path.join(rootDir, "data", "target-quests", "index.json");
   const index = readJson(rootDir, indexPath, addFinding);
+  if (!index) dependencyAnalysisComplete = false;
   if (index && !Array.isArray(index.questFiles)) {
     addFinding("index-shape", "error", "data/target-quests/index.json", "questFiles must be an array.");
   }
@@ -477,18 +478,23 @@ export function analyzeTargetQuestHealth(rootDir, overrides = {}) {
     seenAvailableKinds.add(entry.kind);
     if (typeof entry.file !== "string" || !entry.file.trim()) {
       addFinding("missing-index-field", "error", entryLocation, "Available quest file entry is missing file.");
+      dependencyAnalysisComplete = false;
       continue;
     }
 
     const filePath = path.join(rootDir, "data", "target-quests", entry.file);
     const fileLocation = relativePath(rootDir, filePath);
     const data = readJson(rootDir, filePath, addFinding);
-    if (!data) continue;
+    if (!data) {
+      dependencyAnalysisComplete = false;
+      continue;
+    }
     if (data.kind !== entry.kind) {
       addFinding("file-kind-mismatch", "error", fileLocation, `File kind must be "${entry.kind}".`, { actual: data.kind });
     }
     if (!Array.isArray(data.targets)) {
       addFinding("targets-shape", "error", fileLocation, "targets must be an array.");
+      dependencyAnalysisComplete = false;
       continue;
     }
     data.targets.forEach((target, targetIndex) => analyzeTarget({
@@ -503,6 +509,7 @@ export function analyzeTargetQuestHealth(rootDir, overrides = {}) {
       seenQuestIds,
       sourceUsage,
       metrics: kinds[entry.kind],
+      graphTargets,
       addFinding,
     }));
   }
@@ -511,6 +518,21 @@ export function analyzeTargetQuestHealth(rootDir, overrides = {}) {
     if (!seenIndexKinds.has(kind)) {
       addFinding("missing-index-kind", "error", "data/target-quests/index.json", `Missing target quest entry for "${kind}".`);
     }
+  }
+
+  let dependencies;
+  if (dependencyAnalysisComplete) {
+    const graph = analyzeTargetQuestGraph(graphTargets);
+    findings.push(...graph.findings);
+    dependencies = graph.dependencies;
+  } else {
+    addFinding(
+      "dependency-analysis-incomplete",
+      "error",
+      "data/target-quests",
+      "Dependency analysis was skipped because one or more available catalogs could not be loaded.",
+    );
+    dependencies = { edges: null, maxDepth: null, withoutPrerequisites: null };
   }
 
   for (const kind of KINDS) {
@@ -536,10 +558,11 @@ export function analyzeTargetQuestHealth(rootDir, overrides = {}) {
   };
 
   return {
-    version: 1,
+    version: 2,
     status: errorCount > 0 ? "error" : warningCount > 0 ? "warning" : "healthy",
     summary,
     kinds,
+    dependencies,
     findings,
   };
 }
@@ -561,6 +584,7 @@ export function formatHealthReport(report, format = "text") {
       lines.push(`| ${kind} | ${metrics.targets} | ${metrics.quests} | ${metrics.fundamental} | ${metrics.dependent} | ${metrics.uniqueSources} |`);
     }
     lines.push(`| **Total** | **${report.summary.targets}** | **${report.summary.quests}** | **${report.summary.fundamental}** | **${report.summary.dependent}** | **${report.summary.uniqueSources}** |`);
+    lines.push("", "## Dependencies", "", "| Edges | Maximum depth | Missing prerequisites |", "|---:|---:|---:|", `| ${report.dependencies.edges ?? "Unavailable"} | ${report.dependencies.maxDepth ?? "Unavailable"} | ${report.dependencies.withoutPrerequisites?.length ?? "Unavailable"} |`);
     lines.push("", `Errors: **${report.summary.errors}**  `, `Warnings: **${report.summary.warnings}**`, "", "## Findings", "");
     if (report.findings.length === 0) {
       lines.push("No findings.");
@@ -582,6 +606,7 @@ export function formatHealthReport(report, format = "text") {
   lines.push(`Target quest health: ${report.status.toUpperCase()}`);
   lines.push(`Targets: ${report.summary.targets} | Quests: ${report.summary.quests} | Sources: ${report.summary.uniqueSources}`);
   lines.push(`Fundamental: ${report.summary.fundamental} | Dependent: ${report.summary.dependent}`);
+  lines.push(`Dependencies: ${report.dependencies.edges ?? "unavailable"} edges | Max depth: ${report.dependencies.maxDepth ?? "unavailable"} | Missing: ${report.dependencies.withoutPrerequisites?.length ?? "unavailable"}`);
   lines.push(`Errors: ${report.summary.errors} | Warnings: ${report.summary.warnings}`);
   for (const finding of report.findings) {
     lines.push(`[${finding.severity.toUpperCase()}] ${finding.ruleId} ${finding.location}: ${finding.message}${formatDetails(finding.details)}`);
