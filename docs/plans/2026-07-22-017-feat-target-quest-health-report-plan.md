@@ -1,7 +1,7 @@
 ---
 title: "feat: Add Target Quest Health Report"
 type: feat
-status: active
+status: completed
 date: 2026-07-22
 origin: docs/ideation/2026-07-22-surprise-me-ulong-rpg.md
 ---
