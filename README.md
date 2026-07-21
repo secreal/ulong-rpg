@@ -65,12 +65,33 @@ Tambahkan dirimu ke tabel Hall of Fame dengan langkah berikut:
 
 ```
 ulong-rpg/
-├── index.html      # Seluruh app (single-file — HTML + CSS + JS)
+├── data/              # Equipment, talent, dan quest catalog
+├── index.html         # Seluruh app (single-file — HTML + CSS + JS)
+├── scripts/           # Validator dan data-health tooling
 ├── docs/
 │   ├── brainstorms/  # Requirements documents
-│   └── plans/        # Implementation plans
+│   ├── plans/        # Implementation plans
+│   └── reports/      # Generated data-health reports
 └── README.md
 ```
+
+### Target Quest Data Health
+
+Jalankan validator keras dan health report sebelum mengubah data target quest:
+
+```powershell
+node scripts/validate-target-quests.mjs
+node scripts/report-target-quest-health.mjs
+```
+
+Health report menganggap schema atau referensi rusak sebagai `error`, sedangkan konsentrasi learning source dan masalah maintainability lain sebagai `warning`. Output juga bisa dipakai automation atau disimpan sebagai snapshot Markdown:
+
+```powershell
+node scripts/report-target-quest-health.mjs --format json --fail-on error
+node scripts/report-target-quest-health.mjs --format markdown --output docs/reports/target-quest-health.md
+```
+
+Gunakan `--fail-on warning` untuk mode ketat, atau `--fail-on none` untuk inspeksi tanpa exit code gagal.
 
 ---
 
