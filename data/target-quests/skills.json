@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-13",
+  "updatedAt": "2026-07-22",
   "kind": "skill",
   "schema": {
     "targetId": "stable kebab-case id derived from the skill display name",

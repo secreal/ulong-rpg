@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import test from "node:test";
+import test, { after } from "node:test";
 
 import {
   analyzeTargetQuestHealth,
@@ -10,6 +10,12 @@ import {
   shouldFailReport,
 } from "./lib/target-quest-health.mjs";
 import { parseArgs, run } from "./report-target-quest-health.mjs";
+
+const fixtureRoots = new Set();
+
+after(() => {
+  for (const rootDir of fixtureRoots) fs.rmSync(rootDir, { recursive: true, force: true });
+});
 
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -47,6 +53,7 @@ function makeTarget(kind, targetId, targetName, progressKey, sourceUrl) {
 
 function createFixture() {
   const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), "target-quest-health-"));
+  fixtureRoots.add(rootDir);
   fs.writeFileSync(
     path.join(rootDir, "index.html"),
     'const jobs = [\n      ["group", "Job", "Description", "Version Control"]\n    ];\n',
@@ -112,6 +119,7 @@ test("healthy fixture reports deterministic catalog totals", () => {
   });
   assert.equal(formatHealthReport(first, "json"), formatHealthReport(second, "json"));
   assert.match(formatHealthReport(first, "markdown"), /\| \*\*Total\*\* \| \*\*3\*\* \| \*\*30\*\*/);
+  assert.match(formatHealthReport(first, "text"), /Targets: 3 \| Quests: 30/);
 });
 
 test("invalid fixture emits stable structural, identity, localization, and source findings", () => {
@@ -159,6 +167,7 @@ test("invalid fixture emits stable structural, identity, localization, and sourc
     assert.ok(ruleIds.has(expected), `missing rule ${expected}`);
   }
   assert.equal(report.status, "error");
+  assert.match(formatHealthReport(report, "text"), /https:\/\/example\.com\/git/);
   assert.equal(shouldFailReport(report, "error"), true);
   assert.equal(shouldFailReport(report, "warning"), true);
   assert.equal(shouldFailReport(report, "none"), false);

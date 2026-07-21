@@ -584,7 +584,7 @@ export function formatHealthReport(report, format = "text") {
   lines.push(`Fundamental: ${report.summary.fundamental} | Dependent: ${report.summary.dependent}`);
   lines.push(`Errors: ${report.summary.errors} | Warnings: ${report.summary.warnings}`);
   for (const finding of report.findings) {
-    lines.push(`[${finding.severity.toUpperCase()}] ${finding.ruleId} ${finding.location}: ${finding.message}`);
+    lines.push(`[${finding.severity.toUpperCase()}] ${finding.ruleId} ${finding.location}: ${finding.message}${formatDetails(finding.details)}`);
   }
   return `${lines.join("\n")}\n`;
 }
