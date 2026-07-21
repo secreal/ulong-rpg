@@ -5958,6 +5958,15 @@
       return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange, snapEquip, snapTalent, snapGuild) : null };
     }
 
+    function generateShowcaseREADME(prof) {
+      const clean = value => String(value || "").replace(/\s+/g, " ").trim();
+      const github = clean(prof.github);
+      const displayName = clean(prof.name) || clean(prof.nick) || github || "ulong Hero";
+      const liveUrl = `https://${github}.github.io/ulong/`;
+
+      return `# ${displayName} - ulong RPG Showcase\n\nView the live showcase: [${github}.github.io/ulong](${liveUrl})\n`;
+    }
+
     function triggerDownload(html) {
       const blob = new Blob([html], { type: "text/html" });
       const url  = URL.createObjectURL(blob);
@@ -5972,11 +5981,15 @@
       if (html) triggerDownload(html);
     });
 
-    function makeStep(num, label, sub, btnText, btnHref, btnClass, isDone, isActive) {
+    function makeStep(num, label, sub, btnText, btnHref, btnClass, isDone, isActive, downloadName = "") {
       const state = isDone ? "done" : isActive ? "active" : "";
       const icon  = isDone ? "✓" : num;
+      const actionAttrs = downloadName
+        ? ` download="${downloadName}"`
+        : ` target="_blank" rel="noopener"`;
+      const actionSuffix = downloadName ? "" : " ↗";
       const btnHtml = btnText && btnHref
-        ? `<a class="export-step-btn${btnClass ? " " + btnClass : ""}" href="${btnHref}" target="_blank" rel="noopener">${btnText} ↗</a>`
+        ? `<a class="export-step-btn${btnClass ? " " + btnClass : ""}" href="${btnHref}"${actionAttrs}>${btnText}${actionSuffix}</a>`
         : "";
       return `<div class="export-step${state ? " " + state : ""}">
         <div class="export-step-num">${icon}</div>
@@ -6042,6 +6055,7 @@
       const editFileUrl    = `https://github.com/${prof.github}/ulong/edit/${branch}/index.html`;
       const pagesUrl       = `https://github.com/${prof.github}/ulong/settings/pages`;
       const liveUrl        = `https://${prof.github}.github.io/ulong/`;
+      const readmeDownloadUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(generateShowcaseREADME(prof))}`;
 
       let steps = "";
       if (!repoExists) {
@@ -6049,23 +6063,27 @@
         steps += makeStep(1, `Buat repo <strong>ulong</strong> di GitHub`, `Centang "Add a README file" agar repo langsung punya branch main`, "Buat repo ulong", createRepoUrl, "", false, true);
         // Step 2: copy & create index.html (HTML sudah di-copy di atas)
         steps += makeStep(2, `Buat file <code>index.html</code> di repo`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub.`, "Buka Create New File", newFileUrl, "", false, false);
-        // Step 3: pages
-        steps += makeStep(3, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
-        // Step 4: live
-        steps += makeStep(4, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, `Tunggu ~1 menit setelah Pages diaktifkan`, "Buka Showcase", liveUrl, "green", false, false);
+        // Step 3: repository README with a direct link to the live showcase
+        steps += makeStep(3, `Ganti <code>README.md</code> di root repo`, `Download lalu upload file ini. Link-nya otomatis menuju <code>${prof.github}.github.io/ulong</code>.`, "Download README.md", readmeDownloadUrl, "", false, false, "README.md");
+        // Step 4: pages
+        steps += makeStep(4, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
+        // Step 5: live
+        steps += makeStep(5, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, `Tunggu ~1 menit setelah Pages diaktifkan`, "Buka Showcase", liveUrl, "green", false, false);
       } else if (repoEmpty) {
         // Repo ada tapi kosong (belum ada commit)
         steps += makeStep(1, `Repo <strong>${prof.github}/ulong</strong> ditemukan ✓`, `Tapi masih kosong — belum ada branch/commit`, null, null, "", true, false);
         steps += makeStep(2, `Buat file <code>index.html</code>`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub, lalu commit.`, "Buka Create New File", newFileUrl, "", false, true);
-        steps += makeStep(3, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
-        steps += makeStep(4, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
+        steps += makeStep(3, `Tambahkan <code>README.md</code> di root repo`, `Download lalu upload file ini. Link-nya otomatis menuju <code>${prof.github}.github.io/ulong</code>.`, "Download README.md", readmeDownloadUrl, "", false, false, "README.md");
+        steps += makeStep(4, `Aktifkan GitHub Pages`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
+        steps += makeStep(5, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
         window.open(newFileUrl, "_blank", "noopener");
       } else {
         // Repo ada dan punya file — update mode
         steps += makeStep(1, `Repo <strong>${prof.github}/ulong</strong> ditemukan ✓`, null, null, null, "", true, false);
         steps += makeStep(2, `Update <code>index.html</code>`, `HTML showcase sudah ter-copy. Paste (Ctrl+V) di editor GitHub, lalu commit.`, "Buka Edit index.html", editFileUrl, "", false, true);
-        steps += makeStep(3, `Aktifkan GitHub Pages <em style="opacity:.6">(jika belum)</em>`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
-        steps += makeStep(4, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
+        steps += makeStep(3, `Update <code>README.md</code> di root repo`, `Download lalu upload file ini. Link-nya otomatis menuju <code>${prof.github}.github.io/ulong</code>.`, "Download README.md", readmeDownloadUrl, "", false, false, "README.md");
+        steps += makeStep(4, `Aktifkan GitHub Pages <em style="opacity:.6">(jika belum)</em>`, `Settings → Pages → Source: Deploy from branch → main → / (root)`, "Buka Settings Pages", pagesUrl, "", false, false);
+        steps += makeStep(5, `Showcase live di <code>${prof.github}.github.io/ulong</code>`, null, "Buka Showcase", liveUrl, "green", false, false);
         window.open(editFileUrl, "_blank", "noopener");
       }
 
