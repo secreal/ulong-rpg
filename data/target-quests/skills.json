@@ -15,10 +15,10 @@
     {
       "kind": "skill",
       "targetId": "abuse-case-modeling",
-      "targetName": "abuse case modeling",
+      "targetName": "Abuse Case Modeling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::abuse case modeling"
+        "progressKey": "skill::Abuse Case Modeling"
       },
       "intro": {
         "id": "skill-abuse-case-modeling-intro",
@@ -155,10 +155,10 @@
     {
       "kind": "skill",
       "targetId": "acceptance-criteria-writing",
-      "targetName": "acceptance criteria writing",
+      "targetName": "Acceptance Criteria Writing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::acceptance criteria writing"
+        "progressKey": "skill::Acceptance Criteria Writing"
       },
       "intro": {
         "id": "skill-acceptance-criteria-writing-intro",
@@ -295,10 +295,10 @@
     {
       "kind": "skill",
       "targetId": "access-control",
-      "targetName": "access control",
+      "targetName": "Access Control",
       "source": {
         "type": "skill",
-        "progressKey": "skill::access control"
+        "progressKey": "skill::Access Control"
       },
       "intro": {
         "id": "skill-access-control-intro",
@@ -435,10 +435,10 @@
     {
       "kind": "skill",
       "targetId": "access-control-design",
-      "targetName": "access control design",
+      "targetName": "Access Control Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::access control design"
+        "progressKey": "skill::Access Control Design"
       },
       "intro": {
         "id": "skill-access-control-design-intro",
@@ -575,10 +575,10 @@
     {
       "kind": "skill",
       "targetId": "access-management",
-      "targetName": "access management",
+      "targetName": "Access Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::access management"
+        "progressKey": "skill::Access Management"
       },
       "intro": {
         "id": "skill-access-management-intro",
@@ -715,10 +715,10 @@
     {
       "kind": "skill",
       "targetId": "account-support",
-      "targetName": "account support",
+      "targetName": "Account Support",
       "source": {
         "type": "skill",
-        "progressKey": "skill::account support"
+        "progressKey": "skill::Account Support"
       },
       "intro": {
         "id": "skill-account-support-intro",
@@ -855,10 +855,10 @@
     {
       "kind": "skill",
       "targetId": "agent-workflow-design",
-      "targetName": "agent workflow design",
+      "targetName": "Agent Workflow Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::agent workflow design"
+        "progressKey": "skill::Agent Workflow Design"
       },
       "intro": {
         "id": "skill-agent-workflow-design-intro",
@@ -995,10 +995,10 @@
     {
       "kind": "skill",
       "targetId": "alert-triage",
-      "targetName": "Alert triage",
+      "targetName": "Alert Triage",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Alert triage"
+        "progressKey": "skill::Alert Triage"
       },
       "intro": {
         "id": "skill-alert-triage-intro",
@@ -1135,10 +1135,10 @@
     {
       "kind": "skill",
       "targetId": "api-design",
-      "targetName": "API design",
+      "targetName": "API Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::API design"
+        "progressKey": "skill::API Design"
       },
       "intro": {
         "id": "skill-api-design-intro",
@@ -1275,10 +1275,10 @@
     {
       "kind": "skill",
       "targetId": "api-integration",
-      "targetName": "API integration",
+      "targetName": "API Integration",
       "source": {
         "type": "skill",
-        "progressKey": "skill::API integration"
+        "progressKey": "skill::API Integration"
       },
       "intro": {
         "id": "skill-api-integration-intro",
@@ -1415,10 +1415,10 @@
     {
       "kind": "skill",
       "targetId": "app-release",
-      "targetName": "app release",
+      "targetName": "App Release",
       "source": {
         "type": "skill",
-        "progressKey": "skill::app release"
+        "progressKey": "skill::App Release"
       },
       "intro": {
         "id": "skill-app-release-intro",
@@ -1555,10 +1555,10 @@
     {
       "kind": "skill",
       "targetId": "application-monitoring",
-      "targetName": "application monitoring",
+      "targetName": "Application Monitoring",
       "source": {
         "type": "skill",
-        "progressKey": "skill::application monitoring"
+        "progressKey": "skill::Application Monitoring"
       },
       "intro": {
         "id": "skill-application-monitoring-intro",
@@ -1695,10 +1695,10 @@
     {
       "kind": "skill",
       "targetId": "architecture-governance",
-      "targetName": "architecture governance",
+      "targetName": "Architecture Governance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::architecture governance"
+        "progressKey": "skill::Architecture Governance"
       },
       "intro": {
         "id": "skill-architecture-governance-intro",
@@ -1835,10 +1835,10 @@
     {
       "kind": "skill",
       "targetId": "architecture-tradeoff-analysis",
-      "targetName": "Architecture tradeoff analysis",
+      "targetName": "Architecture Tradeoff Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Architecture tradeoff analysis"
+        "progressKey": "skill::Architecture Tradeoff Analysis"
       },
       "intro": {
         "id": "skill-architecture-tradeoff-analysis-intro",
@@ -1975,10 +1975,10 @@
     {
       "kind": "skill",
       "targetId": "attack-narrative-writing",
-      "targetName": "attack narrative writing",
+      "targetName": "Attack Narrative Writing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::attack narrative writing"
+        "progressKey": "skill::Attack Narrative Writing"
       },
       "intro": {
         "id": "skill-attack-narrative-writing-intro",
@@ -2115,10 +2115,10 @@
     {
       "kind": "skill",
       "targetId": "audit-evidence-collection",
-      "targetName": "audit evidence collection",
+      "targetName": "Audit Evidence Collection",
       "source": {
         "type": "skill",
-        "progressKey": "skill::audit evidence collection"
+        "progressKey": "skill::Audit Evidence Collection"
       },
       "intro": {
         "id": "skill-audit-evidence-collection-intro",
@@ -2255,10 +2255,10 @@
     {
       "kind": "skill",
       "targetId": "automation-architecture",
-      "targetName": "Automation architecture",
+      "targetName": "Automation Architecture",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Automation architecture"
+        "progressKey": "skill::Automation Architecture"
       },
       "intro": {
         "id": "skill-automation-architecture-intro",
@@ -2395,10 +2395,10 @@
     {
       "kind": "skill",
       "targetId": "availability-planning",
-      "targetName": "availability planning",
+      "targetName": "Availability Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::availability planning"
+        "progressKey": "skill::Availability Planning"
       },
       "intro": {
         "id": "skill-availability-planning-intro",
@@ -2535,10 +2535,10 @@
     {
       "kind": "skill",
       "targetId": "background-processing",
-      "targetName": "background processing",
+      "targetName": "Background Processing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::background processing"
+        "progressKey": "skill::Background Processing"
       },
       "intro": {
         "id": "skill-background-processing-intro",
@@ -2675,10 +2675,10 @@
     {
       "kind": "skill",
       "targetId": "backlog-prioritization",
-      "targetName": "Backlog prioritization",
+      "targetName": "Backlog Prioritization",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Backlog prioritization"
+        "progressKey": "skill::Backlog Prioritization"
       },
       "intro": {
         "id": "skill-backlog-prioritization-intro",
@@ -2815,10 +2815,10 @@
     {
       "kind": "skill",
       "targetId": "backup-recovery",
-      "targetName": "backup recovery",
+      "targetName": "Backup Recovery",
       "source": {
         "type": "skill",
-        "progressKey": "skill::backup recovery"
+        "progressKey": "skill::Backup Recovery"
       },
       "intro": {
         "id": "skill-backup-recovery-intro",
@@ -2955,10 +2955,10 @@
     {
       "kind": "skill",
       "targetId": "board-level-risk-reporting",
-      "targetName": "board-level risk reporting",
+      "targetName": "Board-Level Risk Reporting",
       "source": {
         "type": "skill",
-        "progressKey": "skill::board-level risk reporting"
+        "progressKey": "skill::Board-Level Risk Reporting"
       },
       "intro": {
         "id": "skill-board-level-risk-reporting-intro",
@@ -3095,10 +3095,10 @@
     {
       "kind": "skill",
       "targetId": "bottleneck-isolation",
-      "targetName": "bottleneck isolation",
+      "targetName": "Bottleneck Isolation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::bottleneck isolation"
+        "progressKey": "skill::Bottleneck Isolation"
       },
       "intro": {
         "id": "skill-bottleneck-isolation-intro",
@@ -3235,10 +3235,10 @@
     {
       "kind": "skill",
       "targetId": "browser-interaction",
-      "targetName": "browser interaction",
+      "targetName": "Browser Interaction",
       "source": {
         "type": "skill",
-        "progressKey": "skill::browser interaction"
+        "progressKey": "skill::Browser Interaction"
       },
       "intro": {
         "id": "skill-browser-interaction-intro",
@@ -3375,10 +3375,10 @@
     {
       "kind": "skill",
       "targetId": "capacity-forecasting",
-      "targetName": "capacity forecasting",
+      "targetName": "Capacity Forecasting",
       "source": {
         "type": "skill",
-        "progressKey": "skill::capacity forecasting"
+        "progressKey": "skill::Capacity Forecasting"
       },
       "intro": {
         "id": "skill-capacity-forecasting-intro",
@@ -3515,10 +3515,10 @@
     {
       "kind": "skill",
       "targetId": "ci-test-orchestration",
-      "targetName": "CI test orchestration",
+      "targetName": "CI Test Orchestration",
       "source": {
         "type": "skill",
-        "progressKey": "skill::CI test orchestration"
+        "progressKey": "skill::CI Test Orchestration"
       },
       "intro": {
         "id": "skill-ci-test-orchestration-intro",
@@ -3655,10 +3655,10 @@
     {
       "kind": "skill",
       "targetId": "cloud-networking",
-      "targetName": "cloud networking",
+      "targetName": "Cloud Networking",
       "source": {
         "type": "skill",
-        "progressKey": "skill::cloud networking"
+        "progressKey": "skill::Cloud Networking"
       },
       "intro": {
         "id": "skill-cloud-networking-intro",
@@ -3795,10 +3795,10 @@
     {
       "kind": "skill",
       "targetId": "code-review-strategy",
-      "targetName": "code review strategy",
+      "targetName": "Code Review Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::code review strategy"
+        "progressKey": "skill::Code Review Strategy"
       },
       "intro": {
         "id": "skill-code-review-strategy-intro",
@@ -3935,10 +3935,10 @@
     {
       "kind": "skill",
       "targetId": "color-system-design",
-      "targetName": "color system design",
+      "targetName": "Color System Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::color system design"
+        "progressKey": "skill::Color System Design"
       },
       "intro": {
         "id": "skill-color-system-design-intro",
@@ -4075,10 +4075,10 @@
     {
       "kind": "skill",
       "targetId": "compliance-gap-analysis",
-      "targetName": "compliance gap analysis",
+      "targetName": "Compliance Gap Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::compliance gap analysis"
+        "progressKey": "skill::Compliance Gap Analysis"
       },
       "intro": {
         "id": "skill-compliance-gap-analysis-intro",
@@ -4215,10 +4215,10 @@
     {
       "kind": "skill",
       "targetId": "compute-provisioning",
-      "targetName": "Compute provisioning",
+      "targetName": "Compute Provisioning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Compute provisioning"
+        "progressKey": "skill::Compute Provisioning"
       },
       "intro": {
         "id": "skill-compute-provisioning-intro",
@@ -4355,10 +4355,10 @@
     {
       "kind": "skill",
       "targetId": "conflict-resolution",
-      "targetName": "conflict resolution",
+      "targetName": "Conflict Resolution",
       "source": {
         "type": "skill",
-        "progressKey": "skill::conflict resolution"
+        "progressKey": "skill::Conflict Resolution"
       },
       "intro": {
         "id": "skill-conflict-resolution-intro",
@@ -4495,10 +4495,10 @@
     {
       "kind": "skill",
       "targetId": "container-operations",
-      "targetName": "container operations",
+      "targetName": "Container Operations",
       "source": {
         "type": "skill",
-        "progressKey": "skill::container operations"
+        "progressKey": "skill::Container Operations"
       },
       "intro": {
         "id": "skill-container-operations-intro",
@@ -4635,10 +4635,10 @@
     {
       "kind": "skill",
       "targetId": "context-window-management",
-      "targetName": "context window management",
+      "targetName": "Context Window Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::context window management"
+        "progressKey": "skill::Context Window Management"
       },
       "intro": {
         "id": "skill-context-window-management-intro",
@@ -4775,10 +4775,10 @@
     {
       "kind": "skill",
       "targetId": "contract-negotiation",
-      "targetName": "contract negotiation",
+      "targetName": "Contract Negotiation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::contract negotiation"
+        "progressKey": "skill::Contract Negotiation"
       },
       "intro": {
         "id": "skill-contract-negotiation-intro",
@@ -4915,10 +4915,10 @@
     {
       "kind": "skill",
       "targetId": "control-mapping",
-      "targetName": "Control mapping",
+      "targetName": "Control Mapping",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Control mapping"
+        "progressKey": "skill::Control Mapping"
       },
       "intro": {
         "id": "skill-control-mapping-intro",
@@ -5055,10 +5055,10 @@
     {
       "kind": "skill",
       "targetId": "cost-monitoring",
-      "targetName": "cost monitoring",
+      "targetName": "Cost Monitoring",
       "source": {
         "type": "skill",
-        "progressKey": "skill::cost monitoring"
+        "progressKey": "skill::Cost Monitoring"
       },
       "intro": {
         "id": "skill-cost-monitoring-intro",
@@ -5195,10 +5195,10 @@
     {
       "kind": "skill",
       "targetId": "cross-functional-critique-facilitation",
-      "targetName": "cross-functional critique facilitation",
+      "targetName": "Cross-Functional Critique Facilitation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::cross-functional critique facilitation"
+        "progressKey": "skill::Cross-Functional Critique Facilitation"
       },
       "intro": {
         "id": "skill-cross-functional-critique-facilitation-intro",
@@ -5335,10 +5335,10 @@
     {
       "kind": "skill",
       "targetId": "cross-layer-debugging",
-      "targetName": "Cross-layer debugging",
+      "targetName": "Cross-Layer Debugging",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Cross-layer debugging"
+        "progressKey": "skill::Cross-Layer Debugging"
       },
       "intro": {
         "id": "skill-cross-layer-debugging-intro",
@@ -5475,10 +5475,10 @@
     {
       "kind": "skill",
       "targetId": "cross-team-dependency-management",
-      "targetName": "cross-team dependency management",
+      "targetName": "Cross-Team Dependency Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::cross-team dependency management"
+        "progressKey": "skill::Cross-Team Dependency Management"
       },
       "intro": {
         "id": "skill-cross-team-dependency-management-intro",
@@ -5615,10 +5615,10 @@
     {
       "kind": "skill",
       "targetId": "customer-impact-analysis",
-      "targetName": "customer impact analysis",
+      "targetName": "Customer Impact Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::customer impact analysis"
+        "progressKey": "skill::Customer Impact Analysis"
       },
       "intro": {
         "id": "skill-customer-impact-analysis-intro",
@@ -5755,10 +5755,10 @@
     {
       "kind": "skill",
       "targetId": "cyber-risk-governance",
-      "targetName": "cyber risk governance",
+      "targetName": "Cyber Risk Governance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::cyber risk governance"
+        "progressKey": "skill::Cyber Risk Governance"
       },
       "intro": {
         "id": "skill-cyber-risk-governance-intro",
@@ -5895,10 +5895,10 @@
     {
       "kind": "skill",
       "targetId": "dashboard-performance-tuning",
-      "targetName": "dashboard performance tuning",
+      "targetName": "Dashboard Performance Tuning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::dashboard performance tuning"
+        "progressKey": "skill::Dashboard Performance Tuning"
       },
       "intro": {
         "id": "skill-dashboard-performance-tuning-intro",
@@ -6035,10 +6035,10 @@
     {
       "kind": "skill",
       "targetId": "dashboard-reading",
-      "targetName": "dashboard reading",
+      "targetName": "Dashboard Reading",
       "source": {
         "type": "skill",
-        "progressKey": "skill::dashboard reading"
+        "progressKey": "skill::Dashboard Reading"
       },
       "intro": {
         "id": "skill-dashboard-reading-intro",
@@ -6175,10 +6175,10 @@
     {
       "kind": "skill",
       "targetId": "data-correction",
-      "targetName": "data correction",
+      "targetName": "Data Correction",
       "source": {
         "type": "skill",
-        "progressKey": "skill::data correction"
+        "progressKey": "skill::Data Correction"
       },
       "intro": {
         "id": "skill-data-correction-intro",
@@ -6315,10 +6315,10 @@
     {
       "kind": "skill",
       "targetId": "data-freshness-validation",
-      "targetName": "data freshness validation",
+      "targetName": "Data Freshness Validation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::data freshness validation"
+        "progressKey": "skill::Data Freshness Validation"
       },
       "intro": {
         "id": "skill-data-freshness-validation-intro",
@@ -6455,10 +6455,10 @@
     {
       "kind": "skill",
       "targetId": "data-lookup",
-      "targetName": "data lookup",
+      "targetName": "Data Lookup",
       "source": {
         "type": "skill",
-        "progressKey": "skill::data lookup"
+        "progressKey": "skill::Data Lookup"
       },
       "intro": {
         "id": "skill-data-lookup-intro",
@@ -6595,10 +6595,10 @@
     {
       "kind": "skill",
       "targetId": "data-modeling",
-      "targetName": "data modeling",
+      "targetName": "Data Modeling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::data modeling"
+        "progressKey": "skill::Data Modeling"
       },
       "intro": {
         "id": "skill-data-modeling-intro",
@@ -6735,10 +6735,10 @@
     {
       "kind": "skill",
       "targetId": "data-quality-enforcement",
-      "targetName": "data quality enforcement",
+      "targetName": "Data Quality Enforcement",
       "source": {
         "type": "skill",
-        "progressKey": "skill::data quality enforcement"
+        "progressKey": "skill::Data Quality Enforcement"
       },
       "intro": {
         "id": "skill-data-quality-enforcement-intro",
@@ -6875,10 +6875,10 @@
     {
       "kind": "skill",
       "targetId": "data-querying",
-      "targetName": "data querying",
+      "targetName": "Data Querying",
       "source": {
         "type": "skill",
-        "progressKey": "skill::data querying"
+        "progressKey": "skill::Data Querying"
       },
       "intro": {
         "id": "skill-data-querying-intro",
@@ -7015,10 +7015,10 @@
     {
       "kind": "skill",
       "targetId": "delivery-forecasting",
-      "targetName": "delivery forecasting",
+      "targetName": "Delivery Forecasting",
       "source": {
         "type": "skill",
-        "progressKey": "skill::delivery forecasting"
+        "progressKey": "skill::Delivery Forecasting"
       },
       "intro": {
         "id": "skill-delivery-forecasting-intro",
@@ -7155,10 +7155,10 @@
     {
       "kind": "skill",
       "targetId": "delivery-risk-balancing",
-      "targetName": "delivery risk balancing",
+      "targetName": "Delivery Risk Balancing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::delivery risk balancing"
+        "progressKey": "skill::Delivery Risk Balancing"
       },
       "intro": {
         "id": "skill-delivery-risk-balancing-intro",
@@ -7295,10 +7295,10 @@
     {
       "kind": "skill",
       "targetId": "dependency-tracking",
-      "targetName": "Dependency tracking",
+      "targetName": "Dependency Tracking",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Dependency tracking"
+        "progressKey": "skill::Dependency Tracking"
       },
       "intro": {
         "id": "skill-dependency-tracking-intro",
@@ -7435,10 +7435,10 @@
     {
       "kind": "skill",
       "targetId": "deployment-rollback-planning",
-      "targetName": "deployment rollback planning",
+      "targetName": "Deployment Rollback Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::deployment rollback planning"
+        "progressKey": "skill::Deployment Rollback Planning"
       },
       "intro": {
         "id": "skill-deployment-rollback-planning-intro",
@@ -7575,10 +7575,10 @@
     {
       "kind": "skill",
       "targetId": "design-system-planning",
-      "targetName": "design system planning",
+      "targetName": "Design System Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::design system planning"
+        "progressKey": "skill::Design System Planning"
       },
       "intro": {
         "id": "skill-design-system-planning-intro",
@@ -7715,10 +7715,10 @@
     {
       "kind": "skill",
       "targetId": "detection-control-validation",
-      "targetName": "detection control validation",
+      "targetName": "Detection Control Validation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::detection control validation"
+        "progressKey": "skill::Detection Control Validation"
       },
       "intro": {
         "id": "skill-detection-control-validation-intro",
@@ -7855,10 +7855,10 @@
     {
       "kind": "skill",
       "targetId": "device-integration",
-      "targetName": "device integration",
+      "targetName": "Device Integration",
       "source": {
         "type": "skill",
-        "progressKey": "skill::device integration"
+        "progressKey": "skill::Device Integration"
       },
       "intro": {
         "id": "skill-device-integration-intro",
@@ -7995,10 +7995,10 @@
     {
       "kind": "skill",
       "targetId": "documentation",
-      "targetName": "documentation",
+      "targetName": "Documentation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::documentation"
+        "progressKey": "skill::Documentation"
       },
       "intro": {
         "id": "skill-documentation-intro",
@@ -8135,10 +8135,10 @@
     {
       "kind": "skill",
       "targetId": "endpoint-protection-planning",
-      "targetName": "endpoint protection planning",
+      "targetName": "Endpoint Protection Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::endpoint protection planning"
+        "progressKey": "skill::Endpoint Protection Planning"
       },
       "intro": {
         "id": "skill-endpoint-protection-planning-intro",
@@ -8275,10 +8275,10 @@
     {
       "kind": "skill",
       "targetId": "engineering-planning-facilitation",
-      "targetName": "engineering planning facilitation",
+      "targetName": "Engineering Planning Facilitation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::engineering planning facilitation"
+        "progressKey": "skill::Engineering Planning Facilitation"
       },
       "intro": {
         "id": "skill-engineering-planning-facilitation-intro",
@@ -8415,10 +8415,10 @@
     {
       "kind": "skill",
       "targetId": "environment-parity-management",
-      "targetName": "environment parity management",
+      "targetName": "Environment Parity Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::environment parity management"
+        "progressKey": "skill::Environment Parity Management"
       },
       "intro": {
         "id": "skill-environment-parity-management-intro",
@@ -8555,10 +8555,10 @@
     {
       "kind": "skill",
       "targetId": "error-analysis",
-      "targetName": "error analysis",
+      "targetName": "Error Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::error analysis"
+        "progressKey": "skill::Error Analysis"
       },
       "intro": {
         "id": "skill-error-analysis-intro",
@@ -8695,10 +8695,10 @@
     {
       "kind": "skill",
       "targetId": "error-budget-analysis",
-      "targetName": "error budget analysis",
+      "targetName": "Error Budget Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::error budget analysis"
+        "progressKey": "skill::Error Budget Analysis"
       },
       "intro": {
         "id": "skill-error-budget-analysis-intro",
@@ -8835,10 +8835,10 @@
     {
       "kind": "skill",
       "targetId": "escalation-handling",
-      "targetName": "escalation handling",
+      "targetName": "Escalation Handling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::escalation handling"
+        "progressKey": "skill::Escalation Handling"
       },
       "intro": {
         "id": "skill-escalation-handling-intro",
@@ -8975,10 +8975,10 @@
     {
       "kind": "skill",
       "targetId": "escalation-packet-writing",
-      "targetName": "escalation packet writing",
+      "targetName": "Escalation Packet Writing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::escalation packet writing"
+        "progressKey": "skill::Escalation Packet Writing"
       },
       "intro": {
         "id": "skill-escalation-packet-writing-intro",
@@ -9115,10 +9115,10 @@
     {
       "kind": "skill",
       "targetId": "exception-review",
-      "targetName": "exception review",
+      "targetName": "Exception Review",
       "source": {
         "type": "skill",
-        "progressKey": "skill::exception review"
+        "progressKey": "skill::Exception Review"
       },
       "intro": {
         "id": "skill-exception-review-intro",
@@ -9255,10 +9255,10 @@
     {
       "kind": "skill",
       "targetId": "executive-communication",
-      "targetName": "executive communication",
+      "targetName": "Executive Communication",
       "source": {
         "type": "skill",
-        "progressKey": "skill::executive communication"
+        "progressKey": "skill::Executive Communication"
       },
       "intro": {
         "id": "skill-executive-communication-intro",
@@ -9395,10 +9395,10 @@
     {
       "kind": "skill",
       "targetId": "experience-strategy",
-      "targetName": "Experience strategy",
+      "targetName": "Experience Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Experience strategy"
+        "progressKey": "skill::Experience Strategy"
       },
       "intro": {
         "id": "skill-experience-strategy-intro",
@@ -9535,10 +9535,10 @@
     {
       "kind": "skill",
       "targetId": "experiment-design",
-      "targetName": "experiment design",
+      "targetName": "Experiment Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::experiment design"
+        "progressKey": "skill::Experiment Design"
       },
       "intro": {
         "id": "skill-experiment-design-intro",
@@ -9675,10 +9675,10 @@
     {
       "kind": "skill",
       "targetId": "experiment-prioritization",
-      "targetName": "experiment prioritization",
+      "targetName": "Experiment Prioritization",
       "source": {
         "type": "skill",
-        "progressKey": "skill::experiment prioritization"
+        "progressKey": "skill::Experiment Prioritization"
       },
       "intro": {
         "id": "skill-experiment-prioritization-intro",
@@ -9815,10 +9815,10 @@
     {
       "kind": "skill",
       "targetId": "exploit-validation",
-      "targetName": "exploit validation",
+      "targetName": "Exploit Validation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::exploit validation"
+        "progressKey": "skill::Exploit Validation"
       },
       "intro": {
         "id": "skill-exploit-validation-intro",
@@ -9955,10 +9955,10 @@
     {
       "kind": "skill",
       "targetId": "failover-rehearsal",
-      "targetName": "failover rehearsal",
+      "targetName": "Failover Rehearsal",
       "source": {
         "type": "skill",
-        "progressKey": "skill::failover rehearsal"
+        "progressKey": "skill::Failover Rehearsal"
       },
       "intro": {
         "id": "skill-failover-rehearsal-intro",
@@ -10095,10 +10095,10 @@
     {
       "kind": "skill",
       "targetId": "feature-engineering",
-      "targetName": "Feature engineering",
+      "targetName": "Feature Engineering",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Feature engineering"
+        "progressKey": "skill::Feature Engineering"
       },
       "intro": {
         "id": "skill-feature-engineering-intro",
@@ -10235,10 +10235,10 @@
     {
       "kind": "skill",
       "targetId": "firewall",
-      "targetName": "firewall",
+      "targetName": "Firewall",
       "source": {
         "type": "skill",
-        "progressKey": "skill::firewall"
+        "progressKey": "skill::Firewall"
       },
       "intro": {
         "id": "skill-firewall-intro",
@@ -10375,10 +10375,10 @@
     {
       "kind": "skill",
       "targetId": "firewall-rule-governance",
-      "targetName": "firewall rule governance",
+      "targetName": "Firewall Rule Governance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::firewall rule governance"
+        "progressKey": "skill::Firewall Rule Governance"
       },
       "intro": {
         "id": "skill-firewall-rule-governance-intro",
@@ -10515,10 +10515,10 @@
     {
       "kind": "skill",
       "targetId": "flake-investigation",
-      "targetName": "flake investigation",
+      "targetName": "Flake Investigation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::flake investigation"
+        "progressKey": "skill::Flake Investigation"
       },
       "intro": {
         "id": "skill-flake-investigation-intro",
@@ -10655,10 +10655,10 @@
     {
       "kind": "skill",
       "targetId": "flow",
-      "targetName": "flow",
+      "targetName": "Flow",
       "source": {
         "type": "skill",
-        "progressKey": "skill::flow"
+        "progressKey": "skill::Flow"
       },
       "intro": {
         "id": "skill-flow-intro",
@@ -10795,10 +10795,10 @@
     {
       "kind": "skill",
       "targetId": "guardrail-design",
-      "targetName": "guardrail design",
+      "targetName": "Guardrail Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::guardrail design"
+        "progressKey": "skill::Guardrail Design"
       },
       "intro": {
         "id": "skill-guardrail-design-intro",
@@ -10935,10 +10935,10 @@
     {
       "kind": "skill",
       "targetId": "hiring-loop-design",
-      "targetName": "hiring loop design",
+      "targetName": "Hiring Loop Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::hiring loop design"
+        "progressKey": "skill::Hiring Loop Design"
       },
       "intro": {
         "id": "skill-hiring-loop-design-intro",
@@ -11075,10 +11075,10 @@
     {
       "kind": "skill",
       "targetId": "incident-command",
-      "targetName": "incident command",
+      "targetName": "Incident Command",
       "source": {
         "type": "skill",
-        "progressKey": "skill::incident command"
+        "progressKey": "skill::Incident Command"
       },
       "intro": {
         "id": "skill-incident-command-intro",
@@ -11215,10 +11215,10 @@
     {
       "kind": "skill",
       "targetId": "incident-handling",
-      "targetName": "Incident handling",
+      "targetName": "Incident Handling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Incident handling"
+        "progressKey": "skill::Incident Handling"
       },
       "intro": {
         "id": "skill-incident-handling-intro",
@@ -11355,10 +11355,10 @@
     {
       "kind": "skill",
       "targetId": "incremental-loading",
-      "targetName": "incremental loading",
+      "targetName": "Incremental Loading",
       "source": {
         "type": "skill",
-        "progressKey": "skill::incremental loading"
+        "progressKey": "skill::Incremental Loading"
       },
       "intro": {
         "id": "skill-incremental-loading-intro",
@@ -11495,10 +11495,10 @@
     {
       "kind": "skill",
       "targetId": "index-strategy",
-      "targetName": "index strategy",
+      "targetName": "Index Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::index strategy"
+        "progressKey": "skill::Index Strategy"
       },
       "intro": {
         "id": "skill-index-strategy-intro",
@@ -11635,10 +11635,10 @@
     {
       "kind": "skill",
       "targetId": "information-architecture",
-      "targetName": "information architecture",
+      "targetName": "Information Architecture",
       "source": {
         "type": "skill",
-        "progressKey": "skill::information architecture"
+        "progressKey": "skill::Information Architecture"
       },
       "intro": {
         "id": "skill-information-architecture-intro",
@@ -11775,10 +11775,10 @@
     {
       "kind": "skill",
       "targetId": "infrastructure-provisioning",
-      "targetName": "infrastructure provisioning",
+      "targetName": "Infrastructure Provisioning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::infrastructure provisioning"
+        "progressKey": "skill::Infrastructure Provisioning"
       },
       "intro": {
         "id": "skill-infrastructure-provisioning-intro",
@@ -11915,10 +11915,10 @@
     {
       "kind": "skill",
       "targetId": "integration-boundary-mapping",
-      "targetName": "integration boundary mapping",
+      "targetName": "Integration Boundary Mapping",
       "source": {
         "type": "skill",
-        "progressKey": "skill::integration boundary mapping"
+        "progressKey": "skill::Integration Boundary Mapping"
       },
       "intro": {
         "id": "skill-integration-boundary-mapping-intro",
@@ -12055,10 +12055,10 @@
     {
       "kind": "skill",
       "targetId": "interaction-flow-validation",
-      "targetName": "interaction flow validation",
+      "targetName": "Interaction Flow Validation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::interaction flow validation"
+        "progressKey": "skill::Interaction Flow Validation"
       },
       "intro": {
         "id": "skill-interaction-flow-validation-intro",
@@ -12195,10 +12195,10 @@
     {
       "kind": "skill",
       "targetId": "interaction-system-design",
-      "targetName": "interaction system design",
+      "targetName": "Interaction System Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::interaction system design"
+        "progressKey": "skill::Interaction System Design"
       },
       "intro": {
         "id": "skill-interaction-system-design-intro",
@@ -12335,10 +12335,10 @@
     {
       "kind": "skill",
       "targetId": "issue-reproduction",
-      "targetName": "Issue reproduction",
+      "targetName": "Issue Reproduction",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Issue reproduction"
+        "progressKey": "skill::Issue Reproduction"
       },
       "intro": {
         "id": "skill-issue-reproduction-intro",
@@ -12475,10 +12475,10 @@
     {
       "kind": "skill",
       "targetId": "journey-mapping",
-      "targetName": "Journey mapping",
+      "targetName": "Journey Mapping",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Journey mapping"
+        "progressKey": "skill::Journey Mapping"
       },
       "intro": {
         "id": "skill-journey-mapping-intro",
@@ -12615,10 +12615,10 @@
     {
       "kind": "skill",
       "targetId": "layout-composition",
-      "targetName": "layout composition",
+      "targetName": "Layout Composition",
       "source": {
         "type": "skill",
-        "progressKey": "skill::layout composition"
+        "progressKey": "skill::Layout Composition"
       },
       "intro": {
         "id": "skill-layout-composition-intro",
@@ -12755,10 +12755,10 @@
     {
       "kind": "skill",
       "targetId": "lineage-tracking",
-      "targetName": "lineage tracking",
+      "targetName": "Lineage Tracking",
       "source": {
         "type": "skill",
-        "progressKey": "skill::lineage tracking"
+        "progressKey": "skill::Lineage Tracking"
       },
       "intro": {
         "id": "skill-lineage-tracking-intro",
@@ -12895,10 +12895,10 @@
     {
       "kind": "skill",
       "targetId": "log-analysis",
-      "targetName": "log analysis",
+      "targetName": "Log Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::log analysis"
+        "progressKey": "skill::Log Analysis"
       },
       "intro": {
         "id": "skill-log-analysis-intro",
@@ -13035,10 +13035,10 @@
     {
       "kind": "skill",
       "targetId": "log-correlation",
-      "targetName": "log correlation",
+      "targetName": "Log Correlation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::log correlation"
+        "progressKey": "skill::Log Correlation"
       },
       "intro": {
         "id": "skill-log-correlation-intro",
@@ -13175,10 +13175,10 @@
     {
       "kind": "skill",
       "targetId": "managed-service-evaluation",
-      "targetName": "managed service evaluation",
+      "targetName": "Managed Service Evaluation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::managed service evaluation"
+        "progressKey": "skill::Managed Service Evaluation"
       },
       "intro": {
         "id": "skill-managed-service-evaluation-intro",
@@ -13315,10 +13315,10 @@
     {
       "kind": "skill",
       "targetId": "metric-design",
-      "targetName": "metric design",
+      "targetName": "Metric Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::metric design"
+        "progressKey": "skill::Metric Design"
       },
       "intro": {
         "id": "skill-metric-design-intro",
@@ -13455,10 +13455,10 @@
     {
       "kind": "skill",
       "targetId": "metric-layer-design",
-      "targetName": "Metric layer design",
+      "targetName": "Metric Layer Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Metric layer design"
+        "progressKey": "skill::Metric Layer Design"
       },
       "intro": {
         "id": "skill-metric-layer-design-intro",
@@ -13595,10 +13595,10 @@
     {
       "kind": "skill",
       "targetId": "migration-planning",
-      "targetName": "migration planning",
+      "targetName": "Migration Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::migration planning"
+        "progressKey": "skill::Migration Planning"
       },
       "intro": {
         "id": "skill-migration-planning-intro",
@@ -13735,10 +13735,10 @@
     {
       "kind": "skill",
       "targetId": "mobile-screen-building",
-      "targetName": "Mobile screen building",
+      "targetName": "Mobile Screen Building",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Mobile screen building"
+        "progressKey": "skill::Mobile Screen Building"
       },
       "intro": {
         "id": "skill-mobile-screen-building-intro",
@@ -13875,10 +13875,10 @@
     {
       "kind": "skill",
       "targetId": "model-drift-monitoring",
-      "targetName": "model drift monitoring",
+      "targetName": "Model Drift Monitoring",
       "source": {
         "type": "skill",
-        "progressKey": "skill::model drift monitoring"
+        "progressKey": "skill::Model Drift Monitoring"
       },
       "intro": {
         "id": "skill-model-drift-monitoring-intro",
@@ -14015,10 +14015,10 @@
     {
       "kind": "skill",
       "targetId": "model-evaluation",
-      "targetName": "model evaluation",
+      "targetName": "Model Evaluation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::model evaluation"
+        "progressKey": "skill::Model Evaluation"
       },
       "intro": {
         "id": "skill-model-evaluation-intro",
@@ -14155,10 +14155,10 @@
     {
       "kind": "skill",
       "targetId": "model-training",
-      "targetName": "model training",
+      "targetName": "Model Training",
       "source": {
         "type": "skill",
-        "progressKey": "skill::model training"
+        "progressKey": "skill::Model Training"
       },
       "intro": {
         "id": "skill-model-training-intro",
@@ -14295,10 +14295,10 @@
     {
       "kind": "skill",
       "targetId": "observability-design",
-      "targetName": "observability design",
+      "targetName": "Observability Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::observability design"
+        "progressKey": "skill::Observability Design"
       },
       "intro": {
         "id": "skill-observability-design-intro",
@@ -14435,10 +14435,10 @@
     {
       "kind": "skill",
       "targetId": "offline-handling",
-      "targetName": "offline handling",
+      "targetName": "Offline Handling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::offline handling"
+        "progressKey": "skill::Offline Handling"
       },
       "intro": {
         "id": "skill-offline-handling-intro",
@@ -14575,10 +14575,10 @@
     {
       "kind": "skill",
       "targetId": "opportunity-framing",
-      "targetName": "Opportunity framing",
+      "targetName": "Opportunity Framing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Opportunity framing"
+        "progressKey": "skill::Opportunity Framing"
       },
       "intro": {
         "id": "skill-opportunity-framing-intro",
@@ -14715,10 +14715,10 @@
     {
       "kind": "skill",
       "targetId": "organization-design",
-      "targetName": "organization design",
+      "targetName": "Organization Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::organization design"
+        "progressKey": "skill::Organization Design"
       },
       "intro": {
         "id": "skill-organization-design-intro",
@@ -14855,10 +14855,10 @@
     {
       "kind": "skill",
       "targetId": "outcome-storytelling",
-      "targetName": "outcome storytelling",
+      "targetName": "Outcome Storytelling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::outcome storytelling"
+        "progressKey": "skill::Outcome Storytelling"
       },
       "intro": {
         "id": "skill-outcome-storytelling-intro",
@@ -14995,10 +14995,10 @@
     {
       "kind": "skill",
       "targetId": "parallel-execution-tuning",
-      "targetName": "parallel execution tuning",
+      "targetName": "Parallel Execution Tuning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::parallel execution tuning"
+        "progressKey": "skill::Parallel Execution Tuning"
       },
       "intro": {
         "id": "skill-parallel-execution-tuning-intro",
@@ -15135,10 +15135,10 @@
     {
       "kind": "skill",
       "targetId": "patch-management",
-      "targetName": "patch management",
+      "targetName": "Patch Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::patch management"
+        "progressKey": "skill::Patch Management"
       },
       "intro": {
         "id": "skill-patch-management-intro",
@@ -15275,10 +15275,10 @@
     {
       "kind": "skill",
       "targetId": "percentile-analysis",
-      "targetName": "percentile analysis",
+      "targetName": "Percentile Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::percentile analysis"
+        "progressKey": "skill::Percentile Analysis"
       },
       "intro": {
         "id": "skill-percentile-analysis-intro",
@@ -15415,10 +15415,10 @@
     {
       "kind": "skill",
       "targetId": "performance-coaching",
-      "targetName": "Performance coaching",
+      "targetName": "Performance Coaching",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Performance coaching"
+        "progressKey": "skill::Performance Coaching"
       },
       "intro": {
         "id": "skill-performance-coaching-intro",
@@ -15555,10 +15555,10 @@
     {
       "kind": "skill",
       "targetId": "pipeline-maintenance",
-      "targetName": "pipeline maintenance",
+      "targetName": "Pipeline Maintenance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::pipeline maintenance"
+        "progressKey": "skill::Pipeline Maintenance"
       },
       "intro": {
         "id": "skill-pipeline-maintenance-intro",
@@ -15695,10 +15695,10 @@
     {
       "kind": "skill",
       "targetId": "pipeline-orchestration",
-      "targetName": "Pipeline orchestration",
+      "targetName": "Pipeline Orchestration",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Pipeline orchestration"
+        "progressKey": "skill::Pipeline Orchestration"
       },
       "intro": {
         "id": "skill-pipeline-orchestration-intro",
@@ -15835,10 +15835,10 @@
     {
       "kind": "skill",
       "targetId": "platform-investment-planning",
-      "targetName": "platform investment planning",
+      "targetName": "Platform Investment Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::platform investment planning"
+        "progressKey": "skill::Platform Investment Planning"
       },
       "intro": {
         "id": "skill-platform-investment-planning-intro",
@@ -15975,10 +15975,10 @@
     {
       "kind": "skill",
       "targetId": "policy-lifecycle-management",
-      "targetName": "policy lifecycle management",
+      "targetName": "Policy Lifecycle Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::policy lifecycle management"
+        "progressKey": "skill::Policy Lifecycle Management"
       },
       "intro": {
         "id": "skill-policy-lifecycle-management-intro",
@@ -16115,10 +16115,10 @@
     {
       "kind": "skill",
       "targetId": "postmortem-facilitation",
-      "targetName": "postmortem facilitation",
+      "targetName": "Postmortem Facilitation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::postmortem facilitation"
+        "progressKey": "skill::Postmortem Facilitation"
       },
       "intro": {
         "id": "skill-postmortem-facilitation-intro",
@@ -16255,10 +16255,10 @@
     {
       "kind": "skill",
       "targetId": "privilege-escalation-mapping",
-      "targetName": "privilege escalation mapping",
+      "targetName": "Privilege Escalation Mapping",
       "source": {
         "type": "skill",
-        "progressKey": "skill::privilege escalation mapping"
+        "progressKey": "skill::Privilege Escalation Mapping"
       },
       "intro": {
         "id": "skill-privilege-escalation-mapping-intro",
@@ -16394,151 +16394,11 @@
     },
     {
       "kind": "skill",
-      "targetId": "problem-solving",
-      "targetName": "Problem solving",
-      "source": {
-        "type": "skill",
-        "progressKey": "skill::Problem solving"
-      },
-      "intro": {
-        "id": "skill-problem-solving-intro",
-        "title": "Meet Problem solving",
-        "description": "Study an introductory reference for Problem solving, then summarize what it is, when it is used, and one small practical action a beginner can try.",
-        "summaryRequired": true,
-        "links": [
-          {
-            "label": "freeCodeCamp - Problem Solving",
-            "url": "https://www.freecodecamp.org/news/problem-solving/"
-          }
-        ]
-      },
-      "levels": {
-        "1": [
-          {
-            "id": "skill-problem-solving-lv1-01",
-            "title": "Identify Problem solving Basics",
-            "description": "Read the beginner material for Problem solving, then explain the core terms a new teammate must understand before using it.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          },
-          {
-            "id": "skill-problem-solving-lv1-02",
-            "title": "Map a Simple Problem solving Use Case",
-            "description": "Describe a small real-world situation where Problem solving helps, including the input, action, and expected result.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          },
-          {
-            "id": "skill-problem-solving-lv1-03",
-            "title": "Avoid a Common Problem solving Mistake",
-            "description": "Find one beginner mistake related to Problem solving, then summarize how to notice it and how to avoid it.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          }
-        ],
-        "2": [
-          {
-            "id": "skill-problem-solving-lv2-01",
-            "title": "Apply Problem solving in Context",
-            "description": "Use the reference to design a practical workflow for Problem solving, then explain why each step is needed.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          },
-          {
-            "id": "skill-problem-solving-lv2-02",
-            "title": "Compare Problem solving Tradeoffs",
-            "description": "Write a comparison between a simple approach and a more structured approach for Problem solving, including when each is appropriate.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          },
-          {
-            "id": "skill-problem-solving-lv2-03",
-            "title": "Troubleshoot Problem solving",
-            "description": "Create a short troubleshooting checklist for Problem solving, focusing on symptoms, likely causes, and safe next steps.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          }
-        ],
-        "3": [
-          {
-            "id": "skill-problem-solving-lv3-01",
-            "title": "Design a Reusable Problem solving Practice",
-            "description": "Turn Problem solving into a repeatable practice that another teammate could follow, including review points and quality checks.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          },
-          {
-            "id": "skill-problem-solving-lv3-02",
-            "title": "Review Problem solving Like a Senior",
-            "description": "Audit a Problem solving decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          },
-          {
-            "id": "skill-problem-solving-lv3-03",
-            "title": "Prove Problem solving Mastery",
-            "description": "Create a small proof-of-understanding artifact for Problem solving, such as notes, a checklist, a mini demo, or a before-and-after explanation. Focus on breaking vague problems into smaller testable steps.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "freeCodeCamp - Problem Solving",
-                "url": "https://www.freecodecamp.org/news/problem-solving/"
-              }
-            ]
-          }
-        ]
-      },
-      "learningStage": "fundamental",
-      "fundamental": true,
-      "prerequisiteTargets": []
-    },
-    {
-      "kind": "skill",
       "targetId": "product-strategy",
-      "targetName": "product strategy",
+      "targetName": "Product Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::product strategy"
+        "progressKey": "skill::Product Strategy"
       },
       "intro": {
         "id": "skill-product-strategy-intro",
@@ -16675,10 +16535,10 @@
     {
       "kind": "skill",
       "targetId": "product-usability-validation",
-      "targetName": "product usability validation",
+      "targetName": "Product Usability Validation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::product usability validation"
+        "progressKey": "skill::Product Usability Validation"
       },
       "intro": {
         "id": "skill-product-usability-validation-intro",
@@ -16815,10 +16675,10 @@
     {
       "kind": "skill",
       "targetId": "production-release-coordination",
-      "targetName": "production release coordination",
+      "targetName": "Production Release Coordination",
       "source": {
         "type": "skill",
-        "progressKey": "skill::production release coordination"
+        "progressKey": "skill::Production Release Coordination"
       },
       "intro": {
         "id": "skill-production-release-coordination-intro",
@@ -16955,10 +16815,10 @@
     {
       "kind": "skill",
       "targetId": "prompt-design",
-      "targetName": "Prompt design",
+      "targetName": "Prompt Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Prompt design"
+        "progressKey": "skill::Prompt Design"
       },
       "intro": {
         "id": "skill-prompt-design-intro",
@@ -17095,10 +16955,10 @@
     {
       "kind": "skill",
       "targetId": "prototyping-strategy",
-      "targetName": "prototyping strategy",
+      "targetName": "Prototyping Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::prototyping strategy"
+        "progressKey": "skill::Prototyping Strategy"
       },
       "intro": {
         "id": "skill-prototyping-strategy-intro",
@@ -17235,10 +17095,10 @@
     {
       "kind": "skill",
       "targetId": "quality-standard-enforcement",
-      "targetName": "quality standard enforcement",
+      "targetName": "Quality Standard Enforcement",
       "source": {
         "type": "skill",
-        "progressKey": "skill::quality standard enforcement"
+        "progressKey": "skill::Quality Standard Enforcement"
       },
       "intro": {
         "id": "skill-quality-standard-enforcement-intro",
@@ -17375,10 +17235,10 @@
     {
       "kind": "skill",
       "targetId": "query-tuning",
-      "targetName": "query tuning",
+      "targetName": "Query Tuning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::query tuning"
+        "progressKey": "skill::Query Tuning"
       },
       "intro": {
         "id": "skill-query-tuning-intro",
@@ -17655,10 +17515,10 @@
     {
       "kind": "skill",
       "targetId": "recurring-issue-analysis",
-      "targetName": "recurring issue analysis",
+      "targetName": "Recurring Issue Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::recurring issue analysis"
+        "progressKey": "skill::Recurring Issue Analysis"
       },
       "intro": {
         "id": "skill-recurring-issue-analysis-intro",
@@ -17795,10 +17655,10 @@
     {
       "kind": "skill",
       "targetId": "regression",
-      "targetName": "regression",
+      "targetName": "Regression",
       "source": {
         "type": "skill",
-        "progressKey": "skill::regression"
+        "progressKey": "skill::Regression"
       },
       "intro": {
         "id": "skill-regression-intro",
@@ -17935,10 +17795,10 @@
     {
       "kind": "skill",
       "targetId": "regulatory-alignment",
-      "targetName": "regulatory alignment",
+      "targetName": "Regulatory Alignment",
       "source": {
         "type": "skill",
-        "progressKey": "skill::regulatory alignment"
+        "progressKey": "skill::Regulatory Alignment"
       },
       "intro": {
         "id": "skill-regulatory-alignment-intro",
@@ -18075,10 +17935,10 @@
     {
       "kind": "skill",
       "targetId": "release-automation",
-      "targetName": "Release automation",
+      "targetName": "Release Automation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Release automation"
+        "progressKey": "skill::Release Automation"
       },
       "intro": {
         "id": "skill-release-automation-intro",
@@ -18215,10 +18075,10 @@
     {
       "kind": "skill",
       "targetId": "release-readiness-review",
-      "targetName": "release readiness review",
+      "targetName": "Release Readiness Review",
       "source": {
         "type": "skill",
-        "progressKey": "skill::release readiness review"
+        "progressKey": "skill::Release Readiness Review"
       },
       "intro": {
         "id": "skill-release-readiness-review-intro",
@@ -18355,10 +18215,10 @@
     {
       "kind": "skill",
       "targetId": "release-support",
-      "targetName": "release support",
+      "targetName": "Release Support",
       "source": {
         "type": "skill",
-        "progressKey": "skill::release support"
+        "progressKey": "skill::Release Support"
       },
       "intro": {
         "id": "skill-release-support-intro",
@@ -18495,10 +18355,10 @@
     {
       "kind": "skill",
       "targetId": "reliability-budgeting",
-      "targetName": "Reliability budgeting",
+      "targetName": "Reliability Budgeting",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Reliability budgeting"
+        "progressKey": "skill::Reliability Budgeting"
       },
       "intro": {
         "id": "skill-reliability-budgeting-intro",
@@ -18635,10 +18495,10 @@
     {
       "kind": "skill",
       "targetId": "remediation-guidance",
-      "targetName": "remediation guidance",
+      "targetName": "Remediation Guidance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::remediation guidance"
+        "progressKey": "skill::Remediation Guidance"
       },
       "intro": {
         "id": "skill-remediation-guidance-intro",
@@ -18775,10 +18635,10 @@
     {
       "kind": "skill",
       "targetId": "remediation-prioritization",
-      "targetName": "remediation prioritization",
+      "targetName": "Remediation Prioritization",
       "source": {
         "type": "skill",
-        "progressKey": "skill::remediation prioritization"
+        "progressKey": "skill::Remediation Prioritization"
       },
       "intro": {
         "id": "skill-remediation-prioritization-intro",
@@ -18915,10 +18775,10 @@
     {
       "kind": "skill",
       "targetId": "replication-management",
-      "targetName": "replication management",
+      "targetName": "Replication Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::replication management"
+        "progressKey": "skill::Replication Management"
       },
       "intro": {
         "id": "skill-replication-management-intro",
@@ -19055,10 +18915,10 @@
     {
       "kind": "skill",
       "targetId": "report-lifecycle-management",
-      "targetName": "report lifecycle management",
+      "targetName": "Report Lifecycle Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::report lifecycle management"
+        "progressKey": "skill::Report Lifecycle Management"
       },
       "intro": {
         "id": "skill-report-lifecycle-management-intro",
@@ -19335,10 +19195,10 @@
     {
       "kind": "skill",
       "targetId": "research-synthesis",
-      "targetName": "research synthesis",
+      "targetName": "Research Synthesis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::research synthesis"
+        "progressKey": "skill::Research Synthesis"
       },
       "intro": {
         "id": "skill-research-synthesis-intro",
@@ -19475,10 +19335,10 @@
     {
       "kind": "skill",
       "targetId": "resilience-planning",
-      "targetName": "resilience planning",
+      "targetName": "Resilience Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::resilience planning"
+        "progressKey": "skill::Resilience Planning"
       },
       "intro": {
         "id": "skill-resilience-planning-intro",
@@ -19615,10 +19475,10 @@
     {
       "kind": "skill",
       "targetId": "resource-coordination",
-      "targetName": "resource coordination",
+      "targetName": "Resource Coordination",
       "source": {
         "type": "skill",
-        "progressKey": "skill::resource coordination"
+        "progressKey": "skill::Resource Coordination"
       },
       "intro": {
         "id": "skill-resource-coordination-intro",
@@ -19755,10 +19615,10 @@
     {
       "kind": "skill",
       "targetId": "responsive-layout",
-      "targetName": "responsive layout",
+      "targetName": "Responsive Layout",
       "source": {
         "type": "skill",
-        "progressKey": "skill::responsive layout"
+        "progressKey": "skill::Responsive Layout"
       },
       "intro": {
         "id": "skill-responsive-layout-intro",
@@ -19895,10 +19755,10 @@
     {
       "kind": "skill",
       "targetId": "retrieval-design",
-      "targetName": "retrieval design",
+      "targetName": "Retrieval Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::retrieval design"
+        "progressKey": "skill::Retrieval Design"
       },
       "intro": {
         "id": "skill-retrieval-design-intro",
@@ -20035,10 +19895,10 @@
     {
       "kind": "skill",
       "targetId": "risk-mitigation-planning",
-      "targetName": "risk mitigation planning",
+      "targetName": "Risk Mitigation Planning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::risk mitigation planning"
+        "progressKey": "skill::Risk Mitigation Planning"
       },
       "intro": {
         "id": "skill-risk-mitigation-planning-intro",
@@ -20175,10 +20035,10 @@
     {
       "kind": "skill",
       "targetId": "risk-register-maintenance",
-      "targetName": "risk register maintenance",
+      "targetName": "Risk Register Maintenance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::risk register maintenance"
+        "progressKey": "skill::Risk Register Maintenance"
       },
       "intro": {
         "id": "skill-risk-register-maintenance-intro",
@@ -20315,10 +20175,10 @@
     {
       "kind": "skill",
       "targetId": "roadmap-tradeoff-analysis",
-      "targetName": "roadmap tradeoff analysis",
+      "targetName": "Roadmap Tradeoff Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::roadmap tradeoff analysis"
+        "progressKey": "skill::Roadmap Tradeoff Analysis"
       },
       "intro": {
         "id": "skill-roadmap-tradeoff-analysis-intro",
@@ -20455,10 +20315,10 @@
     {
       "kind": "skill",
       "targetId": "routing",
-      "targetName": "routing",
+      "targetName": "Routing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::routing"
+        "progressKey": "skill::Routing"
       },
       "intro": {
         "id": "skill-routing-intro",
@@ -20595,10 +20455,10 @@
     {
       "kind": "skill",
       "targetId": "runbook-execution",
-      "targetName": "runbook execution",
+      "targetName": "Runbook Execution",
       "source": {
         "type": "skill",
-        "progressKey": "skill::runbook execution"
+        "progressKey": "skill::Runbook Execution"
       },
       "intro": {
         "id": "skill-runbook-execution-intro",
@@ -20735,10 +20595,10 @@
     {
       "kind": "skill",
       "targetId": "saturation-point-reporting",
-      "targetName": "saturation point reporting",
+      "targetName": "Saturation Point Reporting",
       "source": {
         "type": "skill",
-        "progressKey": "skill::saturation point reporting"
+        "progressKey": "skill::Saturation Point Reporting"
       },
       "intro": {
         "id": "skill-saturation-point-reporting-intro",
@@ -20875,10 +20735,10 @@
     {
       "kind": "skill",
       "targetId": "schema-evolution-handling",
-      "targetName": "schema evolution handling",
+      "targetName": "Schema Evolution Handling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::schema evolution handling"
+        "progressKey": "skill::Schema Evolution Handling"
       },
       "intro": {
         "id": "skill-schema-evolution-handling-intro",
@@ -21015,10 +20875,10 @@
     {
       "kind": "skill",
       "targetId": "scope-change-control",
-      "targetName": "scope change control",
+      "targetName": "Scope Change Control",
       "source": {
         "type": "skill",
-        "progressKey": "skill::scope change control"
+        "progressKey": "skill::Scope Change Control"
       },
       "intro": {
         "id": "skill-scope-change-control-intro",
@@ -21155,10 +21015,10 @@
     {
       "kind": "skill",
       "targetId": "secrets-exposure-reduction",
-      "targetName": "secrets exposure reduction",
+      "targetName": "Secrets Exposure Reduction",
       "source": {
         "type": "skill",
-        "progressKey": "skill::secrets exposure reduction"
+        "progressKey": "skill::Secrets Exposure Reduction"
       },
       "intro": {
         "id": "skill-secrets-exposure-reduction-intro",
@@ -21295,10 +21155,10 @@
     {
       "kind": "skill",
       "targetId": "secure-coding-review",
-      "targetName": "Secure coding review",
+      "targetName": "Secure Coding Review",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Secure coding review"
+        "progressKey": "skill::Secure Coding Review"
       },
       "intro": {
         "id": "skill-secure-coding-review-intro",
@@ -21435,10 +21295,10 @@
     {
       "kind": "skill",
       "targetId": "security-program-prioritization",
-      "targetName": "security program prioritization",
+      "targetName": "Security Program Prioritization",
       "source": {
         "type": "skill",
-        "progressKey": "skill::security program prioritization"
+        "progressKey": "skill::Security Program Prioritization"
       },
       "intro": {
         "id": "skill-security-program-prioritization-intro",
@@ -21575,10 +21435,10 @@
     {
       "kind": "skill",
       "targetId": "security-requirement-definition",
-      "targetName": "security requirement definition",
+      "targetName": "Security Requirement Definition",
       "source": {
         "type": "skill",
-        "progressKey": "skill::security requirement definition"
+        "progressKey": "skill::Security Requirement Definition"
       },
       "intro": {
         "id": "skill-security-requirement-definition-intro",
@@ -21715,10 +21575,10 @@
     {
       "kind": "skill",
       "targetId": "security-strategy",
-      "targetName": "Security strategy",
+      "targetName": "Security Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Security strategy"
+        "progressKey": "skill::Security Strategy"
       },
       "intro": {
         "id": "skill-security-strategy-intro",
@@ -21855,10 +21715,10 @@
     {
       "kind": "skill",
       "targetId": "selector-strategy",
-      "targetName": "selector strategy",
+      "targetName": "Selector Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::selector strategy"
+        "progressKey": "skill::Selector Strategy"
       },
       "intro": {
         "id": "skill-selector-strategy-intro",
@@ -21995,10 +21855,10 @@
     {
       "kind": "skill",
       "targetId": "self-service-analytics-enablement",
-      "targetName": "self-service analytics enablement",
+      "targetName": "Self-Service Analytics Enablement",
       "source": {
         "type": "skill",
-        "progressKey": "skill::self-service analytics enablement"
+        "progressKey": "skill::Self-Service Analytics Enablement"
       },
       "intro": {
         "id": "skill-self-service-analytics-enablement-intro",
@@ -22135,10 +21995,10 @@
     {
       "kind": "skill",
       "targetId": "semantic-markup",
-      "targetName": "Semantic markup",
+      "targetName": "Semantic Markup",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Semantic markup"
+        "progressKey": "skill::Semantic Markup"
       },
       "intro": {
         "id": "skill-semantic-markup-intro",
@@ -22275,10 +22135,10 @@
     {
       "kind": "skill",
       "targetId": "semantic-model-governance",
-      "targetName": "semantic model governance",
+      "targetName": "Semantic Model Governance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::semantic model governance"
+        "progressKey": "skill::Semantic Model Governance"
       },
       "intro": {
         "id": "skill-semantic-model-governance-intro",
@@ -22415,10 +22275,10 @@
     {
       "kind": "skill",
       "targetId": "server-administration",
-      "targetName": "Server administration",
+      "targetName": "Server Administration",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Server administration"
+        "progressKey": "skill::Server Administration"
       },
       "intro": {
         "id": "skill-server-administration-intro",
@@ -22555,10 +22415,10 @@
     {
       "kind": "skill",
       "targetId": "session-state-design",
-      "targetName": "session state design",
+      "targetName": "Session State Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::session state design"
+        "progressKey": "skill::Session State Design"
       },
       "intro": {
         "id": "skill-session-state-design-intro",
@@ -22695,10 +22555,10 @@
     {
       "kind": "skill",
       "targetId": "smoke-test",
-      "targetName": "Smoke test",
+      "targetName": "Smoke Test",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Smoke test"
+        "progressKey": "skill::Smoke Test"
       },
       "intro": {
         "id": "skill-smoke-test-intro",
@@ -22835,10 +22695,10 @@
     {
       "kind": "skill",
       "targetId": "spreadsheet-analysis",
-      "targetName": "spreadsheet analysis",
+      "targetName": "Spreadsheet Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::spreadsheet analysis"
+        "progressKey": "skill::Spreadsheet Analysis"
       },
       "intro": {
         "id": "skill-spreadsheet-analysis-intro",
@@ -22975,10 +22835,10 @@
     {
       "kind": "skill",
       "targetId": "sprint-scope-negotiation",
-      "targetName": "sprint scope negotiation",
+      "targetName": "Sprint Scope Negotiation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::sprint scope negotiation"
+        "progressKey": "skill::Sprint Scope Negotiation"
       },
       "intro": {
         "id": "skill-sprint-scope-negotiation-intro",
@@ -23115,10 +22975,10 @@
     {
       "kind": "skill",
       "targetId": "stakeholder-alignment",
-      "targetName": "stakeholder alignment",
+      "targetName": "Stakeholder Alignment",
       "source": {
         "type": "skill",
-        "progressKey": "skill::stakeholder alignment"
+        "progressKey": "skill::Stakeholder Alignment"
       },
       "intro": {
         "id": "skill-stakeholder-alignment-intro",
@@ -23255,10 +23115,10 @@
     {
       "kind": "skill",
       "targetId": "statistical-reasoning",
-      "targetName": "statistical reasoning",
+      "targetName": "Statistical Reasoning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::statistical reasoning"
+        "progressKey": "skill::Statistical Reasoning"
       },
       "intro": {
         "id": "skill-statistical-reasoning-intro",
@@ -23395,10 +23255,10 @@
     {
       "kind": "skill",
       "targetId": "status-escalation",
-      "targetName": "status escalation",
+      "targetName": "Status Escalation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::status escalation"
+        "progressKey": "skill::Status Escalation"
       },
       "intro": {
         "id": "skill-status-escalation-intro",
@@ -23535,10 +23395,10 @@
     {
       "kind": "skill",
       "targetId": "stress-scenario-design",
-      "targetName": "stress scenario design",
+      "targetName": "Stress Scenario Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::stress scenario design"
+        "progressKey": "skill::Stress Scenario Design"
       },
       "intro": {
         "id": "skill-stress-scenario-design-intro",
@@ -23675,10 +23535,10 @@
     {
       "kind": "skill",
       "targetId": "switching",
-      "targetName": "switching",
+      "targetName": "Switching",
       "source": {
         "type": "skill",
-        "progressKey": "skill::switching"
+        "progressKey": "skill::Switching"
       },
       "intro": {
         "id": "skill-switching-intro",
@@ -23815,10 +23675,10 @@
     {
       "kind": "skill",
       "targetId": "system-hardening",
-      "targetName": "System hardening",
+      "targetName": "System Hardening",
       "source": {
         "type": "skill",
-        "progressKey": "skill::System hardening"
+        "progressKey": "skill::System Hardening"
       },
       "intro": {
         "id": "skill-system-hardening-intro",
@@ -23955,10 +23815,10 @@
     {
       "kind": "skill",
       "targetId": "task-analysis",
-      "targetName": "task analysis",
+      "targetName": "Task Analysis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::task analysis"
+        "progressKey": "skill::Task Analysis"
       },
       "intro": {
         "id": "skill-task-analysis-intro",
@@ -24235,10 +24095,10 @@
     {
       "kind": "skill",
       "targetId": "team-health-diagnosis",
-      "targetName": "team health diagnosis",
+      "targetName": "Team Health Diagnosis",
       "source": {
         "type": "skill",
-        "progressKey": "skill::team health diagnosis"
+        "progressKey": "skill::Team Health Diagnosis"
       },
       "intro": {
         "id": "skill-team-health-diagnosis-intro",
@@ -24375,10 +24235,10 @@
     {
       "kind": "skill",
       "targetId": "technical-mentoring",
-      "targetName": "technical mentoring",
+      "targetName": "Technical Mentoring",
       "source": {
         "type": "skill",
-        "progressKey": "skill::technical mentoring"
+        "progressKey": "skill::Technical Mentoring"
       },
       "intro": {
         "id": "skill-technical-mentoring-intro",
@@ -24515,10 +24375,10 @@
     {
       "kind": "skill",
       "targetId": "technical-risk-portfolio-management",
-      "targetName": "technical risk portfolio management",
+      "targetName": "Technical Risk Portfolio Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::technical risk portfolio management"
+        "progressKey": "skill::Technical Risk Portfolio Management"
       },
       "intro": {
         "id": "skill-technical-risk-portfolio-management-intro",
@@ -24655,10 +24515,10 @@
     {
       "kind": "skill",
       "targetId": "technology-strategy",
-      "targetName": "Technology strategy",
+      "targetName": "Technology Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Technology strategy"
+        "progressKey": "skill::Technology Strategy"
       },
       "intro": {
         "id": "skill-technology-strategy-intro",
@@ -24795,10 +24655,10 @@
     {
       "kind": "skill",
       "targetId": "test-case",
-      "targetName": "test case",
+      "targetName": "Test Case",
       "source": {
         "type": "skill",
-        "progressKey": "skill::test case"
+        "progressKey": "skill::Test Case"
       },
       "intro": {
         "id": "skill-test-case-intro",
@@ -24935,10 +24795,10 @@
     {
       "kind": "skill",
       "targetId": "test-data-seeding",
-      "targetName": "test data seeding",
+      "targetName": "Test Data Seeding",
       "source": {
         "type": "skill",
-        "progressKey": "skill::test data seeding"
+        "progressKey": "skill::Test Data Seeding"
       },
       "intro": {
         "id": "skill-test-data-seeding-intro",
@@ -25075,10 +24935,10 @@
     {
       "kind": "skill",
       "targetId": "threat-detection",
-      "targetName": "threat detection",
+      "targetName": "Threat Detection",
       "source": {
         "type": "skill",
-        "progressKey": "skill::threat detection"
+        "progressKey": "skill::Threat Detection"
       },
       "intro": {
         "id": "skill-threat-detection-intro",
@@ -25215,10 +25075,10 @@
     {
       "kind": "skill",
       "targetId": "threat-modeling",
-      "targetName": "threat modeling",
+      "targetName": "Threat Modeling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::threat modeling"
+        "progressKey": "skill::Threat Modeling"
       },
       "intro": {
         "id": "skill-threat-modeling-intro",
@@ -25355,10 +25215,10 @@
     {
       "kind": "skill",
       "targetId": "ticket-handling",
-      "targetName": "Ticket handling",
+      "targetName": "Ticket Handling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Ticket handling"
+        "progressKey": "skill::Ticket Handling"
       },
       "intro": {
         "id": "skill-ticket-handling-intro",
@@ -25495,10 +25355,10 @@
     {
       "kind": "skill",
       "targetId": "toil-reduction",
-      "targetName": "toil reduction",
+      "targetName": "Toil Reduction",
       "source": {
         "type": "skill",
-        "progressKey": "skill::toil reduction"
+        "progressKey": "skill::Toil Reduction"
       },
       "intro": {
         "id": "skill-toil-reduction-intro",
@@ -25635,10 +25495,10 @@
     {
       "kind": "skill",
       "targetId": "tool-use-orchestration",
-      "targetName": "tool-use orchestration",
+      "targetName": "Tool-Use Orchestration",
       "source": {
         "type": "skill",
-        "progressKey": "skill::tool-use orchestration"
+        "progressKey": "skill::Tool-Use Orchestration"
       },
       "intro": {
         "id": "skill-tool-use-orchestration-intro",
@@ -25775,10 +25635,10 @@
     {
       "kind": "skill",
       "targetId": "transactional-workflow-design",
-      "targetName": "transactional workflow design",
+      "targetName": "Transactional Workflow Design",
       "source": {
         "type": "skill",
-        "progressKey": "skill::transactional workflow design"
+        "progressKey": "skill::Transactional Workflow Design"
       },
       "intro": {
         "id": "skill-transactional-workflow-design-intro",
@@ -25914,151 +25774,11 @@
     },
     {
       "kind": "skill",
-      "targetId": "troubleshooting",
-      "targetName": "troubleshooting",
-      "source": {
-        "type": "skill",
-        "progressKey": "skill::troubleshooting"
-      },
-      "intro": {
-        "id": "skill-troubleshooting-intro",
-        "title": "Meet troubleshooting",
-        "description": "Study an introductory reference for troubleshooting, then summarize what it is, when it is used, and one small practical action a beginner can try.",
-        "summaryRequired": true,
-        "links": [
-          {
-            "label": "Microsoft Learn - Troubleshooting",
-            "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-          }
-        ]
-      },
-      "levels": {
-        "1": [
-          {
-            "id": "skill-troubleshooting-lv1-01",
-            "title": "Identify troubleshooting Basics",
-            "description": "Read the beginner material for troubleshooting, then explain the core terms a new teammate must understand before using it.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          },
-          {
-            "id": "skill-troubleshooting-lv1-02",
-            "title": "Map a Simple troubleshooting Use Case",
-            "description": "Describe a small real-world situation where troubleshooting helps, including the input, action, and expected result.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          },
-          {
-            "id": "skill-troubleshooting-lv1-03",
-            "title": "Avoid a Common troubleshooting Mistake",
-            "description": "Find one beginner mistake related to troubleshooting, then summarize how to notice it and how to avoid it.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          }
-        ],
-        "2": [
-          {
-            "id": "skill-troubleshooting-lv2-01",
-            "title": "Apply troubleshooting in Context",
-            "description": "Use the reference to design a practical workflow for troubleshooting, then explain why each step is needed.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          },
-          {
-            "id": "skill-troubleshooting-lv2-02",
-            "title": "Compare troubleshooting Tradeoffs",
-            "description": "Write a comparison between a simple approach and a more structured approach for troubleshooting, including when each is appropriate.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          },
-          {
-            "id": "skill-troubleshooting-lv2-03",
-            "title": "Troubleshoot troubleshooting",
-            "description": "Create a short troubleshooting checklist for troubleshooting, focusing on symptoms, likely causes, and safe next steps.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          }
-        ],
-        "3": [
-          {
-            "id": "skill-troubleshooting-lv3-01",
-            "title": "Design a Reusable troubleshooting Practice",
-            "description": "Turn troubleshooting into a repeatable practice that another teammate could follow, including review points and quality checks.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          },
-          {
-            "id": "skill-troubleshooting-lv3-02",
-            "title": "Review troubleshooting Like a Senior",
-            "description": "Audit a troubleshooting decision for correctness, maintainability, and risk, then summarize what you would approve or change.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          },
-          {
-            "id": "skill-troubleshooting-lv3-03",
-            "title": "Prove troubleshooting Mastery",
-            "description": "Create a small proof-of-understanding artifact for troubleshooting, such as notes, a checklist, a mini demo, or a before-and-after explanation. Focus on evidence gathering before changing settings or code.",
-            "summaryRequired": true,
-            "links": [
-              {
-                "label": "Microsoft Learn - Troubleshooting",
-                "url": "https://learn.microsoft.com/en-us/troubleshoot/"
-              }
-            ]
-          }
-        ]
-      },
-      "learningStage": "fundamental",
-      "fundamental": true,
-      "prerequisiteTargets": []
-    },
-    {
-      "kind": "skill",
       "targetId": "typography-styling",
-      "targetName": "typography styling",
+      "targetName": "Typography Styling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::typography styling"
+        "progressKey": "skill::Typography Styling"
       },
       "intro": {
         "id": "skill-typography-styling-intro",
@@ -26195,10 +25915,10 @@
     {
       "kind": "skill",
       "targetId": "usability-testing",
-      "targetName": "usability testing",
+      "targetName": "Usability Testing",
       "source": {
         "type": "skill",
-        "progressKey": "skill::usability testing"
+        "progressKey": "skill::Usability Testing"
       },
       "intro": {
         "id": "skill-usability-testing-intro",
@@ -26335,10 +26055,10 @@
     {
       "kind": "skill",
       "targetId": "user-guidance",
-      "targetName": "user guidance",
+      "targetName": "User Guidance",
       "source": {
         "type": "skill",
-        "progressKey": "skill::user guidance"
+        "progressKey": "skill::User Guidance"
       },
       "intro": {
         "id": "skill-user-guidance-intro",
@@ -26475,10 +26195,10 @@
     {
       "kind": "skill",
       "targetId": "user-management",
-      "targetName": "user management",
+      "targetName": "User Management",
       "source": {
         "type": "skill",
-        "progressKey": "skill::user management"
+        "progressKey": "skill::User Management"
       },
       "intro": {
         "id": "skill-user-management-intro",
@@ -26615,10 +26335,10 @@
     {
       "kind": "skill",
       "targetId": "validation-strategy",
-      "targetName": "validation strategy",
+      "targetName": "Validation Strategy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::validation strategy"
+        "progressKey": "skill::Validation Strategy"
       },
       "intro": {
         "id": "skill-validation-strategy-intro",
@@ -26755,10 +26475,10 @@
     {
       "kind": "skill",
       "targetId": "version-control",
-      "targetName": "version control",
+      "targetName": "Version Control",
       "source": {
         "type": "skill",
-        "progressKey": "skill::version control"
+        "progressKey": "skill::Version Control"
       },
       "intro": {
         "id": "skill-version-control-intro",
@@ -26895,10 +26615,10 @@
     {
       "kind": "skill",
       "targetId": "visual-hierarchy",
-      "targetName": "Visual hierarchy",
+      "targetName": "Visual Hierarchy",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Visual hierarchy"
+        "progressKey": "skill::Visual Hierarchy"
       },
       "intro": {
         "id": "skill-visual-hierarchy-intro",
@@ -27035,10 +26755,10 @@
     {
       "kind": "skill",
       "targetId": "vulnerability-chaining",
-      "targetName": "vulnerability chaining",
+      "targetName": "Vulnerability Chaining",
       "source": {
         "type": "skill",
-        "progressKey": "skill::vulnerability chaining"
+        "progressKey": "skill::Vulnerability Chaining"
       },
       "intro": {
         "id": "skill-vulnerability-chaining-intro",
@@ -27175,10 +26895,10 @@
     {
       "kind": "skill",
       "targetId": "vulnerability-scanning",
-      "targetName": "vulnerability scanning",
+      "targetName": "Vulnerability Scanning",
       "source": {
         "type": "skill",
-        "progressKey": "skill::vulnerability scanning"
+        "progressKey": "skill::Vulnerability Scanning"
       },
       "intro": {
         "id": "skill-vulnerability-scanning-intro",
@@ -27315,10 +27035,10 @@
     {
       "kind": "skill",
       "targetId": "warehouse-modeling",
-      "targetName": "warehouse modeling",
+      "targetName": "Warehouse Modeling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::warehouse modeling"
+        "progressKey": "skill::Warehouse Modeling"
       },
       "intro": {
         "id": "skill-warehouse-modeling-intro",
@@ -27455,10 +27175,10 @@
     {
       "kind": "skill",
       "targetId": "workaround-documentation",
-      "targetName": "workaround documentation",
+      "targetName": "Workaround Documentation",
       "source": {
         "type": "skill",
-        "progressKey": "skill::workaround documentation"
+        "progressKey": "skill::Workaround Documentation"
       },
       "intro": {
         "id": "skill-workaround-documentation-intro",
@@ -27595,10 +27315,10 @@
     {
       "kind": "skill",
       "targetId": "workload-modeling",
-      "targetName": "Workload modeling",
+      "targetName": "Workload Modeling",
       "source": {
         "type": "skill",
-        "progressKey": "skill::Workload modeling"
+        "progressKey": "skill::Workload Modeling"
       },
       "intro": {
         "id": "skill-workload-modeling-intro",
@@ -27735,10 +27455,10 @@
     {
       "kind": "skill",
       "targetId": "workstation-troubleshooting",
-      "targetName": "workstation troubleshooting",
+      "targetName": "Workstation Troubleshooting",
       "source": {
         "type": "skill",
-        "progressKey": "skill::workstation troubleshooting"
+        "progressKey": "skill::Workstation Troubleshooting"
       },
       "intro": {
         "id": "skill-workstation-troubleshooting-intro",
