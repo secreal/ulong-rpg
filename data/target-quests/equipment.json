@@ -8,7 +8,7 @@
     "intro": "one daily activation quest",
     "levels": "object with keys 1, 2, 3; each level contains exactly three required main quests",
     "learningStage": "fundamental | dependent; fundamental targets can appear in first rolling daily quests before dependent targets",
-    "prerequisiteTargets": "array of target references required before dependent target introduction; empty for fundamental targets or not-yet-modeled dependencies",
+    "prerequisiteTargets": "array of 1-3 qualified target references (<kind>:<targetId>) required before dependent target introduction; empty for fundamental targets",
     "fundamental": "boolean; true when the target can be learned immediately without prerequisite skill/tool/talent knowledge and should appear earlier in daily quest rotation"
   },
   "targets": [
@@ -290,7 +290,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -430,7 +432,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:visual-hierarchy"
+      ]
     },
     {
       "kind": "equipment",
@@ -570,7 +574,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:color-system-design"
+      ]
     },
     {
       "kind": "equipment",
@@ -710,7 +716,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:requirement"
+      ]
     },
     {
       "kind": "equipment",
@@ -850,7 +858,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:statistical-reasoning"
+      ]
     },
     {
       "kind": "equipment",
@@ -990,7 +1000,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:statistical-reasoning"
+      ]
     },
     {
       "kind": "equipment",
@@ -1270,7 +1282,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -1550,7 +1564,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:background-processing"
+      ]
     },
     {
       "kind": "equipment",
@@ -1690,7 +1706,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -1830,7 +1848,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "equipment",
@@ -1970,7 +1990,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -2110,7 +2132,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:wireframing"
+      ]
     },
     {
       "kind": "equipment",
@@ -2250,7 +2274,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "equipment",
@@ -2390,7 +2416,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:wireframing"
+      ]
     },
     {
       "kind": "equipment",
@@ -2670,7 +2698,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -2950,7 +2980,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:browser-interaction"
+      ]
     },
     {
       "kind": "equipment",
@@ -3090,7 +3122,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:rest-api"
+      ]
     },
     {
       "kind": "equipment",
@@ -3370,7 +3404,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -3510,7 +3546,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -3650,7 +3688,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:routing"
+      ]
     },
     {
       "kind": "equipment",
@@ -3790,7 +3830,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "equipment",
@@ -4070,7 +4112,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:threat-detection"
+      ]
     },
     {
       "kind": "equipment",
@@ -4210,7 +4254,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:test-case"
+      ]
     },
     {
       "kind": "equipment",
@@ -4350,7 +4396,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -4490,7 +4538,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:dashboard-reading"
+      ]
     },
     {
       "kind": "equipment",
@@ -4630,7 +4680,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -4770,7 +4822,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -4910,7 +4964,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "equipment",
@@ -5050,7 +5106,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -5190,7 +5248,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:user-research"
+      ]
     },
     {
       "kind": "equipment",
@@ -5330,7 +5390,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:audit-evidence-collection"
+      ]
     },
     {
       "kind": "equipment",
@@ -5750,7 +5812,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:log-analysis"
+      ]
     },
     {
       "kind": "equipment",
@@ -5890,7 +5954,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -6310,7 +6376,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:wireframing"
+      ]
     },
     {
       "kind": "equipment",
@@ -6590,7 +6658,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-integration"
+      ]
     },
     {
       "kind": "equipment",
@@ -6730,7 +6800,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "equipment",
@@ -6870,7 +6942,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:firewall"
+      ]
     },
     {
       "kind": "equipment",
@@ -7150,7 +7224,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:workload-modeling"
+      ]
     },
     {
       "kind": "equipment",
@@ -7570,7 +7646,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "equipment",
@@ -7850,7 +7928,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -7990,7 +8070,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:dashboard-reading"
+      ]
     },
     {
       "kind": "equipment",
@@ -8130,7 +8212,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -8270,7 +8354,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:statistical-reasoning"
+      ]
     },
     {
       "kind": "equipment",
@@ -8690,7 +8776,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:dashboard-reading"
+      ]
     },
     {
       "kind": "equipment",
@@ -8970,7 +9058,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:access-control"
+      ]
     },
     {
       "kind": "equipment",
@@ -9110,7 +9200,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -9250,7 +9342,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:container-operations"
+      ]
     },
     {
       "kind": "equipment",
@@ -9390,7 +9484,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:user-research"
+      ]
     },
     {
       "kind": "equipment",
@@ -9530,7 +9626,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:model-evaluation"
+      ]
     },
     {
       "kind": "equipment",
@@ -9670,7 +9768,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:log-analysis"
+      ]
     },
     {
       "kind": "equipment",
@@ -10230,7 +10330,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:ci-test-orchestration"
+      ]
     },
     {
       "kind": "equipment",
@@ -10370,7 +10472,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:requirement"
+      ]
     },
     {
       "kind": "equipment",
@@ -10510,7 +10614,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:requirement"
+      ]
     },
     {
       "kind": "equipment",
@@ -10790,7 +10896,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:workload-modeling"
+      ]
     },
     {
       "kind": "equipment",
@@ -10930,7 +11038,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -11070,7 +11180,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:statistical-reasoning"
+      ]
     },
     {
       "kind": "equipment",
@@ -11210,7 +11322,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:workload-modeling"
+      ]
     },
     {
       "kind": "equipment",
@@ -11350,7 +11464,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:reconnaissance"
+      ]
     },
     {
       "kind": "equipment",
@@ -11490,7 +11606,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -11630,7 +11748,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-integration"
+      ]
     },
     {
       "kind": "equipment",
@@ -11770,7 +11890,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -11910,7 +12032,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:requirement"
+      ]
     },
     {
       "kind": "equipment",
@@ -12190,7 +12314,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:retrieval-design"
+      ]
     },
     {
       "kind": "equipment",
@@ -12330,7 +12456,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "equipment",
@@ -12470,7 +12598,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:dashboard-reading"
+      ]
     },
     {
       "kind": "equipment",
@@ -12890,7 +13020,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -13030,7 +13162,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:user-research"
+      ]
     },
     {
       "kind": "equipment",
@@ -13170,7 +13304,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -13310,7 +13446,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:exploit-validation"
+      ]
     },
     {
       "kind": "equipment",
@@ -13590,7 +13728,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -13730,7 +13870,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:threat-detection"
+      ]
     },
     {
       "kind": "equipment",
@@ -14150,7 +14292,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:log-analysis"
+      ]
     },
     {
       "kind": "equipment",
@@ -14430,7 +14574,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -14710,7 +14856,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:dashboard-reading"
+      ]
     },
     {
       "kind": "equipment",
@@ -14850,7 +14998,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:model-evaluation"
+      ]
     },
     {
       "kind": "equipment",
@@ -15130,7 +15280,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -15410,7 +15562,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -15550,7 +15704,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -15690,7 +15846,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:vulnerability-scanning"
+      ]
     },
     {
       "kind": "equipment",
@@ -15970,7 +16128,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:app-release"
+      ]
     },
     {
       "kind": "equipment",
@@ -16110,7 +16270,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:application-monitoring"
+      ]
     },
     {
       "kind": "equipment",
@@ -16250,7 +16412,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -16950,7 +17114,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:model-evaluation"
+      ]
     },
     {
       "kind": "equipment",
@@ -17090,7 +17256,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-integration"
+      ]
     },
     {
       "kind": "equipment",
@@ -17230,7 +17398,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:routing"
+      ]
     },
     {
       "kind": "equipment",
@@ -17370,7 +17540,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -17510,7 +17682,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:vulnerability-scanning"
+      ]
     },
     {
       "kind": "equipment",
@@ -17650,7 +17824,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:vulnerability-scanning"
+      ]
     },
     {
       "kind": "equipment",
@@ -17790,7 +17966,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -17930,7 +18108,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:firewall"
+      ]
     },
     {
       "kind": "equipment",
@@ -18070,7 +18250,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -18210,7 +18392,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -18490,7 +18674,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:test-case"
+      ]
     },
     {
       "kind": "equipment",
@@ -18770,7 +18956,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "equipment",
@@ -19050,7 +19238,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:requirement"
+      ]
     },
     {
       "kind": "equipment",
@@ -19190,7 +19380,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:application-monitoring"
+      ]
     },
     {
       "kind": "equipment",
@@ -19330,7 +19522,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:infrastructure-provisioning"
+      ]
     },
     {
       "kind": "equipment",
@@ -19750,7 +19944,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:vulnerability-scanning"
+      ]
     },
     {
       "kind": "equipment",
@@ -19890,7 +20086,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:container-operations"
+      ]
     },
     {
       "kind": "equipment",
@@ -20030,7 +20228,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -20730,7 +20930,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:test-case"
+      ]
     },
     {
       "kind": "equipment",
@@ -20870,7 +21072,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:secure-coding-review"
+      ]
     },
     {
       "kind": "equipment",
@@ -21010,7 +21214,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:error-analysis"
+      ]
     },
     {
       "kind": "equipment",
@@ -21150,7 +21356,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -21570,7 +21778,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:wireframing"
+      ]
     },
     {
       "kind": "equipment",
@@ -21850,7 +22060,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -21990,7 +22202,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:vulnerability-scanning"
+      ]
     },
     {
       "kind": "equipment",
@@ -22130,7 +22344,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:code-review-strategy"
+      ]
     },
     {
       "kind": "equipment",
@@ -22270,7 +22486,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:log-analysis"
+      ]
     },
     {
       "kind": "equipment",
@@ -22410,7 +22628,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -22690,7 +22910,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-integration"
+      ]
     },
     {
       "kind": "equipment",
@@ -22970,7 +23192,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:dashboard-reading"
+      ]
     },
     {
       "kind": "equipment",
@@ -23110,7 +23334,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -23530,7 +23756,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:infrastructure-provisioning"
+      ]
     },
     {
       "kind": "equipment",
@@ -23670,7 +23898,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:test-case"
+      ]
     },
     {
       "kind": "equipment",
@@ -23810,7 +24040,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:test-case"
+      ]
     },
     {
       "kind": "equipment",
@@ -23950,7 +24182,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "equipment",
@@ -24090,7 +24324,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:switching"
+      ]
     },
     {
       "kind": "equipment",
@@ -24230,7 +24466,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -24370,7 +24608,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:audit-evidence-collection"
+      ]
     },
     {
       "kind": "equipment",
@@ -24510,7 +24750,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:app-release"
+      ]
     },
     {
       "kind": "equipment",
@@ -25070,7 +25312,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -25210,7 +25454,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:threat-detection"
+      ]
     },
     {
       "kind": "equipment",
@@ -25910,7 +26156,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "equipment",
@@ -26050,7 +26298,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "equipment",
@@ -26470,7 +26720,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:documentation"
+      ]
     }
   ]
 }
