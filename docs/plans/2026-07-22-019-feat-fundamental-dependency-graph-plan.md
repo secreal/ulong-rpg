@@ -196,7 +196,7 @@ flowchart LR
 - Keep every fundamental array empty and give every dependent one to three direct foundations, preferring one.
 - Use cross-kind references when the real prerequisite belongs to another catalog; do not infer progress keys from graph references.
 - Split authoring into skill (158), equipment (126), and talent (145) batches. For skills, use tooltip descriptions and job/tier context; for equipment and talents, use bilingual catalog descriptions and job tags. Use authoritative technology documentation only when local evidence is insufficient.
-- Record every target, direct prerequisite, evidence source, and concise smallest-foundation rationale in `docs/reports/target-dependency-review.md`. Review every edge for foundation fit and every multi-edge target for independent necessity before integration.
+- Record every target, direct prerequisite, and concise smallest-foundation rationale in per-kind ledgers under `docs/reports/dependency-review/`, indexed by `docs/reports/target-dependency-review.md`. Review every edge for foundation fit and every multi-edge target for independent necessity before integration.
 - Before bulk authoring, capture temporary SHA-256 baselines of each catalog after removing only `prerequisiteTargets` and the intentionally changed schema description. Compare after authoring and assert exact per-target `fundamental` and `learningStage` preservation.
 - Add live-catalog invariants for totals, exact classification identity, graph validity, and preservation of quest structure.
 
@@ -263,6 +263,9 @@ flowchart LR
 **Files:**
 - Modify: `docs/reports/target-quest-health.md`
 - Create: `docs/reports/target-dependency-review.md`
+- Create: `docs/reports/dependency-review/skills.md`
+- Create: `docs/reports/dependency-review/equipment.md`
+- Create: `docs/reports/dependency-review/talents.md`
 - Modify: `docs/handoffs/target-quest-data-for-claude.md`
 
 **Approach:**

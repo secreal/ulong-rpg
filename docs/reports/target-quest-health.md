@@ -11,6 +11,12 @@
 | talent | 165 | 1650 | 20 | 145 | 27 |
 | **Total** | **551** | **5510** | **122** | **429** | **103** |
 
+## Dependencies
+
+| Edges | Maximum depth | Missing prerequisites |
+|---:|---:|---:|
+| 429 | 3 | 0 |
+
 Errors: **0**  
 Warnings: **16**
 
