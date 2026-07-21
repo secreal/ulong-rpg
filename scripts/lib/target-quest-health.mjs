@@ -10,6 +10,7 @@ const SEVERITY_ORDER = { error: 0, warning: 1 };
 export const DEFAULT_HEALTH_OPTIONS = Object.freeze({
   concentrationMinimumTargets: 10,
   concentrationMinimumShare: 0.05,
+  validatePlanned: false,
 });
 
 export function slugify(value) {
@@ -51,8 +52,19 @@ function sortFindings(findings) {
     SEVERITY_ORDER[left.severity] - SEVERITY_ORDER[right.severity]
       || left.ruleId.localeCompare(right.ruleId)
       || left.location.localeCompare(right.location)
-      || left.message.localeCompare(right.message),
+      || left.message.localeCompare(right.message)
+      || JSON.stringify(left.details || {}).localeCompare(JSON.stringify(right.details || {})),
   );
+}
+
+function mergeFindings(findings, incoming) {
+  const keys = new Set(findings.map(finding => JSON.stringify(finding)));
+  for (const finding of incoming) {
+    const key = JSON.stringify(finding);
+    if (keys.has(key)) continue;
+    keys.add(key);
+    findings.push(finding);
+  }
 }
 
 function readJson(rootDir, filePath, addFinding) {
@@ -290,20 +302,26 @@ function analyzeTarget({
   metrics.targets += 1;
   if (!isObject(target)) {
     addFinding("target-shape", "error", location, "Target must be an object.");
-    return;
+    return false;
   }
 
+  let graphReady = true;
   if (target.kind !== kind) {
     addFinding("target-kind-mismatch", "error", location, `Target kind must be "${kind}".`, { actual: target.kind });
+    graphReady = false;
   }
+  let duplicateTarget = false;
   if (typeof target.targetId !== "string" || !target.targetId.trim()) {
     addFinding("missing-target-field", "error", location, "Target is missing targetId.", { field: "targetId" });
+    graphReady = false;
   } else {
     const targetKey = `${kind}:${target.targetId}`;
     if (seenTargets.has(targetKey)) {
       addFinding("duplicate-target", "error", location, `Target "${targetKey}" is duplicated.`);
+      duplicateTarget = true;
+    } else {
+      seenTargets.add(targetKey);
     }
-    seenTargets.add(targetKey);
   }
   if (typeof target.targetName !== "string" || !target.targetName.trim()) {
     addFinding("missing-target-field", "error", location, "Target is missing targetName.", { field: "targetName" });
@@ -311,6 +329,7 @@ function analyzeTarget({
 
   if (typeof target.fundamental !== "boolean") {
     addFinding("missing-fundamental", "error", location, "Target fundamental must be true or false.");
+    graphReady = false;
   } else if (target.fundamental) {
     metrics.fundamental += 1;
   } else {
@@ -329,13 +348,19 @@ function analyzeTarget({
   }
   validateTargetIdentity({ kind, target, location, canonicalSkills, equipment, talents, addFinding });
 
-  graphTargets.push({
-    kind,
-    targetId: target.targetId,
-    fundamental: target.fundamental,
-    prerequisiteTargets: target.prerequisiteTargets,
-    location,
-  });
+  if (!Array.isArray(target.prerequisiteTargets)) {
+    addFinding("prerequisite-targets-shape", "error", location, "prerequisiteTargets must be an array.");
+    graphReady = false;
+  }
+  if (graphReady && !duplicateTarget) {
+    graphTargets.push({
+      kind,
+      targetId: target.targetId,
+      fundamental: target.fundamental,
+      prerequisiteTargets: target.prerequisiteTargets,
+      location,
+    });
+  }
 
   analyzeQuest({
     quest: target.intro,
@@ -350,7 +375,7 @@ function analyzeTarget({
 
   if (!isObject(target.levels)) {
     addFinding("missing-levels", "error", location, "Target levels must be an object with levels 1, 2, and 3.");
-    return;
+    return graphReady;
   }
   for (const level of LEVELS) {
     const quests = target.levels[level];
@@ -376,6 +401,7 @@ function analyzeTarget({
       addFinding,
     }));
   }
+  return graphReady;
 }
 
 function addSourceFindings({ sourceUsage, kinds, options, addFinding }) {
@@ -442,97 +468,130 @@ export function analyzeTargetQuestHealth(rootDir, overrides = {}) {
   const seenQuestIds = new Map();
   const sourceUsage = new Map();
   const graphTargets = [];
+  const plannedGraphTargets = [];
   const seenIndexKinds = new Set();
-  const seenAvailableKinds = new Set();
   let dependencyAnalysisComplete = true;
+  let plannedDependencyAnalysisComplete = true;
+
+  const plannedState = {
+    seenTargets: new Set(),
+    seenQuestIds: new Map(),
+    sourceUsage: new Map(),
+    kinds: Object.fromEntries(KINDS.map(kind => [kind, createKindMetrics()])),
+  };
 
   const indexPath = path.join(rootDir, "data", "target-quests", "index.json");
   const index = readJson(rootDir, indexPath, addFinding);
   if (!index) dependencyAnalysisComplete = false;
   if (index && !Array.isArray(index.questFiles)) {
     addFinding("index-shape", "error", "data/target-quests/index.json", "questFiles must be an array.");
+    dependencyAnalysisComplete = false;
   }
 
   for (const [entryIndex, entry] of (Array.isArray(index?.questFiles) ? index.questFiles : []).entries()) {
     const entryLocation = `data/target-quests/index.json:questFiles[${entryIndex}]`;
     if (!isObject(entry)) {
       addFinding("index-entry-shape", "error", entryLocation, "Quest file entry must be an object.");
+      dependencyAnalysisComplete = false;
       continue;
     }
     if (!KINDS.includes(entry.kind)) {
       addFinding("unknown-kind", "error", entryLocation, `Unknown target kind "${entry.kind}".`);
+      dependencyAnalysisComplete = false;
       continue;
     }
     if (seenIndexKinds.has(entry.kind)) {
       addFinding("duplicate-index-kind", "error", entryLocation, `Target kind "${entry.kind}" is declared more than once.`);
+      dependencyAnalysisComplete = false;
+      continue;
     }
     seenIndexKinds.add(entry.kind);
     if (entry.status !== "available" && entry.status !== "planned") {
       addFinding("invalid-index-status", "error", entryLocation, `Unknown target quest status "${entry.status}".`);
-      continue;
-    }
-    if (entry.status !== "available") continue;
-    if (seenAvailableKinds.has(entry.kind)) {
-      continue;
-    }
-    seenAvailableKinds.add(entry.kind);
-    if (typeof entry.file !== "string" || !entry.file.trim()) {
-      addFinding("missing-index-field", "error", entryLocation, "Available quest file entry is missing file.");
       dependencyAnalysisComplete = false;
       continue;
     }
+    if (typeof entry.file !== "string" || !entry.file.trim()) {
+      addFinding("missing-index-field", "error", entryLocation, "Quest file entry is missing file.");
+      dependencyAnalysisComplete = false;
+      continue;
+    }
+
+    const isAvailable = entry.status === "available";
+    if (!isAvailable && !options.validatePlanned) continue;
 
     const filePath = path.join(rootDir, "data", "target-quests", entry.file);
     const fileLocation = relativePath(rootDir, filePath);
     const data = readJson(rootDir, filePath, addFinding);
     if (!data) {
-      dependencyAnalysisComplete = false;
+      if (isAvailable) dependencyAnalysisComplete = false;
+      else plannedDependencyAnalysisComplete = false;
       continue;
     }
     if (data.kind !== entry.kind) {
       addFinding("file-kind-mismatch", "error", fileLocation, `File kind must be "${entry.kind}".`, { actual: data.kind });
+      if (isAvailable) dependencyAnalysisComplete = false;
+      else plannedDependencyAnalysisComplete = false;
     }
     if (!Array.isArray(data.targets)) {
       addFinding("targets-shape", "error", fileLocation, "targets must be an array.");
-      dependencyAnalysisComplete = false;
+      if (isAvailable) dependencyAnalysisComplete = false;
+      else plannedDependencyAnalysisComplete = false;
       continue;
     }
-    data.targets.forEach((target, targetIndex) => analyzeTarget({
-      target,
-      targetIndex,
-      fileLocation,
-      kind: entry.kind,
-      canonicalSkills,
-      equipment,
-      talents,
-      seenTargets,
-      seenQuestIds,
-      sourceUsage,
-      metrics: kinds[entry.kind],
-      graphTargets,
-      addFinding,
-    }));
+    for (const [targetIndex, target] of data.targets.entries()) {
+      const graphReady = analyzeTarget({
+        target,
+        targetIndex,
+        fileLocation,
+        kind: entry.kind,
+        canonicalSkills,
+        equipment,
+        talents,
+        seenTargets: isAvailable ? seenTargets : plannedState.seenTargets,
+        seenQuestIds: isAvailable ? seenQuestIds : plannedState.seenQuestIds,
+        sourceUsage: isAvailable ? sourceUsage : plannedState.sourceUsage,
+        metrics: isAvailable ? kinds[entry.kind] : plannedState.kinds[entry.kind],
+        graphTargets: isAvailable ? graphTargets : plannedGraphTargets,
+        addFinding,
+      });
+      if (!graphReady) {
+        if (isAvailable) dependencyAnalysisComplete = false;
+        else plannedDependencyAnalysisComplete = false;
+      }
+    }
   }
 
   for (const kind of KINDS) {
     if (!seenIndexKinds.has(kind)) {
       addFinding("missing-index-kind", "error", "data/target-quests/index.json", `Missing target quest entry for "${kind}".`);
+      dependencyAnalysisComplete = false;
     }
   }
 
   let dependencies;
   if (dependencyAnalysisComplete) {
     const graph = analyzeTargetQuestGraph(graphTargets);
-    findings.push(...graph.findings);
+    mergeFindings(findings, graph.findings);
     dependencies = graph.dependencies;
   } else {
     addFinding(
       "dependency-analysis-incomplete",
       "error",
       "data/target-quests",
-      "Dependency analysis was skipped because one or more available catalogs could not be loaded.",
+      "Dependency analysis was skipped because the active catalog index or graph input is incomplete.",
     );
     dependencies = { edges: null, maxDepth: null, withoutPrerequisites: null };
+  }
+
+  if (
+    options.validatePlanned
+    && plannedGraphTargets.length > 0
+    && dependencyAnalysisComplete
+    && plannedDependencyAnalysisComplete
+  ) {
+    const validationGraph = analyzeTargetQuestGraph([...graphTargets, ...plannedGraphTargets]);
+    mergeFindings(findings, validationGraph.findings);
   }
 
   for (const kind of KINDS) {

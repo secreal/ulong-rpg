@@ -46,7 +46,7 @@ Each target has one `intro` quest and three required quests at each of levels 1,
 - Every fundamental target has an empty `prerequisiteTargets` array.
 - Every dependent target has one to three direct prerequisites.
 - Direct prerequisites use AND semantics: every reference must reach at least level 1 before the dependent target's `intro` quest becomes eligible.
-- A skill prerequisite's effective level is the highest matching value across `skill::<job>::<exact skill name>` keys and the legacy `skill::<exact skill name>` key.
+- Completion of a graph-exposed skill outside the current job writes the shared `source.progressKey`, `skill::<exact skill name>`. Readers take the maximum level across that shared key and every matching job-scoped `skill::<job>::<exact skill name>` key; normal in-job completion can remain job-scoped.
 - Equipment and talent prerequisites use the exact global key in `source.progressKey`, such as `equip::git` or `talent::javascript`.
 - Job tags and job skill lists govern normal discovery. A target referenced as a prerequisite remains eligible for activation even outside the current job's normal discovery set; otherwise semantically correct cross-job edges can become impossible to satisfy.
 - Level-2 and level-3 progression still comes only from the target's own `levels` quest groups.

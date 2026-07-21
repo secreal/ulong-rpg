@@ -14,83 +14,106 @@ function sortFindings(findings) {
   );
 }
 
+function reverseAdjacency(keys, adjacency) {
+  const reversed = new Map(keys.map(key => [key, []]));
+  for (const key of keys) {
+    for (const prerequisite of adjacency.get(key) || []) {
+      reversed.get(prerequisite)?.push(key);
+    }
+  }
+  for (const dependents of reversed.values()) dependents.sort();
+  return reversed;
+}
+
 function findCycles(keys, adjacency) {
-  let nextIndex = 0;
-  const stack = [];
-  const onStack = new Set();
-  const indices = new Map();
-  const lowLinks = new Map();
+  const visited = new Set();
+  const finishOrder = [];
   const cycles = [];
 
-  function visit(key) {
-    indices.set(key, nextIndex);
-    lowLinks.set(key, nextIndex);
-    nextIndex += 1;
-    stack.push(key);
-    onStack.add(key);
-
-    for (const prerequisite of adjacency.get(key) || []) {
-      if (!indices.has(prerequisite)) {
-        visit(prerequisite);
-        lowLinks.set(key, Math.min(lowLinks.get(key), lowLinks.get(prerequisite)));
-      } else if (onStack.has(prerequisite)) {
-        lowLinks.set(key, Math.min(lowLinks.get(key), indices.get(prerequisite)));
+  for (const start of keys) {
+    if (visited.has(start)) continue;
+    visited.add(start);
+    const stack = [{ key: start, nextIndex: 0 }];
+    while (stack.length > 0) {
+      const frame = stack.at(-1);
+      const prerequisites = adjacency.get(frame.key) || [];
+      if (frame.nextIndex < prerequisites.length) {
+        const prerequisite = prerequisites[frame.nextIndex];
+        frame.nextIndex += 1;
+        if (!visited.has(prerequisite)) {
+          visited.add(prerequisite);
+          stack.push({ key: prerequisite, nextIndex: 0 });
+        }
+      } else {
+        finishOrder.push(frame.key);
+        stack.pop();
       }
     }
-
-    if (lowLinks.get(key) !== indices.get(key)) return;
-    const component = [];
-    let member;
-    do {
-      member = stack.pop();
-      onStack.delete(member);
-      component.push(member);
-    } while (member !== key);
-    if (component.length > 1) cycles.push(component.sort());
   }
 
-  for (const key of keys) {
-    if (!indices.has(key)) visit(key);
+  const reversed = reverseAdjacency(keys, adjacency);
+  const assigned = new Set();
+  for (let index = finishOrder.length - 1; index >= 0; index -= 1) {
+    const start = finishOrder[index];
+    if (assigned.has(start)) continue;
+    const component = [];
+    const stack = [start];
+    assigned.add(start);
+    while (stack.length > 0) {
+      const member = stack.pop();
+      component.push(member);
+      const dependents = reversed.get(member) || [];
+      for (let dependentIndex = dependents.length - 1; dependentIndex >= 0; dependentIndex -= 1) {
+        const dependent = dependents[dependentIndex];
+        if (!assigned.has(dependent)) {
+          assigned.add(dependent);
+          stack.push(dependent);
+        }
+      }
+    }
+    if (component.length > 1) cycles.push(component.sort());
   }
   return cycles.sort((left, right) => left.join("|").localeCompare(right.join("|")));
 }
 
 function rootedTargets(keys, registry, adjacency) {
-  const memo = new Map();
-
-  function reachesFundamental(key, visiting = new Set()) {
-    if (memo.has(key)) return memo.get(key);
-    if (visiting.has(key)) return false;
-    const target = registry.get(key);
-    if (target?.fundamental === true) {
-      memo.set(key, true);
-      return true;
+  const reversed = reverseAdjacency(keys, adjacency);
+  const rooted = new Set(keys.filter(key => registry.get(key)?.fundamental === true));
+  const queue = [...rooted].sort();
+  for (let index = 0; index < queue.length; index += 1) {
+    for (const dependent of reversed.get(queue[index]) || []) {
+      if (rooted.has(dependent)) continue;
+      rooted.add(dependent);
+      queue.push(dependent);
     }
-    const nextVisiting = new Set(visiting).add(key);
-    const rooted = (adjacency.get(key) || []).some(prerequisite =>
-      reachesFundamental(prerequisite, nextVisiting),
-    );
-    memo.set(key, rooted);
-    return rooted;
   }
-
-  return new Set(keys.filter(key => reachesFundamental(key)));
+  return rooted;
 }
 
-function maximumDepth(keys, registry, adjacency) {
-  const memo = new Map();
-  function depth(key) {
-    if (memo.has(key)) return memo.get(key);
-    const target = registry.get(key);
-    if (target.fundamental) {
-      memo.set(key, 0);
-      return 0;
+function maximumDepth(keys, adjacency) {
+  const reversed = reverseAdjacency(keys, adjacency);
+  const remainingPrerequisites = new Map(
+    keys.map(key => [key, (adjacency.get(key) || []).length]),
+  );
+  const depths = new Map(keys.map(key => [key, 0]));
+  const queue = keys.filter(key => remainingPrerequisites.get(key) === 0).sort();
+  let maxDepth = 0;
+  let processed = 0;
+
+  for (let index = 0; index < queue.length; index += 1) {
+    const key = queue[index];
+    processed += 1;
+    for (const dependent of reversed.get(key) || []) {
+      const candidateDepth = depths.get(key) + 1;
+      depths.set(dependent, Math.max(depths.get(dependent), candidateDepth));
+      maxDepth = Math.max(maxDepth, depths.get(dependent));
+      const remaining = remainingPrerequisites.get(dependent) - 1;
+      remainingPrerequisites.set(dependent, remaining);
+      if (remaining === 0) queue.push(dependent);
     }
-    const value = 1 + Math.max(...adjacency.get(key).map(depth));
-    memo.set(key, value);
-    return value;
   }
-  return Math.max(0, ...keys.map(depth));
+
+  return processed === keys.length ? maxDepth : null;
 }
 
 export function analyzeTargetQuestGraph(targets) {
@@ -213,7 +236,7 @@ export function analyzeTargetQuestGraph(targets) {
     findings,
     dependencies: {
       edges,
-      maxDepth: valid ? maximumDepth(keys, registry, adjacency) : null,
+      maxDepth: valid ? maximumDepth(keys, adjacency) : null,
       withoutPrerequisites: withoutPrerequisites.sort(),
     },
   };

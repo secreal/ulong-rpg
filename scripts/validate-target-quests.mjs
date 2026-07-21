@@ -1,11 +1,12 @@
 import { analyzeTargetQuestHealth } from "./lib/target-quest-health.mjs";
 
 const root = process.cwd();
-const report = analyzeTargetQuestHealth(root);
+const report = analyzeTargetQuestHealth(root, { validatePlanned: true });
 const errors = report.findings.filter(finding => finding.severity === "error");
 
 for (const finding of errors) {
-  console.error(`${finding.location}: [${finding.ruleId}] ${finding.message}`);
+  const details = finding.details ? ` Details: ${JSON.stringify(finding.details)}` : "";
+  console.error(`${finding.location}: [${finding.ruleId}] ${finding.message}${details}`);
 }
 
 if (errors.length > 0) {

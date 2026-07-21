@@ -43,7 +43,7 @@ Sixteen raw target IDs occur in more than one catalog, so dependency identity ca
 
 ### Validation, Reporting, and Handoff
 
-- R10. Report malformed, unresolved, duplicate, self, missing, excessive, cyclic, unrooted, and job-incompatible dependencies as errors.
+- R10. Report malformed, unresolved, duplicate, self, missing, excessive, cyclic, and unrooted dependencies as errors.
 - R11. Report dependency edge count, maximum depth, and missing authored prerequisites deterministically.
 - R12. Document the consumer contract without prescribing UI layout or interaction design.
 

@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test, { after } from "node:test";
+import { fileURLToPath } from "node:url";
 
 import {
   analyzeTargetQuestHealth,
@@ -12,6 +14,7 @@ import {
 import { parseArgs, run } from "./report-target-quest-health.mjs";
 
 const fixtureRoots = new Set();
+const validatorPath = fileURLToPath(new URL("./validate-target-quests.mjs", import.meta.url));
 
 after(() => {
   for (const rootDir of fixtureRoots) fs.rmSync(rootDir, { recursive: true, force: true });
@@ -104,6 +107,31 @@ function createFixture() {
   return rootDir;
 }
 
+function assertDependencyAnalysisIncomplete(report, primaryRule) {
+  const ruleIds = report.findings.map(finding => finding.ruleId);
+  assert.ok(ruleIds.includes(primaryRule), `missing primary rule ${primaryRule}`);
+  assert.equal(ruleIds.filter(ruleId => ruleId === "dependency-analysis-incomplete").length, 1);
+  assert.deepEqual(report.dependencies, {
+    edges: null,
+    maxDepth: null,
+    withoutPrerequisites: null,
+  });
+  for (const derivativeRule of [
+    "prerequisite-cycle",
+    "unresolved-prerequisite",
+    "unrooted-dependent",
+  ]) {
+    assert.equal(ruleIds.includes(derivativeRule), false, derivativeRule);
+  }
+}
+
+function runValidator(rootDir) {
+  return spawnSync(process.execPath, [validatorPath], {
+    cwd: rootDir,
+    encoding: "utf8",
+  });
+}
+
 test("healthy fixture reports deterministic catalog totals", () => {
   const rootDir = createFixture();
   const first = analyzeTargetQuestHealth(rootDir);
@@ -154,8 +182,10 @@ test("cross-kind dependencies appear consistently in every report format", () =>
     withoutPrerequisites: [],
   });
   assert.match(formatHealthReport(report, "text"), /Dependencies: 2 edges \| Max depth: 2 \| Missing: 0/);
-  assert.match(formatHealthReport(report, "markdown"), /\| Edges \| Maximum depth \| Missing prerequisites \|/);
-  assert.match(formatHealthReport(report, "json"), /"maxDepth": 2/);
+  const markdown = formatHealthReport(report, "markdown");
+  assert.ok(markdown.split("\n").includes("| 2 | 2 | 0 |"));
+  const json = JSON.parse(formatHealthReport(report, "json"));
+  assert.deepEqual(json.dependencies, report.dependencies);
 });
 
 test("invalid fixture emits stable structural, identity, localization, and source findings", () => {
@@ -209,26 +239,171 @@ test("invalid fixture emits stable structural, identity, localization, and sourc
   assert.equal(shouldFailReport(report, "none"), false);
 });
 
-test("missing and malformed declared files become findings", () => {
+test("a missing available catalog makes dependency analysis incomplete", () => {
   const rootDir = createFixture();
   const indexPath = path.join(rootDir, "data", "target-quests", "index.json");
   const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
   index.questFiles[0].file = "missing.json";
   writeJson(indexPath, index);
+
+  assertDependencyAnalysisIncomplete(analyzeTargetQuestHealth(rootDir), "missing-file");
+});
+
+test("malformed JSON makes dependency analysis incomplete", () => {
+  const rootDir = createFixture();
   fs.writeFileSync(path.join(rootDir, "data", "target-quests", "equipment.json"), "{", "utf8");
 
-  const report = analyzeTargetQuestHealth(rootDir);
-  const ruleIds = report.findings.map(finding => finding.ruleId);
-  assert.ok(ruleIds.includes("missing-file"));
-  assert.ok(ruleIds.includes("invalid-json"));
-  assert.equal(ruleIds.filter(ruleId => ruleId === "dependency-analysis-incomplete").length, 1);
-  assert.deepEqual(report.dependencies, {
-    edges: null,
-    maxDepth: null,
-    withoutPrerequisites: null,
+  assertDependencyAnalysisIncomplete(analyzeTargetQuestHealth(rootDir), "invalid-json");
+});
+
+test("invalid targets shape makes dependency analysis incomplete", () => {
+  const rootDir = createFixture();
+  writeJson(path.join(rootDir, "data", "target-quests", "talents.json"), {
+    kind: "talent",
+    targets: {},
   });
-  assert.equal(ruleIds.includes("unresolved-prerequisite"), false);
-  assert.equal(ruleIds.includes("unrooted-dependent"), false);
+
+  assertDependencyAnalysisIncomplete(analyzeTargetQuestHealth(rootDir), "targets-shape");
+});
+
+test("invalid index shape makes dependency analysis incomplete", () => {
+  const rootDir = createFixture();
+  writeJson(path.join(rootDir, "data", "target-quests", "index.json"), {
+    questFiles: {},
+  });
+
+  assertDependencyAnalysisIncomplete(analyzeTargetQuestHealth(rootDir), "index-shape");
+});
+
+test("partial index makes dependency analysis incomplete", () => {
+  const rootDir = createFixture();
+  const indexPath = path.join(rootDir, "data", "target-quests", "index.json");
+  const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+  index.questFiles.pop();
+  writeJson(indexPath, index);
+
+  assertDependencyAnalysisIncomplete(analyzeTargetQuestHealth(rootDir), "missing-index-kind");
+});
+
+test("malformed index entries make dependency analysis incomplete", async t => {
+  const cases = [
+    ["non-object entry", index => { index.questFiles[0] = null; }, "index-entry-shape"],
+    ["unknown kind", index => { index.questFiles[0].kind = "unknown"; }, "unknown-kind"],
+    ["duplicate kind", index => { index.questFiles[2].kind = "equipment"; }, "duplicate-index-kind"],
+    ["invalid status", index => { index.questFiles[0].status = "draft"; }, "invalid-index-status"],
+    ["missing file field", index => { delete index.questFiles[0].file; }, "missing-index-field"],
+  ];
+
+  for (const [name, mutate, primaryRule] of cases) {
+    await t.test(name, () => {
+      const rootDir = createFixture();
+      const indexPath = path.join(rootDir, "data", "target-quests", "index.json");
+      const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+      mutate(index);
+      writeJson(indexPath, index);
+      assertDependencyAnalysisIncomplete(analyzeTargetQuestHealth(rootDir), primaryRule);
+    });
+  }
+});
+
+test("graph-relevant missing target fields make dependency analysis incomplete", async t => {
+  const cases = [
+    ["targetId", target => { delete target.targetId; }, "missing-target-field"],
+    ["fundamental", target => { delete target.fundamental; }, "missing-fundamental"],
+    ["prerequisiteTargets", target => { delete target.prerequisiteTargets; }, "prerequisite-targets-shape"],
+  ];
+
+  for (const [name, mutate, primaryRule] of cases) {
+    await t.test(name, () => {
+      const rootDir = createFixture();
+      const skillPath = path.join(rootDir, "data", "target-quests", "skills.json");
+      const skills = JSON.parse(fs.readFileSync(skillPath, "utf8"));
+      mutate(skills.targets[0]);
+      writeJson(skillPath, skills);
+      assertDependencyAnalysisIncomplete(analyzeTargetQuestHealth(rootDir), primaryRule);
+    });
+  }
+});
+
+test("health reports one duplicate-target finding when graph results are merged", () => {
+  const rootDir = createFixture();
+  const skillPath = path.join(rootDir, "data", "target-quests", "skills.json");
+  const skills = JSON.parse(fs.readFileSync(skillPath, "utf8"));
+  skills.targets.push(structuredClone(skills.targets[0]));
+  writeJson(skillPath, skills);
+
+  const duplicateFindings = analyzeTargetQuestHealth(rootDir).findings
+    .filter(finding => finding.ruleId === "duplicate-target");
+  assert.equal(duplicateFindings.length, 1);
+});
+
+test("planned catalogs are validated only when requested and never counted as active", () => {
+  const rootDir = createFixture();
+  const indexPath = path.join(rootDir, "data", "target-quests", "index.json");
+  const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+  index.questFiles[2].status = "planned";
+  writeJson(indexPath, index);
+
+  const ordinary = analyzeTargetQuestHealth(rootDir);
+  const hardValidation = analyzeTargetQuestHealth(rootDir, { validatePlanned: true });
+
+  assert.equal(ordinary.summary.targets, 2);
+  assert.equal(hardValidation.summary.targets, 2);
+  assert.deepEqual(hardValidation.dependencies, ordinary.dependencies);
+  assert.equal(hardValidation.summary.errors, 0);
+});
+
+test("hard validator exits zero for valid catalogs", () => {
+  const result = runValidator(createFixture());
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Target quest validation passed for 3 targets and 30 quests\./);
+  assert.equal(result.stderr, "");
+});
+
+test("hard validator exits one with deterministic graph rule details", () => {
+  const rootDir = createFixture();
+  const skillPath = path.join(rootDir, "data", "target-quests", "skills.json");
+  const equipmentPath = path.join(rootDir, "data", "target-quests", "equipment.json");
+  const skills = JSON.parse(fs.readFileSync(skillPath, "utf8"));
+  const equipment = JSON.parse(fs.readFileSync(equipmentPath, "utf8"));
+  skills.targets[0].fundamental = false;
+  skills.targets[0].learningStage = "dependent";
+  skills.targets[0].prerequisiteTargets = ["equipment:git"];
+  equipment.targets[0].fundamental = false;
+  equipment.targets[0].learningStage = "dependent";
+  equipment.targets[0].prerequisiteTargets = ["skill:version-control"];
+  writeJson(skillPath, skills);
+  writeJson(equipmentPath, equipment);
+
+  const result = runValidator(rootDir);
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /\[prerequisite-cycle\]/);
+  assert.match(
+    result.stderr,
+    /Details: \{"targets":\["equipment:git","skill:version-control"\]\}/,
+  );
+});
+
+test("hard validator fails when a planned catalog is missing", () => {
+  const rootDir = createFixture();
+  const indexPath = path.join(rootDir, "data", "target-quests", "index.json");
+  const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+  index.questFiles[2] = {
+    kind: "talent",
+    file: "missing-planned.json",
+    status: "planned",
+  };
+  writeJson(indexPath, index);
+
+  const ordinary = analyzeTargetQuestHealth(rootDir);
+  const result = runValidator(rootDir);
+
+  assert.equal(ordinary.summary.errors, 0);
+  assert.equal(ordinary.summary.targets, 2);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /missing-planned\.json: \[missing-file\]/);
 });
 
 test("CLI validates arguments and writes requested output", () => {
