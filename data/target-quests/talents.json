@@ -8,7 +8,7 @@
     "intro": "one daily activation quest",
     "levels": "object with keys 1, 2, 3; each level contains exactly three required main quests",
     "learningStage": "fundamental | dependent; fundamental targets can appear in first rolling daily quests before dependent targets",
-    "prerequisiteTargets": "array of target references required before dependent target introduction; empty for fundamental targets or not-yet-modeled dependencies",
+    "prerequisiteTargets": "array of 1-3 qualified target references (<kind>:<targetId>) required before dependent target introduction; empty for fundamental targets",
     "fundamental": "boolean; true when the target can be learned immediately without prerequisite skill/tool/talent knowledge and should appear earlier in daily quest rotation"
   },
   "targets": [
@@ -430,7 +430,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:prompt-engineering"
+      ]
     },
     {
       "kind": "talent",
@@ -710,7 +712,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:kotlin"
+      ]
     },
     {
       "kind": "talent",
@@ -850,7 +854,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:typescript"
+      ]
     },
     {
       "kind": "talent",
@@ -990,7 +996,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -1130,7 +1138,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:linux-administration"
+      ]
     },
     {
       "kind": "talent",
@@ -1270,7 +1280,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:python"
+      ]
     },
     {
       "kind": "talent",
@@ -1410,7 +1422,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "talent",
@@ -1690,7 +1704,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:technology-strategy"
+      ]
     },
     {
       "kind": "talent",
@@ -1830,7 +1846,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:dotnet"
+      ]
     },
     {
       "kind": "talent",
@@ -1970,7 +1988,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:dotnet"
+      ]
     },
     {
       "kind": "talent",
@@ -2110,7 +2130,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:dotnet"
+      ]
     },
     {
       "kind": "talent",
@@ -2250,7 +2272,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:html-css"
+      ]
     },
     {
       "kind": "talent",
@@ -2390,7 +2414,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "talent",
@@ -2530,7 +2556,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "talent",
@@ -2670,7 +2698,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -2810,7 +2840,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:routing"
+      ]
     },
     {
       "kind": "talent",
@@ -2950,7 +2982,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:html-css"
+      ]
     },
     {
       "kind": "talent",
@@ -3090,7 +3124,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -3230,7 +3266,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -3370,7 +3408,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:windows-server"
+      ]
     },
     {
       "kind": "talent",
@@ -3510,7 +3550,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -3650,7 +3692,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -3790,7 +3834,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -3930,7 +3976,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -4070,7 +4118,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "talent",
@@ -4210,7 +4260,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:sql"
+      ]
     },
     {
       "kind": "talent",
@@ -4350,7 +4402,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:machine-learning"
+      ]
     },
     {
       "kind": "talent",
@@ -4490,7 +4544,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -4630,7 +4686,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:color-system-design"
+      ]
     },
     {
       "kind": "talent",
@@ -4770,7 +4828,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:python"
+      ]
     },
     {
       "kind": "talent",
@@ -4910,7 +4970,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:linux-administration"
+      ]
     },
     {
       "kind": "talent",
@@ -5050,7 +5112,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -5190,7 +5254,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -5330,7 +5396,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -5470,7 +5538,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:threat-detection"
+      ]
     },
     {
       "kind": "talent",
@@ -5610,7 +5680,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:java"
+      ]
     },
     {
       "kind": "talent",
@@ -5750,7 +5822,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -5890,7 +5964,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:agile-scrum"
+      ]
     },
     {
       "kind": "talent",
@@ -6030,7 +6106,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:sql"
+      ]
     },
     {
       "kind": "talent",
@@ -6170,7 +6248,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:nodejs"
+      ]
     },
     {
       "kind": "talent",
@@ -6310,7 +6390,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -6450,7 +6532,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:python"
+      ]
     },
     {
       "kind": "talent",
@@ -6590,7 +6674,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:python"
+      ]
     },
     {
       "kind": "talent",
@@ -6730,7 +6816,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -6870,7 +6958,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -7010,7 +7100,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "talent",
@@ -7150,7 +7242,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -7290,7 +7384,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-design"
+      ]
     },
     {
       "kind": "talent",
@@ -7430,7 +7526,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-design"
+      ]
     },
     {
       "kind": "talent",
@@ -7570,7 +7668,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -7710,7 +7810,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -7990,7 +8092,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:windows-server"
+      ]
     },
     {
       "kind": "talent",
@@ -8130,7 +8234,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:alert-triage"
+      ]
     },
     {
       "kind": "talent",
@@ -8270,7 +8376,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -8410,7 +8518,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -8690,7 +8800,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -8970,7 +9082,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -9110,7 +9224,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -9250,7 +9366,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:java"
+      ]
     },
     {
       "kind": "talent",
@@ -9530,7 +9648,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -9670,7 +9790,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -9810,7 +9932,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:docker"
+      ]
     },
     {
       "kind": "talent",
@@ -9950,7 +10074,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -10090,7 +10216,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -10370,7 +10498,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:manual-testing"
+      ]
     },
     {
       "kind": "talent",
@@ -10510,7 +10640,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:statistical-reasoning"
+      ]
     },
     {
       "kind": "talent",
@@ -10790,7 +10922,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "talent",
@@ -10930,7 +11064,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -11070,7 +11206,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:routing"
+      ]
     },
     {
       "kind": "talent",
@@ -11210,7 +11348,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:sql"
+      ]
     },
     {
       "kind": "talent",
@@ -11350,7 +11490,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:typescript"
+      ]
     },
     {
       "kind": "talent",
@@ -11490,7 +11632,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:react"
+      ]
     },
     {
       "kind": "talent",
@@ -11630,7 +11774,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -11770,7 +11916,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -11910,7 +12058,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:vue"
+      ]
     },
     {
       "kind": "talent",
@@ -12050,7 +12200,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -12190,7 +12342,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:application-monitoring"
+      ]
     },
     {
       "kind": "talent",
@@ -12330,7 +12484,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:sql"
+      ]
     },
     {
       "kind": "talent",
@@ -12470,7 +12626,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:routing"
+      ]
     },
     {
       "kind": "talent",
@@ -12610,7 +12768,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:python"
+      ]
     },
     {
       "kind": "talent",
@@ -12750,7 +12910,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:threat-detection"
+      ]
     },
     {
       "kind": "talent",
@@ -12890,7 +13052,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:manual-testing"
+      ]
     },
     {
       "kind": "talent",
@@ -13030,7 +13194,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -13170,7 +13336,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -13310,7 +13478,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -13450,7 +13620,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -13590,7 +13762,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:test-automation"
+      ]
     },
     {
       "kind": "talent",
@@ -13730,7 +13904,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:sql"
+      ]
     },
     {
       "kind": "talent",
@@ -13870,7 +14046,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:sql"
+      ]
     },
     {
       "kind": "talent",
@@ -14010,7 +14188,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "talent",
@@ -14150,7 +14330,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -14290,7 +14472,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:user-research"
+      ]
     },
     {
       "kind": "talent",
@@ -14430,7 +14614,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -14570,7 +14756,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -14710,7 +14898,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:wireframing"
+      ]
     },
     {
       "kind": "talent",
@@ -14850,7 +15040,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -14990,7 +15182,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:deep-learning"
+      ]
     },
     {
       "kind": "talent",
@@ -15130,7 +15324,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-querying"
+      ]
     },
     {
       "kind": "talent",
@@ -15270,7 +15466,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -15410,7 +15608,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:react"
+      ]
     },
     {
       "kind": "talent",
@@ -15550,7 +15750,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:data-modeling"
+      ]
     },
     {
       "kind": "talent",
@@ -15690,7 +15892,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -16110,7 +16314,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -16390,7 +16596,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-design"
+      ]
     },
     {
       "kind": "talent",
@@ -16670,7 +16878,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -16810,7 +17020,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:machine-learning"
+      ]
     },
     {
       "kind": "talent",
@@ -16950,7 +17162,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:routing"
+      ]
     },
     {
       "kind": "talent",
@@ -17090,7 +17304,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:web-security"
+      ]
     },
     {
       "kind": "talent",
@@ -17230,7 +17446,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -17370,7 +17588,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:test-automation"
+      ]
     },
     {
       "kind": "talent",
@@ -17650,7 +17870,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:log-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -17790,7 +18012,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-design"
+      ]
     },
     {
       "kind": "talent",
@@ -17930,7 +18154,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -18070,7 +18296,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:api-design"
+      ]
     },
     {
       "kind": "talent",
@@ -18210,7 +18438,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -18350,7 +18580,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:java"
+      ]
     },
     {
       "kind": "talent",
@@ -18630,7 +18862,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:java"
+      ]
     },
     {
       "kind": "talent",
@@ -18770,7 +19004,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -18910,7 +19146,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -19050,7 +19288,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:swift"
+      ]
     },
     {
       "kind": "talent",
@@ -19190,7 +19430,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -19330,7 +19572,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:dashboard-reading"
+      ]
     },
     {
       "kind": "talent",
@@ -19470,7 +19714,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:html-css"
+      ]
     },
     {
       "kind": "talent",
@@ -19610,7 +19856,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:tcp-ip"
+      ]
     },
     {
       "kind": "talent",
@@ -19750,7 +19998,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:documentation"
+      ]
     },
     {
       "kind": "talent",
@@ -19890,7 +20140,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -20030,7 +20282,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:deep-learning"
+      ]
     },
     {
       "kind": "talent",
@@ -20170,7 +20424,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "talent",
@@ -20310,7 +20566,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:manual-testing"
+      ]
     },
     {
       "kind": "talent",
@@ -20450,7 +20708,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:requirements-analysis"
+      ]
     },
     {
       "kind": "talent",
@@ -20590,7 +20850,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:sql"
+      ]
     },
     {
       "kind": "talent",
@@ -21010,7 +21272,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:version-control"
+      ]
     },
     {
       "kind": "talent",
@@ -21150,7 +21414,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:dotnet"
+      ]
     },
     {
       "kind": "talent",
@@ -21290,7 +21556,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -21430,7 +21698,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:server-administration"
+      ]
     },
     {
       "kind": "talent",
@@ -21570,7 +21840,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -21710,7 +21982,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "skill:patch-management"
+      ]
     },
     {
       "kind": "talent",
@@ -21850,7 +22124,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:dotnet"
+      ]
     },
     {
       "kind": "talent",
@@ -21990,7 +22266,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:rest-api"
+      ]
     },
     {
       "kind": "talent",
@@ -22130,7 +22408,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -22550,7 +22830,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -22690,7 +22972,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:dotnet"
+      ]
     },
     {
       "kind": "talent",
@@ -22830,7 +23114,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     },
     {
       "kind": "talent",
@@ -22970,7 +23256,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:javascript"
+      ]
     },
     {
       "kind": "talent",
@@ -23110,7 +23398,9 @@
       },
       "learningStage": "dependent",
       "fundamental": false,
-      "prerequisiteTargets": []
+      "prerequisiteTargets": [
+        "talent:php"
+      ]
     }
   ]
 }

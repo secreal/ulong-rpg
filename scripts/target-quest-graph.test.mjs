@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import test from "node:test";
 
 import { analyzeTargetQuestGraph } from "./lib/target-quest-graph.mjs";
@@ -112,4 +114,38 @@ test("cycles and unrooted chains are reported without calculating depth", () => 
   assert.ok(ruleIds(result).includes("prerequisite-cycle"));
   assert.ok(ruleIds(result).includes("unrooted-dependent"));
   assert.equal(result.dependencies.maxDepth, null);
+});
+
+test("live catalogs form a complete rooted dependency graph", () => {
+  const files = [
+    ["skill", "skills.json"],
+    ["equipment", "equipment.json"],
+    ["talent", "talents.json"],
+  ];
+  const targets = [];
+  let questCount = 0;
+
+  for (const [kind, file] of files) {
+    const data = JSON.parse(fs.readFileSync(path.join("data", "target-quests", file), "utf8"));
+    for (const target of data.targets) {
+      questCount += 1 + Object.values(target.levels).reduce((total, quests) => total + quests.length, 0);
+      targets.push({
+        kind,
+        targetId: target.targetId,
+        fundamental: target.fundamental,
+        prerequisiteTargets: target.prerequisiteTargets,
+        location: `data/target-quests/${file}:${target.targetId}`,
+      });
+    }
+  }
+
+  const result = analyzeTargetQuestGraph(targets);
+  assert.equal(targets.length, 551);
+  assert.equal(questCount, 5_510);
+  assert.equal(targets.filter(target => target.fundamental).length, 122);
+  assert.equal(targets.filter(target => !target.fundamental).length, 429);
+  assert.deepEqual(result.findings, []);
+  assert.equal(result.dependencies.withoutPrerequisites.length, 0);
+  assert.ok(result.dependencies.edges >= 429);
+  assert.ok(result.dependencies.maxDepth >= 1);
 });
