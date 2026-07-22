@@ -1,7 +1,7 @@
 ---
 title: "feat: Add Agent-Native Progress Bridge"
 type: feat
-status: active
+status: completed
 date: 2026-07-22
 ---
 
