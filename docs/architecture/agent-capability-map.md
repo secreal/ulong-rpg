@@ -57,6 +57,10 @@ Every mutation uses a non-empty path array and the exact latest revision. Root r
 
 Consumers should wait for `window.ulongAgentReady`, refresh context before each write sequence, and stop on stale-revision errors rather than retrying blindly.
 
+`get_context()` also publishes relative catalog URLs for equipment, talents, and target quests. Agents can inspect those files when deciding about targets that are not active yet without injecting the full catalogs into every prompt.
+
+If state persistence succeeds but an event subscriber fails, a mutation still returns `status: "applied"` with `notificationError`. The caller should verify the resource and may refresh the UI; it must not repeat the write blindly.
+
 ## Ownership Boundary
 
 Codex owns this state/capability contract and its tests. Claude owns any future visible chat, approval, activity, or progress UI that consumes it. Adding a visible UI action should update this map and provide either bridge parity or an explicit browser-only rationale in the same change.

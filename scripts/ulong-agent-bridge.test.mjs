@@ -166,6 +166,38 @@ test("adapter failures do not increment revision or emit success", () => {
   assert.deepEqual(events, []);
 });
 
+test("event failures do not turn a persisted mutation into a failed write", () => {
+  const state = { progress: { value: 1 } };
+  const bridge = createAgentBridge({
+    resources: {
+      progress: {
+        read: () => state.progress,
+        write: value => { state.progress = value; },
+      },
+    },
+    emit: () => { throw new Error("subscriber failed"); },
+  });
+
+  const result = bridge.set_value({
+    resource: "progress",
+    path: ["value"],
+    value: 2,
+    expectedRevision: 0,
+  });
+
+  assert.equal(state.progress.value, 2);
+  assert.equal(bridge.list_capabilities().revision, 1);
+  assert.deepEqual(result, {
+    status: "applied",
+    operation: "set",
+    resource: "progress",
+    path: ["value"],
+    previousRevision: 0,
+    revision: 1,
+    notificationError: "subscriber failed",
+  });
+});
+
 test("complete_task emits an explicit completion signal without changing revision", () => {
   const { bridge, events } = makeHarness();
   const result = bridge.complete_task({ summary: "Updated one skill and verified the card." });
@@ -206,6 +238,16 @@ test("index registers all parity resources and AUTO prompt names every primitive
   }
   for (const capability of capabilities) {
     assert.match(html, new RegExp(`\\b${capability}\\b`), `${capability} must be documented in AUTO prompt`);
+  }
+  for (const catalogPath of [
+    "data/equipment.json",
+    "data/talents.json",
+    "data/target-quests/index.json",
+    "data/target-quests/skills.json",
+    "data/target-quests/equipment.json",
+    "data/target-quests/talents.json",
+  ]) {
+    assert.match(html, new RegExp(catalogPath.replaceAll("/", "\\/")), `${catalogPath} must be discoverable from agent context`);
   }
   assert.doesNotMatch(html, /choose_next_quest|level_up_everything/);
 });

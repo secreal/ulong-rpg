@@ -43,6 +43,10 @@ function cloneJson(value, location = "value") {
   return structuredClone(value);
 }
 
+function describeError(error) {
+  return error instanceof Error ? error.message : String(error);
+}
+
 function normalizePath(path) {
   if (!Array.isArray(path) || path.length === 0) {
     throw new TypeError("path must be a non-empty array; root mutation is not supported.");
@@ -198,8 +202,16 @@ export function createAgentBridge({ resources, contextProvider = () => ({}), emi
       previousRevision,
       revision,
     };
-    emit("ulong:agent-state-change", detail);
-    return { status: "applied", ...detail };
+    try {
+      emit("ulong:agent-state-change", detail);
+      return { status: "applied", ...detail };
+    } catch (error) {
+      return {
+        status: "applied",
+        ...detail,
+        notificationError: describeError(error),
+      };
+    }
   }
 
   function completeTask({ summary } = {}) {

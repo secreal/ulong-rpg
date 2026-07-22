@@ -3493,8 +3493,8 @@
       return {
         jobs: (raw?.jobs && typeof raw.jobs === "object" && !Array.isArray(raw.jobs)) ? raw.jobs : {},
         learnedDays: Array.isArray(raw?.learnedDays) ? raw.learnedDays : [],
-        ...(raw?._skillStats && typeof raw._skillStats === "object" ? { _skillStats: raw._skillStats } : {}),
-        ...(raw?._questStats && typeof raw._questStats === "object" ? { _questStats: raw._questStats } : {}),
+        ...(raw?._skillStats && typeof raw._skillStats === "object" && !Array.isArray(raw._skillStats) ? { _skillStats: raw._skillStats } : {}),
+        ...(raw?._questStats && typeof raw._questStats === "object" && !Array.isArray(raw._questStats) ? { _questStats: raw._questStats } : {}),
       };
     }
 
@@ -7300,7 +7300,10 @@ When the request is complete, call complete_task with a concise summary of what 
       const activeTab = document.querySelector(".detail-tab-btn.active")?.dataset.tab;
       if (currentDetailJob && activeTab && document.getElementById("detail-overlay")?.classList.contains("open")) {
         detailRenderedTabs[activeTab] = true;
-        loadDetailTabContent(activeTab);
+        const refresh = loadDetailTabContent(activeTab);
+        if (refresh && typeof refresh.catch === "function") {
+          refresh.catch(error => console.error(`Agent refresh for ${activeTab} tab failed.`, error));
+        }
       }
     }
 
@@ -7339,6 +7342,16 @@ When the request is complete, call complete_task with a concise summary of what 
           jobs: jobs.map(([, title]) => title),
           targetKinds: ["skill", "equipment", "talent"],
           levels: [0, 1, 2, 3],
+        },
+        catalogs: {
+          equipment: "data/equipment.json",
+          talents: "data/talents.json",
+          targetQuests: {
+            index: "data/target-quests/index.json",
+            skills: "data/target-quests/skills.json",
+            equipment: "data/target-quests/equipment.json",
+            talents: "data/target-quests/talents.json",
+          },
         },
         progressSummary: {
           activeJobs: [...activeJobs].sort(),
