@@ -4891,7 +4891,7 @@
       return evidencePortfolioModulePromise;
     }
 
-    async function buildCurrentEvidencePortfolio() {
+    async function buildEvidencePortfolioFromProgress(questProgressSnapshot) {
       const [module, skillMap, equipmentMap, talentMap] = await Promise.all([
         loadEvidencePortfolioModule(),
         loadTargetQuestData("skill"),
@@ -4899,13 +4899,17 @@
         loadTargetQuestData("talent"),
       ]);
       return module.buildTargetEvidencePortfolio({
-        questProgress,
+        questProgress: questProgressSnapshot,
         catalogs: {
           skill: [...skillMap.values()],
           equipment: [...equipmentMap.values()],
           talent: [...talentMap.values()],
         },
       });
+    }
+
+    function buildCurrentEvidencePortfolio() {
+      return buildEvidencePortfolioFromProgress(structuredClone(questProgress));
     }
 
     async function initEvidencePortfolio() {
@@ -6002,22 +6006,7 @@
       let snapEquip = [], snapTalent = [];
       try { const d = await loadEquipmentData(); snapEquip = d.equipment || []; } catch {}
       try { const d = await loadTalentData();    snapTalent = d.talents    || []; } catch {}
-      let evidenceJson = "";
-      try {
-        const [module, portfolio] = await Promise.all([
-          loadEvidencePortfolioModule(),
-          buildCurrentEvidencePortfolio(),
-        ]);
-        evidenceJson = module.serializeEvidencePortfolioForHtml(portfolio);
-      } catch (error) {
-        console.error("Evidence metadata could not be added to this showcase export.", error);
-      }
-      return {
-        prof,
-        html: filtered.length
-          ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange, snapEquip, snapTalent, snapGuild, evidenceJson)
-          : null,
-      };
+      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange, snapEquip, snapTalent, snapGuild) : null };
     }
 
     function generateShowcaseREADME(prof) {
@@ -6253,7 +6242,7 @@
     // ══════════════════════════════════════════
     // HTML GENERATOR
     // ══════════════════════════════════════════
-    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapJobChange, snapEquip = [], snapTalent = [], snapGuild = {}, evidenceJson = "") {
+    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapJobChange, snapEquip = [], snapTalent = [], snapGuild = {}) {
       const name   = prof.name   || "Unknown Hero";
       const nick   = prof.nick   || "";
       const github = prof.github || "";
@@ -6883,7 +6872,6 @@ ${standaloneHTML}
 <div class="showcase-footer">
   © secreal 2026 · <a href="https://secreal.github.io/ulong-rpg/" target="_blank" rel="noopener">ulong RPG</a>
 </div>
-${evidenceJson ? `<script id="ulong-evidence-portfolio" type="application/json">${evidenceJson}<\/script>` : ""}
 <script>
 (function(){
   var cur="en";
@@ -7374,13 +7362,16 @@ When the request is complete, call complete_task with a concise summary of what 
       }
     }
 
-    async function buildAgentContext() {
+    function buildAgentContext() {
+      const progressSnapshot = structuredClone(progress);
+      const questProgressSnapshot = structuredClone(questProgress);
+      const ulongProgressSnapshot = structuredClone(ulongProgress);
       const activeJobs = new Set();
       let activeSkills = 0;
       let activeEquipment = 0;
       let activeTalents = 0;
 
-      for (const [key, rawLevel] of Object.entries(progress)) {
+      for (const [key, rawLevel] of Object.entries(progressSnapshot)) {
         const level = rawLevel === true ? 1 : Number(rawLevel) || 0;
         if (level <= 0) continue;
         if (key.startsWith("skill::")) {
@@ -7394,18 +7385,13 @@ When the request is complete, call complete_task with a concise summary of what 
         }
       }
 
-      let evidenceSummary = {
-        totalCompleted: Object.keys(questProgress.completed || {}).length,
-        resolvedEvidence: 0,
-        targetsWithEvidence: 0,
-        legacyEvidence: 0,
-        unresolvedEvidence: 0,
+      const completedEvidence = Object.values(questProgressSnapshot.completed || {});
+      const evidenceSummary = {
+        totalCompleted: completedEvidence.length,
+        summariesAvailable: completedEvidence.filter(record => (
+          record && typeof record.summary === "string" && record.summary.trim()
+        )).length,
       };
-      try {
-        evidenceSummary = (await buildCurrentEvidencePortfolio()).summary;
-      } catch (error) {
-        console.error("Evidence summary could not be added to agent context.", error);
-      }
 
       return {
         app: "ulong RPG",
@@ -7429,8 +7415,8 @@ When the request is complete, call complete_task with a concise summary of what 
           activeSkills,
           activeEquipment,
           activeTalents,
-          completedQuests: Object.keys(questProgress.completed || {}).length,
-          perguruanUlongDays: Object.keys(ulongProgress).length,
+          completedQuests: Object.keys(questProgressSnapshot.completed || {}).length,
+          perguruanUlongDays: Object.keys(ulongProgressSnapshot).length,
         },
         evidenceSummary,
         currentView: {

@@ -75,7 +75,7 @@ Warrant: Quest requirements already require written summaries. README positions 
 
 Why it matters: This bridges RPG progress with HR/recruiter usefulness. Levels are game signals; summaries are human-readable evidence.
 
-**Status:** Selected for implementation on 2026-07-23. Codex owns the derived data contract, browser API, and non-visual showcase metadata; visible presentation remains Claude-owned.
+**Status:** Selected for implementation on 2026-07-23. Codex owns the derived data contract, browser API, and safe export serializer; publication waits for visible Claude-owned presentation and disclosure.
 
 ### 4. Legacy Quest Migration Plan
 

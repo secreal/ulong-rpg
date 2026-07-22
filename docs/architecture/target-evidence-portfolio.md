@@ -71,16 +71,17 @@ Records that do not use a target-shaped runtime id remain in `legacy`. Target-sh
 
 Nothing is silently discarded. A portfolio with unresolved evidence has `status: "degraded"`.
 
-## Showcase Metadata
+## Export Handoff
 
-Generated showcase HTML carries the complete portfolio as inert, HTML-safe JSON:
+The projector exports `serializeEvidencePortfolioForHtml()` for a future showcase integration that needs inert, HTML-safe JSON:
 
 ```javascript
-const node = document.getElementById("ulong-evidence-portfolio");
-const portfolio = node ? JSON.parse(node.textContent) : null;
+const serialized = serializeEvidencePortfolioForHtml(portfolio);
 ```
 
-The metadata element has `type="application/json"`; it does not execute or alter the visible showcase. Serialization escapes markup-significant characters so a user-written summary cannot terminate the element.
+Serialization escapes markup-significant characters so a user-written summary cannot terminate an `application/json` script element.
+
+The app deliberately does **not** insert this data into generated public showcases yet. Quest summaries may contain workplace or personal details, and hidden publication without visible disclosure would be unsafe. Claude-owned presentation should make the included evidence visible and obtain clear user intent before enabling export.
 
 ## Agent Context
 
@@ -88,4 +89,4 @@ The metadata element has `type="application/json"`; it does not execute or alter
 
 ## Ownership Boundary
 
-Codex owns this projector, schema, export metadata, and tests. Claude may later design visible evidence views by consuming the browser API or showcase metadata, without moving evidence derivation into UI code.
+Codex owns this projector, schema, safe serializer, and tests. Claude may later design visible evidence views by consuming the browser API, without moving evidence derivation into UI code.

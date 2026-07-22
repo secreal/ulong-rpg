@@ -161,11 +161,25 @@ export function buildTargetEvidencePortfolio({ questProgress = {}, catalogs = {}
   const groups = new Map();
   const legacy = [];
   const unresolved = [];
+  const runtimeIdCounts = new Map();
+
+  for (const [recordKey, rawRecord] of Object.entries(completed)) {
+    const runtimeQuestId = isPlainObject(rawRecord) && typeof rawRecord.id === "string" && rawRecord.id.trim()
+      ? rawRecord.id.trim()
+      : recordKey;
+    runtimeIdCounts.set(runtimeQuestId, (runtimeIdCounts.get(runtimeQuestId) || 0) + 1);
+  }
 
   for (const [recordKey, rawRecord] of Object.entries(completed).sort(([left], [right]) => left.localeCompare(right))) {
     const runtimeQuestId = isPlainObject(rawRecord) && typeof rawRecord.id === "string" && rawRecord.id.trim()
       ? rawRecord.id.trim()
       : recordKey;
+
+    if (runtimeIdCounts.get(runtimeQuestId) > 1) {
+      const summary = isPlainObject(rawRecord) && typeof rawRecord.summary === "string" ? rawRecord.summary.trim() : "";
+      unresolved.push(unresolvedEvidence(rawRecord, runtimeQuestId, "duplicate-runtime-quest-id", summary));
+      continue;
+    }
 
     if (!isPlainObject(rawRecord)) {
       unresolved.push(unresolvedEvidence(rawRecord, runtimeQuestId, "invalid-record"));

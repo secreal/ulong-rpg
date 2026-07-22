@@ -201,6 +201,32 @@ test("works without catalogs by retaining target-shaped records as unresolved", 
   assert.equal(result.unresolved[0].summary, "Still retained when catalog loading fails.");
 });
 
+test("does not double-count duplicate runtime quest ids from imported state", () => {
+  const result = buildTargetEvidencePortfolio({
+    questProgress: {
+      completed: {
+        first: {
+          id: "skill::skill-api-design::lv1::0",
+          summary: "First imported copy.",
+        },
+        second: {
+          id: "skill::skill-api-design::lv1::0",
+          summary: "Second imported copy.",
+        },
+      },
+    },
+    catalogs,
+    generatedAt: 0,
+  });
+
+  assert.equal(result.summary.resolvedEvidence, 0);
+  assert.equal(result.summary.unresolvedEvidence, 2);
+  assert.deepEqual(result.unresolved.map(item => item.reason), [
+    "duplicate-runtime-quest-id",
+    "duplicate-runtime-quest-id",
+  ]);
+});
+
 test("escapes portfolio JSON for an inert HTML script element", () => {
   const portfolio = {
     version: 1,
@@ -227,14 +253,19 @@ test("rejects duplicate target identities instead of resolving ambiguously", () 
   }), /duplicate target/i);
 });
 
-test("index exposes read-only evidence API, bounded agent context, and showcase metadata", async () => {
+test("index exposes a read-only evidence API and bounded agent context", async () => {
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 
   assert.match(html, /window\.ulongEvidenceReady\s*=\s*initEvidencePortfolio\(\)/);
   assert.match(html, /build_portfolio:\s*buildCurrentEvidencePortfolio/);
   assert.match(html, /Object\.freeze\(\{\s*version:\s*1,\s*build_portfolio:/s);
   assert.match(html, /evidenceSummary/);
-  assert.match(html, /id="ulong-evidence-portfolio"\s+type="application\/json"/);
-  assert.match(html, /serializeEvidencePortfolioForHtml\(portfolio\)/);
+  assert.match(html, /summariesAvailable/);
+  const contextStart = html.indexOf("function buildAgentContext(");
+  const contextEnd = html.indexOf("\n    async function initAgentBridge", contextStart);
+  assert.notEqual(contextStart, -1);
+  assert.notEqual(contextEnd, -1);
+  assert.doesNotMatch(html.slice(contextStart, contextEnd), /buildCurrentEvidencePortfolio|loadTargetQuestData/);
+  assert.doesNotMatch(html, /id="ulong-evidence-portfolio"\s+type="application\/json"/);
   assert.doesNotMatch(html, /set_evidence|delete_evidence|saveEvidencePortfolio/);
 });

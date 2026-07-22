@@ -123,7 +123,7 @@ const evidence = await window.ulongEvidenceReady;
 const portfolio = await evidence.build_portfolio();
 ```
 
-Showcase hasil export juga membawa portfolio yang sama sebagai metadata JSON non-visual dengan id `ulong-evidence-portfolio`. Kontrak lengkap, fallback legacy, dan alasan unresolved tersedia di [`docs/architecture/target-evidence-portfolio.md`](docs/architecture/target-evidence-portfolio.md).
+Portfolio belum otomatis dimasukkan ke showcase publik. Claude dapat memakai kontrak ini untuk membuat presentasi dan disclosure yang terlihat sebelum summary pemain ikut dipublikasikan. Kontrak lengkap, fallback legacy, dan alasan unresolved tersedia di [`docs/architecture/target-evidence-portfolio.md`](docs/architecture/target-evidence-portfolio.md).
 
 ---
 
