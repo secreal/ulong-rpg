@@ -93,6 +93,27 @@ node scripts/report-target-quest-health.mjs --format markdown --output docs/repo
 
 Gunakan `--fail-on warning` untuk mode ketat, atau `--fail-on none` untuk inspeksi tanpa exit code gagal.
 
+### Agent-Native Progress Bridge
+
+Agent browser dapat membaca dan mengubah state yang sama dengan UI melalui `window.ulongAgent`. Bridge ini tidak menjalankan model AI; ia menyediakan primitive atomik, dynamic context, revision guard, dan event sinkronisasi untuk agent eksternal:
+
+```javascript
+const agent = await window.ulongAgentReady;
+const context = await agent.get_context();
+const progress = agent.read_resource({ resource: "progress" });
+
+agent.set_value({
+  resource: "progress",
+  path: ["skill::Frontend Developer::Version Control"],
+  value: 2,
+  expectedRevision: context.revision,
+});
+
+agent.complete_task({ summary: "Version Control updated and verified in the job card." });
+```
+
+Gunakan `list_capabilities()` untuk discovery dan baca ulang `get_context()` jika mutation ditolak karena revision sudah berubah. Kontrak resource, action parity, dan event tersedia di [`docs/architecture/agent-capability-map.md`](docs/architecture/agent-capability-map.md).
+
 ---
 
 ## 📄 Lisensi
