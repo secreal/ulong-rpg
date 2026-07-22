@@ -4882,6 +4882,48 @@
       return questMap.get(rawId) || questMap.get(stripped) || null;
     }
 
+    let evidencePortfolioModulePromise = null;
+
+    function loadEvidencePortfolioModule() {
+      if (!evidencePortfolioModulePromise) {
+        evidencePortfolioModulePromise = import("./scripts/lib/target-evidence-portfolio.mjs");
+      }
+      return evidencePortfolioModulePromise;
+    }
+
+    async function buildCurrentEvidencePortfolio() {
+      const [module, skillMap, equipmentMap, talentMap] = await Promise.all([
+        loadEvidencePortfolioModule(),
+        loadTargetQuestData("skill"),
+        loadTargetQuestData("equip"),
+        loadTargetQuestData("talent"),
+      ]);
+      return module.buildTargetEvidencePortfolio({
+        questProgress,
+        catalogs: {
+          skill: [...skillMap.values()],
+          equipment: [...equipmentMap.values()],
+          talent: [...talentMap.values()],
+        },
+      });
+    }
+
+    async function initEvidencePortfolio() {
+      try {
+        await loadEvidencePortfolioModule();
+        const api = Object.freeze({
+          version: 1,
+          build_portfolio: buildCurrentEvidencePortfolio,
+        });
+        window.ulongEvidence = api;
+        window.dispatchEvent(new CustomEvent("ulong:evidence-ready", { detail: { version: api.version } }));
+        return api;
+      } catch (error) {
+        console.error("ulong evidence portfolio could not be initialized.", error);
+        return null;
+      }
+    }
+
     function itemKey(kind, id) { return `${kind}::${id}`; }
 
     function itemLevel(kind, id) {
@@ -5960,7 +6002,22 @@
       let snapEquip = [], snapTalent = [];
       try { const d = await loadEquipmentData(); snapEquip = d.equipment || []; } catch {}
       try { const d = await loadTalentData();    snapTalent = d.talents    || []; } catch {}
-      return { prof, html: filtered.length ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange, snapEquip, snapTalent, snapGuild) : null };
+      let evidenceJson = "";
+      try {
+        const [module, portfolio] = await Promise.all([
+          loadEvidencePortfolioModule(),
+          buildCurrentEvidencePortfolio(),
+        ]);
+        evidenceJson = module.serializeEvidencePortfolioForHtml(portfolio);
+      } catch (error) {
+        console.error("Evidence metadata could not be added to this showcase export.", error);
+      }
+      return {
+        prof,
+        html: filtered.length
+          ? generateShowcaseHTML(prof, filtered, snap, snapLinks, snapJobChange, snapEquip, snapTalent, snapGuild, evidenceJson)
+          : null,
+      };
     }
 
     function generateShowcaseREADME(prof) {
@@ -6196,7 +6253,7 @@
     // ══════════════════════════════════════════
     // HTML GENERATOR
     // ══════════════════════════════════════════
-    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapJobChange, snapEquip = [], snapTalent = [], snapGuild = {}) {
+    function generateShowcaseHTML(prof, filteredJobs, snap, snapLinks, snapJobChange, snapEquip = [], snapTalent = [], snapGuild = {}, evidenceJson = "") {
       const name   = prof.name   || "Unknown Hero";
       const nick   = prof.nick   || "";
       const github = prof.github || "";
@@ -6826,6 +6883,7 @@ ${standaloneHTML}
 <div class="showcase-footer">
   © secreal 2026 · <a href="https://secreal.github.io/ulong-rpg/" target="_blank" rel="noopener">ulong RPG</a>
 </div>
+${evidenceJson ? `<script id="ulong-evidence-portfolio" type="application/json">${evidenceJson}<\/script>` : ""}
 <script>
 (function(){
   var cur="en";
@@ -7316,7 +7374,7 @@ When the request is complete, call complete_task with a concise summary of what 
       }
     }
 
-    function buildAgentContext() {
+    async function buildAgentContext() {
       const activeJobs = new Set();
       let activeSkills = 0;
       let activeEquipment = 0;
@@ -7334,6 +7392,19 @@ When the request is complete, call complete_task with a concise summary of what 
         } else if (key.startsWith("talent::")) {
           activeTalents += 1;
         }
+      }
+
+      let evidenceSummary = {
+        totalCompleted: Object.keys(questProgress.completed || {}).length,
+        resolvedEvidence: 0,
+        targetsWithEvidence: 0,
+        legacyEvidence: 0,
+        unresolvedEvidence: 0,
+      };
+      try {
+        evidenceSummary = (await buildCurrentEvidencePortfolio()).summary;
+      } catch (error) {
+        console.error("Evidence summary could not be added to agent context.", error);
       }
 
       return {
@@ -7361,6 +7432,7 @@ When the request is complete, call complete_task with a concise summary of what 
           completedQuests: Object.keys(questProgress.completed || {}).length,
           perguruanUlongDays: Object.keys(ulongProgress).length,
         },
+        evidenceSummary,
         currentView: {
           language: currentLang,
           openJob: currentDetailJob,
@@ -7486,6 +7558,7 @@ When the request is complete, call complete_task with a concise summary of what 
     renderProfileChip();
     document.getElementById("footer-last-push").textContent = "Last push: " + LAST_PUSH;
     loadQuestIndex();
+    window.ulongEvidenceReady = initEvidencePortfolio();
     window.ulongAgentReady = initAgentBridge();
 
     // Scroll to top button

@@ -75,6 +75,8 @@ Warrant: Quest requirements already require written summaries. README positions 
 
 Why it matters: This bridges RPG progress with HR/recruiter usefulness. Levels are game signals; summaries are human-readable evidence.
 
+**Status:** Selected for implementation on 2026-07-23. Codex owns the derived data contract, browser API, and non-visual showcase metadata; visible presentation remains Claude-owned.
+
 ### 4. Legacy Quest Migration Plan
 
 Create a formal migration map from `data/quests/*.json` job-based quests into target-owned quest entries, then freeze legacy quest expansion.
@@ -128,3 +130,9 @@ Suggested prompt:
 ```text
 $ce-brainstorm Quest Data Health Dashboard untuk ulong RPG. Fokusnya bukan UI dulu, tapi data checks/report apa saja yang harus ada untuk menjaga kualitas data target quest, equipment, talent, dan skill.
 ```
+
+## Implementation History
+
+- **Quest Data Health Dashboard:** implemented and merged through PR #3.
+- **Fundamental Dependency Graph:** implemented on `feat/fundamental-dependency-graph`; PR #5 remains open and separate from later work.
+- **Target Evidence Portfolio:** selected next on 2026-07-23 because it is independent of PR #5 and stays within the Codex data/logic boundary.
