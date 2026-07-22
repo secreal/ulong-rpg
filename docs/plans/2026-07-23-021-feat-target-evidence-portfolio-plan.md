@@ -1,7 +1,7 @@
 ---
 title: "feat: Add Target Evidence Portfolio"
 type: feat
-status: active
+status: completed
 date: 2026-07-23
 ---
 
