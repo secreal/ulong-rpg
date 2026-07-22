@@ -84,6 +84,14 @@ node scripts/validate-target-quests.mjs
 node scripts/report-target-quest-health.mjs
 ```
 
+### Learning Source Library
+
+Untuk menyiapkan sumber belajar deduplikasi, jalankan:
+
+```powershell
+node scripts/build-learning-sources.mjs --root . --output data/learning-sources.json
+```
+
 Health report menganggap schema atau referensi rusak sebagai `error`, sedangkan konsentrasi learning source dan masalah maintainability lain sebagai `warning`. Output juga bisa dipakai automation atau disimpan sebagai snapshot Markdown:
 
 ```powershell
