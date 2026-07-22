@@ -114,6 +114,17 @@ agent.complete_task({ summary: "Version Control updated and verified in the job 
 
 Gunakan `list_capabilities()` untuk discovery dan baca ulang `get_context()` jika mutation ditolak karena revision sudah berubah. Kontrak resource, action parity, dan event tersedia di [`docs/architecture/agent-capability-map.md`](docs/architecture/agent-capability-map.md).
 
+### Target Evidence Portfolio
+
+Summary dari quest yang selesai dapat diproyeksikan menjadi evidence terstruktur per skill, equipment, dan talent. Data ini bersifat read-only dan selalu dibangun ulang dari progress serta katalog quest saat ini:
+
+```javascript
+const evidence = await window.ulongEvidenceReady;
+const portfolio = await evidence.build_portfolio();
+```
+
+Portfolio belum otomatis dimasukkan ke showcase publik. Claude dapat memakai kontrak ini untuk membuat presentasi dan disclosure yang terlihat sebelum summary pemain ikut dipublikasikan. Kontrak lengkap, fallback legacy, dan alasan unresolved tersedia di [`docs/architecture/target-evidence-portfolio.md`](docs/architecture/target-evidence-portfolio.md).
+
 ---
 
 ## 📄 Lisensi

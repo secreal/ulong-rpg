@@ -3413,7 +3413,7 @@
     const GUILD_KEY = "itjt_guild_v1";
     const ACHIEVEMENT_KEY = "itjt_achievements_v1";
     const ULONG_PROGRESS_KEY = "itjt_ulong_progress_v1";
-    const LAST_PUSH = "22 Jul 2026 12:58:21";
+    const LAST_PUSH = "23 Jul 2026 03:40:30";
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -4880,6 +4880,52 @@
       // Skills have id like "skill-version-control"; targetId in skills.json is "version-control"
       const stripped = rawId.replace(/^skill-/, "");
       return questMap.get(rawId) || questMap.get(stripped) || null;
+    }
+
+    let evidencePortfolioModulePromise = null;
+
+    function loadEvidencePortfolioModule() {
+      if (!evidencePortfolioModulePromise) {
+        evidencePortfolioModulePromise = import("./scripts/lib/target-evidence-portfolio.mjs");
+      }
+      return evidencePortfolioModulePromise;
+    }
+
+    async function buildEvidencePortfolioFromProgress(questProgressSnapshot) {
+      const [module, skillMap, equipmentMap, talentMap] = await Promise.all([
+        loadEvidencePortfolioModule(),
+        loadTargetQuestData("skill"),
+        loadTargetQuestData("equip"),
+        loadTargetQuestData("talent"),
+      ]);
+      return module.buildTargetEvidencePortfolio({
+        questProgress: questProgressSnapshot,
+        catalogs: {
+          skill: [...skillMap.values()],
+          equipment: [...equipmentMap.values()],
+          talent: [...talentMap.values()],
+        },
+      });
+    }
+
+    function buildCurrentEvidencePortfolio() {
+      return buildEvidencePortfolioFromProgress(structuredClone(questProgress));
+    }
+
+    async function initEvidencePortfolio() {
+      try {
+        await loadEvidencePortfolioModule();
+        const api = Object.freeze({
+          version: 1,
+          build_portfolio: buildCurrentEvidencePortfolio,
+        });
+        window.ulongEvidence = api;
+        window.dispatchEvent(new CustomEvent("ulong:evidence-ready", { detail: { version: api.version } }));
+        return api;
+      } catch (error) {
+        console.error("ulong evidence portfolio could not be initialized.", error);
+        return null;
+      }
     }
 
     function itemKey(kind, id) { return `${kind}::${id}`; }
@@ -7317,12 +7363,15 @@ When the request is complete, call complete_task with a concise summary of what 
     }
 
     function buildAgentContext() {
+      const progressSnapshot = structuredClone(progress);
+      const questProgressSnapshot = structuredClone(questProgress);
+      const ulongProgressSnapshot = structuredClone(ulongProgress);
       const activeJobs = new Set();
       let activeSkills = 0;
       let activeEquipment = 0;
       let activeTalents = 0;
 
-      for (const [key, rawLevel] of Object.entries(progress)) {
+      for (const [key, rawLevel] of Object.entries(progressSnapshot)) {
         const level = rawLevel === true ? 1 : Number(rawLevel) || 0;
         if (level <= 0) continue;
         if (key.startsWith("skill::")) {
@@ -7335,6 +7384,14 @@ When the request is complete, call complete_task with a concise summary of what 
           activeTalents += 1;
         }
       }
+
+      const completedEvidence = Object.values(questProgressSnapshot.completed || {});
+      const evidenceSummary = {
+        totalCompleted: completedEvidence.length,
+        summariesAvailable: completedEvidence.filter(record => (
+          record && typeof record.summary === "string" && record.summary.trim()
+        )).length,
+      };
 
       return {
         app: "ulong RPG",
@@ -7358,9 +7415,10 @@ When the request is complete, call complete_task with a concise summary of what 
           activeSkills,
           activeEquipment,
           activeTalents,
-          completedQuests: Object.keys(questProgress.completed || {}).length,
-          perguruanUlongDays: Object.keys(ulongProgress).length,
+          completedQuests: Object.keys(questProgressSnapshot.completed || {}).length,
+          perguruanUlongDays: Object.keys(ulongProgressSnapshot).length,
         },
+        evidenceSummary,
         currentView: {
           language: currentLang,
           openJob: currentDetailJob,
@@ -7486,6 +7544,7 @@ When the request is complete, call complete_task with a concise summary of what 
     renderProfileChip();
     document.getElementById("footer-last-push").textContent = "Last push: " + LAST_PUSH;
     loadQuestIndex();
+    window.ulongEvidenceReady = initEvidencePortfolio();
     window.ulongAgentReady = initAgentBridge();
 
     // Scroll to top button
