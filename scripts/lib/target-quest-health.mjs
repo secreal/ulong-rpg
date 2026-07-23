@@ -383,6 +383,19 @@ function analyzeTarget({
 function addSourceFindings({ sourceUsage, kinds, options, addFinding }) {
   const labels = new Map();
   for (const [url, usage] of sourceUsage) {
+    if (usage.labels.size > 1) {
+      addFinding(
+        "url-label-conflict",
+        "warning",
+        "data/target-quests",
+        `One source URL is used with multiple labels.`,
+        {
+          url,
+          labels: [...usage.labels].sort(),
+        },
+      );
+    }
+
     for (const label of usage.labels) {
       const urls = labels.get(label) || new Set();
       urls.add(url);

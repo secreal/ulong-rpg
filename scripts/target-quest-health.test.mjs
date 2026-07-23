@@ -139,7 +139,10 @@ test("invalid fixture emits stable structural, identity, localization, and sourc
   skills.targets[0].levels["1"].pop();
   skills.targets[0].intro.links[0].url = "not-a-url";
   equipment.targets[0].intro.id = skills.targets[0].intro.id;
-  equipment.targets[0].intro.links[0].label = skills.targets[0].levels["2"][0].links[0].label;
+  equipment.targets[0].intro.links[0].url = "https://example.com/git";
+  equipment.targets[0].intro.links[0].label = "Git Source";
+  skills.targets[0].levels["1"][0].links[0].label = "Git Source";
+  skills.targets[0].levels["2"][0].links[0].url = "https://example.com/git";
   equipmentCatalog.equipment[0].description.id = "";
   writeJson(skillPath, skills);
   writeJson(equipmentPath, equipment);
@@ -163,6 +166,7 @@ test("invalid fixture emits stable structural, identity, localization, and sourc
     "missing-bilingual-description",
     "source-concentration",
     "source-label-conflict",
+    "url-label-conflict",
   ]) {
     assert.ok(ruleIds.has(expected), `missing rule ${expected}`);
   }
